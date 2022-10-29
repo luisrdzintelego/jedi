@@ -1,0 +1,66 @@
+.login-background {
+
+	min-height: 100vh;
+	min-width: 100vw;
+	background: url('../Img/fondo_login_escritorio.png');
+	background-color: #ffd8cd;
+	background-position: center center; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: contain; /* Resize the background image to cover the entire container */
+}
+
+.login-form{
+
+	background: url('../Img/img_puntos.png');
+	background-color: #fff;
+	background-position-y: 10px;
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-position-x: 50%;
+	background-size:95%; /* Resize the background image to cover the entire container */
+
+	padding: 20px;
+	border-radius: 15px;
+	border: 2px solid black;
+	-webkit-box-shadow: 12px 12px 0px -1px #e1251b; 
+	box-shadow: 12px 12px 0px -1px #e1251b;
+
+	width: 50%;
+	overflow: auto;
+	margin: auto;
+	/* position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0; */
+	/* top: 0; left: 0; bottom: 0; right: 0; */
+
+}
+
+.label-login {
+	font-family: 'Titillium Web', sans-serif;
+	font-weight: 700;
+	font-size: 15px;
+	line-height: 15px;
+	padding-top: 4px;
+  }
+
+  .form-control-login {
+    display: block;
+    width: 90%;
+    padding: .375rem .75rem;
+    margin-right: 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.help-text-login{
+	color:#e1251b
+}
+
