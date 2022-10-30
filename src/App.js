@@ -8,6 +8,7 @@ import Login from './Secciones/Login';
 import Introduccion from "./Secciones/Introduccion";
 import Perfil from "./Secciones/Perfil";
 import Instrucciones from "./Secciones/Instrucciones";
+import Dashboard from "./Secciones/Dashboard";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="introduccion" element={<Introduccion/>}/>
           <Route path="perfil" element={<Perfil/>}/>
           <Route path="instrucciones" element={<Instrucciones/>}/>
+          <Route path="dashboard" element={<Dashboard/>}/>
           {/* <Route exact path='journey/:itemId' element={<Journey/>} />
           <Route path="Paso2" element={<Paso2/>}/>
           <Route path="Paso3" element={<Paso3/>}/> */}

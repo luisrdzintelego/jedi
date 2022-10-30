@@ -270,7 +270,7 @@ function Instrucciones() {
 					<div className="col-md-8 offset-md-2">
 						<div className="mt-5 mb-5">
 							<Link className='btn_default mx-3' to="/introduccion"> <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> Regresar</Link>
-							<Link className='btn_default mx-3' to="/instrucciones"  style={{visibility: termino === true ? 'visible' : 'hidden' }}>Continuar <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></Link>
+							<Link className='btn_default mx-3' to="/dashboard"  style={{visibility: termino === true ? 'visible' : 'hidden' }}>¡Vámos! <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></Link>
 						</div>	
 					</div>	
       			</div>	
