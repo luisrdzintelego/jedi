@@ -70,7 +70,7 @@ function Introduccion() {
 			if(element === true){
 				cont++;
 			}
-			if(cont === 4){setTermino(true)}
+			if(cont === vistos.length){setTermino(true)}
 		});
 
 		
@@ -87,7 +87,7 @@ function Introduccion() {
 	//hacer sliser en telefono//
 	const handlers = useSwipeable({
 		onSwipedLeft: () => {
-			if(activeIndex < 3){
+			if(activeIndex <(vistos.length-1)){
 			updateIndex(activeIndex + 1)
 			}
 		},	
@@ -198,7 +198,7 @@ function Introduccion() {
 										<span onClick={() => {
 											updateIndex(activeIndex+1);
 											IncrementarArray(activeIndex+1);
-										}} style={{display: activeIndex < 3 ? 'block' : 'none' }}>
+										}} style={{display: activeIndex < (vistos.length-1) ? 'block' : 'none' }}>
 										<img src={fder} width="40"></img>
 										</span>
 									</div>
@@ -208,9 +208,9 @@ function Introduccion() {
 					</div>
 				</div>
 
-				<div className="col-md-10 offset-md-1" style={{display: termino === true ? 'block' : 'none' }}>
+				<div className="col-md-10 offset-md-1" style={{visibility: termino === true ? 'visible' : 'hidden' }}>
 					<div className="mt-5 mb-5">
-						<Link className='btn_default' to="/introduccion">Continuar <FontAwesomeIcon icon={faArrowRightLong} /></Link>
+						<Link className='btn_default' to="/perfil">Continuar <FontAwesomeIcon icon={faArrowRightLong} /></Link>
 					</div>	
 				</div>				
 			</div>

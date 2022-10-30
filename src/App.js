@@ -6,6 +6,8 @@ import './App.css';
 
 import Login from './Secciones/Login';
 import Introduccion from "./Secciones/Introduccion";
+import Perfil from "./Secciones/Perfil";
+import Instrucciones from "./Secciones/Instrucciones";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Routes>
           <Route path="/" element={<Login />} />
           <Route path="introduccion" element={<Introduccion/>}/>
+          <Route path="perfil" element={<Perfil/>}/>
+          <Route path="instrucciones" element={<Instrucciones/>}/>
           {/* <Route exact path='journey/:itemId' element={<Journey/>} />
           <Route path="Paso2" element={<Paso2/>}/>
           <Route path="Paso3" element={<Paso3/>}/> */}
