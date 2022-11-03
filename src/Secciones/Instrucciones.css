@@ -6,7 +6,7 @@
 	min-width: 100vw;
 	background: url('../Img/fondo_instrucciones_escritorio.png');
 	background-color: #ffd8cd;
-	background-position-x: 50%; /* Center the image */
+	background-position: center bottom; /* Center the image */
 	background-repeat: no-repeat; /* Do not repeat the image */
 	background-size: 100%; /* Resize the background image to cover the entire container */
 }

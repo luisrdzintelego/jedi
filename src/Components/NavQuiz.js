@@ -10,8 +10,6 @@ import './NavQuiz.css';
 
 import * as Img from './Imagenes'
 
-import Timer2 from './Timer2';
-
 const NavQuiz = ({props}) => {
 
 	const GConText = useContext(VarContext);
@@ -19,7 +17,6 @@ const NavQuiz = ({props}) => {
 	const stopTimer = () => {
 		console.log("🚀 ~ GConText.Counter", GConText.Counter)
 	};
-
 
   return (
 	<>

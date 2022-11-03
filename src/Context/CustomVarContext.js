@@ -39,7 +39,7 @@ export const CustomVarContext = ({children}) => {
 	const [productosCart, setProductosCart] = useState ([])
 
 	/*
-	const resetAll = (var1) => {
+	const resetAll2 = (var1) => {
 		setNombre(var1)
 		console.log("🚀 ~ Nombre", var1)
 	}
@@ -49,9 +49,9 @@ export const CustomVarContext = ({children}) => {
 		setPuntos(0)
 		setTiempo(0)
 		setBonus(false)
-		PuntosEval1(0)
-		PuntosEval2(0)
-		PuntosEval3(0)
+		setPuntosEval1(0)
+		setPuntosEval2(0)
+		setPuntosEval3(0)
 		setTiempoEval1(0)
 		setTiempoEval2(0)
 		setTiempoEval3(0)
