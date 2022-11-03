@@ -1,91 +1,96 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext} from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { VarContext } from '../Context/VarContext';
 
-import { useSwipeable } from "react-swipeable";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './Dashboard.css';
 
-import titulo_curso from "../Img/Titulo_curso.png";
-import avatar_tumb1 from "../Img/avatar_tumb1.png";
-
-import star from "../Img/iconos/Star.png";
-import joya1 from "../Img/Joya1.png";
-import joya2 from "../Img/Joya2.png";
-import joya3 from "../Img/Joya3.png";
-
-import joya1_d from "../Img/Joya1_Disabled.png";
-import joya2_d from "../Img/Joya2_Disabled.png";
-import joya3_d from "../Img/Joya3_Disabled.png";
-
+import * as Img from '../Components/Imagenes'
 
 import Nav from '../Components/Nav'
 
-function Dashboard() {
+const Dashboard = () => {
+
+	const GConText = useContext(VarContext);
+
   return (
 	<>
-		<div className="container-fluid dashboard-background">
-			<div className="row">
-				<div className="col-md-12">
-				<Nav titulo={"Dashboard"}></Nav>
-				</div>				
-			</div>
-			<div className="row mt-5">
-				<div className="col-md-7">
+		<div className="container dashboard-background">
 
-					<div className="">
-						<img src={titulo_curso} width="340"></img>
+			<Nav titulo={"Dashboard"}></Nav>
+
+			<div className="container">
+				<div className="row mt-3 mx-1">
+					<div className="col-md-7 mb-5 text-left">
+
+						<img className='img-fluid' src={Img.titulo_curso} alt=""  width="300"></img>
+
 					</div>
-				</div>
 
-				<div className="col-md-4  dashboard-form">
+					<div className="col-md-5 dashboard-form">
+						<div className="mb-3">
+							<div className="row mt-1">
+								<div className="col-md-12">
+									
+								<img className='mb-3' src={GConText.Avatar !== "" ? GConText.Avatar : Img.no_avatar } alt="" width="120"></img>
 
-						<div className="mt-">
-							<img src={avatar_tumb1} width="110"></img>
-						</div>
-
-							<div className="mt-3 mb-3">
-
-									<div className="row mt-1">
-										<div className="col-md-12">
-										<h5 className='text-left' style={{fontSize: '25px'}}>¡Hola!</h5>
-										<h4 className='text-left' id='nombre' style={{fontSize: '25px'}}>Javier Hernández</h4>
-										<h4 className='text-left' id='medallas' style={{fontSize: '25px'}}>00</h4>
-										</div>	
-									</div>
-
-									<div className="row mt-1 caja_gris mx-1">
-										<div className="col-md-6 pt-2">
-											<h5 className='text-left' style={{fontSize: '17px'}}><img src={star} width="40"></img> 0000 pts</h5>
-										</div>	
-										<div className="col-md-6 pt-2 text-right">
-											<img src={joya1_d} width="40"></img>
-											<img src={joya2_d} width="40"></img>
-											<img src={joya3} width="40"></img>
-										</div>	
-
-
-									</div>
-									<div className="row mt-1 mx-1 text-left">
-										<div className="col-md-12 pt-3">
-											<progress max="100" value="76"></progress>
-											<h5 className='text-left' style={{fontSize: '14px'}}>Avance %</h5>
-										</div>	
-									</div>
-									<div className="row">
-										<div className="col-md-12">
-											<div className="mt-4">
-												<Link className='btn_default mx-3' to="/instrucciones"> Instrucciones </Link>
-												<Link className='btn_default mx-3' to="/instrucciones"> Entrar </Link>
-											</div>	
-										</div>	
-									</div>	
+									<h2 className='fs-25 c-black text-left'>¡Hola!</h2>
+									<h4 className='fs-25 c-black text-left' id='nombre'>{GConText.Nombre}</h4>
+									<h4 className='fs-25 c-black text-left' id='ranking'>{GConText.Ranking}</h4>
+								</div>	
 							</div>
+							<div className="row mt-1 caja_gris">
+								<div className="col-6 col-md-6 pt-2">
+									<h2 className='fs-18 c-black text-left'><img src={Img.star} alt=""  width="40"></img> {GConText.Puntos} pts</h2>
+								</div>	
+								<div className="col-6 col-md-6 pt-2 text-right">
+
+										{
+											GConText.Joya1 === true
+											//GConText.Joya1 === false
+											? <img src={Img.joya1} alt=""  width="40"></img>
+											: <img src={Img.joya1_d} alt=""  width="40"></img>
+										}
+
+										{
+											GConText.Joya2 === true
+											//GConText.Joya1 === false
+											? <img src={Img.joya2} alt=""  width="40"></img>
+											: <img src={Img.joya2_d} alt=""  width="40"></img>
+										}
+
+										{
+											GConText.Joya3 === true
+											//GConText.Joya1 === false
+											? <img src={Img.joya3} alt=""  width="40"></img>
+											: <img src={Img.joya3_d} alt=""  width="40"></img>
+										}
+
+								</div>	
+							</div>
+							<div className="row mt-1 mx-1 text-left">
+								<div className="col-md-12 pt-3">
+									<progress max={GConText.TotalPuntos} value={GConText.Puntos}></progress>
+									<h2 className='fs-15 c-black text-left'>Avance {(GConText.Puntos / GConText.TotalPuntos) * 100}%</h2>
+								</div>	
+							</div>
+							<div className="row">
+								<div className="col-12 col-md-12">
+									<div className="mt-4">
+										<Link className='btn_default mx-1' to="/instrucciones"> Instrucciones </Link>
+										<Link className='btn_default mx-1' to="/primer_reto" onClick={() => {
+                                		GConText.resetAll();
+										}} > Entrar </Link>
+									</div>	
+								</div>	
+							</div>	
+						</div>
+					</div>
 
 				</div>
 			</div>
 		</div>
-
 	</>
   )
 }

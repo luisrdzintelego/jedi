@@ -4,42 +4,68 @@ import {VarContext} from './VarContext'
 
 export const CustomVarContext = ({children}) => {
 
-	const [Nombre, setNombre] = useState ("")
-	const [UrlImg, setUrlImg] = useState ("")
-	const [Ciudad, setCiudad] = useState ("")
-	const [Pais, setPais] = useState ("")
-	const [Region, setRegion] = useState ("")
+	const [Nombre, setNombre] = useState ("Javier Hernandez")
+	const [Avatar, setAvatar] = useState ("")
+	const [Ranking, setRanking] = useState (0)
+
+	const [Puntos, setPuntos] = useState (0)
+	const [Tiempo, setTiempo] = useState (0)
+
+	const [TotalPuntos, setTotalPuntos] = useState (1000)
+
+	const [PuntosEval1, setPuntosEval1] = useState (0)
+	const [PuntosEval2, setPuntosEval2] = useState (0)
+	const [PuntosEval3, setPuntosEval3] = useState (0)
+
+	const [TiempoEval1, setTiempoEval1] = useState (0)
+	const [TiempoEval2, setTiempoEval2] = useState (0)
+	const [TiempoEval3, setTiempoEval3] = useState (0)
+
+	const [Joya1, setJoya1] = useState (false)
+	const [Joya2, setJoya2] = useState (false)
+	const [Joya3, setJoya3] = useState (false)
+
+	const [Bonus, setBonus] = useState (false)
+
+	const [Bonus1, setBonus1] = useState (false)
+	const [Bonus2, setBonus2] = useState (false)
+	const [Bonus3, setBonus3] = useState (false)
+
+	const [Counter, setCounter] = useState (0)
+	const [IniTiempo, setIniTiempo] = useState (true)
+
     //console.log("🚀 ~ UrlImg", UrlImg)
 
 	const [productosCart, setProductosCart] = useState ([])
 
-	const addImg = (url) => {
-		setUrlImg(url)
-		console.log("🚀 ~ url", url)
-	}
-
-	const addCiudad = (var1) => {
-		setCiudad(var1)
-		console.log("🚀 ~ Ciudad", var1)
-	}
-
-	const addPais = (var1) => {
-		setPais(var1)
-		console.log("🚀 ~ Pais", var1)
-	}
-
-	const addRegion = (var1) => {
-		setRegion(var1)
-		console.log("🚀 ~ Region", var1)
-	}
-
-	const addNombre = (var1) => {
+	/*
+	const resetAll = (var1) => {
 		setNombre(var1)
-		console.log("🚀 ~ nombre", var1)
+		console.log("🚀 ~ Nombre", var1)
+	}
+	*/
+
+	const resetAll = () => {
+		setPuntos(0)
+		setTiempo(0)
+		setBonus(false)
+		PuntosEval1(0)
+		PuntosEval2(0)
+		PuntosEval3(0)
+		setTiempoEval1(0)
+		setTiempoEval2(0)
+		setTiempoEval3(0)
+		setJoya1(false)
+		setJoya2(false)
+		setJoya3(false)
+		setBonus1(false)
+		setBonus2(false)
+		setBonus3(false)
+
+		console.log("🚀 ~ resetAll")
 	}
 
-
-
+	
 
 	const addItem = (id,nombre,precio,img,cantidad) => {
 
@@ -87,16 +113,29 @@ export const CustomVarContext = ({children}) => {
 
   return (
 	<VarContext.Provider value={{
-		addCiudad, 
-		Ciudad, 
-		addPais, 
-		Pais, 
-		addRegion, 
-		Region, 
-		addNombre, 
-		Nombre, 
-		addImg, 
-		UrlImg, 
+		Nombre,setNombre,
+		Avatar,setAvatar,
+		Ranking,setRanking,
+		Puntos,setPuntos,
+		TotalPuntos,setTotalPuntos,
+		Tiempo,setTiempo,
+		PuntosEval1,setPuntosEval1,
+		PuntosEval2,setPuntosEval2,
+		PuntosEval3,setPuntosEval3,
+		TiempoEval1,setTiempoEval1,
+		TiempoEval2,setTiempoEval2,
+		TiempoEval3,setTiempoEval3,
+		Joya1,setJoya1,
+		Joya2,setJoya2,
+		Joya3,setJoya3,
+		Bonus,setBonus,
+		Bonus1,setBonus1,
+		Bonus2,setBonus2,
+		Bonus3,setBonus3,
+		Counter,setCounter,
+		IniTiempo,setIniTiempo,
+		resetAll,
+		//NOSE USAN
 		productosCart, 
 		addItem, 
 		removeItem, 

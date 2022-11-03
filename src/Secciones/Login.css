@@ -4,9 +4,9 @@
 	min-width: 100vw;
 	background: url('../Img/fondo_login_escritorio.png');
 	background-color: #ffd8cd;
-	background-position: center center; /* Center the image */
+	background-position-x: 50%; /* Center the image */
 	background-repeat: no-repeat; /* Do not repeat the image */
-	background-size: contain; /* Resize the background image to cover the entire container */
+	background-size: 100%; /* Resize the background image to cover the entire container */
 }
 
 .login-form{
@@ -24,7 +24,6 @@
 	-webkit-box-shadow: 12px 12px 0px -1px #e1251b; 
 	box-shadow: 12px 12px 0px -1px #e1251b;
 
-	width: 50%;
 	overflow: auto;
 	margin: auto;
 	/* position: absolute;
@@ -43,7 +42,7 @@
 
   .form-control-login {
     display: block;
-    width: 90%;
+    width: 70%;
     padding: .375rem .75rem;
     margin-right: 10px;
     font-size: 1rem;

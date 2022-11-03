@@ -1,0 +1,9 @@
+.quiz2-background {
+	min-height: 100vh;
+	min-width: 100vw;
+	background: url('../Img/fondo_preguntas02_escritorio.png');
+	background-color: #ffd674;
+	background-position: center bottom; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: 100%; /* Resize the background image to cover the entire container */
+}

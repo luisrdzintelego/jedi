@@ -1,33 +1,41 @@
-/* eslint-disable jsx-a11y/alt-text */
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { VarContext } from '../Context/VarContext';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightLong} from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeftLong} from '@fortawesome/free-solid-svg-icons'
 
 import './Perfil.css';
 
-import titulo_curso from "../Img/Titulo_curso.png";
-import info from "../Img/info.png";
-import avatar1 from "../Img/avatar1.png";
-import avatar2 from "../Img/avatar2.png";
-import avatar3 from "../Img/avatar3.png";
+import * as Img from '../Components/Imagenes'
 
-
+// import titulo_curso from "../Img/Titulo_curso.png";
+// import info from "../Img/info.png";
+// import avatar1 from "../Img/avatar1.png";
+// import avatar2 from "../Img/avatar2.png";
+// import avatar3 from "../Img/avatar3.png";
 
 import Nav from '../Components/Nav'
 
 const Perfil = () => {
 
+	const GConText = useContext(VarContext);
 
-	const [selecciono, setSelecciono] = useState(0);
+	//const [selecciono, setSelecciono] = useState(GConText.avatar);
 
 
   const Seleccionar_avatar = (newIndex) => {	
 		console.log("🚀 ~ newIndex", newIndex)
 		//setSelecciono(true);
     //setSelecciono(current => !current);
-    setSelecciono(newIndex);
+      if(newIndex === 1){
+        GConText.setAvatar(Img.avatar1_tumb)
+      } else if (newIndex === 2){
+        GConText.setAvatar(Img.avatar2_tumb)
+      } else if (newIndex === 3){
+        GConText.setAvatar(Img.avatar3_tumb)
+      }
 	  };
 
 
@@ -45,98 +53,94 @@ const Perfil = () => {
 
   return (
     <>
-		<div className="container-fluid perfil-background">
+		<div className="container perfil-background">
 
-        <div className="row">
-          <div className="col-md-12">
-          <Nav titulo={"Perfil"}></Nav>
-          </div>				
-        </div>
+        <Nav titulo={"Perfil"}></Nav>
 
-        <div className="row">
-          <div className="col-md-6 offset-md-3">
-            <h2 className='text-left'>Para recuperar las Gemas, se ha llamado a un grupo de ninjas, pues su <b>flexibilidad, agilidad y estrategia</b> serán de gran utilidad en esta búsqueda.</h2>
+        <div className="row mx-1">
+          <div className="col col-md-6 offset-md-3">
+            <h2 className='fs-18 lh-25 c-negro text-left'>Para recuperar las Gemas, se ha llamado a un grupo de ninjas, pues su <b>flexibilidad, agilidad y estrategia</b> serán de gran utilidad en esta búsqueda.</h2>
 
             <div className="mt-4">
-                <h3 className='text-left'><img src={info} width="25"></img> Para comenzar, selecciona un personaje para vivir este gran reto.</h3>
+                <h3 className='fs-15 lh-25 c-negro text-left'><img src={Img.info} alt="" width="25"></img> Para comenzar, selecciona un personaje para vivir este gran reto.</h3>
             </div>	
 
           </div>				
         </div>
 
         <div className="container">
-          <div className="row mt-3">
+        <div className="row">
 
-              {/* <!-- COLUMNA 1--> */}
-              <div className="col-md-3 perfil-form ms-5 me-5">
+                  {/* <!-- COLUMNA 1--> */}
+                  <div className="col perfil-form mt-3 mx-3">
+       
+                        <div>
+                          <img className='img-fluid' src={Img.titulo_curso} alt="" width="100" height=""></img>
+                        </div>
+                        <div>
+                          <img src={Img.avatar1} alt="" width="200" ></img>
+                        </div>
+                        <hr></hr>
 
-                  <div className="mt-1">
-                    <img src={titulo_curso} width="100" height=""></img>
+                        <div className="mt-1 mb-5">
+                          <h1 className='fs-28 lh-25 c-negro text-center' >Avatar 1</h1>
+                        </div>
+
+                        <div className="mb-3">
+                          <span className={GConText.Avatar === Img.avatar1_tumb  ? 'activo' : 'btn_default'} onClick={() => {
+                                Seleccionar_avatar(1);
+
+                              }}>Escoger</span>
+                        </div>
+       
                   </div>
+                  {/* <!-- COLUMNA 2--> */}
+                  <div className="col perfil-form mt-3 mx-3">
+                    <div className=''>
 
-                    <div className="mt-2">
-                      <img src={avatar1} width="200" ></img>
+                      <div>
+                        <img src={Img.titulo_curso} alt="" width="100" height=""></img>
+                      </div>
+                      <div>
+                        <img src={Img.avatar2} alt="" width="200" ></img>
+                      </div>
+                        <hr></hr>
+                        <div className="mt-1 mb-5">
+                        <h1 className='fs-28 lh-25 c-negro text-center' >Avatar 2</h1>
+                        </div>
+
+
+                      <div className="mt-1 mb-3">
+                        <span className={GConText.Avatar === Img.avatar2_tumb  ? 'activo' : 'btn_default'} onClick={() => {
+                          Seleccionar_avatar(2);
+
+                        }}>Escoger</span>
+                      </div>
                     </div>
-                    <hr></hr>
-                    <div className="mt-1 mb-5">
-                      <h4>Avatar 1</h4>
-                    </div>
-
-                <div className="mt-1 mb-3">
-                <span className={selecciono === 1 ? 'activo' : 'btn_default'} onClick={() => {
-											Seleccionar_avatar(1);
-
-										}}>Escoger</span>
-                </div>
-                
-              </div>
-              {/* <!-- COLUMNA 2--> */}
-              <div className="col-md-3 perfil-form ms-5 me-5">
-
-                  <div className="mt-1">
-                    <img src={titulo_curso} width="100" height=""></img>
                   </div>
+                  {/* <!-- COLUMNA 3--> */}
+                  <div className="col perfil-form mt-3 mx-3">
+                    <div className=''>
+                        <div>
+                          <img src={Img.titulo_curso} alt="" width="100" height=""></img>
+                        </div>
+                        <div>
+                          <img src={Img.avatar3} alt="" width="200" ></img>
+                        </div>
+                          <hr></hr>
+                          <div className="mt-1 mb-5">
+                          <h1 className='fs-28 lh-25 c-negro text-center' >Avatar 3</h1>
+                          </div>
 
-                    <div className="mt-2">
-                      <img src={avatar2} width="200" ></img>
-                    </div>
-                    <hr></hr>
-                    <div className="mt-1 mb-5">
-                      <h4>Avatar 1</h4>
-                    </div>
+                        <div className="mt-1 mb-3">
+                          <span className={GConText.Avatar === Img.avatar3_tumb ? 'activo' : 'btn_default'} onClick={() => {
+                            Seleccionar_avatar(3);
 
-
-                  <div className="mt-1 mb-3">
-                    <span className={selecciono === 2 ? 'activo' : 'btn_default'} onClick={() => {
-											Seleccionar_avatar(2);
-
-										}}>Escoger</span>
+                          }}>Escoger</span>
+                        </div>    
+                      </div>
+         
                   </div>
-                
-              </div>
-              {/* <!-- COLUMNA 3--> */}
-              <div className="col-md-3 perfil-form ms-5">
-
-                  <div className="mt-1">
-                    <img src={titulo_curso} width="100" height=""></img>
-                  </div>
-
-                    <div className="mt-2">
-                      <img src={avatar3} width="200" ></img>
-                    </div>
-                    <hr></hr>
-                    <div className="mt-1 mb-5">
-                      <h4>Avatar 1</h4>
-                    </div>
-
-                  <div className="mt-1 mb-3">
-                    <span className={selecciono === 3 ? 'activo' : 'btn_default'} onClick={() => {
-											Seleccionar_avatar(3);
-
-										}}>Escoger</span>
-                  </div>
-                
-              </div>
           </div>			
         </div>
       
@@ -144,7 +148,7 @@ const Perfil = () => {
 				<div className="col-md-8 offset-md-2">
 					<div className="mt-5 mb-5">
 						<Link className='btn_default mx-3' to="/introduccion"> <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> Regresar</Link>
-						<Link className='btn_default mx-3' to="/instrucciones"  style={{visibility: selecciono !== 0 ? 'visible' : 'hidden' }}>Continuar <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></Link>
+						<Link className='btn_default mx-3' to="/instrucciones"  style={{visibility: GConText.Avatar !== "" ? 'visible' : 'hidden' }}>Continuar <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></Link>
 					</div>	
 				</div>	
       </div>	

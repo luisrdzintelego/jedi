@@ -1,0 +1,11 @@
+.quiz1-background {
+	/* width: 100vw;
+	height: 100vh; */
+	min-height: 100vh;
+	min-width: 100vw;
+	background: url('../Img/fondo_preguntas01_escritorio.png');
+	background-color: #fea792;
+	background-position: center bottom; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: 100%; /* Resize the background image to cover the entire container */
+}

@@ -1,0 +1,6 @@
+	{
+	score === questions.length
+	//score === 0
+	? <>  </>
+	: <>  </>
+  }

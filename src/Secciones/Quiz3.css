@@ -1,0 +1,9 @@
+.quiz3-background {
+	min-height: 100vh;
+	min-width: 100vw;
+	background: url('../Img/fondo_preguntas03_escritorio.png');
+	background-color: #ffd8cd;
+	background-position: center bottom; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: 100%; /* Resize the background image to cover the entire container */
+}
