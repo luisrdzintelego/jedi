@@ -69,19 +69,19 @@ const Dashboard = () => {
 
 								</div>	
 							</div>
-							<div className="row mt-1 mx-1 text-left">
+							{/* <div className="row mt-1 mx-1 text-left">
 								<div className="col-md-12 pt-3">
-									<progress max={GConText.TotalPuntos} value={GConText.Puntos}></progress>
-									<h2 className='fs-15 c-black text-left'>Avance {(GConText.Puntos / GConText.TotalPuntos) * 100}%</h2>
+									<progress max={GConText.TotalAvance} value={GConText.ConteoAvance}></progress>
+									<h2 className='fs-15 c-black text-left'>Avance {Math.floor((GConText.ConteoAvance / GConText.TotalAvance) * 100)}%</h2>
 								</div>	
-							</div>
+							</div> */}
 							<div className="row">
 								<div className="col-12 col-md-12">
-									<div className="mt-4">
+									<div className="mt-5">
 										<Link className='btn_default mx-1' to="/instrucciones"> Instrucciones </Link>
-										<Link className='btn_default mx-1' to="/primer_reto" onClick={() => {
+										<Link className='btn_negro mx-1' to="/primer_reto" onClick={() => {
                                 		GConText.resetAll();
-										}} > Entrar </Link>
+										}} > Comenzar </Link>
 									</div>	
 								</div>	
 							</div>	

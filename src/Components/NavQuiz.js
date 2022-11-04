@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { VarContext } from '../Context/VarContext';
 
@@ -17,6 +17,10 @@ const NavQuiz = ({props}) => {
 	const stopTimer = () => {
 		console.log("🚀 ~ GConText.Counter", GConText.Counter)
 	};
+	
+	//const [Second, setSecond] = useState(() => ( String(GConText.Tiempo % 60).length === 1 ? `0${GConText.Tiempo % 60}` : GConText.Tiempo % 60))
+	//const [Minute, setMinute] = useState(() => ( String(Math.floor(GConText.Tiempo / 60)).length === 1 ? `0${Math.floor(GConText.Tiempo / 60)}` : Math.floor(GConText.Tiempo / 60)))
+	//console.log("🚀 ~ Minute", Minute)
 
   return (
 	<>
@@ -28,75 +32,111 @@ const NavQuiz = ({props}) => {
 							<img  src={GConText.Avatar !== "" ? GConText.Avatar : Img.no_avatar } alt=""  width="80" ></img>	
 						</div>
 
-						<div className="col-2 text-center">
+						<div className="col-3 text-center">
 							
 								<div className="col-12 text-left mt-3">
-									<progress className='barra' max={GConText.TotalPuntos} value={GConText.Puntos}></progress>
+									<progress className='barra' max={GConText.TotalAvance} value={GConText.ConteoAvance}></progress>
 								</div>	
 								<div className="col-12 text-center">
 									{/* <h2 className='fs-18 c-black text-left'><img src={Img.star} alt="" width="30"></img> {GConText.Puntos} pts - {  Math.floor(GConText.Tiempo / 60)} : { GConText.Tiempo % 60}</h2> */}
-									<h2 className='fs-18 c-black text-left'><img src={Img.star} alt="" width="30"></img> {GConText.Puntos} pts</h2>
+									<h2 className='fs-18 c-black text-left'><img src={Img.star} alt="" width="30"></img> {GConText.Puntos}  Pts &nbsp;&nbsp; <img src={Img.reloj} alt="" width="30"></img> { String(Math.floor(GConText.Tiempo / 60)).length === 1 ? `0${Math.floor(GConText.Tiempo / 60)}` : Math.floor(GConText.Tiempo / 60) }:{ String(GConText.Tiempo % 60).length === 1 ? `0${GConText.Tiempo % 60}` : GConText.Tiempo % 60  } Total</h2>
+									
 
 								</div>	
 						</div>
 
-						<div className="col-2 text-center">
+						<div className="col-1 text-center" style={{ borderLeft: '1px solid black'}}>
 
-										<span className='f-gris br-50 p-2 mx-1'>
+									<span className=''>
 										{
 											GConText.Joya1 === true
 											//GConText.Joya1 === false
-											? <img src={Img.joya1} alt="" width="25"></img>
-											: <img src={Img.joya1_d} alt="" width="25"></img>
+											? <img src={Img.joya1} alt="" width="45"></img>
+											: <img src={Img.joya1_d} alt="" width="45"></img>
 										}
-										</span>
-										<span className='f-gris br-50  p-2 mx-1'>
+									</span>
+						</div>
+						<div className="col-1 text-center">
+									<span className=''>
 										{
 											GConText.Joya2 === true
 											//GConText.Joya1 === false
-											? <img src={Img.joya2} alt="" width="25"></img>
-											: <img src={Img.joya2_d} alt="" width="25"></img>
+											? <img src={Img.joya2} alt="" width="45"></img>
+											: <img src={Img.joya2_d} alt="" width="45"></img>
 										}
-										</span>
-										<span className='f-gris br-50  p-2 mx-1'>
+									</span>
+						</div>
+						<div className="col-1 text-center">
+									<span className=''>
 										{
 											GConText.Joya3 === true
 											//GConText.Joya1 === false
-											? <img src={Img.joya3} alt="" width="25"></img>
-											: <img src={Img.joya3_d} alt="" width="25"></img>
+											? <img src={Img.joya3} alt="" width="45"></img>
+											: <img src={Img.joya3_d} alt="" width="45"></img>
 										}
-										</span>
+									</span>
 
-	
 						</div>
+
 						<div className="col-1 text-center" style={{ borderLeft: '1px solid black', borderRight: '1px solid black'}}>
 
-								<div className="col-12 mt-1">
-								<img src={Img.reloj} alt="" onClick={() => {stopTimer()}} width="40"></img>
-								</div>	
-								<div className="col-12 mt-1">
-									<h2 className='fs-18 c-black text-center'>{props.minute}:{props.second}</h2>
-								</div>	
-								
-						</div>
-
-						<div className="col-1 text-center" >
-
+							{
+                            props.titulo ==='Quiz1'
+                            //score === 0
+                            ? <>
 										{
-											GConText.Bonus === true
+											GConText.Bonus1 === true
 											//GConText.Joya1 === false
 											? <img src={Img.bonus} alt="" width="50"></img>
 											: <img src={Img.bonus_d} alt="" width="50"></img>
 										}
+							</>
+                            : <></>
+                            
+							}
+
+							{
+                            props.titulo ==='Quiz2'
+                            //score === 0
+                            ? <>
+										{
+											GConText.Bonus2 === true
+											//GConText.Joya1 === false
+											? <img src={Img.bonus} alt="" width="50"></img>
+											: <img src={Img.bonus_d} alt="" width="50"></img>
+										}
+							</>
+                            : <></>
+                            }
+
+							{
+                            props.titulo ==='Quiz3'
+                            //score === 0
+                            ? <>
+										{
+											GConText.Bonus3 === true
+											//GConText.Joya1 === false
+											? <img src={Img.bonus} alt="" width="50"></img>
+											: <img src={Img.bonus_d} alt="" width="50"></img>
+										}
+							</>
+                            : <></>
+                            }
 
 						</div>
 
-						<div className="col-4 text-center" >
+						<div className="col-1 text-center" >
+							<h2 className='fs-18 c-black text-center'><img src={Img.reloj} alt="" onClick={() => {stopTimer()}} width="40"></img>{props.minute}:{props.second}</h2>
+						</div>
+
+
+
+						{/* <div className="col-4 text-center" >
 
 							<Link className='btn_amarillo ms-2' to="/introduccion"><FontAwesomeIcon icon={faQuestion}></FontAwesomeIcon> Ayuda</Link>
 							<Link className='btn_amarillo  ms-2' to="/dashboard" ><FontAwesomeIcon icon={faClose}></FontAwesomeIcon> Cerrar</Link>
 
-						</div>
+						</div> */}
 					</div>
 
 		</div>

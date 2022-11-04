@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightLong} from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeftLong} from '@fortawesome/free-solid-svg-icons'
 
-import './Perfil.css';
+import './Ranking.css';
 
 import * as Img from '../Components/Imagenes'
 
@@ -18,7 +18,7 @@ import * as Img from '../Components/Imagenes'
 
 import Nav from '../Components/Nav'
 
-const Perfil = () => {
+const Ranking = () => {
 
 	const GConText = useContext(VarContext);
 
@@ -53,9 +53,9 @@ const Perfil = () => {
 
   return (
     <>
-		<div className="container perfil-background">
+		<div className="container ranking-background">
 
-        <Nav titulo={"Perfil"}></Nav>
+        <Nav titulo={"Ranking"}></Nav>
 
         <div className="row mx-1">
           <div className="col col-md-6 offset-md-3">
@@ -72,7 +72,7 @@ const Perfil = () => {
         <div className="row">
 
                   {/* <!-- COLUMNA 1--> */}
-                  <div className="col perfil-form mt-3 mx-3">
+                  <div className="col ranking-form mt-3 mx-3">
        
                         <div>
                           <img className='img-fluid' src={Img.titulo_curso} alt="" width="100" height=""></img>
@@ -174,4 +174,4 @@ const Perfil = () => {
   )
 }
 
-export default Perfil
+export default Ranking

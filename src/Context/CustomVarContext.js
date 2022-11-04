@@ -4,14 +4,27 @@ import {VarContext} from './VarContext'
 
 export const CustomVarContext = ({children}) => {
 
+
+	const iniArray = [
+		{
+			Nombre: 'Luis Eduardo Rodriguez',
+			User: 'lrodriguez',
+			Avatar: 'default',
+			Tiempo: 34,
+			Puntos: 130,
+		  },
+	]
+	
+	const [User, setUser] = useState (false)
 	const [Nombre, setNombre] = useState ("Javier Hernandez")
 	const [Avatar, setAvatar] = useState ("")
-	const [Ranking, setRanking] = useState (0)
+	const [Ranking, setRanking] = useState(() => iniArray)
 
 	const [Puntos, setPuntos] = useState (0)
 	const [Tiempo, setTiempo] = useState (0)
 
-	const [TotalPuntos, setTotalPuntos] = useState (1000)
+	const [TotalAvance, setTotalAvance] = useState (10)
+	const [ConteoAvance, setConteoAvance] = useState (0)
 
 	const [PuntosEval1, setPuntosEval1] = useState (0)
 	const [PuntosEval2, setPuntosEval2] = useState (0)
@@ -32,8 +45,6 @@ export const CustomVarContext = ({children}) => {
 	const [Bonus3, setBonus3] = useState (false)
 
 	const [Counter, setCounter] = useState (0)
-	const [IniTiempo, setIniTiempo] = useState (true)
-
     //console.log("🚀 ~ UrlImg", UrlImg)
 
 	const [productosCart, setProductosCart] = useState ([])
@@ -61,6 +72,8 @@ export const CustomVarContext = ({children}) => {
 		setBonus1(false)
 		setBonus2(false)
 		setBonus3(false)
+		//pone el conteo del avancer en 0
+		setConteoAvance(0)
 
 		console.log("🚀 ~ resetAll")
 	}
@@ -113,11 +126,12 @@ export const CustomVarContext = ({children}) => {
 
   return (
 	<VarContext.Provider value={{
+		User,setUser,
 		Nombre,setNombre,
 		Avatar,setAvatar,
 		Ranking,setRanking,
 		Puntos,setPuntos,
-		TotalPuntos,setTotalPuntos,
+		TotalAvance,setTotalAvance,ConteoAvance,setConteoAvance,
 		Tiempo,setTiempo,
 		PuntosEval1,setPuntosEval1,
 		PuntosEval2,setPuntosEval2,
@@ -133,7 +147,6 @@ export const CustomVarContext = ({children}) => {
 		Bonus2,setBonus2,
 		Bonus3,setBonus3,
 		Counter,setCounter,
-		IniTiempo,setIniTiempo,
 		resetAll,
 		//NOSE USAN
 		productosCart, 

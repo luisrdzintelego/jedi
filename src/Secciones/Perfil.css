@@ -6,9 +6,9 @@
 	min-width: 100vw;
 	background: url('../Img/fondo_perfil_escritorio.png');
 	background-color: #FFE4A5;
-	background-position-x: 50%; /* Center the image */
+	background-position: center center; /* Center the image */
 	background-repeat: no-repeat; /* Do not repeat the image */
-	background-size: 100%; /* Resize the background image to cover the entire container */
+	background-size: contain; /* Resize the background image to cover the entire container */
 }
 
 .perfil-form{

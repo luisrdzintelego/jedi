@@ -100,7 +100,7 @@ const Instrucciones = () => {
 	
 			<div className="row mx-1">
           		<div className="col col-md-6 offset-md-3">
-            		<h2 className='fs-18 lh-25 c-negro text-left'>Para recuperar las Gemas, se ha llamado a un grupo de ninjas, pues su <b>flexibilidad, agilidad y estrategia</b> serán de gran utilidad en esta búsqueda.</h2>
+            		<h2 className='fs-18 lh-25 c-negro text-left'>¡Muy bien! Ya estás por comenzar la búsqueda. Para que ésta sea todo un éxito y logres traer contigo las Gemas, toma en cuenta lo siguiente:</h2>
           		</div>				
         	</div>
 
@@ -121,7 +121,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >1</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-16 lh-20 c-negro text-left'>El reto está dividido en tres secciones. En cada una podrás ganar una Gema respondiendo a las preguntas que se te presentarán.</h5>
+											<h5 className='fs-18 lh-25 c-negro text-left'>El reto está dividido en tres secciones. En cada una podrás ganar una Gema respondiendo a las preguntas que se te presentarán.</h5>
 											</div>	
 										</div>
 
@@ -130,7 +130,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >2</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-16 lh-20 c-negro text-left'>Cada respuesta correcta te otorgará puntos que te permitirán competir con otros colaboradores.</h5>
+											<h5 className='fs-18 lh-25  c-negro text-left'>Cada respuesta correcta te otorgará puntos que te permitirán competir con otros colaboradores.</h5>
 											</div>	
 										</div>
 
@@ -139,7 +139,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >3</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-16 lh-20 c-negro text-left'>Debes ser veloz en tu búsqueda. En tu barra de avance contarás con un cronómetro que medirá el tiempo en que respondes cada sección.</h5>
+											<h5 className='fs-18 lh-25  c-negro text-left'>Debes ser veloz en tu búsqueda. En tu barra de avance contarás con un cronómetro que medirá el tiempo en que respondes cada sección.</h5>
 											</div>	
 										</div>
 
@@ -148,7 +148,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >4</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-16 lh-20 c-negro text-left'>Pon mucha atención pues solo podrás tener un error por sección para poder ganar la Gema correspondiente.</h5>
+											<h5 className='fs-18 lh-25  c-negro text-left'>Pon mucha atención pues solo podrás tener un error por sección para poder ganar la Gema correspondiente.</h5>
 											</div>	
 										</div>
 
@@ -157,7 +157,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >5</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-16 lh-20 c-negro text-left'>Al terminar de responder las 3 secciones encontrarás un Tablero en donde podrás consultar tus resultados y los de tus compañeros.</h5>
+											<h5 className='fs-18 lh-25  c-negro text-left'>Al terminar de responder las 3 secciones encontrarás un Tablero en donde podrás consultar tus resultados y los de tus compañeros.</h5>
 											</div>	
 										</div>
 								</div>
@@ -170,7 +170,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >6</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-16 lh-20 c-negro text-left'>Tu tiempo y puntos obtenidos, te darán un lugar en el ranking.</h5>
+											<h5 className='fs-18 lh-25 c-negro text-left'>Tu tiempo y puntos obtenidos, te darán un lugar en el ranking.</h5>
 											</div>	
 										</div>
 
@@ -179,7 +179,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >7</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-16 lh-20 c-negro text-left'>En cada sección podrás obtener un bonus que te servirá para mejorar tu resultado final. Gánalo respondiendo correctamente todas las preguntas.</h5>
+											<h5 className='fs-18 lh-25 c-negro text-left'>En cada sección podrás obtener un bonus que te servirá para mejorar tu resultado final. Gánalo respondiendo correctamente todas las preguntas.</h5>
 											</div>	
 										</div>
 
@@ -188,7 +188,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >8</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-16 lh-20 c-negro text-left'>En caso de no conseguir una de las Gemas, podrás continuar en el juego, al concluir podrás intentarlo de nuevo para mejorar tu resultado.</h5>
+											<h5 className='fs-18 lh-25 c-negro text-left'>En caso de no conseguir una de las Gemas, podrás continuar en el juego, al concluir podrás intentarlo de nuevo para mejorar tu resultado.</h5>
 											</div>	
 										</div>
 
@@ -197,7 +197,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >9</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-16 lh-20 c-negro text-left'>En la barra de avance superior podrás dar seguimiento de tus resultados.</h5>
+											<h5 className='fs-18 lh-25 c-negro text-left'>En la barra de avance superior podrás dar seguimiento de tus resultados.</h5>
 											</div>	
 										</div>
 
@@ -206,14 +206,14 @@ const Instrucciones = () => {
 											<span className="dot_gris" >10</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-16 lh-20 c-negro text-left'>Tienes una semana para completar tu búsqueda de la Gemas de Agilidad.</h5>
+											<h5 className='fs-18 lh-25 c-negro text-left'>Tienes una semana para completar tu búsqueda de la Gemas de Agilidad.</h5>
 											</div>	
 										</div>
 								</div>
 							</div>
 
 							<div className="mt-5">
-								<h3 className='fs-15 lh-25 c-negro text-center'><img src={Img.info} alt=""  width="25"></img> Haz clic para ver cada lámina.</h3>
+								<h3 className='fs-15 lh-25 c-negro text-center'><img src={Img.info} alt=""  width="25"></img> Haz clic en el botón parpadeante para ver toda la información.</h3>
 							</div>	
 
 							<div className="container-fluid">
@@ -251,7 +251,7 @@ const Instrucciones = () => {
 													updateIndex(activeIndex+1);
 													IncrementarArray(activeIndex+1);
 												}} style={{display: activeIndex < (vistos.length-1) ? 'block' : 'none' }}>
-												<img src={Img.fder} alt=""  width="40"></img>
+												<img className='parpadea' src={Img.fder} alt=""  width="40"></img>
 												</span>
 											</div>
 								</div>
@@ -267,7 +267,7 @@ const Instrucciones = () => {
 				<div className="col-md-8 offset-md-2">
 					<div className="mt-5 mb-5">
 					<Link className='btn_default mx-3' to="/introduccion"> <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> Regresar</Link>
-							<Link className='btn_default mx-3' to="/dashboard"  style={{visibility: termino === true ? 'visible' : 'hidden' }}>¡Vámos! <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></Link>
+							<Link className='btn_negro mx-3' to="/dashboard"  style={{visibility: termino === true ? 'visible' : 'hidden' }}>¡Vámos! <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></Link>
 					</div>	
 				</div>	
       		</div>	

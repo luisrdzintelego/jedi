@@ -51,7 +51,7 @@ const Primer_reto = () => {
 										{/* <Link className='btn_default mx-1 px-5' to="/quiz1" onClick={() => {
                                 		GConText.setIniTiempo(true);
 										}}> Iniciar </Link> */}
-										<Link className='btn_default mx-1 px-5' to="/quiz1" > Iniciar </Link>
+										<Link className='btn_negro mx-1 px-5' to="/quiz1" > Iniciar </Link>
 									</div>	
 								</div>	
 							</div>	

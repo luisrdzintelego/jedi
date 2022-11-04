@@ -1,5 +1,5 @@
-import React, {} from 'react';
-// import { VarContext } from '../Context/VarContext';
+import React, {useContext} from 'react';
+import { VarContext } from '../Context/VarContext';
 import { Link } from 'react-router-dom';
 
 import './Login.css';
@@ -15,7 +15,10 @@ import Nav from '../Components/Nav'
 
 const Login = () => {
 
-//const GConText = useContext(VarContext);
+const GConText = useContext(VarContext);
+console.log("🚀 ~ Ranking", GConText.Ranking)
+
+
 
   return (
 	<>		
@@ -73,7 +76,7 @@ const Login = () => {
 						</div>	
 
 						<div className="mt-5 mb-3">
-							<Link className='btn_default' to="/introduccion">Ingresar</Link>
+							<Link className='btn_negro' to="/introduccion" onClick={() => GConText.setUser(true)}>Ingresar</Link>
 						</div>	
 
 					</div>

@@ -46,7 +46,7 @@ const Tercer_reto = () => {
 						<div className="row">
 								<div className="col-12 col-md-12">
 									<div className="my-4">
-										<Link className='btn_default mx-1 px-5' to="/quiz3"> Iniciar </Link>
+										<Link className='btn_negro mx-1 px-5' to="/quiz3"> Iniciar </Link>
 									</div>	
 								</div>	
 							</div>	

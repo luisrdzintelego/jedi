@@ -1,6 +1,8 @@
-import React, { useContext} from 'react';
+import React, { useContext , useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { VarContext } from '../Context/VarContext';
+
+import pdf from '../Descarga/Certificado.pdf'
 
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -13,6 +15,28 @@ import Nav from '../Components/Nav'
 const Retro_final = () => {
 
 	const GConText = useContext(VarContext);
+
+	useEffect(() => {
+
+		console.log("PuntosEval1", GConText.PuntosEval1)
+		console.log("PuntosEval2", GConText.PuntosEval2)
+		console.log("PuntosEval3", GConText.PuntosEval3)
+		console.log("---------")
+		console.log("TiempoEval1", GConText.TiempoEval1)
+		console.log("TiempoEval2", GConText.TiempoEval2)
+		console.log("TiempoEval3", GConText.TiempoEval3)
+		console.log("---------")
+		console.log("Bonus1", GConText.Bonus1)
+		console.log("Bonus2", GConText.Bonus2)
+		console.log("Bonus3", GConText.Bonus3)
+
+		const time = GConText.TiempoEval1+GConText.TiempoEval2+GConText.TiempoEval3
+		console.log("Tiempo Min", String(Math.floor(time / 60)).length === 1 ? `0${Math.floor(time / 60)}` : Math.floor(time / 60),":",String(time % 60).length === 1 ? `0${time % 60}` : time % 60)
+		console.log("Tiempo", GConText.Tiempo)
+
+
+	  }, []);
+
 
   return (
 	<>
@@ -42,7 +66,8 @@ const Retro_final = () => {
 										<div className="col-12 col-md-8 offset-md-2 text-center ">
 											<div className="mt-3">
 												{/* <button  className='btn_default mx-3 px-5' onClick={() => restartGame()}>Continuar</button> */}
-												<Link className='btn_default mx-3 px-5' to='/retro_final' >Descargar</Link>
+
+												<a className='btn_negro mx-3 px-5' href={pdf} target="_blank" rel="noopener noreferrer" download="Certificado.pdf"> Descargar</a>
 											</div>	
 										</div>	
 									</div>
@@ -110,7 +135,7 @@ const Retro_final = () => {
 									</div>	
 
 									<div className="col-12 col-md-12 p-1">
-										<h2 className='fs-18 c-black' ><img src={Img.reloj} alt=""  width="40"></img> {  Math.floor(GConText.Tiempo / 60)} : { GConText.Tiempo % 60}</h2>
+										<h2 className='fs-18 c-black' ><img src={Img.reloj} alt=""  width="40"></img> { String(Math.floor(GConText.Tiempo / 60)).length === 1 ? `0${Math.floor(GConText.Tiempo / 60)}` : Math.floor(GConText.Tiempo / 60) }:{ String(GConText.Tiempo % 60).length === 1 ? `0${GConText.Tiempo % 60}` : GConText.Tiempo % 60  }</h2>
 									</div>	
 
 								</div>
@@ -119,11 +144,11 @@ const Retro_final = () => {
 						</div>
 						<div className="row">
 							<div className="col-12 col-md-12 mt-4">
-								<Link className='btn_default' to="/dashboard" >Jugar de nuevo</Link>
+								<Link className='btn_negro' to="/dashboard" >Jugar de nuevo</Link>
 							</div>	
 
 							<div className="col-12 col-md-12 mt-4">
-								<Link  to="/" ><h1 className='fs-18 c-rojo'>Ver Ranking</h1></Link>
+								<Link  to="/ranking" ><h1 className='fs-18 c-rojo'>Ver Ranking</h1></Link>
 							</div>	
 
 						</div>	

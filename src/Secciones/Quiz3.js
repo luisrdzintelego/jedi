@@ -1,6 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { VarContext } from '../Context/VarContext';
 import { Link } from 'react-router-dom';
+
+import Lottie from "lottie-react";
+import retro_bien_lottie from '../Img/lotties/zafiro_si.json';
+import retro_mal_lottie from '../Img/lotties/zafiro_no.json';
+
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightLong} from '@fortawesome/free-solid-svg-icons'
 
@@ -33,47 +39,19 @@ const GConText = useContext(VarContext);
   //TIMER
   const [second, setSecond] = useState("00");
   const [minute, setMinute] = useState("00");
-  //const [isTimer, setisTimer] = useState(true);
-  const [counter, setCounter] = useState(0);
+  const [isTimer, setisTimer] = useState(true);
+  const [counter, setCounter] = useState(1);
 
 
-  useEffect(() => {
-    let intervalId;
-	GConText.setIniTiempo(true);
 
-    if (GConText.IniTiempo) {
-      intervalId = setInterval(() => {
-        const secondCounter = counter % 60;
-        const minuteCounter = Math.floor(counter / 60);
-
-        let computedSecond =
-          String(secondCounter).length === 1
-            ? `0${secondCounter}`
-            : secondCounter;
-        let computedMinute =
-          String(minuteCounter).length === 1
-            ? `0${minuteCounter}`
-            : minuteCounter;
-
-        setSecond(computedSecond);
-        setMinute(computedMinute);
-
-        setCounter((counter) => counter + 1);
-		//GConText.setCounter((counter) => counter + 1);
-      }, 1000);
-    }
-
-    return () => clearInterval(intervalId);
-}, [counter, GConText]);
-
-/*  
-function stopTimer() {
-	GConText.setIniTiempo(false);
-	setCounter(0);
-	setSecond("00");
-	setMinute("00");
-}
-*/
+	/*  
+	function stopTimer() {
+		GConText.setIniTiempo(false);
+		setCounter(0);
+		setSecond("00");
+		setMinute("00");
+	}
+	*/
 
 
   const toggleClass = () => {
@@ -83,7 +61,7 @@ function stopTimer() {
   };
   
 
-
+/*
   const questions = [
 	{
 		text: "¿Cuál no es una práctica Kanban?",
@@ -121,7 +99,7 @@ function stopTimer() {
 	{
 		text: "Son valores de Kanban:",
 		correcta: 2,
-		valor:250,
+		valor:80,
 		options: [
 		  { id: 1, text: "Transparencia, Inspección y Adaptación."},
 		  { id: 2, text: "Transparencia, Colaboración y Equilibrio."},
@@ -132,7 +110,7 @@ function stopTimer() {
 	  {
 		text: "Son ejemplos de métricas en Kanban:",
 		correcta: 2,
-		valor:250,
+		valor:80,
 		options: [
 		  { id: 1, text: "Velocidad del Sprint, Burn Dow Chart."},
 		  { id: 2, text: "Lead Time, Cycle Time, throughput."},
@@ -163,6 +141,131 @@ function stopTimer() {
 		],
 	  },
   ];
+*/
+
+const questions_80 = [
+	{
+		text: "Son valores de Kanban:",
+		correcta: 2,
+		valor:80,
+		options: [
+		  { id: 1, text: "Transparencia, Inspección y Adaptación."},
+		  { id: 2, text: "Transparencia, Colaboración y Equilibrio."},
+		  { id: 3, text: "Administrar el Flujo, Establecer Políticas Expresas, Mejorar."},
+		  { id: 4, text: "Análisis de la demanda, entender fuentes de insatisfacción internas y externas."},
+		],
+	  },
+	  {
+		text: "Son ejemplos de métricas en Kanban:",
+		correcta: 2,
+		valor:80,
+		options: [
+		  { id: 1, text: "Velocidad del Sprint, Burn Dow Chart."},
+		  { id: 2, text: "Lead Time, Cycle Time, throughput."},
+		  { id: 3, text: "KPI y OKR."},
+		  { id: 4, text: "Lead Time, Cycle Time, Burndown Chart."},
+		],
+	  }
+  ];
+
+  const questions_40 = [
+	{
+		text: "¿Cuál no es una práctica Kanban?",
+		correcta: 3,
+		valor:40,
+		options: [
+		  { id: 1, text: "Visualizar el Flujo de Trabajo."},
+		  { id: 2, text: "Establecer Políticas Expresas."},
+		  { id: 3, text: "Sistema Push."},
+		  { id: 4, text: "Limitar el WIP."},
+		],
+	  },
+	{
+		text: "¿Cuál no es un ejemplo de Métricas Kanban?",
+		correcta: 1,
+		valor:40,
+		options: [
+		  { id: 1, text: "Velocidad"},
+		  { id: 2, text: "Lead Time"},
+		  { id: 3, text: "Cycle Time"},
+		  { id: 4, text: "Troughput"},
+		],
+	  },
+	{
+		text: "¿Qué es el STATIK? ",
+		correcta: 1,
+		valor:40,
+		options: [
+		  { id: 1, text: "Un sistema diseñado para implementar Kanban."},
+		  { id: 2, text: "Una Métrica de Kanban."},
+		  { id: 3, text: "Un principio de Kanban."},
+		  { id: 4, text: "Una Práctica de Kanban."},
+		],
+	  },
+	  {
+		text: "Son Clases de Servicio: ",
+		correcta: 2,
+		valor:40,
+		options: [
+		  { id: 1, text: "Solicitud, Petición, Servicio."},
+		  { id: 2, text: "Estándar, Entrega fija, Urgente, Intangible."},
+		  { id: 3, text: "Lead Time, Cycle Time, Troughput."},
+		  { id: 4, text: "Solicitud, Estándar, Entrega fija, Trougthput."},
+		],
+	  },
+	  {
+		text: "Algunos eventos sugeridos en Kanban son:",
+		correcta: 1,
+		valor:40,
+		options: [
+		  { id: 1, text: "Reunión Kanban, Reunión de realimentación, Reunión de la Planificación de la Entrega."},
+		  { id: 2, text: "Daily, Revisión y Retrospectiva."},
+		  { id: 3, text: "Reunión Kanban, Refinamiento, Sprint Planning."},
+		  { id: 4, text: "Ninguno de los anteriores."},
+		],
+	  },
+  ];
+  
+	//obtener un objeto aleatoreo
+  const getRandom = (array) => {
+	const randomObject = array[Math.floor(Math.random() * array.length)];
+	return randomObject;
+  };
+  //revolver un arrray
+  const shuffleArray = (arr) => arr.sort(() => 0.5 - Math.random());
+
+  //revuelve el array
+  const shuffle_40 = shuffleArray(questions_40)
+  //lo recorta a 2 elementos
+  const short_40 = shuffle_40.slice(0, 2)
+  //obtiene 1 objeto al azar
+  const random_80 = getRandom(questions_80)
+  //une 2 arrays
+  const questions_merge =  shuffleArray([random_80, ...short_40]);
+
+  const [questions, setQuestions] = useState(() => questions_merge)
+
+  useEffect(() => {
+
+	/*
+	lottie.loadAnimation({
+		container: container.current,
+		renderer: 'svg',
+		loop: true,
+		autoplay: true,
+		animationData: require('../Img/lotties/rubi_si.json')
+	})
+	*/
+
+    console.log('sólo al principio')
+	console.log('shuffle_40',shuffle_40)
+	console.log('short_40',short_40)
+	console.log("🚀 ~ random_80", random_80)
+	console.log("🚀 ~ questions", questions)
+
+  }, [])
+
+
 
   // Helper Functions
 
@@ -184,13 +287,16 @@ function stopTimer() {
     if (answer === questions[currentQuestion].correcta) {
       	setScore(score + 1);
 		
-		//GConText.setPuntos(GConText.Puntos + Number(questions[currentQuestion].valor));
-		setPuntos(puntos + Number(questions[currentQuestion].valor));
+		GConText.setPuntos(GConText.Puntos + questions[currentQuestion].valor);
+		setPuntos(puntos + questions[currentQuestion].valor);
+		
 		setCorrect(true)
 		
     } else {
 		setCorrect(false)	
 	}
+
+	GConText.setConteoAvance(GConText.ConteoAvance + 1)
 	
   };
 
@@ -221,22 +327,26 @@ function stopTimer() {
 	  } else {
 		setShowResults(true);
 
+		console.log("🚀 ~ counter", counter)
 		//SET PUNTOS Y EL TIEMPO
-		GConText.setPuntos(GConText.Puntos + puntos);
+		//GConText.setPuntos(GConText.Puntos + puntos);
 		GConText.setTiempo(GConText.Tiempo + counter);
 
-		GConText.setPuntosEval3(GConText.Puntos + puntos);
-		GConText.setTiempoEval3(GConText.Tiempo + counter);
+		GConText.setPuntosEval3(puntos);
+		GConText.setTiempoEval3(counter);
 
 		//RESETEAMOS EL TIMER
-		GConText.setIniTiempo(false);
+		setisTimer(false);
 		setCounter(0);
 		setSecond("00");
 		setMinute("00");
 
 		//SET JOYA Y BONUS
-		if(score === questions.length){GConText.setBonus3(true)}
-		if(score >= questions.length-1){GConText.setJoya3(true) }
+		if(score === questions.length){
+			GConText.setBonus3(true) 
+			GConText.setPuntos(GConText.Puntos + 10) 
+		}
+		if(score >= questions.length-1){GConText.setJoya3(true)}
 
 	  }
   };
@@ -268,18 +378,34 @@ function stopTimer() {
   };
   */
 
-  /*
-  useEffect( () => {
-	//console.log("🚀 ~ vistos", vistos)
-	//setLoading(true)
 
-	score === questions.length ? GConText.setBonus1(true) : GConText.setBonus1(false)
-	score === questions.length-1 ? GConText.setJoya1(true) : GConText.setJoya1(false)
-	
-  }, [GConText, questions.length, score])
-  */
+ useEffect(() => {
+    let intervalId;
 
- // const priority = isDisabled ? "alert alert-info" : (todo.priority === 2 ? "alert alert-warning" : "alert alert-danger");
+    if (isTimer) {
+      intervalId = setInterval(() => {
+        const secondCounter = counter % 60;
+        const minuteCounter = Math.floor(counter / 60);
+
+        let computedSecond =
+          String(secondCounter).length === 1
+            ? `0${secondCounter}`
+            : secondCounter;
+        let computedMinute =
+          String(minuteCounter).length === 1
+            ? `0${minuteCounter}`
+            : minuteCounter;
+
+        setSecond(computedSecond);
+        setMinute(computedMinute);
+
+        setCounter((counter) => counter + 1);
+		//GConText.setCounter((counter) => counter + 1);
+      }, 1000);
+    }
+
+    return () => clearInterval(intervalId);
+  }, [counter, isTimer]);
 
 
   return (
@@ -295,10 +421,11 @@ function stopTimer() {
 			score === questions.length
 			//score === 0
 			?  <>
-				<div className="retro-bien flex" >
+				<div className="retro-bien pt-5" >
 				<div className="row">
 						<div className="col-12 col-md-6 offset-md-3 text-center ">
-							<img src={Img.joya_reto3} alt="" width="180"></img>
+							{/* <img src={Img.joya1_retro_si} alt="" width="75%"></img> */}
+							<Lottie animationData={retro_bien_lottie} loop={true} />
 							<h1 className='fs-45 mt-2'>¡Muy bien!</h1>
 							<h2 className='fs-20 mt-4'>Has encontrado el <b>Zafiro</b>, ahora podrás implementar los <b>principios Scrum</b>.</h2>
 						</div>
@@ -314,7 +441,7 @@ function stopTimer() {
 						<div className="col-12 col-md-8 offset-md-2 text-center ">
 							<div className="mt-3">
 								{/* <button  className='btn_default mx-3 px-5' onClick={() => restartGame()}>Continuar</button> */}
-								<Link className='btn_default mx-3 px-5' to='/retro_final' >Continuar</Link>
+								<Link className='btn_negro mx-3 px-5' to='/retro_final' >Continuar</Link>
 							</div>	
 						</div>	
 					</div>
@@ -329,10 +456,11 @@ function stopTimer() {
 			score === questions.length-1
 			//score === 0
 			?  <>
-				<div className="retro-bien flex" >
+				<div className="retro-bien pt-5" >
 				<div className="row">
 						<div className="col-12 col-md-6 offset-md-3 text-center ">
-							<img src={Img.joya_reto3} alt=""  width="180"></img>
+							{/* <img src={Img.joya1_retro_si} alt=""  width="75%"></img> */}
+							<Lottie animationData={retro_bien_lottie} loop={true} />
 							<h1 className='fs-45 mt-2'>¡Muy bien!</h1>
 							<h2 className='fs-20 mt-4'>Has encontrado el <b>Diamante</b>, ahora podrás implementar en tus actividades el <b>método Kanban</b>.</h2>
 						</div>
@@ -344,7 +472,7 @@ function stopTimer() {
 						<div className="col-12 col-md-8 offset-md-2 text-center ">
 							<div className="mt-3">
 								{/* <button  className='btn_default mx-3 px-5' onClick={() => restartGame()}>Continuar</button> */}
-								<Link className='btn_default mx-3 px-5' to='/retro_final' >Continuar</Link>
+								<Link className='btn_negro mx-3 px-5' to='/retro_final' >Continuar</Link>
 							</div>	
 						</div>	
 					</div>
@@ -358,11 +486,11 @@ function stopTimer() {
 			score <= questions.length-1
 			//score === 0
 			?  <>
-				<div className="retro-mal flex" >
-					<div className="row">
+				<div className="retro-mal pt-5" >
+				<div className="row">
 						<div className="col-12 col-md-6 offset-md-3 text-center ">
-							<img src={Img.joya3_d}  alt=""  width="180"></img>
-
+							{/* <img src={Img.joya1_retro_no} alt="" width="75%"></img> */}
+							<Lottie animationData={retro_mal_lottie} loop={true} />
 							<h2 className='fs-20 mt-4 c-blanco'>No has encontrado el <b>Diamante</b> y debes esforzarte más para recibir su poder que te permitirá implementar en tus actividades el <b>método Kanban</b>.</h2>
 						</div>
 
@@ -373,7 +501,7 @@ function stopTimer() {
 						<div className="col-12 col-md-8 offset-md-2 text-center ">
 							<div className="mt-3">
 								{/* <button className='btn_default mx-3 px-5' onClick={() => restartGame()}>Continuar</button> */}
-								<Link className='btn_default mx-3 px-5' to='/retro_final' >Continuar</Link>
+								<Link className='btn_negro mx-3 px-5' to='/retro_final' >Continuar</Link>
 							</div>	
 						</div>	
 					</div>
@@ -403,19 +531,19 @@ function stopTimer() {
 			<>
 			<div className="container mt-3">
 				<div className="row mx-1">
-					<div className="col-12 col-md-10 offset-md-1 text-left my-4">
+					<div className="col-12 col-md-10 offset-md-1 text-left my-1">
 					<h3 className='fs-15 lh-25 c-negro'><img src={Img.info} alt="info" width="25"></img>  Selecciona la respuesta correcta y haz clic en enviar.</h3>
 				</div>
 
-				<div className="col-12 col-md-10 offset-md-1 text-left pregunta-form">
+				<div className="col-12 col-md-10 offset-md-1 text-left pregunta-form mb-3">
 						<div className="row mt-1 flex">
 							<div className="col-1 p-0 text-center">
 								<span className="fs-25 dot_gris2" >{currentQuestion + 1} </span>
 							</div>
 							<div className="col-11 p-0 ">
-								<h5 className='fs-16 lh-20 c-negro text-left'>
+								<h1 className='fs-20 lh-25 c-negro text-left'>
 									{questions[currentQuestion].text}
-								</h5>
+								</h1>
 							</div>	
 						</div>
 				</div>
@@ -431,7 +559,7 @@ function stopTimer() {
 						
 							<div  style={{display: option.text ? 'block' : 'none' }} 
 							key={option.id}  
-							className={`col-12 col-md-10 offset-md-1 text-left mt-4 ${estaAct} ${estaDes}`}
+							className={`col-12 col-md-10 offset-md-1 text-left py-2 mt-3 ${estaAct} ${estaDes}`}
 	
 									
 									onClick={() => {
@@ -445,7 +573,7 @@ function stopTimer() {
 											<h4 className="fs-30 c-negro" >{letras[num]}.</h4>
 										</div>
 										<div className="col-10 p-0 ">
-											<h5 className='fs-16 lh-20 c-negro text-left'>
+											<h5 className='fs-18 lh-20 c-negro text-left'>
 												{option.text}
 											</h5>
 										</div>
@@ -463,9 +591,9 @@ function stopTimer() {
 
 			<div className="row">
 			<div className="col-md-8 offset-md-2">
-				<div className="mt-5 mb-5">
-					<button disabled={seleccionar ? false : true} className='btn_default mx-3 px-5' onClick={() => {chkAswer(select)}}>Enviar</button>
-					<button disabled={avanzar ? false : true} className='btn_default mx-3' onClick={() => nextCuestion()}>Siguiente <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></button>
+				<div className="mt-3 mb-5">
+					<button disabled={seleccionar ? false : true} className='btn_negro mx-3 px-5' onClick={() => {chkAswer(select)}}>Enviar</button>
+					<button disabled={avanzar ? false : true} className='btn_negro mx-3' onClick={() => nextCuestion()}>Siguiente <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></button>
 				</div>	
 			</div>	
 			</div>

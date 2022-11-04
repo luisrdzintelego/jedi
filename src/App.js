@@ -1,6 +1,9 @@
 /* eslint-disable react/jsx-pascal-case */
 // import logo from './logo.svg';
-import {BrowserRouter,Routes,Route} from "react-router-dom";
+//BrowserRouter: -- puedes usar la barra de direccion para ir a los componentes
+//MemoryRouter: -- solo sirven los botones generados en reacj para moverte entre componentes
+import {BrowserRouter, Routes,Route, MemoryRouter} from "react-router-dom";
+import {  } from 'react-router'
 import { CustomVarContext } from './Context/CustomVarContext';
 import './App.css';
 
@@ -17,18 +20,22 @@ import Quiz2 from "./Secciones/Quiz2";
 import Tercer_reto from "./Secciones/Tercer_reto";
 import Quiz3 from "./Secciones/Quiz3";
 import Retro_final from "./Secciones/Retro_final";
+import Ranking from "./Secciones/Ranking";
 
 function App() {
+
   return (
 
     <>
     <CustomVarContext>
+      <MemoryRouter basename="/" >
+    {/* <MemoryRouter basename="/"> */}
       {/* <BrowserRouter basename="/cursos_elearning/oxxo/aguile" > */}
-      <BrowserRouter basename="/" >
+      {/* <BrowserRouter basename="/" > */}
         <div className="App">
 
           <Routes>
-          <Route path="/" element={<Login />} />
+          <Route exact path="/" element={<Login />} />
           <Route path="introduccion" element={<Introduccion/>}/>
           <Route path="perfil" element={<Perfil/>}/>
           <Route path="instrucciones" element={<Instrucciones/>}/>
@@ -40,6 +47,7 @@ function App() {
           <Route path="tercer_reto" element={<Tercer_reto/>}/>
           <Route path="quiz3" element={<Quiz3/>}/>
           <Route path="retro_final" element={<Retro_final/>}/>
+          <Route path="ranking" element={<Ranking/>}/>
           {/* <Route exact path='journey/:itemId' element={<Journey/>} />
           <Route path="Paso2" element={<Paso2/>}/>
           <Route path="Paso3" element={<Paso3/>}/> */}
@@ -51,6 +59,8 @@ function App() {
           </main>
         }
         /> */}
+          <Route path="*" element={<Login />}/>
+
 
             {/* <Route path='/categoria/:categoriaId' element={<ItemListContainer greeting={'hola Bienvenidos a categorias'} />} />
             <Route path='/detail/:itemId' element={<ItemDetailContainer/>} />
@@ -58,7 +68,8 @@ function App() {
             <Route path='/CheckOut' element={ <CheckOut/> } /> */}
           </Routes>
         </div>
-      </BrowserRouter>
+      {/* </BrowserRouter> */}
+      </MemoryRouter>
     </CustomVarContext>
     </>
   );

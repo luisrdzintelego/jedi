@@ -50,10 +50,19 @@ import joya2_d from "../Img/Joya2_Disabled.png";
 import joya3_d from "../Img/Joya3_Disabled.png";
 
 //Joyas Hd
-
 import joya_reto1 from "../Img/img_rubi_primer_reto.png";
 import joya_reto2 from "../Img/img_zafiro_segundo_reto.png";
 import joya_reto3 from "../Img/img_diamante_tercer_reto.png";
+
+import joya1_retro_si from "../Img/rubi_si.svg";
+import joya1_retro_no from "../Img/rubi_no.svg";
+
+import joya2_retro_si from "../Img/diamante_si.svg";
+import joya2_retro_no from "../Img/diamante_si.svg";
+
+import joya3_retro_si from "../Img/zafiro_si.svg";
+import joya3_retro_no from "../Img/zafiro_no.svg";
+
 
 import retro_fina_mal from "../Img/img_retrofinal_mal.png";
 import retro_fina_bien from "../Img/img_retrofinal_bien.png";
@@ -69,6 +78,8 @@ export {
 	joya1, joya2, joya3,
 	joya1_d, joya2_d, joya3_d,
 	joya_reto1, joya_reto2, joya_reto3,
+	joya1_retro_si,joya2_retro_si,joya3_retro_si,
+	joya1_retro_no,joya2_retro_no,joya3_retro_no,
 	bonus, bonus_d,
 	retro_fina_bien, retro_fina_mal,
 	}

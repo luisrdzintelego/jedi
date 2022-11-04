@@ -1,5 +1,6 @@
-import React, {useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
+import { VarContext } from '../Context/VarContext';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightLong} from '@fortawesome/free-solid-svg-icons'
@@ -26,9 +27,29 @@ import * as Img from '../Components/Imagenes'
 import Nav from '../Components/Nav'
 
 
+
+
 const Introduccion = () => {
 
-	//const GConText = useContext(VarContext);
+	const GConText = useContext(VarContext);
+	
+	/*
+	const navigate = useNavigate();
+
+	function useLogoutTimer() {
+
+		useEffect(() => {
+			console.log("🚀 ~ user", GConText.User)
+
+		  if (GConText.User === false) {
+			//fake.logout();
+			navigate("/login");
+		  }
+		}, [GConText]);
+	  }
+	  useLogoutTimer()
+	  */
+
 
 	let sliders = [true,0,0,0];
 	const [vistos, setVistos] =  useState(sliders)
@@ -98,6 +119,11 @@ const Introduccion = () => {
 
   return (
 	<>
+            {/* {
+              user === "" 
+              ? <Navigate to="/login" />
+              : <></>
+            }  */}
 
 		<div className="container introduccion-background">
 			
@@ -121,7 +147,7 @@ const Introduccion = () => {
 								</div>
 								<hr></hr>
 								<div className="mt-2 mb-5">
-									<h1 className='fs-25 c-rojo text-left'>¡Que comience la aventura!</h1>
+									<h1 className='fs-25 c-rojo text-left'>¡Qué comience la aventura!</h1>
 									<h2 className='fs-16 lh-25 c-negro text-left'>El cambio en el Universo Retail es constante y para adaptarnos a él es momento de que en OXXO implementemos prácticas <b>Agile</b> que nos permita enfrentarlo con una nueva mentalidad.</h2>
 								</div>
 							</div>
@@ -132,7 +158,7 @@ const Introduccion = () => {
 								</div>
 								<hr></hr>
 								<div className="mt-2 mb-5">
-									<h2 className='fs-16 lh-25 c-negro text-left'>Para lograrlo necesitamos de tu ayuda para encontrar las tres <b>Gemas de Agilidad</b>, cada una cuenta con un poder que nos permitirá tener <b>entregas continuas e incrementales de valor para nuestros clientes</b>.</h2>
+									<h2 className='fs-16 lh-25 c-negro text-left'>Para lograrlo necesitamos que nos ayudes a encontrar las tres <b>Gemas de Agilidad</b>, cada una cuenta con un poder que nos permitirá tener <b>entregas continuas e incrementales de valor para nuestros clientes</b>.</h2>
 								</div>
 							</div>
 
@@ -160,7 +186,7 @@ const Introduccion = () => {
 							</div>
 
 							<div className="mt-5">
-								<h3 className='fs-15 lh-25 c-negro text-center'><img src={Img.info} alt="" width="25"></img> Haz clic para ver cada lámina.</h3>
+								<h3 className='fs-15 lh-25 c-negro text-center'><img src={Img.info} alt="" width="25"></img> Haz clic en el botón parpadeante para ver toda la información.</h3>
 							
 							</div>	
 
@@ -199,7 +225,7 @@ const Introduccion = () => {
 												updateIndex(activeIndex+1);
 												IncrementarArray(activeIndex+1);
 											}} style={{display: activeIndex < (vistos.length-1) ? 'block' : 'none' }}>
-											<img src={Img.fder} alt="" width="40"></img>
+											<img className='parpadea' src={Img.fder} alt="" width="40"></img>
 											</span>
 										</div>
 							</div>
@@ -210,7 +236,7 @@ const Introduccion = () => {
 
 					<div className="col-md-10 offset-md-1" style={{visibility: termino === true ? 'visible' : 'hidden' }}>
 						<div className="mt-5 mb-5">
-							<Link className='btn_default' to="/perfil">Continuar <FontAwesomeIcon icon={faArrowRightLong} /></Link>
+							<Link className='btn_negro' to="/perfil">Continuar <FontAwesomeIcon icon={faArrowRightLong} /></Link>
 						</div>	
 					</div>				
 				</div>
