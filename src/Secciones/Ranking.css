@@ -12,12 +12,12 @@
 }
 
 .ranking-form{
-	background: url('../Img/img_puntos.png');
+	background: url('../Img/img_puntos_ranking.png');
 	background-color: #fff;
 	background-position-y: 10px;
 	background-repeat: no-repeat; /* Do not repeat the image */
 	background-position-x: 50%;
-	background-size:95%; /* Resize the background image to cover the entire container */
+	background-size:98%; /* Resize the background image to cover the entire container */
 
 	padding: 10px;
 	border-radius: 15px;

@@ -24,22 +24,6 @@ const Ranking = () => {
 
 	//const [selecciono, setSelecciono] = useState(GConText.avatar);
 
-
-  const Seleccionar_avatar = (newIndex) => {	
-		console.log("🚀 ~ newIndex", newIndex)
-		//setSelecciono(true);
-    //setSelecciono(current => !current);
-      if(newIndex === 1){
-        GConText.setAvatar(Img.avatar1_tumb)
-      } else if (newIndex === 2){
-        GConText.setAvatar(Img.avatar2_tumb)
-      } else if (newIndex === 3){
-        GConText.setAvatar(Img.avatar3_tumb)
-      }
-	  };
-
-
-  
 	
 	  useEffect( () => {
 		//console.log("🚀 ~ vistos", vistos)
@@ -48,22 +32,15 @@ const Ranking = () => {
 	  }, [])
 	
 
-
-
-
   return (
     <>
 		<div className="container ranking-background">
 
         <Nav titulo={"Ranking"}></Nav>
 
-        <div className="row mx-1">
-          <div className="col col-md-6 offset-md-3">
-            <h2 className='fs-18 lh-25 c-negro text-left'>Para recuperar las Gemas, se ha llamado a un grupo de ninjas, pues su <b>flexibilidad, agilidad y estrategia</b> serán de gran utilidad en esta búsqueda.</h2>
-
-            <div className="mt-4">
-                <h3 className='fs-15 lh-25 c-negro text-left'><img src={Img.info} alt="" width="25"></img> Para comenzar, selecciona un personaje para vivir este gran reto.</h3>
-            </div>	
+        <div className="row mx-1 my-4 text-left">
+          <div className="col-12 col-md-10 offset-md-1">
+          <Link className='btn_default mx-3' to="/login" >Regresar <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></Link>
 
           </div>				
         </div>
@@ -72,90 +49,52 @@ const Ranking = () => {
         <div className="row">
 
                   {/* <!-- COLUMNA 1--> */}
-                  <div className="col ranking-form mt-3 mx-3">
+                  <div className="col col-md-10 offset-md-1 ranking-form mt-3">
        
                         <div>
                           <img className='img-fluid' src={Img.titulo_curso} alt="" width="100" height=""></img>
                         </div>
-                        <div>
-                          <img src={Img.avatar1} alt="" width="200" ></img>
-                        </div>
                         <hr></hr>
 
-                        <div className="mt-1 mb-5">
-                          <h1 className='fs-28 lh-25 c-negro text-center' >Avatar 1</h1>
-                        </div>
-
-                        <div className="mt-1 mb-3 text-center">
-                          
-                          {/* <span className={GConText.Avatar === Img.avatar1_tumb  ? 'activo' : 'btn_negro'} onClick={() => {Seleccionar_avatar(1);}}>Escoger</span> */}
-                            {
-                            GConText.Avatar === Img.avatar1_tumb
-                            //score === 0
-                            ? <><img className='img-fluid ms-2' src={Img.bien} alt="" width="35" height=""></img></>
-                            : <><span className='btn_negro'  onClick={() => {Seleccionar_avatar(1)}}>Escoger</span></>
-                            }
-
-                        </div>
-       
+                        {
+                        GConText.Base
+                        //.sort((a,b) => a.itemM < b.itemM ? 1 : -1)
+                        .sort((c,d) => c.Tiempo < d.Tiempo ? 1 : -1)
+                        .sort((a,b) => a.Puntos < b.Puntos ? 1 : -1)
+                            // if you want to change the sorting direction: b.price - a.price
+                        .map((option, i) => {
+                          return (
+                            <div key={i+1} className="col-12 col-md-10 offset-md-1 text-left f-gris br-10 px-2 py-1 mt-1">
+                              
+                              <div className="row flex">
+                                <div className="col-1 text-center">
+                                  <img src={option.Avatar === GConText.Avatar ? GConText.Avatar : Img.no_avatar } alt="" width="40"></img>
+                                </div>
+                                <div className="col-1 text-center">
+                                  <h1 className='fs-22 m-0 c-negro'>
+                                  {i+1}
+                                  </h1>
+                                </div>
+              
+                                <div className="col-6 text-left">
+                                  <h1 className='fs-18 m-0 c-negro'>
+                                  {option.Nombre}
+                                  </h1>
+                                </div>
+                                <div className="col-4 text-center">
+                                  {/* <h2 className='fs-18 c-black text-left'><img src={Img.star} alt="" width="30"></img> {GConText.Puntos} pts - {  Math.floor(GConText.Tiempo / 60)} : { GConText.Tiempo % 60}</h2> */}
+                                  <span className='fs-18 c-black text-left'><img src={Img.star} alt="" width="30"></img> {option.Puntos}  Pts &nbsp;&nbsp; <img src={Img.reloj} alt="" width="30"></img> { String(Math.floor(option.Tiempo / 60)).length === 1 ? `0${Math.floor(option.Tiempo / 60)}` : Math.floor(option.Tiempo / 60) }:{ String(option.Tiempo % 60).length === 1 ? `0${option.Tiempo % 60}` : option.Tiempo % 60  }</span>
+                                
+                                </div>
+                              </div>
+                            </div>
+                            
+                            )
+                        })
+                        }
+                           
                   </div>
-                  {/* <!-- COLUMNA 2--> */}
-                  <div className="col perfil-form mt-3 mx-3">
-                    <div className=''>
 
-                      <div>
-                        <img src={Img.titulo_curso} alt="" width="100" height=""></img>
-                      </div>
-                      <div>
-                        <img src={Img.avatar2} alt="" width="200" ></img>
-                      </div>
-                        <hr></hr>
-                        <div className="mt-1 mb-5">
-                        <h1 className='fs-28 lh-25 c-negro text-center' >Avatar 2</h1>
-                        </div>
-
-
-                        <div className="mt-1 mb-3 text-center">
-                          
-                          {/* <span className={GConText.Avatar === Img.avatar1_tumb  ? 'activo' : 'btn_negro'} onClick={() => {Seleccionar_avatar(1);}}>Escoger</span> */}
-                            {
-                            GConText.Avatar === Img.avatar2_tumb
-                            //score === 0
-                            ? <><img className='img-fluid ms-2' src={Img.bien} alt="" width="35" height=""></img></>
-                            : <><span className='btn_negro'  onClick={() => {Seleccionar_avatar(2)}}>Escoger</span></>
-                            }
-
-                        </div>
-                    </div>
-                  </div>
-                  {/* <!-- COLUMNA 3--> */}
-                  <div className="col perfil-form mt-3 mx-3">
-                    <div className=''>
-                        <div>
-                          <img src={Img.titulo_curso} alt="" width="100" height=""></img>
-                        </div>
-                        <div>
-                          <img src={Img.avatar3} alt="" width="200" ></img>
-                        </div>
-                          <hr></hr>
-                          <div className="mt-1 mb-5">
-                          <h1 className='fs-28 lh-25 c-negro text-center' >Avatar 3</h1>
-                          </div>
-
-                          <div className="mt-1 mb-3 text-center">
-                          
-                          {/* <span className={GConText.Avatar === Img.avatar1_tumb  ? 'activo' : 'btn_negro'} onClick={() => {Seleccionar_avatar(1);}}>Escoger</span> */}
-                            {
-                            GConText.Avatar === Img.avatar3_tumb
-                            //score === 0
-                            ? <><img className='img-fluid ms-2' src={Img.bien} alt="" width="35" height=""></img></>
-                            : <><span className='btn_negro'  onClick={() => {Seleccionar_avatar(3)}}>Escoger</span></>
-                            }
-
-                        </div>   
-                      </div>
-         
-                  </div>
           </div>			
         </div>
       

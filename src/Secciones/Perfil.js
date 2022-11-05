@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { VarContext } from '../Context/VarContext';
 
@@ -24,6 +24,31 @@ const Perfil = () => {
 
 	//const [selecciono, setSelecciono] = useState(GConText.avatar);
 
+  const [datos, setDatos] = useState(GConText.Base);
+
+
+  const modifyIniArray = (newIndex) => {	
+      console.log("🚀 ~ datos", datos)
+
+      const updateDatos = datos.map(shape => {
+        if (shape.User === newIndex) {
+          // No change
+          return shape;
+        } else {
+          // Return a new circle 50px below
+          return {
+            ...shape,
+            Avatar: newIndex,
+          };
+        }
+      });
+      // Re-render with the new array
+      setDatos(updateDatos);
+      GConText.setBase(updateDatos);
+
+      console.log("🚀 ~ updateDatos", updateDatos)
+      console.log("🚀 ~ GConText.setBase", GConText.Base)
+  };
 
   const Seleccionar_avatar = (newIndex) => {	
 		console.log("🚀 ~ newIndex", newIndex)
@@ -31,10 +56,13 @@ const Perfil = () => {
     //setSelecciono(current => !current);
       if(newIndex === 1){
         GConText.setAvatar(Img.avatar1_tumb)
+        modifyIniArray(Img.avatar1_tumb)
       } else if (newIndex === 2){
         GConText.setAvatar(Img.avatar2_tumb)
+        modifyIniArray(Img.avatar2_tumb)
       } else if (newIndex === 3){
         GConText.setAvatar(Img.avatar3_tumb)
+        modifyIniArray(Img.avatar3_tumb)
       }
 	  };
 
@@ -160,12 +188,17 @@ const Perfil = () => {
         </div>
       
       <div className="row">
-				<div className="col-md-8 offset-md-2">
+				<div className="col-12 col-md-12">
 					<div className="mt-5 mb-5">
 						<Link className='btn_default mx-3' to="/introduccion"> <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> Regresar</Link>
 						<Link className='btn_negro mx-3' to="/instrucciones"  style={{visibility: GConText.Avatar !== "" ? 'visible' : 'hidden' }}>Continuar <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></Link>
 					</div>	
 				</div>	
+
+        <div className="col-12 col-md-12 mt-4">
+								<Link  to="/ranking" ><h1 className='fs-18 c-rojo'>Ver Ranking</h1></Link>
+				</div>	
+
       </div>	
 
 		</div>

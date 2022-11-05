@@ -79,6 +79,10 @@ console.log("🚀 ~ Ranking", GConText.Ranking)
 							<Link className='btn_negro' to="/introduccion" onClick={() => GConText.setUser(true)}>Ingresar</Link>
 						</div>	
 
+						<div className="col-12 col-md-12 mt-4">
+								<Link  to="/ranking" ><h1 className='fs-18 c-rojo'>Ver Ranking</h1></Link>
+							</div>	
+
 					</div>
 				</div>				
 			</div>

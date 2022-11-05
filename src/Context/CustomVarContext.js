@@ -5,20 +5,68 @@ import {VarContext} from './VarContext'
 export const CustomVarContext = ({children}) => {
 
 
-	const iniArray = [
+	const iniBase = [
 		{
-			Nombre: 'Luis Eduardo Rodriguez',
-			User: 'lrodriguez',
-			Avatar: 'default',
+			Nombre: 'Maria Guadalupe Contreras Guzman',
+			User: 'Mcontreras',
+			Avatar: '/static/media/avatar3_tumb.9173397e87a7c41e640f.png',
 			Tiempo: 34,
 			Puntos: 130,
 		  },
+		  {
+			Nombre: 'Alexa Rodriguez',
+			User: 'ARodriguez',
+			Avatar: '/static/media/avatar3_tumb.9173397e87a7c41e640f.png',
+			Tiempo: 10,
+			Puntos: 330,
+		  },
+
+		  {
+			Nombre: 'Marina Lizette Rodriguez',
+			User: 'Mrodriguez',
+			Avatar: '/static/media/avatar3_tumb.9173397e87a7c41e640f.png',
+			Tiempo: 50,
+			Puntos: 330,
+		  },
+
+		  {
+			Nombre: 'Ximena Guadalupe Rodriguez Contreras',
+			User: 'Xcontreras',
+			Avatar: '/static/media/avatar3_tumb.9173397e87a7c41e640f.png',
+			Tiempo: 20,
+			Puntos: 200,
+		  },
+		  {
+			Nombre: 'Romina Rodriguez Contreras',
+			User: 'Rcontreras',
+			Avatar: '/static/media/avatar3_tumb.9173397e87a7c41e640f.png',
+			Tiempo: 15,
+			Puntos: 330,
+		  },
+		  {
+			Nombre: 'Luis Eduardo Rodriguez Garcia',
+			User: 'Lrodriguez',
+			Avatar: '/static/media/avatar3_tumb.9173397e87a7c41e640f.png',
+			Tiempo: 20,
+			Puntos: 380,
+		  },
+		  {
+			Nombre: 'Ernesto Contreras',
+			User: 'Econtreras',
+			Avatar: '/static/media/avatar3_tumb.9173397e87a7c41e640f.png',
+			Tiempo: 30,
+			Puntos: 380,
+		  },
+		  
 	]
 	
+	const [Base, setBase] = useState(() => iniBase)
+
+	const [Ranking, setRanking] = useState (0)
 	const [User, setUser] = useState (false)
-	const [Nombre, setNombre] = useState ("Javier Hernandez")
-	const [Avatar, setAvatar] = useState ("")
-	const [Ranking, setRanking] = useState(() => iniArray)
+	const [Nombre, setNombre] = useState ('Javier Hernandez')
+	const [Avatar, setAvatar] = useState ('/static/media/avatar3_tumb.9173397e87a7c41e640f.png')
+
 
 	const [Puntos, setPuntos] = useState (0)
 	const [Tiempo, setTiempo] = useState (0)
@@ -130,6 +178,7 @@ export const CustomVarContext = ({children}) => {
 		Nombre,setNombre,
 		Avatar,setAvatar,
 		Ranking,setRanking,
+		Base,setBase,
 		Puntos,setPuntos,
 		TotalAvance,setTotalAvance,ConteoAvance,setConteoAvance,
 		Tiempo,setTiempo,
