@@ -7,6 +7,13 @@ export const CustomVarContext = ({children}) => {
 
 	const iniBase = [
 		{
+			Nombre: 'Learner OXXO',
+			User: 'OLearner',
+			Avatar: '',
+			Tiempo: 0,
+			Puntos: 0,
+		  },
+		{
 			Nombre: 'Maria Guadalupe Contreras Guzman',
 			User: 'Mcontreras',
 			Avatar: '/static/media/avatar3_tumb.9173397e87a7c41e640f.png',
@@ -64,9 +71,9 @@ export const CustomVarContext = ({children}) => {
 
 	const [Ranking, setRanking] = useState (0)
 	const [User, setUser] = useState (false)
-	const [Nombre, setNombre] = useState ('Javier Hernandez')
-	const [Avatar, setAvatar] = useState ('/static/media/avatar3_tumb.9173397e87a7c41e640f.png')
-
+	const [Nombre, setNombre] = useState ('Learner OXXO')
+	//const [Avatar, setAvatar] = useState ('/static/media/avatar3_tumb.9173397e87a7c41e640f.png')
+	const [Avatar, setAvatar] = useState ('')
 
 	const [Puntos, setPuntos] = useState (0)
 	const [Tiempo, setTiempo] = useState (0)

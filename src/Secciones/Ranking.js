@@ -40,7 +40,7 @@ const Ranking = () => {
 
         <div className="row mx-1 my-4 text-left">
           <div className="col-12 col-md-10 offset-md-1">
-          <Link className='btn_default mx-3' to="/login" >Regresar <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></Link>
+          <Link className='btn_default mx-3' to="/login" >Regresar </Link>
 
           </div>				
         </div>
@@ -97,15 +97,7 @@ const Ranking = () => {
 
           </div>			
         </div>
-      
-      <div className="row">
-				<div className="col-md-8 offset-md-2">
-					<div className="mt-5 mb-5">
-						<Link className='btn_default mx-3' to="/introduccion"> <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> Regresar</Link>
-						<Link className='btn_negro mx-3' to="/instrucciones"  style={{visibility: GConText.Avatar !== "" ? 'visible' : 'hidden' }}>Continuar <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></Link>
-					</div>	
-				</div>	
-      </div>	
+    
 
 		</div>
 	

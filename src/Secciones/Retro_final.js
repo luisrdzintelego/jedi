@@ -1,4 +1,4 @@
-import React, { useContext , useEffect } from 'react';
+import React, { useContext , useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { VarContext } from '../Context/VarContext';
 
@@ -15,6 +15,35 @@ import Nav from '../Components/Nav'
 const Retro_final = () => {
 
 	const GConText = useContext(VarContext);
+
+	const [datos, setDatos] = useState(GConText.Base);
+
+	const modifyIniArray = () => {	
+		console.log("🚀 ~ datos", datos)
+  
+		const updateDatos = datos.map(shape => {
+		  if (shape.User === 'OLearner') {
+			// No change
+			return {
+				...shape,
+				Avatar: GConText.Avatar,
+				Tiempo: GConText.Tiempo,
+				Puntos: GConText.Puntos
+			  };
+		  } else {
+			// Return a new circle 50px below
+			return shape;
+		  }
+		});
+		// Re-render with the new array
+		setDatos(updateDatos);
+		GConText.setBase(updateDatos);
+  
+		console.log("🚀 ~ updateDatos", updateDatos)
+		console.log("🚀 ~ GConText.setBase", GConText.Base)
+	};
+
+
 
 	useEffect(() => {
 
@@ -148,7 +177,7 @@ const Retro_final = () => {
 							</div>	
 
 							<div className="col-12 col-md-12 mt-4">
-								<Link  to="/ranking" ><h1 className='fs-18 c-rojo'>Ver Ranking</h1></Link>
+								<Link onClick={() => {modifyIniArray()}}  to="/ranking" ><h1 className='fs-18 c-rojo'>Ver Ranking</h1></Link>
 							</div>	
 
 						</div>	

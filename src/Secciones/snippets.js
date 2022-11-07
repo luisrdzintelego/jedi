@@ -53,6 +53,11 @@
 
 
 //add objects to an arraay use state
+const [theArray, setTheArray] = useState(initialArray);
+setTheArray(oldArray => [...oldArray, newElement]);
+setTheArray([...theArray, newElement]);
+
+
  const {useState, useCallback} = React;
  function Example() {
 	 const [theArray, setTheArray] = useState([]);

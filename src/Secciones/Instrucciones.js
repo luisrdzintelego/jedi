@@ -107,16 +107,16 @@ const Instrucciones = () => {
 
 			<div className="container">
 				<div className="row mt-3 mx-1">
-					<div className="col col-md-6 offset-md-3 instruciones-form ">
+					<div className="col col-md-10 offset-md-1 instruciones-form ">
 						<div {...handlers}>
 
 							<div className="">
 								<img src={Img.titulo_curso} alt="" width="110"></img>
 							</div>
 
-							<div id='idicador1' className='h400' style={{display: activeIndex === 0 ? 'block' : 'none'}}>
-								<div className="mt-3 mb-5">
-										<div className="row mt-1">
+							<div id='idicador1' className='h250' style={{display: activeIndex === 0 ? 'block' : 'none'}}>
+								<div className="mt-3 ">
+										<div className="row">
 											<div className="col-2 col-md-1 offset-md-1">
 											<span className="dot_gris" >1</span>
 											</div>
@@ -125,7 +125,7 @@ const Instrucciones = () => {
 											</div>	
 										</div>
 
-										<div className="row mt-1">
+										<div className="row">
 										<div className="col-2 col-md-1 offset-md-1">
 											<span className="dot_gris" >2</span>
 											</div>
@@ -134,7 +134,7 @@ const Instrucciones = () => {
 											</div>	
 										</div>
 
-										<div className="row mt-1">
+										<div className="row">
 											<div className="col-2 col-md-1 offset-md-1">
 											<span className="dot_gris" >3</span>
 											</div>
@@ -143,7 +143,7 @@ const Instrucciones = () => {
 											</div>	
 										</div>
 
-										<div className="row mt-1">
+										<div className="row">
 											<div className="col-2 col-md-1 offset-md-1">
 											<span className="dot_gris" >4</span>
 											</div>
@@ -152,7 +152,7 @@ const Instrucciones = () => {
 											</div>	
 										</div>
 
-										<div className="row mt-1">
+										<div className="row">
 											<div className="col-2 col-md-1 offset-md-1">
 											<span className="dot_gris" >5</span>
 											</div>
@@ -163,9 +163,9 @@ const Instrucciones = () => {
 								</div>
 							</div>
 
-							<div id='idicador2' className='h400' style={{display: activeIndex === 1 ? 'block' : 'none'}}>
-								<div className="mt-3 mb-5">
-										<div className="row mt-1">
+							<div id='idicador2' className='h250' style={{display: activeIndex === 1 ? 'block' : 'none'}}>
+								<div className="mt-3">
+										<div className="row">
 											<div className="col-2 col-md-1 offset-md-1">
 											<span className="dot_gris" >6</span>
 											</div>
@@ -174,7 +174,7 @@ const Instrucciones = () => {
 											</div>	
 										</div>
 
-										<div className="row mt-1">
+										<div className="row">
 											<div className="col-2 col-md-1 offset-md-1">
 											<span className="dot_gris" >7</span>
 											</div>
@@ -183,7 +183,7 @@ const Instrucciones = () => {
 											</div>	
 										</div>
 
-										<div className="row mt-1">
+										<div className="row">
 											<div className="col-2 col-md-1 offset-md-1">
 											<span className="dot_gris" >8</span>
 											</div>
@@ -192,7 +192,7 @@ const Instrucciones = () => {
 											</div>	
 										</div>
 
-										<div className="row mt-1">
+										<div className="row">
 											<div className="col-2 col-md-1 offset-md-1">
 											<span className="dot_gris" >9</span>
 											</div>
@@ -201,7 +201,7 @@ const Instrucciones = () => {
 											</div>	
 										</div>
 
-										<div className="row mt-1">
+										<div className="row">
 											<div className="col-2 col-md-1 offset-md-1">
 											<span className="dot_gris" >10</span>
 											</div>
@@ -266,8 +266,8 @@ const Instrucciones = () => {
 			<div className="row">
 				<div className="col-md-8 offset-md-2">
 					<div className="mt-5 mb-5">
-					<Link className='btn_default mx-3' to="/introduccion"> <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> Regresar</Link>
-							<Link className='btn_negro mx-3' to="/dashboard"  style={{visibility: termino === true ? 'visible' : 'hidden' }}>¡Vámos! <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></Link>
+					<Link className='btn_default mx-3' to="/perfil"> <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> Regresar</Link>
+							<Link className='btn_negro mx-3' to="/dashboard"  style={{visibility: termino === true ? 'visible' : 'hidden' }}>¡Vámos!</Link>
 					</div>	
 				</div>	
       		</div>	

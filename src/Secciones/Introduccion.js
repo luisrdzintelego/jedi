@@ -132,7 +132,7 @@ const Introduccion = () => {
 			<div className="container">
 
 				<div className="row mt-3 mx-1">
-					<div className="col col-md-6 offset-md-3 introduccion-form ">
+					<div className="col col-md-8 offset-md-2 introduccion-form ">
 						<div {...handlers}       
 							/*onMouseEnter={() => setPaused(true)}*/
 							/*onMouseLeave={() => setPaused(false)}*/>
@@ -141,9 +141,9 @@ const Introduccion = () => {
 								<img className='img-fluid' src={Img.titulo_curso} alt="" width="120"></img>
 							</div>
 
-							<div id='idicador1' className='h350' style={{display: activeIndex === 0 ? 'block' : 'none'}}>
+							<div id='idicador1' className='h300' style={{display: activeIndex === 0 ? 'block' : 'none'}}>
 								<div className="mt-2">
-									<img className='img-fluid' src={Img.img_bienvenida_1} alt="" width="300" ></img>
+									<img className='img-fluid' src={Img.img_bienvenida_1} alt="" width="250" ></img>
 								</div>
 								<hr></hr>
 								<div className="mt-2 mb-5">
@@ -152,9 +152,9 @@ const Introduccion = () => {
 								</div>
 							</div>
 
-							<div id='idicador2' className='h350' style={{display: activeIndex === 1 ? 'block' : 'none'}}>
+							<div id='idicador2' className='h300' style={{display: activeIndex === 1 ? 'block' : 'none'}}>
 								<div className="mt-2">
-									<img className='img-fluid' src={Img.img_bienvenida_2} alt="" width="300" ></img>
+									<img className='img-fluid' src={Img.img_bienvenida_2} alt="" width="250" ></img>
 								</div>
 								<hr></hr>
 								<div className="mt-2 mb-5">
@@ -162,22 +162,22 @@ const Introduccion = () => {
 								</div>
 							</div>
 
-							<div id='idicador3' className='h350' style={{display: activeIndex === 2 ? 'block' : 'none'}}>
+							<div id='idicador3' className='h300' style={{display: activeIndex === 2 ? 'block' : 'none'}}>
 								<div className="mt-2">
-									<img className='img-fluid' src={Img.img_bienvenida_3} alt="" width="300" ></img>
+									<img className='img-fluid' src={Img.img_bienvenida_3} alt="" width="250" ></img>
 								</div>
 								<hr></hr>
 								<div className="mt-2 mb-5">
 									<h2 className='fs-16 lh-25 c-negro text-left'>Sabemos que eres la persona indicada para hacerlo, las Gemas son muy importantes, pues cada una tiene un gran poder:</h2>
-									<h2 className='fs-16 lh-25 c-negro text-left' style={{marginTop: '15px' }}><img src={Img.joya1} alt="" width="25" ></img> <b>Rubí</b>: en su interior tiene los <b>principios y valores Agile</b>.</h2>
-									<h2 className='fs-16 lh-25 c-negro text-left'style={{marginTop: '15px' }}><img src={Img.joya2} alt="" width="25" ></img> <b>Zafiro</b>: te brinda el poder de aplicar los <b>principios Scrum</b>.</h2>
-									<h2 className='fs-16 lh-25 c-negro text-left'style={{marginTop: '15px' }}><img src={Img.joya3} alt="" width="25" ></img> <b>Diamante</b>: te permitirá usar el <b>método Kanban</b>.</h2>
+									<h2 className='fs-16 lh-25 c-negro text-left' style={{marginTop: '10px' }}><img src={Img.joya1} alt="" width="25" ></img> <b>Rubí</b>: en su interior tiene los <b>principios y valores Agile</b>.</h2>
+									<h2 className='fs-16 lh-25 c-negro text-left'style={{marginTop: '10px' }}><img src={Img.joya2} alt="" width="25" ></img> <b>Zafiro</b>: te brinda el poder de aplicar los <b>principios Scrum</b>.</h2>
+									<h2 className='fs-16 lh-25 c-negro text-left'style={{marginTop: '10px' }}><img src={Img.joya3} alt="" width="25" ></img> <b>Diamante</b>: te permitirá usar el <b>método Kanban</b>.</h2>
 								</div>
 							</div>
 
-							<div id='idicador4' className='h350' style={{display: activeIndex === 3 ? 'block' : 'none'}}>
+							<div id='idicador4' className='h300' style={{display: activeIndex === 3 ? 'block' : 'none'}}>
 								<div className="mt-2">
-									<img className='img-fluid' src={Img.img_bienvenida_4} alt="" width="300" ></img>
+									<img className='img-fluid' src={Img.img_bienvenida_4} alt="" width="250" ></img>
 								</div>
 								<hr></hr>
 								<div className="mt-2 mb-5">

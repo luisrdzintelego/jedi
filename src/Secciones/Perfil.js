@@ -25,21 +25,21 @@ const Perfil = () => {
 	//const [selecciono, setSelecciono] = useState(GConText.avatar);
 
   const [datos, setDatos] = useState(GConText.Base);
+  
 
-
-  const modifyIniArray = (newIndex) => {	
+  const modifyIniArray = () => {	
       console.log("🚀 ~ datos", datos)
 
       const updateDatos = datos.map(shape => {
-        if (shape.User === newIndex) {
+        if (shape.User === 'OLearner') {
           // No change
-          return shape;
-        } else {
-          // Return a new circle 50px below
           return {
             ...shape,
-            Avatar: newIndex,
+            Avatar: GConText.Avatar,
           };
+        } else {
+          // Return a new circle 50px below
+          return shape;          
         }
       });
       // Re-render with the new array
@@ -50,20 +50,21 @@ const Perfil = () => {
       console.log("🚀 ~ GConText.setBase", GConText.Base)
   };
 
-  const Seleccionar_avatar = (newIndex) => {	
+  const Seleccionar_avatar = (newIndex, id) => {	
+
+
 		console.log("🚀 ~ newIndex", newIndex)
 		//setSelecciono(true);
     //setSelecciono(current => !current);
       if(newIndex === 1){
         GConText.setAvatar(Img.avatar1_tumb)
-        modifyIniArray(Img.avatar1_tumb)
       } else if (newIndex === 2){
         GConText.setAvatar(Img.avatar2_tumb)
-        modifyIniArray(Img.avatar2_tumb)
       } else if (newIndex === 3){
         GConText.setAvatar(Img.avatar3_tumb)
-        modifyIniArray(Img.avatar3_tumb)
       }
+
+      modifyIniArray()
 	  };
 
 

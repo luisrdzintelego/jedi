@@ -3,8 +3,8 @@ import { VarContext } from '../Context/VarContext';
 import { Link } from 'react-router-dom';
 
 import Lottie from "lottie-react";
-import retro_bien_lottie from '../Img/lotties/zafiro_si.json';
-import retro_mal_lottie from '../Img/lotties/zafiro_no.json';
+import retro_bien_lottie from '../Img/lotties/diamante_si.json';
+import retro_mal_lottie from '../Img/lotties/diamante_no.json';
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -425,13 +425,13 @@ const questions_80 = [
 				<div className="row">
 						<div className="col-12 col-md-6 offset-md-3 text-center ">
 							{/* <img src={Img.joya1_retro_si} alt="" width="75%"></img> */}
-							<Lottie animationData={retro_bien_lottie} loop={true} />
+							<Lottie animationData={retro_bien_lottie} loop={true}  style={{height: '300px' }} />
 							<h1 className='fs-45 mt-2'>¡Muy bien!</h1>
 							<h2 className='fs-20 mt-4'>Has encontrado el <b>Zafiro</b>, ahora podrás implementar los <b>principios Scrum</b>.</h2>
 						</div>
 
-						<div className="col-12 col-md-6 offset-md-3 text-center cuadro_bco mt-3 p-2 flex ">
-							<img src={Img.bonus} alt="" width="80"></img>
+						<div className="col-12 col-md-6 offset-md-3 text-center cuadro_bco mt-2 p-2 flex ">
+							<img src={Img.bonus} alt="" width="60"></img>
 							<h1 className='fs-18  ms-5  text-left'>Además demostraste una gran habilidad en este reto y has ganado <span className='c-rojo'>10 puntos extra</span>.</h1>
 						</div>
 						<div className="col-12 col-md-8 offset-md-2 text-center ">
@@ -460,7 +460,7 @@ const questions_80 = [
 				<div className="row">
 						<div className="col-12 col-md-6 offset-md-3 text-center ">
 							{/* <img src={Img.joya1_retro_si} alt=""  width="75%"></img> */}
-							<Lottie animationData={retro_bien_lottie} loop={true} />
+							<Lottie animationData={retro_bien_lottie} loop={true} style={{height: '300px' }}  />
 							<h1 className='fs-45 mt-2'>¡Muy bien!</h1>
 							<h2 className='fs-20 mt-4'>Has encontrado el <b>Diamante</b>, ahora podrás implementar en tus actividades el <b>método Kanban</b>.</h2>
 						</div>
@@ -483,14 +483,14 @@ const questions_80 = [
 
 
 		{
-			score <= questions.length-1
+			score < questions.length-1
 			//score === 0
 			?  <>
 				<div className="retro-mal pt-5" >
 				<div className="row">
 						<div className="col-12 col-md-6 offset-md-3 text-center ">
 							{/* <img src={Img.joya1_retro_no} alt="" width="75%"></img> */}
-							<Lottie animationData={retro_mal_lottie} loop={true} />
+							<Lottie animationData={retro_mal_lottie} loop={true} style={{height: '300px' }} />
 							<h2 className='fs-20 mt-4 c-blanco'>No has encontrado el <b>Diamante</b> y debes esforzarte más para recibir su poder que te permitirá implementar en tus actividades el <b>método Kanban</b>.</h2>
 						</div>
 
