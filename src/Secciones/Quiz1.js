@@ -40,10 +40,18 @@ const GConText = useContext(VarContext);
   const [puntos, setPuntos] = useState(0);
 
   //TIMER
-  const [second, setSecond] = useState("00");
-  const [minute, setMinute] = useState("00");
+  //const [second, setSecond] = useState("00");
+  //const [minute, setMinute] = useState("00");
+
   const [isTimer, setisTimer] = useState(true);
-  const [counter, setCounter] = useState(1);
+  const [counter, setCounter] = useState(GConText.Tiempo);
+
+  //const [second, setSecond] = useState(() => ( String(GConText.Tiempo % 60).length === 1 ? `0${GConText.Tiempo % 60}` : GConText.Tiempo % 60))
+  //const [minute, setMinute] = useState(() => ( String(Math.floor(GConText.Tiempo / 60)).length === 1 ? `0${Math.floor(GConText.Tiempo / 60)}` : Math.floor(GConText.Tiempo / 60)))
+
+  const [second, setSecond] = useState(0)
+  const [minute, setMinute] = useState(0)
+  const [hour, setHour] = useState(0)
 
 
 
@@ -223,8 +231,16 @@ const GConText = useContext(VarContext);
   const random_80 = getRandom(questions_80)
   //une 2 arrays
   const questions_merge =  shuffleArray([random_80, ...short_40]);
-
+  
   const [questions, setQuestions] = useState(() => questions_merge)
+  
+  //sufle las respuestas en cada preguntas
+  const[currentAswers1, setCurrentAswers1] = useState(() => questions[0].options.sort(() => Math.random() - 0.5))
+  const[currentAswers2, setCurrentAswers2] = useState(() => questions[1].options.sort(() => Math.random() - 0.5))
+  const[currentAswers3, setCurrentAswers3] = useState(() => questions[2].options.sort(() => Math.random() - 0.5))
+ 
+  //const[currentAswers, setCurrentAswers] = useState([]);
+
 
   useEffect(() => {
 
@@ -237,15 +253,14 @@ const GConText = useContext(VarContext);
 		animationData: require('../Img/lotties/rubi_si.json')
 	})
 	*/
-
-    console.log('sólo al principio')
-	console.log('shuffle_40',shuffle_40)
-	console.log('short_40',short_40)
-	console.log("🚀 ~ random_80", random_80)
+    //console.log('sólo al principio')
+	//console.log('shuffle_40',shuffle_40)
+	//console.log('short_40',short_40)
+	//console.log("🚀 ~ random_80", random_80)
 	console.log("🚀 ~ questions", questions)
-
+	//console.log("🚀 ~ currentAswers", currentAswers)
+	//console.log("🚀 ~ questions.short", questions[currentQuestion].options)
   }, [])
-
 
 
   // Helper Functions
@@ -311,16 +326,17 @@ const GConText = useContext(VarContext);
 		console.log("🚀 ~ counter", counter)
 		//SET PUNTOS Y EL TIEMPO
 		//GConText.setPuntos(GConText.Puntos + puntos);
-		GConText.setTiempo(GConText.Tiempo + counter);
+		//GConText.setTiempo(GConText.Tiempo + counter);
+		GConText.setTiempo(counter);
 
 		GConText.setPuntosEval1(puntos);
 		GConText.setTiempoEval1(counter);
 
 		//RESETEAMOS EL TIMER
 		setisTimer(false);
-		setCounter(0);
-		setSecond("00");
-		setMinute("00");
+		//setCounter(0);
+		//setSecond("00");
+		//setMinute("00");
 
 		//SET JOYA Y BONUS
 		if(score === questions.length){
@@ -359,6 +375,19 @@ const GConText = useContext(VarContext);
   };
   */
 
+  function secondsToString(seconds) {
+	var hour = Math.floor(seconds / 3600);
+	hour = (hour < 10)? '0' + hour : hour;
+	var minute = Math.floor((seconds / 60) % 60);
+	minute = (minute < 10)? '0' + minute : minute;
+	var second = seconds % 60;
+	second = (second < 10)? '0' + second : second;
+	return hour + ':' + minute + ':' + second;
+  }
+
+
+  
+
 
  useEffect(() => {
     let intervalId;
@@ -366,27 +395,33 @@ const GConText = useContext(VarContext);
     if (isTimer) {
       intervalId = setInterval(() => {
         const secondCounter = counter % 60;
-        const minuteCounter = Math.floor(counter / 60);
+		const minuteCounter = Math.floor((counter / 60) % 60);
+		const hourCounter = Math.floor(counter / 3600)
+	
 
-        let computedSecond =
-          String(secondCounter).length === 1
-            ? `0${secondCounter}`
-            : secondCounter;
-        let computedMinute =
-          String(minuteCounter).length === 1
-            ? `0${minuteCounter}`
-            : minuteCounter;
+		let computedSecond = (secondCounter < 10)? `0${secondCounter}` : secondCounter;
+		let computedMinute = (minuteCounter < 10)? `0${minuteCounter}` : minuteCounter;
+		let computedHour = (hourCounter < 10)? `0${hourCounter}` : hourCounter;
 
         setSecond(computedSecond);
         setMinute(computedMinute);
+        setHour(computedHour);
 
         setCounter((counter) => counter + 1);
-		//GConText.setCounter((counter) => counter + 1);
-      }, 1000);
+		GConText.setTiempo((counter) => counter + 1);
+      }, 16.6);
     }
 
     return () => clearInterval(intervalId);
   }, [counter, isTimer]);
+
+
+  const ImgRetro = ({ success, currentAswers, showretro }) => (
+	<img
+		style={{display: avanzar === true && questions[currentQuestion].correcta === currentAswers   ? 'block' : 'none', width: '40px' }}
+	  src={success === true ? Img.bien : Img.mal} alt=""
+	/>
+  );
 
 
   return (
@@ -394,7 +429,7 @@ const GConText = useContext(VarContext);
 	
 	<div className="container quiz1-background">
 
-		<NavQuiz props={{colorFondo:'f-rosa-claro', titulo:'Quiz1',minute,second}} ></NavQuiz>
+		<NavQuiz props={{colorFondo:'f-rosa-claro', titulo:'Quiz1',hour,minute,second}} ></NavQuiz>
 
 		{showResults ? (
 		<>
@@ -512,7 +547,7 @@ const GConText = useContext(VarContext);
 			<div className="container mt-3">
 				<div className="row mx-1">
 					<div className="col-12 col-md-10 offset-md-1 text-left my-1">
-					<h3 className='fs-15 lh-25 c-negro'><img src={Img.info} alt="info" width="25"></img>  Selecciona la respuesta correcta y haz clic en enviar.</h3>
+					<h3 className='fs-15 lh-25 c-negro'><img src={Img.info} alt="info" width="25"></img>  Selecciona tu respuesta y haz clic en enviar.</h3>
 				</div>
 
 				<div className="col-12 col-md-10 offset-md-1 text-left pregunta-form mb-3">
@@ -530,6 +565,52 @@ const GConText = useContext(VarContext);
 
 					{/*primera posicion del map es el objeto -- en este caso "option"*/}
 					{/*segunda posicion del map es el consecutivo  -- en este caso "num" inicia del 0*/ }
+
+					{questions[currentQuestion].options.map((option, num) => {
+
+							//console.log("🚀 ~ options", questions[currentQuestion].correcta === currentAswers[num].id)
+							//console.log("🚀 ~ correcta", questions[currentQuestion].correcta)
+							//console.log("🚀 ~ currentAswers", currentAswers[num].id)
+
+						const estaAct = isActive && select === (option.id) ? "resp-active" : "resp"
+						const estaDes = avanzar ? "resp-disabled" : ""
+
+						return (
+
+							<div  style={{display: option.text ? 'block' : 'none' }} 
+							key={option.id}  
+							className={`col-12 col-md-10 offset-md-1 text-left py-2 mt-3 ${estaAct} ${estaDes}`}
+
+									
+									onClick={() => {
+										selectedAswer(option.id)
+										toggleClass()
+									}}
+
+									>
+									<div className="row mt-1 flex">
+										<div className="col-1 p-0 text-center">
+											<h4 className="fs-30 c-negro" >{letras[num]}.</h4>
+										</div>
+										<div className="col-10 p-0 ">
+											<h5 className='fs-18 lh-20 c-negro text-left'>
+												{option.text}
+											</h5>
+										</div>
+										<div className="col-1">
+											<img src={Img.mal} alt="retro"  style={{display: showretro === option.id && correct === false ? 'block' : 'none' }} width="40"></img>
+											<img src={ questions[currentQuestion].correcta === option.id ? Img.bien : Img.mal } style={{display: avanzar === true && questions[currentQuestion].correcta === option.id  ? 'block' : 'none' }} alt="retro"  width="40"></img>
+
+										</div>		
+									</div>
+							</div>
+							
+						);
+					})}
+
+
+
+{/* 
 					{questions[currentQuestion].options.map((option, num) => {
 
 						const estaAct = isActive && select === (num+1) ? "resp-active" : "resp"
@@ -564,7 +645,7 @@ const GConText = useContext(VarContext);
 							</div>
 							
 						);
-					})}
+					})}  */}
 					
 				</div>
 			</div>

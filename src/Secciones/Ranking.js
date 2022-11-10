@@ -36,7 +36,7 @@ const Ranking = () => {
     <>
 		<div className="container ranking-background">
 
-        <Nav titulo={"Ranking"}></Nav>
+        <Nav titulo={"Ranking: Nombre del Grupo"}></Nav>
 
         <div className="row mx-1 my-4 text-left">
           <div className="col-12 col-md-10 offset-md-1">
@@ -83,7 +83,7 @@ const Ranking = () => {
                                 </div>
                                 <div className="col-4 text-center">
                                   {/* <h2 className='fs-18 c-black text-left'><img src={Img.star} alt="" width="30"></img> {GConText.Puntos} pts - {  Math.floor(GConText.Tiempo / 60)} : { GConText.Tiempo % 60}</h2> */}
-                                  <span className='fs-18 c-black text-left'><img src={Img.star} alt="" width="30"></img> {option.Puntos}  Pts &nbsp;&nbsp; <img src={Img.reloj} alt="" width="30"></img> { String(Math.floor(option.Tiempo / 60)).length === 1 ? `0${Math.floor(option.Tiempo / 60)}` : Math.floor(option.Tiempo / 60) }:{ String(option.Tiempo % 60).length === 1 ? `0${option.Tiempo % 60}` : option.Tiempo % 60  }</span>
+                                  <span className='fs-18 c-black text-left'><img src={Img.star} alt="" width="30"></img> {option.Puntos}  Pts &nbsp;&nbsp; <img src={Img.reloj} alt="" width="30"></img> {(Math.floor(option.Tiempo / 3600) < 10)? `0${Math.floor(option.Tiempo / 3600)}` : Math.floor(option.Tiempo / 3600)}:{(Math.floor((option.Tiempo / 60) % 60) < 10)? `0${Math.floor((option.Tiempo / 60) % 60)}` : Math.floor((option.Tiempo / 60) % 60)}:{ (option.Tiempo % 60 < 10)? `0${option.Tiempo % 60}` : option.Tiempo % 60 }</span>
                                 
                                 </div>
                               </div>

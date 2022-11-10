@@ -60,7 +60,7 @@ const Retro_final = () => {
 		console.log("Bonus3", GConText.Bonus3)
 
 		const time = GConText.TiempoEval1+GConText.TiempoEval2+GConText.TiempoEval3
-		console.log("Tiempo Min", String(Math.floor(time / 60)).length === 1 ? `0${Math.floor(time / 60)}` : Math.floor(time / 60),":",String(time % 60).length === 1 ? `0${time % 60}` : time % 60)
+		console.log("Tiempo Min", (Math.floor(GConText.Tiempo / 3600) < 10)? `0${Math.floor(GConText.Tiempo / 3600)}` : Math.floor(GConText.Tiempo / 3600), ":" ,(Math.floor((GConText.Tiempo / 60) % 60) < 10)? `0${Math.floor((GConText.Tiempo / 60) % 60)}` : Math.floor((GConText.Tiempo / 60) % 60), ":" ,(GConText.Tiempo % 60 < 10)? `0${GConText.Tiempo % 60}` : GConText.Tiempo % 60 )
 		console.log("Tiempo", GConText.Tiempo)
 
 
@@ -164,7 +164,7 @@ const Retro_final = () => {
 									</div>	
 
 									<div className="col-12 col-md-12 p-1">
-										<h2 className='fs-18 c-black' ><img src={Img.reloj} alt=""  width="40"></img> { String(Math.floor(GConText.Tiempo / 60)).length === 1 ? `0${Math.floor(GConText.Tiempo / 60)}` : Math.floor(GConText.Tiempo / 60) }:{ String(GConText.Tiempo % 60).length === 1 ? `0${GConText.Tiempo % 60}` : GConText.Tiempo % 60  }</h2>
+										<h2 className='fs-18 c-black' ><img src={Img.reloj} alt=""  width="40"></img> {(Math.floor(GConText.Tiempo / 3600) < 10)? `0${Math.floor(GConText.Tiempo / 3600)}` : Math.floor(GConText.Tiempo / 3600)}:{(Math.floor((GConText.Tiempo / 60) % 60) < 10)? `0${Math.floor((GConText.Tiempo / 60) % 60)}` : Math.floor((GConText.Tiempo / 60) % 60)}:{ (GConText.Tiempo % 60 < 10)? `0${GConText.Tiempo % 60}` : GConText.Tiempo % 60 }</h2>
 									</div>	
 
 								</div>

@@ -28,10 +28,9 @@ function App() {
 
     <>
     <CustomVarContext>
-      <MemoryRouter basename="/" >
-    {/* <MemoryRouter basename="/"> */}
+      {/* <MemoryRouter basename="/" > */}
       {/* <BrowserRouter basename="/cursos_elearning/oxxo/aguile" > */}
-      {/* <BrowserRouter basename="/" > */}
+      <BrowserRouter basename="/" >
         <div className="App">
 
           <Routes>
@@ -68,8 +67,8 @@ function App() {
             <Route path='/CheckOut' element={ <CheckOut/> } /> */}
           </Routes>
         </div>
-      {/* </BrowserRouter> */}
-      </MemoryRouter>
+      </BrowserRouter>
+      {/* </MemoryRouter> */}
     </CustomVarContext>
     </>
   );
