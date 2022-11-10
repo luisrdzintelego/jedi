@@ -18,7 +18,7 @@ const Dashboard = () => {
 	<>
 		<div className="container dashboard-background">
 
-			<Nav titulo={"Dashboard"}></Nav>
+			<Nav titulo={"Dashboard"} btn_dash={true}></Nav>
 
 			<div className="container">
 				<div className="row mt-3 mx-1">

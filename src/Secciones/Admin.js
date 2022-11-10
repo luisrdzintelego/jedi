@@ -16,7 +16,7 @@ import * as Img from '../Components/Imagenes'
 // import avatar2 from "../Img/avatar2.png";
 // import avatar3 from "../Img/avatar3.png";
 
-import Nav from '../Components/Nav_admin'
+import Nav from '../Components/Nav'
 
 const Admin = () => {
 
@@ -36,7 +36,7 @@ const Admin = () => {
     <>
 		<div className="container admin-background">
 
-        <Nav titulo={"Administrador: Nombre del Grupo"}></Nav>
+        <Nav titulo={"Panel Administrador:"} btn_admin={true}></Nav>
 
         <div className="container">
         <div className="row">

@@ -40,7 +40,7 @@ const Ranking = () => {
 
         <div className="row mx-1 my-4 text-left">
           <div className="col-12 col-md-10 offset-md-1">
-          <Link className='btn_default mx-3' to="/login" >Regresar </Link>
+          <Link className='btn_default mx-3' to="/dashboard" >Regresar </Link>
 
           </div>				
         </div>

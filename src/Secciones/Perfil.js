@@ -196,9 +196,9 @@ const Perfil = () => {
 					</div>	
 				</div>	
 
-        <div className="col-12 col-md-12 mt-4">
+        {/* <div className="col-12 col-md-12 mt-4">
 								<Link  to="/ranking" ><h1 className='fs-18 c-rojo'>Ver Ranking</h1></Link>
-				</div>	
+				</div>	 */}
 
       </div>	
 
