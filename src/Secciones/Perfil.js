@@ -36,12 +36,12 @@ const Perfil = () => {
           return {
             ...shape,
             Avatar: GConText.Avatar,
-          };
+          }
         } else {
           // Return a new circle 50px below
           return shape;          
         }
-      });
+      })
       // Re-render with the new array
       setDatos(updateDatos);
       GConText.setBase(updateDatos);

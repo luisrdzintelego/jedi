@@ -29,12 +29,12 @@ const Retro_final = () => {
 				Avatar: GConText.Avatar,
 				Tiempo: GConText.Tiempo,
 				Puntos: GConText.Puntos
-			  };
-		  } else {
-			// Return a new circle 50px below
-			return shape;
-		  }
-		});
+			}
+        } else {
+          // Return a new circle 50px below
+          return shape;          
+        }
+      })
 		// Re-render with the new array
 		setDatos(updateDatos);
 		GConText.setBase(updateDatos);
