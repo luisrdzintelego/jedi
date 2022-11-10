@@ -1,6 +1,6 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import { VarContext } from '../Context/VarContext';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import './Login.css';
 
@@ -16,7 +16,36 @@ import Nav from '../Components/Nav'
 const Login = () => {
 
 const GConText = useContext(VarContext);
-console.log("🚀 ~ Ranking", GConText.Ranking)
+const [redirectNow, setRedirectNow] = useState(0);
+//console.log("🚀 ~ Ranking", GConText.Ranking)
+
+
+
+const UserChange = (event) => {
+    console.log(event.target.value);
+    //setNombre(event.target.value);
+    GConText.setUsername(event.target.value);
+  }
+
+  const PassChange = (event) => {
+    console.log(event.target.value);
+    //setNombre(event.target.value);
+    GConText.setPassword(event.target.value);
+  }
+
+
+  const chkLogin = () => {
+	GConText.setUser(true)
+	GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
+	console.log("🚀 ~ GConText.Password", GConText.Password)
+	console.log("🚀 ~ GConText.Username", GConText.Username)
+
+    // setTimeout(() => {
+    //   setRedirectNow(true)
+    // }, 3000);
+  
+}
+
 
 
 
@@ -49,7 +78,7 @@ console.log("🚀 ~ Ranking", GConText.Ranking)
 										<label className="control-label label-login">Correo Electrónico:</label>
 									</div>
 									<div className="col-md-10">
-										<input type="text" className="d-inline form-control-sm form-control-login" name=""  aria-describedby="helpId" placeholder=""></input>
+										<input type="text" onChange={UserChange} className="d-inline form-control-sm form-control-login" name=""  aria-describedby="helpId" placeholder=""></input>
 										<img src={Img.bien}  alt="" width="16"></img>
 									</div>
 									<div className="col-md-12" >
@@ -65,7 +94,7 @@ console.log("🚀 ~ Ranking", GConText.Ranking)
 										<label className="control-label label-login">Contraseña:</label>
 									</div>
 									<div className="col-md-10 ">
-										<input type="password" className="d-inline form-control-sm form-control-login" name="" id="" aria-describedby="helpId" placeholder=""></input>
+										<input type="password" onChange={PassChange} className="d-inline form-control-sm form-control-login" name="" id="" aria-describedby="helpId" placeholder=""></input>
 										<img src={Img.bien} alt="" width="16"></img>
 									</div>
 									<div className="col-md-12" >
@@ -76,8 +105,23 @@ console.log("🚀 ~ Ranking", GConText.Ranking)
 						</div>	
 
 						<div className="mt-5 mb-3">
-							<Link className='btn_negro' to="/introduccion" onClick={() => GConText.setUser(true)}>Ingresar</Link>
+							{/* <Link className='btn_negro' to="/introduccion" onClick={() => chkLogin()}>Ingresar</Link> */}
+							<span className='btn_negro' onClick={() => chkLogin()}>Ingresar</span>
 						</div>	
+
+
+						{
+						redirectNow === 1 
+						? <Navigate to="/admin"/>
+						: <></>
+            			} 
+
+{
+						redirectNow === 2 
+						? <Navigate to="/introduccion"/>
+						: <></>
+            			} 
+
 
 						{/* <div className="col-12 col-md-12 mt-4">
 								<Link  to="/ranking" ><h1 className='fs-18 c-rojo'>Ver Ranking</h1></Link>

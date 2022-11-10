@@ -21,6 +21,7 @@ import Tercer_reto from "./Secciones/Tercer_reto";
 import Quiz3 from "./Secciones/Quiz3";
 import Retro_final from "./Secciones/Retro_final";
 import Ranking from "./Secciones/Ranking";
+import Admin from "./Secciones/Admin";
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="quiz3" element={<Quiz3/>}/>
           <Route path="retro_final" element={<Retro_final/>}/>
           <Route path="ranking" element={<Ranking/>}/>
+          <Route path="admin" element={<Admin/>}/>
           {/* <Route exact path='journey/:itemId' element={<Journey/>} />
           <Route path="Paso2" element={<Paso2/>}/>
           <Route path="Paso3" element={<Paso3/>}/> */}

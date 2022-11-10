@@ -71,6 +71,10 @@ export const CustomVarContext = ({children}) => {
 
 	const [Ranking, setRanking] = useState (0)
 	const [User, setUser] = useState (false)
+
+	const [Username, setUsername] = useState ('')
+	const [Password, setPassword] = useState ('')
+
 	const [Nombre, setNombre] = useState ('Learner OXXO')
 	//const [Avatar, setAvatar] = useState ('/static/media/avatar3_tumb.9173397e87a7c41e640f.png')
 	const [Avatar, setAvatar] = useState ('')
@@ -183,6 +187,8 @@ export const CustomVarContext = ({children}) => {
 	<VarContext.Provider value={{
 		User,setUser,
 		Nombre,setNombre,
+		Username,setUsername,
+		Password,setPassword,
 		Avatar,setAvatar,
 		Ranking,setRanking,
 		Base,setBase,
