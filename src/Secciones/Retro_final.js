@@ -96,7 +96,7 @@ const Retro_final = () => {
 											<div className="mt-3">
 												{/* <button  className='btn_default mx-3 px-5' onClick={() => restartGame()}>Continuar</button> */}
 
-												<a className='btn_negro mx-3 px-5' href={pdf} target="_blank" rel="noopener noreferrer" download="Certificado.pdf"> Descargar</a>
+												<a className='btn_negro mx-3 px-5' href={pdf} target="_blank" rel="noopener noreferrer" download={pdf}> Descargar</a>
 											</div>	
 										</div>	
 									</div>
