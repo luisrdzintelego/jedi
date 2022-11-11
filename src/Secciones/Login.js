@@ -2,6 +2,10 @@ import React, {useContext, useState} from 'react';
 import { VarContext } from '../Context/VarContext';
 import { Link, Navigate } from 'react-router-dom';
 
+import { DataStore } from '@aws-amplify/datastore';
+import { Ranking } from '../models';
+
+
 import './Login.css';
 
 import * as Img from '../Components/Imagenes'
@@ -33,22 +37,45 @@ const UserChange = (event) => {
     GConText.setPassword(event.target.value);
   }
 
-
-  const chkLogin = () => {
-	GConText.setUser(true)
-	GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
-	console.log("🚀 ~ GConText.Password", GConText.Password)
-	console.log("🚀 ~ GConText.Username", GConText.Username)
-
-    // setTimeout(() => {
-    //   setRedirectNow(true)
-    // }, 3000);
-  
+  const ViewAll = async()=>{
+	const models = await DataStore.query(Ranking);
+	console.log(models);
+	
 }
 
 
+  const chkLogin = () => {
+	//GConText.setUser(true)
+	//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
+	//console.log("🚀 ~ GConText.Password", GConText.Password)
+	//console.log("🚀 ~ GConText.Username", GConText.Username)
+	ViewAll() 
+	}
 
 
+
+/*
+const sendInfo = async(nombre,url_img,negocio,pais,region,ciudad)=>{
+	await DataStore.save(
+		new Ranking({
+			"username": "lrodriguez",
+			"password": "abc123456",
+			"type": "user",
+			"grupo": 1,
+			"puntos": 0,
+			"tiempo": 0,
+			"gema1": false,
+			"gema2": false,
+			"gema3": false,
+			"bonus1": false,
+			"bonus2": false,
+			"bonus3": false,
+			"intentos": 0,
+			"status": false
+		})
+	);
+  }
+*/
   return (
 	<>		
 		{/* <div className="container fondo-rosa" style={{ backgroundImage: `url(${background})` }}> */}
