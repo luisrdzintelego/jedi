@@ -8,7 +8,6 @@ import { CustomVarContext } from './Context/CustomVarContext';
 
 import './App.css';
 
-
 import Login from './Secciones/Login';
 import Introduccion from "./Secciones/Introduccion";
 import Perfil from "./Secciones/Perfil";
@@ -24,12 +23,28 @@ import Retro_final from "./Secciones/Retro_final";
 import Ranking from "./Secciones/Ranking";
 import Admin from "./Secciones/Admin";
 
-//Importante agregarlo para que funciona la databes
-import { Amplify } from "aws-amplify";
-import config from "./aws-exports.js"
+//aws configuración
+import { Amplify, I18n } from 'aws-amplify';
 
-Amplify.configure({
-  ...config,
+import { Authenticator, translations } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+
+import awsExports from './aws-exports';
+Amplify.configure(awsExports);
+
+//poner en español el login
+I18n.putVocabularies(translations);
+I18n.setLanguage('es');
+
+I18n.putVocabularies({
+  fr: {
+    'Sign In': 'Se connecter',
+    'Sign Up': "S'inscrire",
+  },
+  es: {
+    'Sign In': 'Registrarse',
+    'Sign Up': 'Regístrate',
+  },
 });
 
 
@@ -38,6 +53,25 @@ function App() {
   return (
 
     <>
+    {/* <Authenticator /> */}
+
+    <Authenticator
+          // formFields={formFields}
+          // components={components}
+
+          //oculta el crear una cuenta
+          hideSignUp={true}
+    >
+        {({ signOut, user }) => (
+          <main>
+            <h1>Hello {user.username}</h1>
+            <button onClick={signOut}>Sign out</button>
+          </main>
+        )}
+      </Authenticator>
+
+
+
     <CustomVarContext>
       <MemoryRouter basename="/" >
       {/* <BrowserRouter basename="/cursos_elearning/oxxo/aguile" > */}
@@ -86,4 +120,6 @@ function App() {
   );
 }
 
+ 
+//export default withAuthenticator(App);
 export default App;

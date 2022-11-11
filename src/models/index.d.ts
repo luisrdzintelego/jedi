@@ -8,32 +8,40 @@ type RankingMetaData = {
 
 type EagerRanking = {
   readonly id: string;
-  readonly username?: string | null;
-  readonly password?: string | null;
-  readonly nombre?: string | null;
-  readonly grupo?: string | null;
+  readonly username: string;
+  readonly password: string;
+  readonly type: string;
+  readonly grupo: number;
   readonly puntos?: number | null;
   readonly tiempo?: number | null;
+  readonly gema1?: boolean | null;
+  readonly gema2?: boolean | null;
+  readonly gema3?: boolean | null;
   readonly bonus1?: boolean | null;
   readonly bonus2?: boolean | null;
   readonly bonus3?: boolean | null;
-  readonly completado?: boolean | null;
+  readonly intentos?: number | null;
+  readonly status?: boolean | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
 type LazyRanking = {
   readonly id: string;
-  readonly username?: string | null;
-  readonly password?: string | null;
-  readonly nombre?: string | null;
-  readonly grupo?: string | null;
+  readonly username: string;
+  readonly password: string;
+  readonly type: string;
+  readonly grupo: number;
   readonly puntos?: number | null;
   readonly tiempo?: number | null;
+  readonly gema1?: boolean | null;
+  readonly gema2?: boolean | null;
+  readonly gema3?: boolean | null;
   readonly bonus1?: boolean | null;
   readonly bonus2?: boolean | null;
   readonly bonus3?: boolean | null;
-  readonly completado?: boolean | null;
+  readonly intentos?: number | null;
+  readonly status?: boolean | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

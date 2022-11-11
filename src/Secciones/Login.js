@@ -5,7 +5,6 @@ import { Link, Navigate } from 'react-router-dom';
 import { DataStore } from '@aws-amplify/datastore';
 import { Ranking } from '../models';
 
-
 import './Login.css';
 
 import * as Img from '../Components/Imagenes'

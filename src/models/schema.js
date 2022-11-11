@@ -14,28 +14,28 @@ export const schema = {
                     "name": "username",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "password": {
                     "name": "password",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
-                "nombre": {
-                    "name": "nombre",
+                "type": {
+                    "name": "type",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "grupo": {
                     "name": "grupo",
                     "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
+                    "type": "Int",
+                    "isRequired": true,
                     "attributes": []
                 },
                 "puntos": {
@@ -49,6 +49,27 @@ export const schema = {
                     "name": "tiempo",
                     "isArray": false,
                     "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "gema1": {
+                    "name": "gema1",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "gema2": {
+                    "name": "gema2",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "gema3": {
+                    "name": "gema3",
+                    "isArray": false,
+                    "type": "Boolean",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -73,8 +94,15 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "completado": {
-                    "name": "completado",
+                "intentos": {
+                    "name": "intentos",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "status": {
+                    "name": "status",
                     "isArray": false,
                     "type": "Boolean",
                     "isRequired": false,
@@ -126,5 +154,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.3.1",
-    "version": "0747e019964a63d520d0f221a3b690bb"
+    "version": "1b113b68d2f980deda5618b956aa666f"
 };
