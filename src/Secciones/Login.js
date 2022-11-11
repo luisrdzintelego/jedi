@@ -39,16 +39,15 @@ const UserChange = (event) => {
   const ViewAll = async()=>{
 	//const models = await DataStore.query(Ranking);
 	//console.log(models);
-	const uName = await DataStore.query(Ranking, 'lrodriguez@intelego.com.mx');
-	console.log("🚀 ~ uName", uName)
+	const uName = await DataStore.query(Ranking);
+	console.log("🚀 ~ BASE:", uName)
 
 }
 
 
   const chkLogin = () => {
 	//GConText.setUser(true)
-	console.log("🚀 ~ user.username", props)
-	//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
+	GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
 	//console.log("🚀 ~ GConText.Password", GConText.Password)
 	//console.log("🚀 ~ GConText.Username", GConText.Username)
 	ViewAll() 
