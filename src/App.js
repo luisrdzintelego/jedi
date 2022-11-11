@@ -55,7 +55,7 @@ function App() {
     <>
     {/* <Authenticator /> */}
 
-    <Authenticator
+    {/* <Authenticator
           // formFields={formFields}
           // components={components}
 
@@ -68,7 +68,7 @@ function App() {
             <button onClick={signOut}>Sign out</button>
           </main>
         )}
-      </Authenticator>
+      </Authenticator> */}
 
 
 
