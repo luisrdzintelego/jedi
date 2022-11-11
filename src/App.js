@@ -5,6 +5,7 @@
 import {BrowserRouter, Routes,Route, MemoryRouter} from "react-router-dom";
 import {  } from 'react-router'
 import { CustomVarContext } from './Context/CustomVarContext';
+
 import './App.css';
 
 
@@ -22,6 +23,15 @@ import Quiz3 from "./Secciones/Quiz3";
 import Retro_final from "./Secciones/Retro_final";
 import Ranking from "./Secciones/Ranking";
 import Admin from "./Secciones/Admin";
+
+//Importante agregarlo para que funciona la databes
+import { Amplify } from "aws-amplify";
+import config from "../src/aws-exports.js";
+
+Amplify.configure({
+  ...config,
+});
+
 
 function App() {
 
