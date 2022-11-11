@@ -39,10 +39,8 @@ const UserChange = (event) => {
   const ViewAll = async()=>{
 	//const models = await DataStore.query(Ranking);
 	//console.log(models);
-	const uName = await DataStore.query(Ranking, GConText.Username);
+	const uName = await DataStore.query(Ranking, 'lrodriguez@intelego.com.mx');
 	console.log("🚀 ~ uName", uName)
-	console.log("🚀 ~ username", uName.username)
-	console.log("🚀 ~ password", uName.password)
 
 }
 
