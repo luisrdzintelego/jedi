@@ -37,9 +37,13 @@ const UserChange = (event) => {
   }
 
   const ViewAll = async()=>{
-	const models = await DataStore.query(Ranking);
-	console.log(models);
-	
+	//const models = await DataStore.query(Ranking);
+	//console.log(models);
+	const uName = await DataStore.query(Ranking, GConText.Username);
+	console.log("🚀 ~ uName", uName)
+	console.log("🚀 ~ username", uName.username)
+	console.log("🚀 ~ password", uName.password)
+
 }
 
 
@@ -52,7 +56,11 @@ const UserChange = (event) => {
 	ViewAll() 
 	}
   
-
+/* Models in DataStore are immutable. To update a record you must use the copyOf function
+ to apply updates to the item’s fields rather than mutating the instance directly */
+ await DataStore.save(Ranking.copyOf(CURRENT_ITEM, item => {
+    // Update the values on {item} variable to update DataStore entry
+}));
 
 
 /*
