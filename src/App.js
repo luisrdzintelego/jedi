@@ -26,7 +26,7 @@ import Admin from "./Secciones/Admin";
 
 //Importante agregarlo para que funciona la databes
 import { Amplify } from "aws-amplify";
-import config from "../src/aws-exports.js";
+import config from "./aws-exports.js"
 
 Amplify.configure({
   ...config,
