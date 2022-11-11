@@ -79,7 +79,7 @@ function App() {
         <div className="App">
 
           <Routes>
-          <Route exact path="/" element={<Login />} />
+          <Route exact path="/" element={<Login props={ Authenticator.user } />} />
           <Route path="introduccion" element={<Introduccion/>}/>
           <Route path="perfil" element={<Perfil/>}/>
           <Route path="instrucciones" element={<Instrucciones/>}/>

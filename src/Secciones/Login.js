@@ -16,7 +16,7 @@ import * as Img from '../Components/Imagenes'
 import Nav from '../Components/Nav'
 
 
-const Login = () => {
+const Login = ({props}) => {
 
 const GConText = useContext(VarContext);
 const [redirectNow, setRedirectNow] = useState(0);
@@ -45,7 +45,7 @@ const UserChange = (event) => {
 
   const chkLogin = () => {
 	//GConText.setUser(true)
-	console.log("🚀 ~ user.username", user.username)
+	console.log("🚀 ~ user.username", props)
 	GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
 	//console.log("🚀 ~ GConText.Password", GConText.Password)
 	//console.log("🚀 ~ GConText.Username", GConText.Username)
