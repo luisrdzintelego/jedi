@@ -67,6 +67,22 @@ const Retro_final = () => {
 	  }, []);
 
 
+	  const onButtonClick = () => {
+        // using Java Script method to get PDF file
+        fetch(pdf).then(response => {
+            response.blob().then(blob => {
+                // Creating new object of PDF file
+                const fileURL = window.URL.createObjectURL(blob);
+                // Setting various property values
+                let alink = document.createElement('a');
+                alink.href = fileURL;
+                alink.download = pdf;
+                alink.click();
+            })
+        })
+    }
+
+
   return (
 	<>
 		<div className="container retro-final-background">
@@ -96,7 +112,7 @@ const Retro_final = () => {
 											<div className="mt-3">
 												{/* <button  className='btn_default mx-3 px-5' onClick={() => restartGame()}>Continuar</button> */}
 
-												<a className='btn_negro mx-3 px-5' href={pdf} target="_blank" rel="noopener noreferrer" download={pdf}> Descargar</a>
+												<span className='btn_negro mx-3 px-5' onClick={onButtonClick}> Descargar Pdf</span>
 											</div>	
 										</div>	
 									</div>
