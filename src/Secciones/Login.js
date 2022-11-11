@@ -50,17 +50,13 @@ const UserChange = (event) => {
   const chkLogin = () => {
 	//GConText.setUser(true)
 	console.log("🚀 ~ user.username", props)
-	GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
+	//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
 	//console.log("🚀 ~ GConText.Password", GConText.Password)
 	//console.log("🚀 ~ GConText.Username", GConText.Username)
 	ViewAll() 
 	}
   
-/* Models in DataStore are immutable. To update a record you must use the copyOf function
- to apply updates to the item’s fields rather than mutating the instance directly */
- await DataStore.save(Ranking.copyOf(CURRENT_ITEM, item => {
-    // Update the values on {item} variable to update DataStore entry
-}));
+
 
 
 /*
