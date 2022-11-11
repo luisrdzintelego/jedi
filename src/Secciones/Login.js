@@ -45,11 +45,13 @@ const UserChange = (event) => {
 
   const chkLogin = () => {
 	//GConText.setUser(true)
-	//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
+	console.log("🚀 ~ user.username", user.username)
+	GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
 	//console.log("🚀 ~ GConText.Password", GConText.Password)
 	//console.log("🚀 ~ GConText.Username", GConText.Username)
 	ViewAll() 
 	}
+  
 
 
 
