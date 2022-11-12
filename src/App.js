@@ -55,7 +55,7 @@ function App() {
     <>
     {/* <Authenticator /> */}
 
-    {/* <Authenticator
+    <Authenticator
           // formFields={formFields}
           // components={components}
 
@@ -68,7 +68,7 @@ function App() {
             <button onClick={signOut}>Sign out</button>
           </main>
         )}
-      </Authenticator> */}
+      </Authenticator>
 
 
 
@@ -79,7 +79,7 @@ function App() {
         <div className="App">
 
           <Routes>
-          <Route exact path="/" element={<Login props={ Authenticator.user } />} />
+          <Route exact path="/" element={<Login />} />
           <Route path="introduccion" element={<Introduccion/>}/>
           <Route path="perfil" element={<Perfil/>}/>
           <Route path="instrucciones" element={<Instrucciones/>}/>

@@ -40,10 +40,12 @@ const UserChange = (event) => {
 	//const models = await DataStore.query(Ranking);
 	//console.log(models);
 	const uName = await DataStore.query(Ranking);
-	console.log("🚀 ~ BASE:", uName)
+	console.log("🚀 ~ Ranking:", uName)
 
 	const posts = await DataStore.query(Ranking, c => c.username("contains", GConText.Username));
-	console.log("🚀 ~ BASE:", posts)
+	console.log("🚀 ~ posts:", posts)
+	console.log("🚀 ~ Username:", posts.username)
+	console.log("🚀 ~ Password:", posts.password)
 }
 
 
