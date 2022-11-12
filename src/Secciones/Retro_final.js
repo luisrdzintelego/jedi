@@ -4,6 +4,9 @@ import { VarContext } from '../Context/VarContext';
 
 import pdf from '../Descarga/Certificado.pdf'
 
+import { DataStore } from '@aws-amplify/datastore';
+import { Ranking } from '../models';
+
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import './Retro_final.css';
@@ -17,6 +20,16 @@ const Retro_final = () => {
 	const GConText = useContext(VarContext);
 
 	const [datos, setDatos] = useState(GConText.Base);
+
+	const updateInfo = async(context,valor)=>{
+		const original = await DataStore.query(Ranking, c => c.username("eq", GConText.Username));
+		await DataStore.save(
+			Ranking.copyOf(original, updated => {
+			updated.context = valor
+		  })
+		);
+	  }
+
 
 	const modifyIniArray = () => {	
 		console.log("🚀 ~ datos", datos)
@@ -46,6 +59,9 @@ const Retro_final = () => {
 
 
 	useEffect(() => {
+
+
+		updateInfo("puntos", GConText.Puntos);
 
 		console.log("PuntosEval1", GConText.PuntosEval1)
 		console.log("PuntosEval2", GConText.PuntosEval2)

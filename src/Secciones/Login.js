@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect, useInput} from 'react';
 import { VarContext } from '../Context/VarContext';
 import { Link, Navigate } from 'react-router-dom';
 
@@ -20,12 +20,20 @@ const Login = ({props}) => {
 
 const GConText = useContext(VarContext);
 const [redirectNow, setRedirectNow] = useState(0);
+
+const [user, setUser] = useState('');
 //console.log("🚀 ~ Ranking", GConText.Ranking)
 
-const [password, setPassword] = useState('');
-const [username, setUsername] = useState('');
+// function useInput({ type /*...*/ }) {
+// 	const [value, setValue] = useState("");
+// 	const input = <input value={value} onChange={e => setValue(e.target.value)} type={type} />;
+// 	return [value, input];
+//   }
 
-const UserChange = (event) => {
+// const [password, setPassword] = useInput({ type: "text" });
+// const [username, setUsername] = useInput({ type: "text" });
+
+	const UserChange = (event) => {
     console.log(event.target.value);
     //setNombre(event.target.value);
     GConText.setUsername(event.target.value);
@@ -36,42 +44,71 @@ const UserChange = (event) => {
     //setNombre(event.target.value);
     GConText.setPassword(event.target.value);
   }
+  
+  //9db16aab-042d-471d-a2cb-374195f65c3e
 
+  async function updateInfo(id,numero,seccion) {
+	const original = await DataStore.query(Ranking, id);
+	console.log("🚀 ~ original", original)
+	await DataStore.save(
+		Ranking.copyOf(original, updated => {
+		updated.puntos = numero
+	  })
+	);
+	const Update = await DataStore.query(Ranking, id);
+	console.log("🚀 ~ Update", Update)
+	
+  }
+
+  let num = 0;
   const chkLogin = async()=>{
+
+	num = 0;
 	//const models = await DataStore.query(Ranking);
 	//console.log(models);
 
 	//const uName = await DataStore.query(Ranking);
 	//console.log("🚀 ~ Ranking:", uName)
 
-	const posts = await DataStore.query(Ranking, c => c.username("contains", GConText.Username));
-
-	posts === null ? console.log("🚀 ~ ESTE USUSARIO NO EXISTE:") : console.log("🚀 ~ SI EXISTE:", posts)
-
-	if(GConText.Username === posts[0].username && GConText.Password === posts[0].password ){
-
-		GConText.setUser = posts[0].username;
-
-
-	}
+	const posts = await DataStore.query(Ranking, c => c.username("eq", GConText.Username));
 	console.log("🚀 ~ posts:", posts)
-	console.log("🚀 ~ Username:", posts[0].username)
-	console.log("🚀 ~ Password:", posts[0].password)
+
+	//posts.length === 0 ? console.log("🚀 ~ ESTE USUSARIO NO EXISTE:") : console.log("🚀 ~ SI EXISTE:", posts)
+
+	if(posts.length >= 1 ){
+		console.log("🚀 ~ SI EXISTE:", posts[0].username)
+		if(GConText.Username === posts[0].username ){
+			console.log("🚀 ~ USUARIO COINCIDEN CON LOS INPUTS:") 
+		} else {
+			console.log("🚀 ~ USUARIO NO COINCIDE:") 
+			num = 1;
+		}
+		if(GConText.Password === posts[0].password ){
+			console.log("🚀 ~ PASSWORD COINCIDEN CON LOS INPUTS:") 
+		} else {
+			console.log("🚀 ~ PASSWORD NO COINCIDE:")
+			num = 1; 
+		}
+
+		GConText.setUser( posts[0].id);
+
+	} else{
+		console.log("🚀 ~ ESTE USUSARIO NO EXISTE:") 
+		num = 1;
+	}
+
+	if(num === 0){
+
+		console.log("🚀 ~ posts[0].id", posts[0].id)
+		console.log("🚀 ~ GConText.User", GConText.User)
+
+		updateInfo(posts[0].id,400,'puntos')
+		//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
+	}	
+
 }
 
-/*
-  const chkLogin = () => {
-	//GConText.setUser(true)
-	
-	//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
 
-	//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(2) :  setRedirectNow(0)
-
-	//console.log("🚀 ~ GConText.Password", GConText.Password)
-	//console.log("🚀 ~ GConText.Username", GConText.Username)
-	ViewAll() 
-	}
-  */
 
 
 

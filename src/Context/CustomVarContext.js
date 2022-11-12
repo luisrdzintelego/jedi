@@ -70,7 +70,7 @@ export const CustomVarContext = ({children}) => {
 	const [Base, setBase] = useState(() => iniBase)
 
 	const [Ranking, setRanking] = useState (0)
-	const [User, setUser] = useState (false)
+	const [User, setUser] = useState ('')
 
 	const [Username, setUsername] = useState ('')
 	const [Password, setPassword] = useState ('')

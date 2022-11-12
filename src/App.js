@@ -27,9 +27,11 @@ import Retro_final from "./Secciones/Retro_final";
 import Admin from "./Secciones/Admin";
 
 
-import { DataStore, I18n } from 'aws-amplify';
+import { DataStore } from '@aws-amplify/datastore';
+import { I18n } from 'aws-amplify';
 import { Ranking } from './models';
 
+/*
 import { Authenticator, translations } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
@@ -47,7 +49,7 @@ I18n.putVocabularies({
     'Sign Up': 'Regístrate',
   },
 });
-
+*/
 
 
 
@@ -56,44 +58,12 @@ function App() {
 
   const GConText = useContext(VarContext);
 
-  async function chkLogin(){
-    //const models = await DataStore.query(Ranking);
-    //console.log(models);
-  
-    //const uName = await DataStore.query(Ranking);
-    //console.log("🚀 ~ Ranking:", uName)
-  
-    //const posts = await DataStore.query(Ranking, c => c.username("contains", GConText.Username));
-
-
-    const post = await DataStore.save(
-      new Ranking({
-        username: "My Post with comments",
-        password: "abc12346",
-        tiempo: 10
-      })
-    );
-
-  
-    // posts === null ? console.log("🚀 ~ ESTE USUSARIO NO EXISTE:") : console.log("🚀 ~ SI EXISTE:", posts)
-  
-    // if(GConText.Username === posts[0].username && GConText.Password === posts[0].password ){
-  
-    //   GConText.setUser = posts[0].username;
-  
-  
-    // }
-    // console.log("🚀 ~ posts:", posts)
-    // console.log("🚀 ~ Username:", posts[0].username)
-    // console.log("🚀 ~ Password:", posts[0].password)
-  }
-
   return (
 
     <>
     {/* <Authenticator /> */}
 
-    <Authenticator
+    {/* <Authenticator
           // formFields={formFields}
           // components={components}
 
@@ -106,17 +76,7 @@ function App() {
             <button onClick={signOut}>Sign out</button>
           </main>
         )}
-      </Authenticator>
-
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-               <button onClick={() => chkLogin()}><span>LGIN</span></button>
-              </div>              
-            </div>
-          </div>
-
-          
+      </Authenticator> */}
 
     <CustomVarContext>
       <MemoryRouter basename="/" >
@@ -125,7 +85,7 @@ function App() {
         <div className="App">
 
           <Routes>
-          {/* <Route exact path="/" element={<Login />} /> */}
+          <Route exact path="/" element={<Login />} />
           <Route path="introduccion" element={<Introduccion/>}/>
           <Route path="perfil" element={<Perfil/>}/>
           <Route path="instrucciones" element={<Instrucciones/>}/>
