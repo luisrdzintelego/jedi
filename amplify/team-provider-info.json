@@ -13,7 +13,9 @@
     },
     "categories": {
       "auth": {
-        "oxxoagile2a5a8f58": {}
+        "oxxoagile2a5a8f58": {},
+        "oxxoagiled3e410cc": {},
+        "oxxoagile": {}
       },
       "api": {
         "oxxoagile": {}
