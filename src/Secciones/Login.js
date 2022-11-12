@@ -42,6 +42,8 @@ const UserChange = (event) => {
 	const uName = await DataStore.query(Ranking);
 	console.log("🚀 ~ BASE:", uName)
 
+	const posts = await DataStore.query(Ranking, c => c.username("contains", GConText.Username));
+	console.log("🚀 ~ BASE:", posts)
 }
 
 
