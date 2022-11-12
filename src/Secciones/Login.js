@@ -22,7 +22,8 @@ const GConText = useContext(VarContext);
 const [redirectNow, setRedirectNow] = useState(0);
 //console.log("🚀 ~ Ranking", GConText.Ranking)
 
-
+const [password, setPassword] = useState('');
+const [username, setUsername] = useState('');
 
 const UserChange = (event) => {
     console.log(event.target.value);
@@ -36,10 +37,7 @@ const UserChange = (event) => {
     GConText.setPassword(event.target.value);
   }
 
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
-
-  const ViewAll = async()=>{
+  const chkLogin = async()=>{
 	//const models = await DataStore.query(Ranking);
 	//console.log(models);
 
@@ -50,24 +48,30 @@ const UserChange = (event) => {
 
 	posts === null ? console.log("🚀 ~ ESTE USUSARIO NO EXISTE:") : console.log("🚀 ~ SI EXISTE:", posts)
 
+	if(GConText.Username === posts[0].username && GConText.Password === posts[0].password ){
+
+		GConText.setUser = posts[0].username;
+
+
+	}
 	console.log("🚀 ~ posts:", posts)
 	console.log("🚀 ~ Username:", posts[0].username)
 	console.log("🚀 ~ Password:", posts[0].password)
 }
 
-
+/*
   const chkLogin = () => {
 	//GConText.setUser(true)
 	
 	//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
 
-	GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(2) :  setRedirectNow(0)
+	//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(2) :  setRedirectNow(0)
 
 	//console.log("🚀 ~ GConText.Password", GConText.Password)
 	//console.log("🚀 ~ GConText.Username", GConText.Username)
 	ViewAll() 
 	}
-  
+  */
 
 
 

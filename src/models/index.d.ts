@@ -22,6 +22,8 @@ type EagerRanking = {
   readonly bonus3?: boolean | null;
   readonly intentos?: number | null;
   readonly status?: boolean | null;
+  readonly avatar?: string | null;
+  readonly nombre?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -42,6 +44,8 @@ type LazyRanking = {
   readonly bonus3?: boolean | null;
   readonly intentos?: number | null;
   readonly status?: boolean | null;
+  readonly avatar?: string | null;
+  readonly nombre?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

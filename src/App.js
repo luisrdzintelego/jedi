@@ -1,10 +1,13 @@
 /* eslint-disable react/jsx-pascal-case */
 // import logo from './logo.svg';
+
+import React, {useContext, useState} from 'react';
+import { VarContext } from './Context/VarContext';
 //BrowserRouter: -- puedes usar la barra de direccion para ir a los componentes
 //MemoryRouter: -- solo sirven los botones generados en reacj para moverte entre componentes
 import {BrowserRouter, Routes,Route, MemoryRouter} from "react-router-dom";
-import {  } from 'react-router'
 import { CustomVarContext } from './Context/CustomVarContext';
+
 
 import './App.css';
 
@@ -20,17 +23,15 @@ import Quiz2 from "./Secciones/Quiz2";
 import Tercer_reto from "./Secciones/Tercer_reto";
 import Quiz3 from "./Secciones/Quiz3";
 import Retro_final from "./Secciones/Retro_final";
-import Ranking from "./Secciones/Ranking";
+// import Ranking from "./Secciones/Ranking";
 import Admin from "./Secciones/Admin";
 
-//aws configuración
-import { Amplify, I18n } from 'aws-amplify';
+
+import { DataStore, I18n } from 'aws-amplify';
+import { Ranking } from './models';
 
 import { Authenticator, translations } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-
-import awsExports from './aws-exports';
-Amplify.configure(awsExports);
 
 //poner en español el login
 I18n.putVocabularies(translations);
@@ -48,7 +49,44 @@ I18n.putVocabularies({
 });
 
 
+
+
+
 function App() {
+
+  const GConText = useContext(VarContext);
+
+  async function chkLogin(){
+    //const models = await DataStore.query(Ranking);
+    //console.log(models);
+  
+    //const uName = await DataStore.query(Ranking);
+    //console.log("🚀 ~ Ranking:", uName)
+  
+    //const posts = await DataStore.query(Ranking, c => c.username("contains", GConText.Username));
+
+
+    const post = await DataStore.save(
+      new Ranking({
+        username: "My Post with comments",
+        password: "abc12346",
+        tiempo: 10
+      })
+    );
+
+  
+    // posts === null ? console.log("🚀 ~ ESTE USUSARIO NO EXISTE:") : console.log("🚀 ~ SI EXISTE:", posts)
+  
+    // if(GConText.Username === posts[0].username && GConText.Password === posts[0].password ){
+  
+    //   GConText.setUser = posts[0].username;
+  
+  
+    // }
+    // console.log("🚀 ~ posts:", posts)
+    // console.log("🚀 ~ Username:", posts[0].username)
+    // console.log("🚀 ~ Password:", posts[0].password)
+  }
 
   return (
 
@@ -70,7 +108,15 @@ function App() {
         )}
       </Authenticator>
 
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+               <button onClick={() => chkLogin()}><span>LGIN</span></button>
+              </div>              
+            </div>
+          </div>
 
+          
 
     <CustomVarContext>
       <MemoryRouter basename="/" >
@@ -79,7 +125,7 @@ function App() {
         <div className="App">
 
           <Routes>
-          <Route exact path="/" element={<Login />} />
+          {/* <Route exact path="/" element={<Login />} /> */}
           <Route path="introduccion" element={<Introduccion/>}/>
           <Route path="perfil" element={<Perfil/>}/>
           <Route path="instrucciones" element={<Instrucciones/>}/>
@@ -91,7 +137,7 @@ function App() {
           <Route path="tercer_reto" element={<Tercer_reto/>}/>
           <Route path="quiz3" element={<Quiz3/>}/>
           <Route path="retro_final" element={<Retro_final/>}/>
-          <Route path="ranking" element={<Ranking/>}/>
+          {/* <Route path="ranking" element={<Ranking/>}/> */}
           <Route path="admin" element={<Admin/>}/>
           {/* <Route exact path='journey/:itemId' element={<Journey/>} />
           <Route path="Paso2" element={<Paso2/>}/>
@@ -104,7 +150,8 @@ function App() {
           </main>
         }
         /> */}
-          <Route path="*" element={<Login />}/>
+
+          {/* <Route path="*" element={<Login />}/> */}
 
 
             {/* <Route path='/categoria/:categoriaId' element={<ItemListContainer greeting={'hola Bienvenidos a categorias'} />} />

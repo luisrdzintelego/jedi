@@ -108,6 +108,20 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "avatar": {
+                    "name": "avatar",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "nombre": {
+                    "name": "nombre",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -131,22 +145,6 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
                 }
             ]
         }
@@ -154,5 +152,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.3.1",
-    "version": "1b113b68d2f980deda5618b956aa666f"
+    "version": "4068a3ded10e4f9a7e44e0e2bb32fd7c"
 };
