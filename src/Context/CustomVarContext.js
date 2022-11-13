@@ -69,41 +69,51 @@ export const CustomVarContext = ({children}) => {
 	
 	const [Base, setBase] = useState(() => iniBase)
 
-	const [Ranking, setRanking] = useState (0)
-	const [User, setUser] = useState ('')
+	//VARIABLES DEL JUEGO
+	const [TotalAvance, setTotalAvance] = useState (10)
+	const [ConteoAvance, setConteoAvance] = useState (0)
+	//----
 
+	//DATOA DE SE LLENAN DE LA BASE
+	const [UserId, setUserId] = useState ('')
 	const [Username, setUsername] = useState ('')
 	const [Password, setPassword] = useState ('')
 
-	const [Nombre, setNombre] = useState ('Learner OXXO')
-	//const [Avatar, setAvatar] = useState ('/static/media/avatar3_tumb.9173397e87a7c41e640f.png')
+	const [Type, setType] = useState ('')
+	const [Status, setStatus] = useState (false)
+	const [Intentos, setIntentos] = useState (0)
+
+	const [Nombre, setNombre] = useState ('')
 	const [Avatar, setAvatar] = useState ('')
 
 	const [Puntos, setPuntos] = useState (0)
 	const [Tiempo, setTiempo] = useState (0)
 
-	const [TotalAvance, setTotalAvance] = useState (10)
-	const [ConteoAvance, setConteoAvance] = useState (0)
-
-	const [PuntosEval1, setPuntosEval1] = useState (0)
-	const [PuntosEval2, setPuntosEval2] = useState (0)
-	const [PuntosEval3, setPuntosEval3] = useState (0)
-
-	const [TiempoEval1, setTiempoEval1] = useState (0)
-	const [TiempoEval2, setTiempoEval2] = useState (0)
-	const [TiempoEval3, setTiempoEval3] = useState (0)
-
 	const [Joya1, setJoya1] = useState (false)
 	const [Joya2, setJoya2] = useState (false)
 	const [Joya3, setJoya3] = useState (false)
-
-	const [Bonus, setBonus] = useState (false)
 
 	const [Bonus1, setBonus1] = useState (false)
 	const [Bonus2, setBonus2] = useState (false)
 	const [Bonus3, setBonus3] = useState (false)
 
+	const [Ranking, setRanking] = useState (0)
+	//----
+
+	// DATOS DE EL JUEGO PERO NO VAN A LA ABSE
+	const [PuntosEval1, setPuntosEval1] = useState (0)
+	const [PuntosEval2, setPuntosEval2] = useState (0)
+	const [PuntosEval3, setPuntosEval3] = useState (0)
+	const [TiempoEval1, setTiempoEval1] = useState (0)
+	const [TiempoEval2, setTiempoEval2] = useState (0)
+	const [TiempoEval3, setTiempoEval3] = useState (0)
+	///----
+
+	const [Bonus, setBonus] = useState (false)
 	const [Counter, setCounter] = useState (0)
+
+
+
     //console.log("🚀 ~ UrlImg", UrlImg)
 
 	const [productosCart, setProductosCart] = useState ([])
@@ -118,7 +128,7 @@ export const CustomVarContext = ({children}) => {
 	const resetAll = () => {
 		setPuntos(0)
 		setTiempo(0)
-		setBonus(false)
+		//setBonus(false)
 		setPuntosEval1(0)
 		setPuntosEval2(0)
 		setPuntosEval3(0)
@@ -185,31 +195,38 @@ export const CustomVarContext = ({children}) => {
 
   return (
 	<VarContext.Provider value={{
-		User,setUser,
-		Nombre,setNombre,
+		//--
+		TotalAvance,setTotalAvance,ConteoAvance,setConteoAvance,
+		//--
+		UserId,setUserId,
 		Username,setUsername,
 		Password,setPassword,
+		Type,setType,
+		Status,setStatus,
+		Intentos,setIntentos,
+		Nombre,setNombre,
 		Avatar,setAvatar,
-		Ranking,setRanking,
-		Base,setBase,
 		Puntos,setPuntos,
-		TotalAvance,setTotalAvance,ConteoAvance,setConteoAvance,
 		Tiempo,setTiempo,
+		Joya1,setJoya1,
+		Joya2,setJoya2,
+		Joya3,setJoya3,
+		Bonus1,setBonus1,
+		Bonus2,setBonus2,
+		Bonus3,setBonus3,
+		Ranking,setRanking,
+		resetAll,
+		//TEST-
+		Base,setBase,
+		//--NO SE USAN
+		Bonus,setBonus,
 		PuntosEval1,setPuntosEval1,
 		PuntosEval2,setPuntosEval2,
 		PuntosEval3,setPuntosEval3,
 		TiempoEval1,setTiempoEval1,
 		TiempoEval2,setTiempoEval2,
 		TiempoEval3,setTiempoEval3,
-		Joya1,setJoya1,
-		Joya2,setJoya2,
-		Joya3,setJoya3,
-		Bonus,setBonus,
-		Bonus1,setBonus1,
-		Bonus2,setBonus2,
-		Bonus3,setBonus3,
 		Counter,setCounter,
-		resetAll,
 		//NOSE USAN
 		productosCart, 
 		addItem, 

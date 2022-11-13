@@ -26,12 +26,8 @@ import Retro_final from "./Secciones/Retro_final";
 // import Ranking from "./Secciones/Ranking";
 import Admin from "./Secciones/Admin";
 
-
-import { DataStore } from '@aws-amplify/datastore';
-import { I18n } from 'aws-amplify';
-import { Ranking } from './models';
-
 /*
+import { I18n } from 'aws-amplify';
 import { Authenticator, translations } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
