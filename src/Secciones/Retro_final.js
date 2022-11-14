@@ -2,7 +2,7 @@ import React, { useContext , useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { VarContext } from '../Context/VarContext';
 
-import pdf from '../Descarga/Certificado.pdf'
+// import pdf from '../Descarga/Certificado.pdf'
 
 import { DataStore } from '@aws-amplify/datastore';
 import { Ranking } from '../models';
@@ -83,20 +83,20 @@ const Retro_final = () => {
 	  }, []);
 
 
-	  const onButtonClick = () => {
-        // using Java Script method to get PDF file
-        fetch(pdf).then(response => {
-            response.blob().then(blob => {
-                // Creating new object of PDF file
-                const fileURL = window.URL.createObjectURL(blob);
-                // Setting various property values
-                let alink = document.createElement('a');
-                alink.href = fileURL;
-                alink.download = pdf;
-                alink.click();
-            })
-        })
-    }
+	//   const onButtonClick = () => {
+    //     // using Java Script method to get PDF file
+    //     fetch(pdf).then(response => {
+    //         response.blob().then(blob => {
+    //             // Creating new object of PDF file
+    //             const fileURL = window.URL.createObjectURL(blob);
+    //             // Setting various property values
+    //             let alink = document.createElement('a');
+    //             alink.href = fileURL;
+    //             alink.download = pdf;
+    //             alink.click();
+    //         })
+    //     })
+    // }
 
 
   return (
@@ -128,7 +128,7 @@ const Retro_final = () => {
 											<div className="mt-3">
 												{/* <button  className='btn_default mx-3 px-5' onClick={() => restartGame()}>Continuar</button> */}
 
-												<span className='btn_negro mx-3 px-5' onClick={onButtonClick}> Descargar Pdf</span>
+												<a className='btn_negro mx-3 px-5' href={Img.Certificado} download="Certificado.jpg"> Descargar Certificado</a>
 											</div>	
 										</div>	
 									</div>

@@ -2,6 +2,8 @@
 import bien from "../Img/bien.png";
 import mal from "../Img/mal.png";
 
+import Certificado from "../Img/Certificado.jpg"
+
 //logo del curso
 import Logo_oxxo from "../Img/logo_oxxo.png"
 import Logo_aca from "../Img/logo_aca.png"
@@ -68,6 +70,7 @@ import retro_fina_mal from "../Img/img_retrofinal_mal.png";
 import retro_fina_bien from "../Img/img_retrofinal_bien.png";
 
 export {
+	Certificado,
 	titulo_curso, Logo_oxxo, Logo_aca,
 	bien, mal, info,
 	img_bienvenida_1, img_bienvenida_2, img_bienvenida_3, img_bienvenida_4,
