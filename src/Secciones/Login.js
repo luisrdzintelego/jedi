@@ -4,15 +4,11 @@ import { Link, Navigate } from 'react-router-dom';
 
 import { DataStore } from '@aws-amplify/datastore';
 import { Ranking } from '../models';
+import { useCookies } from 'react-cookie';
 
 import './Login.css';
 
 import * as Img from '../Components/Imagenes'
-// import titulo_curso from "../Img/Titulo_curso.png";
-// import bien from "../Img/bien.png";
-// import mal from "../Img/mal.png";
-
-
 import Nav from '../Components/Nav'
 
 
@@ -26,7 +22,23 @@ const [verImg, setVerImg] = useState(false);
 const [user, setUser] = useState(false);
 const [pass, setPass] = useState(false);
 
+const [CookieId, setCookieId] = useCookies(['idUser']);
 
+  function setAuth(id) {
+		//setCookieId('idUser', id, { path: '/'});
+		//setCookieId('idUser', id, { path: '/', maxAge: 60 * 60 * 24 * 365, sameSite: true});
+	  	//setCookieId('idUser', id, { path: '/', expires: (new Date(Date.now())) });
+		  let date = new Date();
+		  date.setTime(date.getTime() + (30*60*1000));
+		  console.log("🚀 ~ date", date)
+		  setCookieId('idUser', id, { path: '/', expires: date });
+		  setCookieId('idUser', id, { path: '/', maxAge: 30*60, sameSite: true});
+
+  }
+
+   const removeAuth = (name) => {
+		setCookieId(name, '', { path: '/', expires: (new Date(Date.now())) });
+  };
 
 //console.log("🚀 ~ Ranking", GConText.Ranking)
 
@@ -79,9 +91,6 @@ const [pass, setPass] = useState(false);
 	//const models = await DataStore.query(Ranking);
 	//console.log(models);
 
-	//const uName = await DataStore.query(Ranking);
-	//console.log("🚀 ~ Ranking:", uName)
-
 	const posts = await DataStore.query(Ranking, c => c.username("eq", GConText.Username));
 	console.log("🚀 ~ posts:", posts)
 
@@ -114,11 +123,14 @@ const [pass, setPass] = useState(false);
 	setTimeoutImg();
 
 	if(num === 0){
-
+		//DATOS FIJOS
 		GConText.setUserId( posts[0].id);
 		GConText.setUsername( posts[0].username)
 		GConText.setPassword( posts[0].password);
 		GConText.setNombre( posts[0].nombre);
+		GConText.setGrupo( posts[0].grupo);
+		GConText.setType( posts[0].type);
+		//DATOS QUE CAMBIAN
 		GConText.setAvatar( posts[0].avatar);
 		GConText.setPuntos( posts[0].puntos);
 		GConText.setTiempo( posts[0].tiempo);
@@ -131,31 +143,110 @@ const [pass, setPass] = useState(false);
 		GConText.setIntentos( posts[0].intentos);
 		GConText.setStatus( posts[0].status);
 
-		console.log("🚀 ~ posts[0].id", posts[0].id);
-		console.log("🚀 ~ posts[0].username", posts[0].username)
-		console.log("🚀 ~ posts[0].password", posts[0].password)
-		console.log("🚀 ~ posts[0].nombre", posts[0].nombre)
-		console.log("🚀 ~ posts[0].avatar", posts[0].avatar)
-		console.log("🚀 ~ posts[0].puntos", posts[0].puntos)
-		console.log("🚀 ~ posts[0].tiempo", posts[0].tiempo)
-		console.log("🚀 ~ posts[0].gema1", posts[0].gema1)
-		console.log("🚀 ~ posts[0].gema2", posts[0].gema2)
-		console.log("🚀 ~ posts[0].gema3", posts[0].gema3)
-		console.log("🚀 ~ posts[0].bonus1", posts[0].bonus1)
-		console.log("🚀 ~ posts[0].bonus2", posts[0].bonus2)
-		console.log("🚀 ~ posts[0].bonus3", posts[0].bonus3)
+		console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
+		console.log("🚀 ~ dB.id", posts[0].id);
+		console.log("🚀 ~ dB.username", posts[0].username)
+		console.log("🚀 ~ dB.password", posts[0].password)
+		console.log("🚀 ~ dB.nombre", posts[0].nombre)
+		console.log("🚀 ~ dB.grupo", posts[0].grupo)
+		console.log("🚀 ~ dB.type", posts[0].type)
 
-		console.log("🚀 ~ posts[0].intentos", posts[0].intentos)
-		console.log("🚀 ~ posts[0].status", posts[0].status)
+		console.log("🚀 ~ dB.avatar", posts[0].avatar)
+		console.log("🚀 ~ dB.puntos", posts[0].puntos)
+		console.log("🚀 ~ dB.tiempo", posts[0].tiempo)
+		console.log("🚀 ~ dB.gema1", posts[0].gema1)
+		console.log("🚀 ~ dB.gema2", posts[0].gema2)
+		console.log("🚀 ~ dB.gema3", posts[0].gema3)
+		console.log("🚀 ~ dB.bonus1", posts[0].bonus1)
+		console.log("🚀 ~ dB.bonus2", posts[0].bonus2)
+		console.log("🚀 ~ dB.bonus3", posts[0].bonus3)
+		console.log("🚀 ~ dB.intentos", posts[0].intentos)
+		console.log("🚀 ~ dB.status", posts[0].status)
 
+		console.log("~~~~~~~ ---------------- ~~~~~~~")
+
+		setAuth(posts[0].id)
 		//(posts[0].id,400,'puntos')
 		GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
 	}	
 
-}
+	}
+
+	const chkAuth = async(id)=>{
+
+		num = 0;
+		const posts = await DataStore.query(Ranking, c => c.id("eq", id));
+		console.log("🚀 ~ posts:", posts)
+	
+		if(posts.length >= 1 ){
+			console.log("🚀 ~ SI EXISTE Auth ID:", posts[0].id)
+		} else{
+			console.log("🚀 ~ NO EXISTE Auth ID:") 
+			num = 1;
+		}
+	
+		if(num === 0){
+			//DATOS FIJOS
+			GConText.setUserId( posts[0].id);
+			GConText.setUsername( posts[0].username)
+			GConText.setPassword( posts[0].password);
+			GConText.setNombre( posts[0].nombre);
+			GConText.setGrupo( posts[0].grupo);
+			GConText.setType( posts[0].type);
+			//DATOS QUE CAMBIAN
+			GConText.setAvatar( posts[0].avatar);
+			GConText.setPuntos( posts[0].puntos);
+			GConText.setTiempo( posts[0].tiempo);
+			GConText.setJoya1( posts[0].gema1);
+			GConText.setJoya2( posts[0].gema2);
+			GConText.setJoya3( posts[0].gema3);
+			GConText.setBonus1( posts[0].bonus1);
+			GConText.setBonus2( posts[0].bonus2);
+			GConText.setBonus3( posts[0].bonus3);
+			GConText.setIntentos( posts[0].intentos);
+			GConText.setStatus( posts[0].status);
+	
+			console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
+			console.log("🚀 ~ dB.id", posts[0].id);
+			console.log("🚀 ~ dB.username", posts[0].username)
+			console.log("🚀 ~ dB.password", posts[0].password)
+			console.log("🚀 ~ dB.nombre", posts[0].nombre)
+			console.log("🚀 ~ dB.grupo", posts[0].grupo)
+			console.log("🚀 ~ dB.type", posts[0].type)
+	
+			console.log("🚀 ~ dB.avatar", posts[0].avatar)
+			console.log("🚀 ~ dB.puntos", posts[0].puntos)
+			console.log("🚀 ~ dB.tiempo", posts[0].tiempo)
+			console.log("🚀 ~ dB.gema1", posts[0].gema1)
+			console.log("🚀 ~ dB.gema2", posts[0].gema2)
+			console.log("🚀 ~ dB.gema3", posts[0].gema3)
+			console.log("🚀 ~ dB.bonus1", posts[0].bonus1)
+			console.log("🚀 ~ dB.bonus2", posts[0].bonus2)
+			console.log("🚀 ~ dB.bonus3", posts[0].bonus3)
+			console.log("🚀 ~ dB.intentos", posts[0].intentos)
+			console.log("🚀 ~ dB.status", posts[0].status)
+	
+			console.log("~~~~~~~ ---------------- ~~~~~~~")
+	
+			setAuth(posts[0].id)
+			//(posts[0].id,400,'puntos')
+			GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(3)
+		}	
+	
+	}
 
 
+useEffect( () => {
+	//console.log("🚀 ~ vistos", vistos)
+	//setLoading(true)
 
+	console.log("🚀 ~ CookieId.idUser", CookieId.idUser)
+
+	if(CookieId.idUser !== undefined){
+		chkAuth(CookieId.idUser)
+	}
+	
+  }, [])
 
 
 /*
@@ -189,7 +280,7 @@ const sendInfo = async(nombre,url_img,negocio,pais,region,ciudad)=>{
 
 			
 			<div className="row mt-5 mx-1">
-				<div className="col-12 col-md-6 offset-md-3">
+				<div className="col-12 col-lg-4 offset-lg-4 col-md-6 offset-md-3">
 					<div className='login-form'>
 
 						<div className="mt-1">
@@ -205,31 +296,31 @@ const sendInfo = async(nombre,url_img,negocio,pais,region,ciudad)=>{
 						<div className="mt-2">
 							<div className="container">
 								<div className="row ">
-								<div className="col-md-3 text-center">
+								<div className="col-sm-12 col-md-3 text-center">
 										<label className="control-label label-login">Correo Electrónico:</label>
 									</div>
-									<div className="col-10 col-md-8 text-center">
-										<input type="text" onChange={UserChange} className="d-inline form-control-sm form-control-login"  placeholder=""></input>
+									<div className="ol-sm-12 col-md-8  text-center">
+										<input type="text" onChange={UserChange} className="d-inline form-control-sm form-control-login text-center"  placeholder=""></input>
 									</div>
-									<div className="col-2 col-md-1 text-center">
+									<div className="d-none d-sm-block col-md-1 text-center">
 										<img src={ user === false ? Img.mal : Img.bien } style={{display: verImg === true  ? 'block' : 'none' }} alt="retro"  width="34"></img>
 									</div>
-									<div className="col-md-12 text-center" >
+									<div className="col-md-12 text-center">
 									<span  style={{display: user === false && verImg === true  ? 'block' : 'none' }} className="form-text help-text-login">Usuario no existe</span>
 									</div>	
 								</div>
 							</div>
 						</div>
-						<div className="mt-2">
+						<div className="mt-3">
 							<div className="container">
 								<div className="row">
-									<div className="col-md-3 text-center">
+									<div className="col-sm-12 col-md-3 text-center">
 										<label className="control-label label-login">Contraseña:</label>
 									</div>
-									<div className="col-10 col-md-8 text-center">
-										<input type="password" onChange={PassChange} className="form-control-sm form-control-login"  placeholder=""></input>
+									<div className="col-sm-12 col-md-8  text-center">
+										<input type="password" onChange={PassChange} className="form-control-sm form-control-login text-center"  placeholder=""></input>
 									</div>
-									<div className="col-2 col-md-1 text-center">
+									<div className="d-none d-sm-block col-md-1 text-center">
 										<img src={ pass === false ? Img.mal : Img.bien } style={{display: verImg === true  ? 'block' : 'none' }} alt="retro"  width="34"></img>
 									</div>
 								</div>
@@ -254,9 +345,15 @@ const sendInfo = async(nombre,url_img,negocio,pais,region,ciudad)=>{
 						: <></>
             			} 
 
-{
+						{	
 						redirectNow === 2 
 						? <Navigate to="/introduccion"/>
+						: <></>
+            			} 
+
+						{	
+						redirectNow === 3 
+						? <Navigate to="/dashboard"/>
 						: <></>
             			} 
 

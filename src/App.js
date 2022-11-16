@@ -23,7 +23,7 @@ import Quiz2 from "./Secciones/Quiz2";
 import Tercer_reto from "./Secciones/Tercer_reto";
 import Quiz3 from "./Secciones/Quiz3";
 import Retro_final from "./Secciones/Retro_final";
-// import Ranking from "./Secciones/Ranking";
+import RankingBoard from "./Secciones/RankingBoard";
 import Admin from "./Secciones/Admin";
 
 /*
@@ -93,7 +93,7 @@ function App() {
           <Route path="tercer_reto" element={<Tercer_reto/>}/>
           <Route path="quiz3" element={<Quiz3/>}/>
           <Route path="retro_final" element={<Retro_final/>}/>
-          {/* <Route path="ranking" element={<Ranking/>}/> */}
+          <Route path="ranking" element={<RankingBoard/>}/>
           <Route path="admin" element={<Admin/>}/>
           {/* <Route exact path='journey/:itemId' element={<Journey/>} />
           <Route path="Paso2" element={<Paso2/>}/>

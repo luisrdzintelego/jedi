@@ -121,7 +121,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >1</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-18 lh-25 c-negro text-left'>El reto está dividido en tres secciones. En cada una podrás ganar una Gema respondiendo a las preguntas que se te presentarán.</h5>
+											<h5 className='fs-16 lh-25 c-negro text-left'>El reto está dividido en tres secciones. En cada una podrás ganar una Gema respondiendo a las preguntas que se te presentarán.</h5>
 											</div>	
 										</div>
 
@@ -130,7 +130,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >2</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-18 lh-25  c-negro text-left'>Cada respuesta correcta te otorgará puntos que te permitirán competir con otros colaboradores.</h5>
+											<h5 className='fs-16 lh-25 c-negro text-left'>Cada respuesta correcta te otorgará puntos que te permitirán competir con otros colaboradores.</h5>
 											</div>	
 										</div>
 
@@ -139,7 +139,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >3</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-18 lh-25  c-negro text-left'>Debes ser veloz en tu búsqueda. En tu barra de avance contarás con un cronómetro que medirá el tiempo en que respondes cada sección.</h5>
+											<h5 className='fs-16 lh-25 c-negro text-left'>Debes ser veloz en tu búsqueda. En tu barra de avance contarás con un cronómetro que medirá el tiempo en que respondes cada sección.</h5>
 											</div>	
 										</div>
 
@@ -148,7 +148,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >4</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-18 lh-25  c-negro text-left'>Pon mucha atención pues solo podrás tener un error por sección para poder ganar la Gema correspondiente.</h5>
+											<h5 className='fs-16 lh-25 c-negro text-left'>Pon mucha atención pues solo podrás tener un error por sección para poder ganar la Gema correspondiente.</h5>
 											</div>	
 										</div>
 
@@ -157,7 +157,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >5</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-18 lh-25  c-negro text-left'>Al terminar de responder las 3 secciones encontrarás un Tablero en donde podrás consultar tus resultados y los de tus compañeros.</h5>
+											<h5 className='fs-16 lh-25 c-negro text-left'>Al terminar de responder las 3 secciones encontrarás un Tablero en donde podrás consultar tus resultados y los de tus compañeros.</h5>
 											</div>	
 										</div>
 								</div>
@@ -170,7 +170,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >6</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-18 lh-25 c-negro text-left'>Tu tiempo y puntos obtenidos, te darán un lugar en el ranking.</h5>
+											<h5 className='fs-16 lh-25 c-negro text-left'>Tu tiempo y puntos obtenidos, te darán un lugar en el ranking.</h5>
 											</div>	
 										</div>
 
@@ -179,7 +179,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >7</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-18 lh-25 c-negro text-left'>En cada sección podrás obtener un bonus que te servirá para mejorar tu resultado final. Gánalo respondiendo correctamente todas las preguntas.</h5>
+											<h5 className='fs-16 lh-25 c-negro text-left'>En cada sección podrás obtener un bonus que te servirá para mejorar tu resultado final. Gánalo respondiendo correctamente todas las preguntas.</h5>
 											</div>	
 										</div>
 
@@ -188,7 +188,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >8</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-18 lh-25 c-negro text-left'>En caso de no conseguir una de las Gemas, podrás continuar en el juego, al concluir podrás intentarlo de nuevo para mejorar tu resultado.</h5>
+											<h5 className='fs-16 lh-25 c-negro text-left'>En caso de no conseguir una de las Gemas, podrás continuar en el juego, al concluir podrás intentarlo de nuevo para mejorar tu resultado.</h5>
 											</div>	
 										</div>
 
@@ -197,7 +197,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >9</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-18 lh-25 c-negro text-left'>En la barra de avance superior podrás dar seguimiento de tus resultados.</h5>
+											<h5 className='fs-16 lh-25 c-negro text-left'>En la barra de avance superior podrás dar seguimiento de tus resultados.</h5>
 											</div>	
 										</div>
 
@@ -206,7 +206,7 @@ const Instrucciones = () => {
 											<span className="dot_gris" >10</span>
 											</div>
 											<div className="col-10 col-md-9">
-											<h5 className='fs-18 lh-25 c-negro text-left'>Tienes una semana para completar tu búsqueda de la Gemas de Agilidad.</h5>
+											<h5 className='fs-16 lh-25 c-negro text-left'>Tienes una semana para completar tu búsqueda de la Gemas de Agilidad.</h5>
 											</div>	
 										</div>
 								</div>

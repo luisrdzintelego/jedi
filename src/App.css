@@ -132,7 +132,7 @@ body {
 
   .btn_amarillo{
     color: #000;
-    padding: 10px 30px;
+    padding: 5px 20px;
     background-color: #FFC629;
     border-radius: 50px;
     border: 2px solid black;
@@ -367,10 +367,13 @@ body {
 }
 
 .alto{
-
   height: 100%;
-
 }
+
+.logo{
+  width: 80px;
+}
+
 
 /* On screens that are 992px or less, set the background color to blue */
 /*TABLET*/
@@ -378,6 +381,11 @@ body {
   body {
     background-color: blue;
   }
+
+  .logo{
+    width: 60px;
+  }
+
 }
 
 /* On screens that are 600px or less, set the background color to olive */
@@ -387,7 +395,26 @@ body {
     background-color: olive;
   }
 
+  .h250{  height: auto;}
+  .h300{  height: auto;}
   .h350{  height: auto;}
   .h400{  height: auto;}
 
 }
+
+
+
+/* // X-Small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {  }
+
+/* // Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {  }
+
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {  }
+
+/* // Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {  }
+
+/* // X-Large devices (large desktops, less than 1400px) */
+@media (max-width: 1399.98px) {  }

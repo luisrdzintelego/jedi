@@ -1,5 +1,8 @@
 import React, {  } from 'react';
 import { Link } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+
+import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar} from '@fortawesome/free-solid-svg-icons'
@@ -7,6 +10,7 @@ import { faQuestion} from '@fortawesome/free-solid-svg-icons'
 import { faFileArrowDown} from '@fortawesome/free-solid-svg-icons'
 import { faPlus} from '@fortawesome/free-solid-svg-icons'
 import { faTimes} from '@fortawesome/free-solid-svg-icons'
+import { faPowerOff} from '@fortawesome/free-solid-svg-icons'
 
 import './Nav.css';
 
@@ -15,7 +19,18 @@ import Logo_aca from "../Img/logo_aca.png"
 
 import Ayuda_img from "../Img/img_ayuda_pg.png"
 
+
+
+
+
 const Nav = ({titulo,btn_admin,btn_dash}) => {
+
+	const [CookieId, setCookieId] = useCookies(['idUser']);
+
+	const removeAuth = (name) => {
+		setCookieId(name, '', { path: '/', expires: (new Date(Date.now())) });
+  };
+
   return (
 	<>
 		<div className="container Nav-bar" >
@@ -24,16 +39,25 @@ const Nav = ({titulo,btn_admin,btn_dash}) => {
 					<div className="row hr" style={{ padding: '10px'}}>
 
 						<div className="col-3 col-md-2 text-left ">
-							<img src={Logo_oxxo} alt="" width="80"></img>
+							<img src={Logo_oxxo} alt="" className='logo'></img>
 						</div>
 						
 						<div className="col-9 col-md-4 text-left ">
 							<span className='titulo'>{titulo}</span>
 						</div>
 
-						<div style={{display: btn_dash === true ? 'block' : 'none' }} className="col-12 col-md-6 text-right ">
+
+
+						<div style={{display: btn_dash === true ? 'block' : 'none' }} className={`${btn_dash === true ? "d-none d-sm-block" : ""} col-12 col-md-6 text-right `}>
 							<span className='btn_amarillo me-1' data-bs-toggle="modal" data-bs-target="#exampleModal"><FontAwesomeIcon icon={faQuestion}></FontAwesomeIcon>&nbsp; Ayuda</span>
 							<Link className='btn_amarillo me-1' to="/ranking"><FontAwesomeIcon icon={faStar}></FontAwesomeIcon>&nbsp; Ranking</Link>
+							<Link className='btn_amarillo me-1' onClick={() => removeAuth('idUser')} to="/" ><FontAwesomeIcon icon={faPowerOff}></FontAwesomeIcon>&nbsp; Logout</Link>
+						</div>
+
+						<div style={{display: btn_dash === true ? 'block' : 'none',  margin: '10px 0px' }} className={`${btn_dash === true ? "d-block d-sm-none " : ""} col-12 col-md-6 text-center	 `}> 
+							<span className='btn_amarillo me-1' data-bs-toggle="modal" data-bs-target="#exampleModal"><FontAwesomeIcon icon={faQuestion}></FontAwesomeIcon></span>
+							<Link className='btn_amarillo me-1' to="/ranking"><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></Link>
+							<Link className='btn_amarillo me-1' onClick={() => removeAuth('idUser')} to="/" ><FontAwesomeIcon icon={faPowerOff}></FontAwesomeIcon></Link>
 						</div>
 
 						<div style={{display: btn_admin === true ? 'block' : 'none' }}  className="col-12 col-md-6 text-right ">

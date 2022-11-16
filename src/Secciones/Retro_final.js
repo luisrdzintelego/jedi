@@ -19,18 +19,62 @@ const Retro_final = () => {
 
 	const GConText = useContext(VarContext);
 
-	const [datos, setDatos] = useState(GConText.Base);
+	const [ranking, setRanking] = useState (0)
 
-	const updateInfo = async(context,valor)=>{
-		const original = await DataStore.query(Ranking, c => c.username("eq", GConText.Username));
+	//const [datos, setDatos] = useState(GConText.Base);
+
+	async function udpateTiempo(id,dato) {
+		console.log("🚀 udpateTiempo ~ dato", dato, "🚀 ~ id", id)
+		const original = await DataStore.query(Ranking, id);
 		await DataStore.save(
-			Ranking.copyOf(original, updated => {
-			updated.context = valor
-		  })
+		  Ranking.copyOf(original, updated => {updated.tiempo = dato})
 		);
-	  }
+		const Update = await DataStore.query(Ranking, id);
+		console.log("🚀 ~ udpateTiempo", Update)
+	}
+
+	async function updatePuntos(id,dato) {
+		console.log("🚀 updatePuntos ~ dato", dato, "🚀 ~ id", id)
+		const original = await DataStore.query(Ranking, id);
+		await DataStore.save(
+		  Ranking.copyOf(original, updated => {updated.puntos = dato})
+		);
+		const Update = await DataStore.query(Ranking, id);
+		console.log("🚀 ~ updatePuntos", Update)
+	}
+
+	async function updateJoya1(id,dato) {
+		console.log("🚀 updateJoya1 ~ dato", dato, "🚀 ~ id", id)
+		const original = await DataStore.query(Ranking, id);
+		await DataStore.save(
+		  Ranking.copyOf(original, updated => {updated.gema1 = dato})
+		);
+		const Update = await DataStore.query(Ranking, id);
+		console.log("🚀 ~ updateJoya1", Update)
+	}
+
+	async function updateJoya2(id,dato) {
+		console.log("🚀 updateJoya2 ~ dato", dato, "🚀 ~ id", id)
+		const original = await DataStore.query(Ranking, id);
+		await DataStore.save(
+		  Ranking.copyOf(original, updated => {updated.gema2 = dato})
+		);
+		const Update = await DataStore.query(Ranking, id);
+		console.log("🚀 ~ updateJoya2", Update)
+	}
+
+	async function updateJoya3(id,dato) {
+		console.log("🚀 updateJoya3 ~ dato", dato, "🚀 ~ id", id)
+		const original = await DataStore.query(Ranking, id);
+		await DataStore.save(
+		  Ranking.copyOf(original, updated => {updated.gema3 = dato})
+		);
+		const Update = await DataStore.query(Ranking, id);
+		console.log("🚀 ~ updateJoya3", Update)
+	}
 
 
+	/*
 	const modifyIniArray = () => {	
 		console.log("🚀 ~ datos", datos)
   
@@ -55,32 +99,53 @@ const Retro_final = () => {
 		console.log("🚀 ~ updateDatos", updateDatos)
 		console.log("🚀 ~ GConText.setBase", GConText.Base)
 	};
+	*/
+
+
+	const chkRanking= async()=>{
+		return await DataStore.query(Ranking, c => c.grupo("eq", GConText.Grupo));
+	}
 
 
 
 	useEffect(() => {
 
+		udpateTiempo(GConText.UserId, GConText.Tiempo)
+		updatePuntos(GConText.UserId, GConText.Puntos)
+		updateJoya1(GConText.UserId, GConText.Joya1)
+		updateJoya2(GConText.UserId, GConText.Joya2)
+		updateJoya3(GConText.UserId, GConText.Joya3)
 
-		updateInfo("puntos", GConText.Puntos);
+		chkRanking()
+		.then((resp) => {
+		  resp
+			.sort((c,d) => c.tiempo < d.tiempo ? 1 : -1)
+			.sort((a,b) => a.puntos < b.puntos ? 1 : -1)
+			.reduce((empty, option, num) => {
+			  if (option.id === GConText.UserId) {
+				//var svalue = { posicion: num}
+				//empty.push(svalue);
+				console.log("~~~~~~~ ---------------- ~~~~~~~")
+				console.log("🚀 ~ setRanking", num+1)
+				console.log("🚀 ~ GConText.Ranking", num+1)
+				console.log("~~~~~~~ ---------------- ~~~~~~~")
 
-		console.log("PuntosEval1", GConText.PuntosEval1)
-		console.log("PuntosEval2", GConText.PuntosEval2)
-		console.log("PuntosEval3", GConText.PuntosEval3)
-		console.log("---------")
-		console.log("TiempoEval1", GConText.TiempoEval1)
-		console.log("TiempoEval2", GConText.TiempoEval2)
-		console.log("TiempoEval3", GConText.TiempoEval3)
-		console.log("---------")
-		console.log("Bonus1", GConText.Bonus1)
-		console.log("Bonus2", GConText.Bonus2)
-		console.log("Bonus3", GConText.Bonus3)
+				GConText.setRanking(num+1)
+				setRanking(num+1)
+			  }
+			  return empty;
 
-		const time = GConText.TiempoEval1+GConText.TiempoEval2+GConText.TiempoEval3
-		console.log("Tiempo Min", (Math.floor(GConText.Tiempo / 3600) < 10)? `0${Math.floor(GConText.Tiempo / 3600)}` : Math.floor(GConText.Tiempo / 3600), ":" ,(Math.floor((GConText.Tiempo / 60) % 60) < 10)? `0${Math.floor((GConText.Tiempo / 60) % 60)}` : Math.floor((GConText.Tiempo / 60) % 60), ":" ,(GConText.Tiempo % 60 < 10)? `0${GConText.Tiempo % 60}` : GConText.Tiempo % 60 )
-		console.log("Tiempo", GConText.Tiempo)
+			}, {});
 
+		})
+		  .catch((err) => {
+			console.log(err)
+		})
+		  .finally(()=> {
+		})
 
-	  }, []);
+	
+	}, []);
 
 
 	//   const onButtonClick = () => {
@@ -163,7 +228,7 @@ const Retro_final = () => {
 								<div className="row text-left' caja_gris">
 
 									<div className="col-12 col-md-12 ">
-										<h4 className='fs-50 c-black' id='ranking'>{GConText.Ranking}</h4>
+										<h4 className='fs-50 c-black'>{ranking}</h4>
 									</div>	
 
 									<div className="col-12 col-md-12 p-1">
@@ -209,7 +274,7 @@ const Retro_final = () => {
 							</div>	
 
 							<div className="col-12 col-md-12 mt-4">
-								<Link onClick={() => {modifyIniArray()}}  to="/ranking" ><h1 className='fs-18 c-rojo'>Ver Ranking</h1></Link>
+								<Link onClick={() => {/*modifyIniArray()*/}}  to="/ranking" ><h1 className='fs-18 c-rojo'>Ver Ranking</h1></Link>
 							</div>	
 
 						</div>	

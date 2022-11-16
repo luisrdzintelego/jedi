@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { VarContext } from '../Context/VarContext';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightLong} from '@fortawesome/free-solid-svg-icons'
@@ -10,47 +10,12 @@ import { useSwipeable } from "react-swipeable";
 import './Introduccion.css';
 
 import * as Img from '../Components/Imagenes'
-// import titulo_curso from "../Img/Titulo_curso.png";
-// import info from "../Img/info.png";
-// import img_bienvenida_1 from "../Img/img_bienvenida_1.png";
-// import img_bienvenida_2 from "../Img/img_bienvenida_2.png";
-// import img_bienvenida_3 from "../Img/img_bienvenida_3.png";
-// import img_bienvenida_4 from "../Img/img_bienvenida_4.png";
-
-// import fizq from "../Img/flecha_izq.png";
-// import fder from "../Img/flecha_der.png";
-
-// import joya1 from "../Img/Joya1.png";
-// import joya2 from "../Img/Joya2.png";
-// import joya3 from "../Img/Joya3.png";
-
 import Nav from '../Components/Nav'
-
-
 
 
 const Introduccion = () => {
 
 	const GConText = useContext(VarContext);
-	
-	/*
-	const navigate = useNavigate();
-
-	function useLogoutTimer() {
-
-		useEffect(() => {
-			console.log("🚀 ~ user", GConText.User)
-
-		  if (GConText.User === false) {
-			//fake.logout();
-			navigate("/login");
-		  }
-		}, [GConText]);
-	  }
-	  useLogoutTimer()
-	  */
-
-
 	let sliders = [true,0,0,0];
 	const [vistos, setVistos] =  useState(sliders)
 	const [activeIndex, setActiveIndex] = useState(0);
@@ -58,8 +23,8 @@ const Introduccion = () => {
 	//const [paused, setPaused] = useState(false);
 	const [termino, setTermino] = useState(false);
 
-	const updateIndex = (newIndex , prevEmployees) => {	
-		console.log("🚀 ~ newIndex", newIndex)
+	const updateIndex = (newIndex) => {	
+		//console.log("🚀 ~ newIndex", newIndex)
 		setActiveIndex(newIndex);
 
 	  };
@@ -84,22 +49,52 @@ const Introduccion = () => {
 
 		let cont = 1
 		vistos.forEach(element => {
-			console.log("🚀 ~ vistos", vistos)
+			//console.log("🚀 ~ vistos", vistos)
 			if(element === true){
 				cont++;
 			}
 			if(cont === vistos.length){setTermino(true)}
 		});
 
-		
-
 	  }
 	
-	  useEffect( () => {
-		//console.log("🚀 ~ vistos", vistos)
-		//setLoading(true)
-		
-	  }, [])
+	  const chkData = async()=>{
+
+		console.log("~~~~~~~ DATOS desde Context REACT ~~~~~~~")
+	
+		console.log("🚀 ~ GConText.UserId", GConText.UserId)
+		console.log("🚀 ~ GConText.Username", GConText.Username)
+		console.log("🚀 ~ GConText.Password", GConText.Password)
+		console.log("🚀 ~ GConText.Nombre", GConText.Nombre)
+		console.log("🚀 ~ GConText.Grupo", GConText.Grupo)
+		console.log("🚀 ~ GConText.Type", GConText.Type)
+	
+		console.log("🚀 ~ GConText.Avatar", GConText.Avatar)
+		console.log("🚀 ~ GConText.Puntos", GConText.Puntos)
+		console.log("🚀 ~ GConText.Tiempo", GConText.Tiempo)
+	  
+		console.log("🚀 ~ GConText.Joya1", GConText.Joya1)
+		console.log("🚀 ~ GConText.Joya2", GConText.Joya2)
+		console.log("🚀 ~ GConText.Joya3", GConText.Joya3)
+		console.log("🚀 ~ GConText.Bonus1", GConText.Bonus1)
+		console.log("🚀 ~ GConText.Bonus2", GConText.Bonus2)
+		console.log("🚀 ~ GConText.Bonus3", GConText.Bonus3)
+	  
+		console.log("🚀 ~ GConText.Intentos", GConText.Intentos)
+		console.log("🚀 ~ GConText.Status", GConText.Status)
+
+		console.log("🚀 ~ GConText.Ranking", GConText.Ranking)
+	
+		console.log("~~~~~~~ ---------------- ~~~~~~~")
+
+	 	}
+
+		 useEffect( () => {
+			//console.log("🚀 ~ vistos", vistos)
+			//setLoading(true)
+			chkData()
+			
+		  }, [])
 	
 
 	//hacer sliser en telefono//
@@ -235,10 +230,13 @@ const Introduccion = () => {
 					</div>
 
 					<div className="col-md-10 offset-md-1" style={{visibility: termino === true ? 'visible' : 'hidden' }}>
-						<div className="mt-5 mb-5">
+						<div className="mt-5 mb-4">
 							<Link className='btn_negro' to="/perfil">Continuar <FontAwesomeIcon icon={faArrowRightLong} /></Link>
 						</div>	
-					</div>				
+					</div>		
+        			<div className="col-md-10 offset-md-1"style={{visibility: GConText.Avatar === '' ? 'hidden' : 'visible' }}>
+						<Link  to="/dashboard" ><h1 className='fs-18 c-rojo'>Omitir</h1></Link>
+					</div>			
 				</div>
 			</div>
 		</div>

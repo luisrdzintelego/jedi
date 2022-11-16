@@ -78,25 +78,24 @@ export const CustomVarContext = ({children}) => {
 	const [UserId, setUserId] = useState ('')
 	const [Username, setUsername] = useState ('')
 	const [Password, setPassword] = useState ('')
-
-	const [Type, setType] = useState ('')
-	const [Status, setStatus] = useState (false)
-	const [Intentos, setIntentos] = useState (0)
-
 	const [Nombre, setNombre] = useState ('')
-	const [Avatar, setAvatar] = useState ('')
+	const [Grupo, setGrupo] = useState ('')
+	const [Type, setType] = useState ('')
 
+	const [Avatar, setAvatar] = useState ('')
 	const [Puntos, setPuntos] = useState (0)
 	const [Tiempo, setTiempo] = useState (0)
 
 	const [Joya1, setJoya1] = useState (false)
 	const [Joya2, setJoya2] = useState (false)
 	const [Joya3, setJoya3] = useState (false)
-
 	const [Bonus1, setBonus1] = useState (false)
 	const [Bonus2, setBonus2] = useState (false)
 	const [Bonus3, setBonus3] = useState (false)
 
+	const [Status, setStatus] = useState (false)
+	const [Intentos, setIntentos] = useState (0)
+	
 	const [Ranking, setRanking] = useState (0)
 	//----
 
@@ -201,10 +200,10 @@ export const CustomVarContext = ({children}) => {
 		UserId,setUserId,
 		Username,setUsername,
 		Password,setPassword,
-		Type,setType,
-		Status,setStatus,
-		Intentos,setIntentos,
 		Nombre,setNombre,
+		Grupo,setGrupo,
+		Type,setType,
+
 		Avatar,setAvatar,
 		Puntos,setPuntos,
 		Tiempo,setTiempo,
@@ -214,6 +213,8 @@ export const CustomVarContext = ({children}) => {
 		Bonus1,setBonus1,
 		Bonus2,setBonus2,
 		Bonus3,setBonus3,
+		Intentos,setIntentos,
+		Status,setStatus,
 		Ranking,setRanking,
 		resetAll,
 		//TEST-

@@ -6,100 +6,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightLong} from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeftLong} from '@fortawesome/free-solid-svg-icons'
 
-
 import { DataStore } from '@aws-amplify/datastore';
 import { Ranking } from '../models';
-
 
 import './Perfil.css';
 
 import * as Img from '../Components/Imagenes'
-
-// import titulo_curso from "../Img/Titulo_curso.png";
-// import info from "../Img/info.png";
-// import avatar1 from "../Img/avatar1.png";
-// import avatar2 from "../Img/avatar2.png";
-// import avatar3 from "../Img/avatar3.png";
-
 import Nav from '../Components/Nav'
 
 const Perfil = () => {
 
 	const GConText = useContext(VarContext);
 
-	//const [selecciono, setSelecciono] = useState(GConText.avatar);
-
-  //const [id, setId] = useState(GConText.UserId);
-  //const [avatar, setAvatar] = useState(GConText.Avatar);
-  
-
-	useEffect(() => {
-
-    console.log("🚀 ~ GConText.UserId", GConText.UserId)
-    console.log("🚀 ~ GConText.Username", GConText.Username)
-    console.log("🚀 ~ GConText.Password", GConText.Password)
-    console.log("🚀 ~ GConText.Nombre", GConText.Nombre)
-    console.log("🚀 ~ GConText.Avatar", GConText.Avatar)
-    console.log("🚀 ~ GConText.Puntos", GConText.Puntos)
-    console.log("🚀 ~ GConText.Tiempo", GConText.Tiempo)
-  
-    console.log("🚀 ~ GConText.Joya1", GConText.Joya1)
-    console.log("🚀 ~ GConText.Joya2", GConText.Joya2)
-    console.log("🚀 ~ GConText.Joya3", GConText.Joya3)
-    console.log("🚀 ~ GConText.Bonus1", GConText.Bonus1)
-    console.log("🚀 ~ GConText.Bonus2", GConText.Bonus2)
-    console.log("🚀 ~ GConText.Bonus3", GConText.Bonus3)
-  
-    console.log("🚀 ~ GConText.Type", GConText.Type)
-    console.log("🚀 ~ GConText.Intentos", GConText.Intentos)
-    console.log("🚀 ~ GConText.Status", GConText.Status)
-
-
-	  }, []);
-
-
-
-
-
-
-  /*
-  const modifyIniArray = () => {	
-      console.log("🚀 ~ datos", datos)
-
-      const updateDatos = datos.map(shape => {
-        if (shape.User === 'OLearner') {
-          // No change
-          return {
-            ...shape,
-            Avatar: GConText.Avatar,
-          }
-        } else {
-          // Return a new circle 50px below
-          return shape;          
-        }
-      })
-      // Re-render with the new array
-      setDatos(updateDatos);
-      GConText.setBase(updateDatos);
-
-      console.log("🚀 ~ updateDatos", updateDatos)
-      console.log("🚀 ~ GConText.setBase", GConText.Base)
-  };
-  */
-
-  async function updateInfo(id,dato) {
-    console.log("🚀 ~ dato", dato)
-    console.log("🚀 ~ id", id)
-    const original = await DataStore.query(Ranking, id);
-    console.log("🚀 ~ original", original)
-    await DataStore.save(
-      Ranking.copyOf(original, updated => {
-      updated.avatar = dato
-      })
-    );
-    const Update = await DataStore.query(Ranking, id);
-    console.log("🚀 ~ Update", Update)
-    }
+	async function udpateAvatar(id,dato) {
+		console.log("🚀 udpateAvatar ~ dato", dato, "🚀 ~ id", id)
+		const original = await DataStore.query(Ranking, id);
+		await DataStore.save(
+		  Ranking.copyOf(original, updated => {updated.avatar = dato})
+		);
+		const Update = await DataStore.query(Ranking, id);
+		console.log("🚀 ~ udpateAvatar", Update)
+	}
 
 
   const Seleccionar_avatar = (newIndex, id) => {	
@@ -110,13 +37,13 @@ const Perfil = () => {
     //setSelecciono(current => !current);
       if(newIndex === 1){
         GConText.setAvatar(Img.avatar1_tumb)
-        updateInfo( GConText.UserId, Img.avatar1_tumb)
+        udpateAvatar( GConText.UserId, Img.avatar1_tumb)
       } else if (newIndex === 2){
         GConText.setAvatar(Img.avatar2_tumb)
-        updateInfo( GConText.UserId, Img.avatar2_tumb)
+        udpateAvatar( GConText.UserId, Img.avatar2_tumb)
       } else if (newIndex === 3){
         GConText.setAvatar(Img.avatar3_tumb)
-        updateInfo( GConText.UserId, Img.avatar3_tumb)
+        udpateAvatar( GConText.UserId, Img.avatar3_tumb)
       }
 
       //modifyIniArray()

@@ -434,7 +434,7 @@ const GConText = useContext(VarContext);
     }
 
     return () => clearInterval(intervalId);
-  }, [counter, isTimer,GConText]);
+  }, [counter, isTimer]);
 
 
   const ImgRetro = ({ success, currentAswers, showretro }) => (
@@ -571,12 +571,12 @@ const GConText = useContext(VarContext);
 					<h3 className='fs-15 lh-25 c-negro'><img src={Img.info} alt="info" width="25"></img>  Selecciona tu respuesta y haz clic en enviar.</h3>
 				</div>
 
-				<div className="col-12 col-md-10 offset-md-1 text-left pregunta-form mb-3">
-						<div className="row mt-1 flex">
-							<div className="col-1 p-0 text-center">
+				<div className="col-xs-12 col-md-10 offset-md-1 text-left pregunta-form mb-3 ">
+						<div className="row flex">
+							<div className="col-2 col-md-1 text-center">
 								<span className="fs-25 dot_gris2" >{currentQuestion + 1} </span>
 							</div>
-							<div className="col-11 p-0 ">
+							<div className="col-10 col-md-10 text-center">
 								<h1 className='fs-20 lh-25 c-negro text-left'>
 									{questions[currentQuestion].text}
 								</h1>
@@ -610,11 +610,22 @@ const GConText = useContext(VarContext);
 									}}
 
 									>
-									<div className="row mt-1 flex">
-										<div className="col-1 p-0 text-center">
+									<div className="row flex">
+										<div className="col-2 p-0 d-block d-sm-none text-center">
 											<h4 className="fs-30 c-negro" >{letras[num]}.</h4>
 										</div>
-										<div className="col-10 p-0 ">
+
+										<div className="col-1 p-0 d-none d-sm-block text-center">
+											<h4 className="fs-30 c-negro" >{letras[num]}.</h4>
+										</div>
+
+										<div className="col-9 p-0 d-block d-sm-none ">
+											<h5 className='fs-18 lh-20 c-negro text-left'>
+												{option.text}
+											</h5>
+										</div>
+
+										<div className="col-10 p-0 d-none d-sm-block ">
 											<h5 className='fs-18 lh-20 c-negro text-left'>
 												{option.text}
 											</h5>
@@ -632,7 +643,7 @@ const GConText = useContext(VarContext);
 
 
 
-					{/* 
+{/* 
 					{questions[currentQuestion].options.map((option, num) => {
 
 						const estaAct = isActive && select === (num+1) ? "resp-active" : "resp"
@@ -672,13 +683,13 @@ const GConText = useContext(VarContext);
 				</div>
 			</div>
 
-			<div className="row">
-			<div className="col-md-8 offset-md-2">
-				<div className="mt-3 mb-5">
-					<button disabled={seleccionar ? false : true} className='btn_negro mx-3 px-5' onClick={() => {chkAswer(select)}}>Enviar</button>
-					<button disabled={avanzar ? false : true} className='btn_negro mx-3' onClick={() => nextCuestion()}>Siguiente <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></button>
+			<div className="row mt-3 pb-5">
+				<div className="col-md-12">
+					<div className="">
+						<button disabled={seleccionar ? false : true} className='btn_negro mx-3 px-5' onClick={() => {chkAswer(select)}}>Enviar</button>
+						<button disabled={avanzar ? false : true} className='btn_negro mx-3' onClick={() => nextCuestion()}>Siguiente <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></button>
+					</div>	
 				</div>	
-			</div>	
 			</div>
 			</>
 		 )}

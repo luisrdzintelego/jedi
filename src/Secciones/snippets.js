@@ -1,10 +1,20 @@
-//terciario
+//terciario 
+//! * ? // ~ & ^
+//* ? // ~ & ^
+//? // ~ & ^
+//& ^
+//~
+//^
+//@
+//NOTE:
 //{
 	score === questions.length
 	//score === 0
 	? <>  </>
 	: <>  </>
   //}
+
+  {loading ? <h2>Cargando..</h2> : <ItemList lista={productos}/>}
 
 //partir arrat en grupos chunkSize : cantidad de obejtos por grupo
   const chunkSize = 4;
@@ -72,3 +82,27 @@ setTheArray([...theArray, newElement]);
 		 </div>
 	 ];
  }
+
+ //modificar un array
+  const modifyIniArray = () => {	
+      console.log("🚀 ~ datos", datos)
+
+      const updateDatos = datos.map(shape => {
+        if (shape.User === 'OLearner') {
+          // No change
+          return {
+            ...shape,
+            Avatar: GConText.Avatar,
+          }
+        } else {
+          // Return a new circle 50px below
+          return shape;          
+        }
+      })
+      // Re-render with the new array
+      setDatos(updateDatos);
+      GConText.setBase(updateDatos);
+
+      console.log("🚀 ~ updateDatos", updateDatos)
+      console.log("🚀 ~ GConText.setBase", GConText.Base)
+  };
