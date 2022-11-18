@@ -282,27 +282,48 @@ const Admin = () => {
 
     items.map(async (option, i) => {
       
-      await DataStore.save(
-        new Ranking({
-          "username": option.username,
-          "password": option.password,
-          "type": "user",
-          "grupo": option.grupo,
-          "puntos": 0,
-          "tiempo": 0,
-          "gema1": false,
-          "gema2": false,
-          "gema3": false,
-          "bonus1": false,
-          "bonus2": false,
-          "bonus3": false,
-          "intentos": 0,
-          "status": false,
-          "avatar": "",
-          "nombre": option.nombre,
-        })
-      );
+        console.log("🚀 ~ username", option.username)
+        const posts = await DataStore.query(Ranking, c => c.username("eq", option.username));
 
+        if(posts.length >= 1 ){
+          console.log("🚀 ~ SI EXISTE USUARIO:", posts[0].username , " --- ", option.username)
+
+          const original = await DataStore.query(Ranking, posts[0].id);
+          await DataStore.save(
+            Ranking.copyOf(original, updated => { 
+              updated.nombre = option.nombre
+              updated.username = option.username
+              updated.password = option.password
+              updated.grupo = option.grupo
+            })
+            
+          );
+
+
+        } else{
+          console.log("🚀 ~ ESTE USUSARIO NO EXISTE:") 
+
+          await DataStore.save(
+            new Ranking({
+              "username": option.username,
+              "password": option.password,
+              "type": "user",
+              "grupo": option.grupo,
+              "puntos": 0,
+              "tiempo": 0,
+              "gema1": false,
+              "gema2": false,
+              "gema3": false,
+              "bonus1": false,
+              "bonus2": false,
+              "bonus3": false,
+              "intentos": 0,
+              "status": false,
+              "avatar": "",
+              "nombre": option.nombre,
+            })
+          );
+        }
     })
   }
 
