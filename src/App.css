@@ -42,6 +42,11 @@
 	text-align: right;
 }
 
+a {
+  color: #e1251b;
+  text-decoration: underline;
+}
+
 body {
 	font-family: 'Titillium Web', sans-serif;
   }
@@ -67,6 +72,7 @@ body {
     margin: 0px 2px;
     border: 2px solid black;
     display: inline-block;
+    cursor:pointer;
   
   }
 
@@ -81,6 +87,7 @@ body {
     font-weight: 700;
     border-radius: 50%;
     display: inline-block;
+    cursor:pointer;
   }
 
   .dot_gris2{
@@ -94,6 +101,7 @@ body {
     font-weight: 700;
     border-radius: 50%;
     display: inline-block;
+    cursor:pointer;
   }
   
   .active {
@@ -109,7 +117,9 @@ body {
     border: 2px solid black;
     font-weight: 700;
     text-decoration: none;
+    cursor:pointer;
   }
+
 
   .btn_default:disabled{
     opacity: .3;
@@ -138,6 +148,7 @@ body {
     border: 2px solid black;
     font-weight: 700;
     text-decoration: none;
+    cursor:pointer;
   }
 
   .btn_amarillo:disabled{
@@ -167,6 +178,7 @@ body {
     border: 2px solid black;
     font-weight: 700;
     text-decoration: none;
+    cursor:pointer;
   }
 
   .btn_negro:disabled{
@@ -213,6 +225,9 @@ body {
     /* font-size: 30px; */
   }
 
+  .td-rojo {
+    text-decoration-color: #e1251b !important;
+  }
   .c-rojo{color: #e1251b;}
   .c-negro{color: #000;}
   .c-gris{color: #eeeeee;}
@@ -241,6 +256,12 @@ body {
   .lh-20{    line-height: 20px;}
   .lh-25{    line-height: 25px;}
   .lh-30{    line-height: 30px;}
+
+
+  .oro{color: #FFD700;}
+  .plata{color: #C0C0C0;}
+  .bronce{color: #8C7853;}
+  
 
   .f-amarillo-claro{background-color: #ffe4a5;}
   .f-amarillo-oscuro{background-color: #ffd674;}
@@ -313,18 +334,21 @@ body {
     background-color: #fff;
     padding: 20px;
     border: 2px solid black;
+    cursor:pointer;
   }
   
   .resp:hover{
     background-color: #FFC629;
     padding: 20px;
     border: 2px solid black;
+    
   }
   
   .resp-active{
     background-color: #FFC629;
     padding: 20px;
     border: 2px solid black;
+    cursor:pointer;
   }
   
   .resp-disabled{
@@ -347,6 +371,7 @@ body {
   -webkit-animation-duration: 1s;
   -webkit-animation-timing-function: linear;
   -webkit-animation-iteration-count: infinite;
+  cursor:pointer;
 }
 @-moz-keyframes parpadeo{  
   0% { opacity: 1.0; }
@@ -370,8 +395,56 @@ body {
   height: 100%;
 }
 
+.w-100{
+  width: 100%;
+}
+
+
 .logo{
   width: 80px;
+}
+
+.input-admin {
+  display: block;
+  width: 100%;
+  /* padding: 0.375rem 0.75rem; */
+  margin-right: 10px;
+  /* font-weight: 400; */
+  /* line-height: 1.5; */
+  color: #212529;
+  background-color: #ffe4a5;
+  background-clip: padding-box;
+  border: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.input-search {
+  display: block;
+  width: 100%;
+  /* padding: 0.375rem 0.75rem; */
+  margin-right: 10px;
+  /* font-weight: 400; */
+  /* line-height: 1.5; */
+  color: #212529;
+  background-color: #eeeeee;
+  background-clip: padding-box;
+  border: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn_icon{
+  color: #000;
+  font-weight: 700;
+  text-decoration: none;
+  cursor:pointer;
+}
+
+.btn_icon:hover{
+  color: #157AB4;
 }
 
 
@@ -390,6 +463,27 @@ body {
 
 /* On screens that are 600px or less, set the background color to olive */
 /*CELULAR*/
+
+@media screen and (max-width: 389px) {
+  body {
+    background-color: FFC629;
+  }
+
+  .btn_negro{
+    outline: 3px solid red;
+    /* margin-top: 200px !important; */
+  }
+
+  .btn_default{
+    outline: 3px solid red;
+    /* margin-top: 200px !important; */
+  }
+
+}
+
+
+
+
 @media screen and (max-width: 600px) {
   body {
     background-color: olive;

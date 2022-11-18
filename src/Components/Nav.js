@@ -20,9 +20,6 @@ import Logo_aca from "../Img/logo_aca.png"
 import Ayuda_img from "../Img/img_ayuda_pg.png"
 
 
-
-
-
 const Nav = ({titulo,btn_admin,btn_dash}) => {
 
 	const [CookieId, setCookieId] = useCookies(['idUser']);
@@ -60,11 +57,11 @@ const Nav = ({titulo,btn_admin,btn_dash}) => {
 							<Link className='btn_amarillo me-1' onClick={() => removeAuth('idUser')} to="/" ><FontAwesomeIcon icon={faPowerOff}></FontAwesomeIcon></Link>
 						</div>
 
-						<div style={{display: btn_admin === true ? 'block' : 'none' }}  className="col-12 col-md-6 text-right ">
+						{/* <div style={{display: btn_admin === true ? 'block' : 'none' }}  className="col-12 col-md-6 text-right ">
 							<span className='btn_amarillo me-1 '><FontAwesomeIcon icon={faFileArrowDown}></FontAwesomeIcon>&nbsp; Excel</span>
 							<span className='btn_amarillo me-1 '><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>&nbsp; Agregar</span>
 							<Link className='btn_amarillo' to="/login"><FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>&nbsp; Cerrar</Link>
-						</div>
+						</div> */}
 
 						
 					</div>

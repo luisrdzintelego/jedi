@@ -235,7 +235,7 @@ const Introduccion = () => {
 						</div>	
 					</div>		
         			<div className="col-md-10 offset-md-1"style={{visibility: GConText.Avatar === '' ? 'hidden' : 'visible' }}>
-						<Link  to="/dashboard" ><h1 className='fs-18 c-rojo'>Omitir</h1></Link>
+						<Link  to="/dashboard" ><h1 className='fs-18 c-rojo td-rojo'>Omitir</h1></Link>
 					</div>			
 				</div>
 			</div>

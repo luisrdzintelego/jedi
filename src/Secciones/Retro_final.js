@@ -2,6 +2,9 @@ import React, { useContext , useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { VarContext } from '../Context/VarContext';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRankingStar} from '@fortawesome/free-solid-svg-icons'
+
 // import pdf from '../Descarga/Certificado.pdf'
 
 import { DataStore } from '@aws-amplify/datastore';
@@ -19,7 +22,7 @@ const Retro_final = () => {
 
 	const GConText = useContext(VarContext);
 
-	const [ranking, setRanking] = useState (0)
+	const [ranking, setRanking] = useState (GConText.Ranking)
 
 	//const [datos, setDatos] = useState(GConText.Base);
 
@@ -31,6 +34,7 @@ const Retro_final = () => {
 		);
 		const Update = await DataStore.query(Ranking, id);
 		console.log("🚀 ~ udpateTiempo", Update)
+		return Update
 	}
 
 	async function updatePuntos(id,dato) {
@@ -41,6 +45,7 @@ const Retro_final = () => {
 		);
 		const Update = await DataStore.query(Ranking, id);
 		console.log("🚀 ~ updatePuntos", Update)
+		return Update
 	}
 
 	async function updateJoya1(id,dato) {
@@ -51,6 +56,7 @@ const Retro_final = () => {
 		);
 		const Update = await DataStore.query(Ranking, id);
 		console.log("🚀 ~ updateJoya1", Update)
+		return Update
 	}
 
 	async function updateJoya2(id,dato) {
@@ -61,6 +67,7 @@ const Retro_final = () => {
 		);
 		const Update = await DataStore.query(Ranking, id);
 		console.log("🚀 ~ updateJoya2", Update)
+		return Update
 	}
 
 	async function updateJoya3(id,dato) {
@@ -71,6 +78,7 @@ const Retro_final = () => {
 		);
 		const Update = await DataStore.query(Ranking, id);
 		console.log("🚀 ~ updateJoya3", Update)
+		return Update
 	}
 
 
@@ -115,7 +123,6 @@ const Retro_final = () => {
 		updateJoya1(GConText.UserId, GConText.Joya1)
 		updateJoya2(GConText.UserId, GConText.Joya2)
 		updateJoya3(GConText.UserId, GConText.Joya3)
-
 		chkRanking()
 		.then((resp) => {
 		  resp
@@ -124,12 +131,12 @@ const Retro_final = () => {
 			.reduce((empty, option, num) => {
 			  if (option.id === GConText.UserId) {
 				//var svalue = { posicion: num}
-				//empty.push(svalue);
+				//empty.push(num+1);
 				console.log("~~~~~~~ ---------------- ~~~~~~~")
 				console.log("🚀 ~ setRanking", num+1)
 				console.log("🚀 ~ GConText.Ranking", num+1)
 				console.log("~~~~~~~ ---------------- ~~~~~~~")
-
+				empty = num+1;
 				GConText.setRanking(num+1)
 				setRanking(num+1)
 			  }
@@ -142,6 +149,7 @@ const Retro_final = () => {
 			console.log(err)
 		})
 		  .finally(()=> {
+
 		})
 
 	
@@ -228,7 +236,7 @@ const Retro_final = () => {
 								<div className="row text-left' caja_gris">
 
 									<div className="col-12 col-md-12 ">
-										<h4 className='fs-50 c-black'>{ranking}</h4>
+										<h4 className='fs-50 c-black'><span className={`${GConText.Ranking === 1 ? "oro" : ""} ${GConText.Ranking === 2 ? "plata" : ""} ${GConText.Ranking === 3 ? "bronce" : ""} fs-25`}><FontAwesomeIcon icon={faRankingStar}></FontAwesomeIcon></span> {ranking}</h4>
 									</div>	
 
 									<div className="col-12 col-md-12 p-1">

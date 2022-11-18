@@ -167,7 +167,7 @@ const [CookieId, setCookieId] = useCookies(['idUser']);
 
 		setAuth(posts[0].id)
 		//(posts[0].id,400,'puntos')
-		GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
+		posts[0].username=== 'amonsivais@intelego.com.mx' && posts[0].password === 'abc123456' ? setRedirectNow(1) :  setRedirectNow(2)
 	}	
 
 	}
@@ -230,7 +230,8 @@ const [CookieId, setCookieId] = useCookies(['idUser']);
 	
 			setAuth(posts[0].id)
 			//(posts[0].id,400,'puntos')
-			GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(3)
+			//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(3)
+			posts[0].username === 'amonsivais@intelego.com.mx' && posts[0].password === 'abc123456' ? setRedirectNow(1) :  setRedirectNow(3)
 		}	
 	
 	}
@@ -280,7 +281,7 @@ const sendInfo = async(nombre,url_img,negocio,pais,region,ciudad)=>{
 
 			
 			<div className="row mt-5 mx-1">
-				<div className="col-12 col-lg-4 offset-lg-4 col-md-6 offset-md-3">
+				<div className="col-12 col-lg-6 offset-lg-3 col-md-8 offset-md-2">
 					<div className='login-form'>
 
 						<div className="mt-1">

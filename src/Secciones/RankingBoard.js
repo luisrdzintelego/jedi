@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightLong} from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeftLong} from '@fortawesome/free-solid-svg-icons'
 
-import { DataStore } from '@aws-amplify/datastore';
+import { DataStore, SortDirection, Predicates } from '@aws-amplify/datastore';
 import { Ranking } from '../models';
 
 
@@ -41,11 +41,24 @@ const RankingBoard = () => {
     //NOTE: FILTRO POR GRUPOS
     //const posts = await DataStore.query(Ranking, c => c.grupo("eq", GConText.Grupo));
     //setTodos(posts)
-    return await DataStore.query(Ranking, c => c.grupo("eq", GConText.Grupo));
+    //return await DataStore.query(Ranking, c => c.grupo("eq", GConText.Grupo));
+
+    return await DataStore.query(Ranking, c => c.grupo("eq", GConText.Grupo), {
+      sort: s => s.puntos(SortDirection.DESCENDING).tiempo(SortDirection.ASCENDING)
+    });
+
+    /*
+    return await DataStore.query(Ranking, Predicates.ALL, {
+      sort: s => s.rating(SortDirection.ASCENDING).title(SortDirection.DESCENDING)
+    });
+    */
+
 	}
 
 	  useEffect( () => {
 
+      
+        
         chkData()
         .then((resp) => {
           //setTodos(resp)
@@ -55,6 +68,8 @@ const RankingBoard = () => {
                      ...option
                  }
              }))
+
+             /*
           resp
             .sort((c,d) => c.tiempo < d.tiempo ? 1 : -1)
             .sort((a,b) => a.puntos < b.puntos ? 1 : -1)
@@ -68,6 +83,7 @@ const RankingBoard = () => {
               return empty;
 
             }, {});
+            */
 
         })
           .catch((err) => {
@@ -77,6 +93,7 @@ const RankingBoard = () => {
               setLoading(false)
 
           })
+          
 
 	  }, [])
 	
@@ -90,7 +107,7 @@ const RankingBoard = () => {
 
         <div className="row mx-1 my-4 text-center">
           <div className="col-12 col-md-10 offset-md-1">
-          <Link className='btn_default mx-3' to="/dashboard" >Regresar </Link>
+          <Link className='btn_default mx-3' to="/dashboard" > <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> Regresar</Link>
 
           </div>				
         </div>
@@ -110,8 +127,8 @@ const RankingBoard = () => {
 
                         todos
                         //.sort((a,b) => a.itemM < b.itemM ? 1 : -1)
-                        .sort((c,d) => c.tiempo < d.tiempo ? 1 : -1)
-                        .sort((a,b) => a.puntos < b.puntos ? 1 : -1)
+                        //.sort((c,d) => c.tiempo < d.tiempo ? 1 : -1)
+                        //.sort((a,b) => a.puntos < b.puntos ? 1 : -1)
                         // if you want to change the sorting direction: b.price - a.price
                         .map((option, i) => {
 

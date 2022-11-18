@@ -40,13 +40,10 @@
   
 //agregar dierecto au use state un array lleno
   const [questions2, setQuestions2] = useState(() => getRandom(questions))
-
-
   //unir arrays con 1 obejto el primero y el segundo con varios
   const questions_merge = [random_80, ...short_40];
     //unir arrays con varios objetos los 2
   const questions_merge = [questions_80, ...short_40];
-
 
     /*
   useEffect( () => {
@@ -106,3 +103,18 @@ setTheArray([...theArray, newElement]);
       console.log("🚀 ~ updateDatos", updateDatos)
       console.log("🚀 ~ GConText.setBase", GConText.Base)
   };
+
+
+  //Javascript Check If Number Is Even Or Odd With Code Examples -- para las tablas
+  function solution(num) {
+    return num % 2 === 0 ? 'Even' : 'Odd'
+}
+
+
+
+  //gestionar prsionar teclas
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      updateNote()
+    }
+  }

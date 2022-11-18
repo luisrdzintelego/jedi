@@ -2,7 +2,8 @@ import React, { useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { VarContext } from '../Context/VarContext';
 
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+ import { faRankingStar} from '@fortawesome/free-solid-svg-icons'
 
 import { DataStore } from '@aws-amplify/datastore';
 import { Ranking } from '../models';
@@ -120,7 +121,7 @@ const Dashboard = () => {
 
 									<h2 className='fs-25 c-black text-left'>¡Hola!</h2>
 									<h4 className='fs-25 c-black text-left' id='nombre'>{GConText.Nombre}</h4>
-									<h4 className='fs-25 c-black text-left' id='ranking'>{GConText.Ranking}</h4>
+									<h4 className='fs-25 c-black text-left' id='ranking'><span className={`${GConText.Ranking === 1 ? "oro" : ""} ${GConText.Ranking === 2 ? "plata" : ""} ${GConText.Ranking === 3 ? "bronce" : ""}`}><FontAwesomeIcon icon={faRankingStar}></FontAwesomeIcon></span> {GConText.Ranking}</h4>
 								</div>	
 							</div>
 							<div className="row mt-1 caja_gris">

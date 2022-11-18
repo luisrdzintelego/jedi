@@ -1,135 +1,472 @@
-import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef, useState, useContext, useEffect, useMemo } from 'react';
+import { Link, resolvePath } from 'react-router-dom';
 import { VarContext } from '../Context/VarContext';
 
+import { useCookies } from 'react-cookie';
+
+import { DataStore, SortDirection, Predicates } from '@aws-amplify/datastore';
+import { Ranking } from '../models';
+
+import { DownloadTableExcel } from 'react-export-table-to-excel';
+
+import * as XLSX from "xlsx";
+
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRightLong} from '@fortawesome/free-solid-svg-icons'
-import { faArrowLeftLong} from '@fortawesome/free-solid-svg-icons'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faSave } from '@fortawesome/free-solid-svg-icons'
+
+
+
+import { faDownload } from '@fortawesome/free-solid-svg-icons'
+import { faFileArrowDown } from '@fortawesome/free-solid-svg-icons'
+
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 
 import './Admin.css';
 
 import * as Img from '../Components/Imagenes'
-
-// import titulo_curso from "../Img/Titulo_curso.png";
-// import info from "../Img/info.png";
-// import avatar1 from "../Img/avatar1.png";
-// import avatar2 from "../Img/avatar2.png";
-// import avatar3 from "../Img/avatar3.png";
-
 import Nav from '../Components/Nav'
 
 const Admin = () => {
 
-	const GConText = useContext(VarContext);
+  //---LOGOUT ----//
+  const [CookieId, setCookieId] = useCookies(['idUser']);
 
-	//const [selecciono, setSelecciono] = useState(GConText.avatar);
+  const removeAuth = (name) => {
+    setCookieId(name, '', { path: '/', expires: (new Date(Date.now())) });
+  };
 
-	
-	  useEffect( () => {
-		//console.log("🚀 ~ vistos", vistos)
-		//setLoading(true)
-		
-	  }, [])
-	
+  const GConText = useContext(VarContext);
+
+  //const [todos, setTodos] = useState({ notes: [] })
+  const [todos, setTodos] = useState([])
+
+
+  const [isActive, setIsActive] = useState(true);
+  const [item, setItem] = useState('')
+
+  // const ExcelFile = ExportExel.ExcelFile;
+  // const ExcelSheet = ExportExel.ExcelSheet;
+  // const ExcelColum = ExportExel.ExcelColum;
+
+
+
+  const chkData = async () => {
+    return await DataStore.query(Ranking, Predicates.ALL, {
+      sort: s => s.puntos(SortDirection.DESCENDING).tiempo(SortDirection.ASCENDING)
+    }).then((resp) => {
+      //setTodos(resp)
+      //setTodos({ notes: resp })
+      setTodos(resp.map((option, i) => {
+        return {
+          id: option.id,
+          ranking: i + 1,
+          isOpen: false,
+          ...option
+        }
+      }))
+
+    })
+      .catch((err) => {
+        console.log(err)
+
+      })
+      .finally(() => {
+        setEdit(false)
+      })
+  }
+
+  // useEffect(() => {
+  //   getData(someParam).then(data => setState(data))
+  // }, [someParam]) 
+
+  useEffect(() => {
+
+    chkData()
+    /*
+      .then((resp) => {
+        //setTodos(resp)
+
+        //setTodos({ notes: resp })
+
+        setTodos(resp.map((option, i) => {
+          return {
+            id: option.id,
+            isOpen: false,
+            ...option
+          }
+        }))
+
+      })
+      .catch((err) => {
+        console.log(err)
+
+      })
+      .finally(() => {
+        setEdit(false)
+
+
+      })
+      */
+
+
+  }, [])
+
+
+  /*
+  const handleClick = event => {
+    // 👇️ toggle isActive state on click
+    setIsActive(current => !current);
+    console.log("🚀 ~ isActive", isActive)
+  };
+  */
+
+
+  //------LUIS: EDITAR UN REGISTRO ---///
+
+  const [edit, setEdit] = useState(true)
+
+  let inputName = useRef();
+  let inputPass = useRef();
+  let inputUser = useRef();
+
+  const tableRef = useRef();
+
+  const submitDelete = (id) => {
+    confirmAlert({
+      //title: 'Confirmar eliminación de registro',
+      message: 'Estas segura de hacer esto?',
+      buttons: [
+        {
+          label: 'Sí',
+          onClick: () => deleteNote({ props: { id: id } })
+        },
+        {
+          label: 'No',
+          //onClick: () => alert('Click No')
+          onClick: () => ''
+        }
+      ]
+    });
+  };
+
+  //se mandan las variables por props
+  const deleteNote = async ({ props }) => {
+    const modelToDelete = await DataStore.query(Ranking, props.id);
+    DataStore.delete(modelToDelete);
+
+    //setTodos({ notes: todos.notes.filter((value, index, arr) => { return value.id !== props.id; }) });
+    setTodos(todos.filter((value, index, arr) => { return value.id !== props.id; }));
+  }
+
+
+  const updateNote = async (i, id) => {
+
+    //const updatedtodos = [...todos.notes];
+
+    if (edit === true) {
+      setEdit(false);
+      const updatedtodos = [...todos];
+
+      console.log("🚀 ~ updateNote", id)
+      console.log("🚀 ~ i", i)
+      console.log("🚀 ~ isOpen", updatedtodos[i].isOpen)
+      updatedtodos[i].isOpen = updatedtodos[i].isOpen ? !updatedtodos[i].isOpen : true;
+      updatedtodos[i].nombre = inputName.current ? inputName.current.value : updatedtodos[i].nombre;
+      setTodos(updatedtodos);
+
+      const original = await DataStore.query(Ranking, id);
+      await DataStore.save(
+        Ranking.copyOf(original, updated => { updated.nombre = inputName.current ? inputName.current.value : updatedtodos[i].nombre })
+      );
+      //const Update = await DataStore.query(Ranking, id);
+    }
+
+  };
+
+  const editNote = async (i, id) => {
+
+    //const updatedtodos = [...todos.notes];
+
+    if (edit === false) {
+      setEdit(true);
+      const updatedtodos = [...todos];
+
+      console.log("🚀 ~ editNote", id)
+      updatedtodos[i].isOpen = updatedtodos[i].isOpen ? !updatedtodos[i].isOpen : true;
+      updatedtodos[i].nombre = inputName.current ? inputName.current.value : updatedtodos[i].nombre;
+      setTodos(updatedtodos);
+    }
+
+  };
+
+
+
+  //------LUIS: FILTRO ---///
+  const [sg, setSg] = useState("");
+  const [su, setSu] = useState("");
+  const [sn, setSn] = useState("");
+
+  const filteredTodos = useMemo(() => {
+    //if (!search) return todos;
+
+    if (!sn && !su && !sg) {
+
+      console.log("🚀 ~ sg", sg, "🚀 ~ su", su, "🚀 ~ sn", sn)
+      return todos;
+    } else {
+
+      /*
+      return todos.filter((ser) =>
+        ser.nombre.toLowerCase().includes(sn) && ser.grupo == sg && ser.username.toLowerCase().includes(su) 
+      );
+      */
+      return todos.filter(function check(el) {
+
+        return el.nombre.toLowerCase().includes(sn) &&
+          el.username.toLowerCase().includes(su) &&
+          el.grupo == sg;
+
+      });
+    }
+  }, [sg, su, sn, todos]);
+
+  const findChangeGrupo = (event) => {
+    setSg(event.target.value);
+  }
+  const findChangeUsuario = (event) => {
+    setSu(event.target.value);
+  }
+  const findChangeNombre = (event) => {
+    setSn(event.target.value);
+  }
+
+  //LEER EXCEL
+  const [items, setItems] = useState([]);
+  const readExcel = (file) => {
+
+    const promise = new Promise((resolve, reject) => {
+
+      const fileReader = new FileReader();
+      fileReader.readAsArrayBuffer(file)
+
+      fileReader.onload = (e) => {
+        const bufferArray = e.target.result;
+        const wb = XLSX.read(bufferArray, { type: "buffer" });
+        const wsname = wb.SheetNames[0];
+        const ws = wb.Sheets[wsname];
+        const data = XLSX.utils.sheet_to_json(ws);
+        resolve(data);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+
+    promise.then((d) => {
+      setItems(d);
+      setIsActive(false)
+    });
+  };
+  
+
+  const uploadUsers = async () => {
+
+    //const updatedtodos = [...todos.notes];
+
+    items.map(async (option, i) => {
+      
+      await DataStore.save(
+        new Ranking({
+          "username": option.username,
+          "password": option.password,
+          "type": "user",
+          "grupo": option.grupo,
+          "puntos": 0,
+          "tiempo": 0,
+          "gema1": false,
+          "gema2": false,
+          "gema3": false,
+          "bonus1": false,
+          "bonus2": false,
+          "bonus3": false,
+          "intentos": 0,
+          "status": false,
+          "avatar": "",
+          "nombre": option.nombre,
+        })
+      );
+
+    })
+  }
+
+
 
   return (
     <>
-		<div className="container admin-background">
+      <div className='container admin-background'>
 
-        <Nav titulo={"Panel Administrador:"} btn_admin={true}></Nav>
+        <Nav titulo={'Panel Administrador:'} base={filteredTodos} btn_admin={true}></Nav>
 
-        <div className="container">
-        <div className="row">
-
-                  {/* <!-- COLUMNA 1--> */}
-                  <div className="col col-md-10 offset-md-1 admin-form mt-3">
-       
-                        <div className="col f-negro pY-2">
-                              
-                              <div className="row flex">
-
-                                <div className="col text-center">
-                                  <span className='fs-18 c-blanco'>ID</span>
-                                </div>
-              
-                                <div className="col-4 text-left">
-                                  <span className='fs-18 c-blanco'>NOMBRE</span>
-                                </div>
-
-                                <div className="col text-center">
-                                  <span className='fs-18 c-blanco'>PUNTOS</span>
-                                </div>
-
-                                <div className="col text-center">
-                                  <span className='fs-18 c-blanco'>TIEMPO</span>
-                                </div>
-
-                                <div className="col text-center">
-                                  <span className='fs-18 c-blanco'>GEMAS</span>
-                                </div>
-
-                                <div className="col text-center">
-                                  <span className='fs-18 c-blanco'>STATUS</span>
-                                </div>
-
-                              </div>
-                            </div>
+        <div className='container'>
+          <div className='row'>
 
 
-                        {
-                        GConText.Base
-                        //.sort((a,b) => a.itemM < b.itemM ? 1 : -1)
-                        .sort((c,d) => c.Tiempo < d.Tiempo ? 1 : -1)
-                        .sort((a,b) => a.Puntos < b.Puntos ? 1 : -1)
-                            // if you want to change the sorting direction: b.price - a.price
-                        .map((option, i) => {
+            <div className='row pt-1 pb-2'>
+              <div className='col-12 col-md-12 text-center '>
+                <span className='btn_amarillo me-1 '><FontAwesomeIcon icon={faFileArrowDown} /> Subir Excel</span>
 
-                          const estaAct = i % 2 === 0 ? "f-gris" : "Odd"
+
+
+                <input type="file" onChange={(e) => {
+
+                  const file = e.target.files[0];
+                  readExcel(file);
+
+
+                }} />
+
+
+                <DownloadTableExcel
+                  filename="Usuarios"
+                  sheet="usuarios"
+                  currentTableRef={tableRef.current}
+                >
+
+                  <span className='btn_amarillo me-1'><FontAwesomeIcon icon={faDownload} /> Descargar Excel</span>
+
+                </DownloadTableExcel>
+
+
+                {/* <ExcelFile element={<span className='btn_amarillo me-1'><FontAwesomeIcon icon={faDownload}/> Descargar Excel</span>} filename='Usuarios'>
+                    <ExcelSheet data={filteredTodos} name='Usuarios'>
+                    <ExcelColum label='# Ranking' value='ranking'/>
+                    <ExcelColum label='Grupo' value='grupo'/>
+                    <ExcelColum label='Usuario' value='username'/>
+                    <ExcelColum label='Nombre' value='nombre'/>
+                    <ExcelColum label='Password' value='password'/>
+                    <ExcelColum label='Puntos' value='puntos'/>
+                    <ExcelColum label='Tiempo' value='tiempo'/>
+                    <ExcelColum label='Status' value='status'/>
+                    </ExcelSheet>
+                  </ExcelFile> */}
+                <Link className='btn_amarillo' onClick={() => removeAuth('idUser')} to='/' ><FontAwesomeIcon icon={faPowerOff} /> Logout</Link>
+              </div>
+
+            </div>
+
+
+
+            {/* <!-- COLUMNA 1--> */}
+            <div className="col-md-12 admin-form mt-2" >
+              <div style={{ display: isActive ? 'block' : 'none' }}>
+                <div className="row" >
+                  {/* <input type="text" placeholder="Search..." onChange={(e) => ProductCategoryRow(e.target.value)} /> */}
+                  <div className="col-md-2 text-left">
+                    Grupo: <input className='input-search' type="text" placeholder="Search..." onChange={findChangeGrupo} />
+                  </div>
+                  <div className="col-md-5 text-left">
+                    Usuario: <input className='input-search' type="text" placeholder="Search..." onChange={findChangeUsuario} />
+                  </div>
+                  <div className="col-md-5 text-left">
+                    Nombre: <input className='input-search' type="text" placeholder="Search..." onChange={findChangeNombre} />
+                  </div>
+                </div>
+
+                <div className='table-responsive' style={{ display: isActive ? 'block' : 'none' }}>
+                  <table className="table table-striped" ref={tableRef}>
+
+                    <thead>
+                      <tr>
+                        <th scope="col">Rankin</th>
+                        <th scope="col">Grupo</th>
+                        <th className='text-left' scope="col">Usuario</th>
+                        <th className='text-left' scope="col">Nombre</th>
+                        <th className='text-left' scope="col">Password</th>
+                        <th scope="col">Puntos</th>
+                        <th scope="col">Tiempo</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Borrar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      {
+
+                        filteredTodos.map((option, i) => {
 
                           return (
-                            <div key={i+1} className={`col py-1 ${estaAct}`} >
-                              
-                              <div className="row flex">
-                                <div className="col text-center">
-                                  <h1 className='fs-18 c-negro'>{i+1}</h1>
-                                </div>
-              
-                                <div className="col-4 text-left">
-                                  <h1 className='fs-18 c-negro'>{option.Nombre}</h1>
-                                </div>
-                                <div className="col text-center">
-                                  <span className='fs-18 c-negro'>{option.Puntos}</span>         
-                                </div>
-
-                                <div className="col text-center">
-                                  <span className='fs-18 c-negro'>{(Math.floor(option.Tiempo / 3600) < 10)? `0${Math.floor(option.Tiempo / 3600)}` : Math.floor(option.Tiempo / 3600)}:{(Math.floor((option.Tiempo / 60) % 60) < 10)? `0${Math.floor((option.Tiempo / 60) % 60)}` : Math.floor((option.Tiempo / 60) % 60)}:{ (option.Tiempo % 60 < 10)? `0${option.Tiempo % 60}` : option.Tiempo % 60 }</span>
-                                </div>
-
-                                <div className="col text-center">
-                                  <span className='fs-18 c-negro'>0</span>
-                                </div>
-
-                                <div className="col text-center">
-                                  <span className='fs-18 c-negro'><img src={Img.bien} alt="" width="16"></img></span>
-                                </div>
+                            <tr key={i + 1}>
+                              <th scope="row">{i + 1}</th>
+                              <td className='fs-14 c-negro'>{option.grupo}</td>
+                              <td className='fs-14 c-negro text-left'>{option.username}</td>
+                              <td className='fs-14 c-negro py-2 text-left'>{option.isOpen ? (<input className='fs-14 c-negro w-100 input-admin' defaultValue={option.nombre} onKeyDown={(event) => { if (event.key === 'Enter') { updateNote(i, option.id) } }} ref={inputName} type="text" name="textarea" />) : (<span>{option.nombre}</span>)}</td>
+                              <td className='fs-14 c-negro text-left'>{option.password}</td>
+                              <td className='fs-14 c-negro'>{option.puntos}</td>
+                              <td className='fs-14 c-negro'>{(Math.floor(option.tiempo / 3600) < 10) ? `0${Math.floor(option.tiempo / 3600)}` : Math.floor(option.tiempo / 3600)}:{(Math.floor((option.tiempo / 60) % 60) < 10) ? `0${Math.floor((option.tiempo / 60) % 60)}` : Math.floor((option.tiempo / 60) % 60)}:{(option.tiempo % 60 < 10) ? `0${option.tiempo % 60}` : option.tiempo % 60}</td>
+                              <td className='fs-14 c-negro'>{option.status} <img src={option.status === true ? Img.bien : Img.mal} alt="" width="16"></img></td>
+                              <td className='fs-24 c-negro btn_icon' >{option.isOpen === true ? <span onClick={(event) => { updateNote(i, option.id); }} ><FontAwesomeIcon color='#69C096' icon={faSave} /></span> : <span onClick={(event) => { editNote(i, option.id); }} ><FontAwesomeIcon icon={faEdit} /></span>}</td>
+                              <td className='fs-24 c-negro btn_icon' onClick={(event) => {
+                                submitDelete(option.id)
+                                //deleteNote({props:{id:option.id }}) 
+                              }}><FontAwesomeIcon icon={faTrash} /></td>
+                            </tr>
 
 
-                              </div>
-                            </div>
-                            
-                            )
+                          )
                         })
-                        }
-                           
-                  </div>
+                      }
 
-          </div>			
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div className='table-responsive py-2' style={{ display: isActive ? 'none' : 'block' }}>
+                <table className="table table-striped" >
+                  <thead>
+                    <tr>
+                      <th scope="col">Grupo</th>
+                      <th scope="col">Username</th>
+                      <th scope="col">Password</th>
+                      <th scope="col">Nombre</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {items.map((d, i) => (
+                      <tr key={i}>
+                        <th>{d.grupo}</th>
+                        <td>{d.username}</td>
+                        <td>{d.password}</td>
+                        <td>{d.nombre}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
+                <span className='btn_amarillo' onClick={() => uploadUsers(items)} ><FontAwesomeIcon icon={faPowerOff} /> Subir</span>
+              </div>
+
+
+
+
+
+            </div>
+
+          </div>
         </div>
-    
 
-		</div>
-	
-	</>
+
+      </div>
+
+    </>
   )
 }
 
