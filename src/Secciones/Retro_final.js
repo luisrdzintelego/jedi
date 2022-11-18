@@ -22,6 +22,7 @@ const Retro_final = () => {
 	const GConText = useContext(VarContext);
 
 	const [ranking, setRanking] = useState(GConText.Ranking)
+	const [avatar, setAvatar] = useState(0);
 
 	async function udpates(id) {
 		console.log("🚀 udpates 🚀 ~", id)
@@ -72,6 +73,14 @@ const Retro_final = () => {
 	useEffect(() => {
 
 		udpates(GConText.UserId)
+
+		if(GConText.Avatar === 'uno'){
+			setAvatar(Img.avatar1_tumb)
+		} else if (GConText.Avatar === 'dos'){
+			setAvatar(Img.avatar2_tumb)
+		} else if (GConText.Avatar === 'tres'){
+			setAvatar(Img.avatar3_tumb)
+		}
 
 	}, []);
 
@@ -127,7 +136,7 @@ const Retro_final = () => {
 							<div className="row mt-1">
 								<div className="col-md-12 text-center">
 
-									<img className='mb-3' src={GConText.Avatar !== "" ? GConText.Avatar : Img.no_avatar} alt="" width="120"></img>
+									<img className='mb-3' src={avatar} alt="" width="120"></img>
 
 									<h1 className='fs-16 c-rojo'>Tus resultados:</h1>
 									<h4 className='fs-28 c-black' id='nombre'>{GConText.Nombre}</h4>

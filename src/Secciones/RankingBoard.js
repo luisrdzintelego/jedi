@@ -77,7 +77,11 @@ const RankingBoard = () => {
 
                       <div className="row flex">
                         <div className="col-1 text-center d-none d-sm-block">
-                          <img src={option.avatar === '' ? Img.no_avatar : option.avatar} alt="" width="40"></img>
+
+                        {option.avatar === 'uno' ? <img src={Img.avatar1_tumb} alt="" width="40"></img> : ''}
+                        {option.avatar === 'dos' ? <img src={Img.avatar2_tumb} alt="" width="40"></img> : ''}
+                        {option.avatar === 'tres' ? <img src={Img.avatar3_tumb} alt="" width="40"></img> : ''}
+                          
                         </div>
                         <div className="col-1 text-center">
                           <h1 className='fs-22 m-0 c-negro'>

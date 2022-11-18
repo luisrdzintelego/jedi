@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { VarContext } from '../Context/VarContext';
 
@@ -16,6 +16,7 @@ import Nav from '../Components/Nav'
 const Dashboard = () => {
 
 	const GConText = useContext(VarContext);
+	const [avatar, setAvatar] = useState(0);
 
 	async function updateIntentos(id, dato) {
 		console.log("🚀 ~ dato", dato, "🚀 ~ id", id)
@@ -52,6 +53,15 @@ const Dashboard = () => {
 		console.log("🚀 ~ dB.gema3", posts[0].gema3)
 
 		console.log("~~~~~~~ ---------------- ~~~~~~~")
+
+		if(GConText.Avatar === 'uno'){
+			setAvatar(Img.avatar1_tumb)
+		} else if (GConText.Avatar === 'dos'){
+			setAvatar(Img.avatar2_tumb)
+		} else if (GConText.Avatar === 'tres'){
+			setAvatar(Img.avatar3_tumb)
+		}
+
 	}
 
 	const chkRanking = async () => {
@@ -101,9 +111,9 @@ const Dashboard = () => {
 						<div className="col-md-5 dashboard-form">
 							<div className="mb-3">
 								<div className="row mt-1">
-									<div className="col-md-12">
+									<div className="col-md-12 text-center">
 
-										<img className='mb-3' src={GConText.Avatar !== "" ? GConText.Avatar : Img.no_avatar} alt="" width="120"></img>
+									<img className='mb-3' src={avatar} alt="" width="120"></img>
 
 										<h2 className='fs-25 c-black text-left'>¡Hola!</h2>
 										<h4 className='fs-25 c-black text-left' id='nombre'>{GConText.Nombre}</h4>
@@ -148,7 +158,6 @@ const Dashboard = () => {
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>

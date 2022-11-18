@@ -35,14 +35,14 @@ const Perfil = () => {
     //setSelecciono(true);
     //setSelecciono(current => !current);
     if (newIndex === 1) {
-      GConText.setAvatar(Img.avatar1_tumb)
-      udpateAvatar(GConText.UserId, Img.avatar1_tumb)
+      GConText.setAvatar('uno')
+      udpateAvatar(GConText.UserId, 'uno')
     } else if (newIndex === 2) {
-      GConText.setAvatar(Img.avatar2_tumb)
-      udpateAvatar(GConText.UserId, Img.avatar2_tumb)
+      GConText.setAvatar('dos')
+      udpateAvatar(GConText.UserId, 'dos')
     } else if (newIndex === 3) {
-      GConText.setAvatar(Img.avatar3_tumb)
-      udpateAvatar(GConText.UserId, Img.avatar3_tumb)
+      GConText.setAvatar('tres')
+      udpateAvatar(GConText.UserId, 'tres')
     }
 
   };
@@ -92,7 +92,7 @@ const Perfil = () => {
 
                 {/* <span className={GConText.Avatar === Img.avatar1_tumb  ? 'activo' : 'btn_negro'} onClick={() => {Seleccionar_avatar(1);}}>Escoger</span> */}
                 {
-                  GConText.Avatar === Img.avatar1_tumb
+                  GConText.Avatar === 'uno'
                     //score === 0
                     ? <><img className='img-fluid ms-2' src={Img.bien} alt="" width="35" height=""></img></>
                     : <><span className='btn_negro' onClick={() => { Seleccionar_avatar(1) }}>Escoger</span></>
@@ -121,7 +121,7 @@ const Perfil = () => {
 
                   {/* <span className={GConText.Avatar === Img.avatar1_tumb  ? 'activo' : 'btn_negro'} onClick={() => {Seleccionar_avatar(1);}}>Escoger</span> */}
                   {
-                    GConText.Avatar === Img.avatar2_tumb
+                    GConText.Avatar === 'dos'
                       //score === 0
                       ? <><img className='img-fluid ms-2' src={Img.bien} alt="" width="35" height=""></img></>
                       : <><span className='btn_negro' onClick={() => { Seleccionar_avatar(2) }}>Escoger</span></>
@@ -148,7 +148,7 @@ const Perfil = () => {
 
                   {/* <span className={GConText.Avatar === Img.avatar1_tumb  ? 'activo' : 'btn_negro'} onClick={() => {Seleccionar_avatar(1);}}>Escoger</span> */}
                   {
-                    GConText.Avatar === Img.avatar3_tumb
+                    GConText.Avatar === 'tres'
                       //score === 0
                       ? <><img className='img-fluid ms-2' src={Img.bien} alt="" width="35" height=""></img></>
                       : <><span className='btn_negro' onClick={() => { Seleccionar_avatar(3) }}>Escoger</span></>

@@ -16,13 +16,26 @@ const NavQuiz = ({ props }) => {
 
 	const GConText = useContext(VarContext);
 
+	const [avatar, setAvatar] = useState(0);
+
 	const stopTimer = () => {
 		console.log("🚀 ~ GConText.Counter", GConText.Counter)
 	};
 
-	//const [second, setSecond] = useState(() =>  ()
-	//const [minute, setMinute] = useState(() => ()
-	//const [hour, setHour] = useState(() => ()
+
+	useEffect(() => {
+
+		if(GConText.Avatar === 'uno'){
+			setAvatar(Img.avatar1_tumb)
+		} else if (GConText.Avatar === 'dos'){
+			setAvatar(Img.avatar2_tumb)
+		} else if (GConText.Avatar === 'tres'){
+			setAvatar(Img.avatar3_tumb)
+		}
+
+	}, [])
+
+
 
 	return (
 		<>
@@ -33,7 +46,7 @@ const NavQuiz = ({ props }) => {
 					<div className="row flex ">
 
 						<div className="col-1 py-1 text-left ">
-							<img src={GConText.Avatar !== "" ? GConText.Avatar : Img.no_avatar} alt="" width="80" ></img>
+							<img src={avatar} alt="" width="80" ></img>
 						</div>
 
 						<div className="col-3 text-left">
