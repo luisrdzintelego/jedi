@@ -1,4 +1,12 @@
 //terciario 
+score === questions.length
+//score === 0
+? <>  </>
+: <>  </>
+
+  //const suits = ["♠️", "♣️", "♥️", "♦️", "🃏"];
+  //const ranks = ["A", "K", "Q", "J", "🃏"];
+
 //! * ? // ~ & ^
 //* ? // ~ & ^
 //? // ~ & ^
@@ -7,12 +15,6 @@
 //^
 //@
 //NOTE:
-//{
-	score === questions.length
-	//score === 0
-	? <>  </>
-	: <>  </>
-  //}
 
   {loading ? <h2>Cargando..</h2> : <ItemList lista={productos}/>}
 
@@ -118,3 +120,153 @@ setTheArray([...theArray, newElement]);
       updateNote()
     }
   }
+
+
+      //hacer un rankin de un map
+      resp.sort((c,d) => c.tiempo < d.tiempo ? 1 : -1)
+        .sort((a,b) => a.puntos < b.puntos ? 1 : -1)
+        .reduce((empty, option, num) => {
+          if (option.id === GConText.UserId) {
+            //var svalue = { posicion: num}
+            //empty.push(svalue);
+            console.log("🚀 ~ num", num+1)
+            setItem(num+1)
+          }
+          return empty;
+
+        }, {});
+        
+
+
+
+  console.log("🚀 ~ Ranking", GConText.Ranking)
+
+	 function useInput({ type /*...*/ }) {
+	 	const [value, setValue] = useState("");
+	 	const input = <input value={value} onChange={e => setValue(e.target.value)} type={type} />;
+	 	return [value, input];
+	   }
+
+	 const [password, setPassword] = useInput({ type: "text" });
+	 const [username, setUsername] = useInput({ type: "text" });
+
+
+  //modifiy an array
+	const modifyIniArray = () => {	
+		console.log("🚀 ~ datos", datos)
+  
+		const updateDatos = datos.map(shape => {
+		  if (shape.User === 'OLearner') {
+			// No change
+			return {
+				...shape,
+				Avatar: GConText.Avatar,
+				Tiempo: GConText.Tiempo,
+				Puntos: GConText.Puntos
+			}
+        } else {
+          // Return a new circle 50px below
+          return shape;          
+        }
+      })
+		// Re-render with the new array
+		setDatos(updateDatos);
+		GConText.setBase(updateDatos);
+  
+		console.log("🚀 ~ updateDatos", updateDatos)
+		console.log("🚀 ~ GConText.setBase", GConText.Base)
+	};
+	
+
+
+  await DataStore.query(Ranking, c => c.grupo("eq", GConText.Grupo))
+  .then((resp) => {
+    resp
+      .sort((c, d) => c.tiempo < d.tiempo ? 1 : -1)
+      .sort((a, b) => a.puntos < b.puntos ? 1 : -1)
+      .reduce((empty, option, num) => {
+        if (option.id === GConText.UserId) {
+          //var svalue = { posicion: num}
+          //empty.push(num+1);
+          console.log("~~~~~~~ ---------------- ~~~~~~~")
+          console.log("🚀 ~ setRanking", num + 1)
+          console.log("🚀 ~ GConText.Ranking", num + 1)
+          console.log("~~~~~~~ ---------------- ~~~~~~~")
+          empty = num + 1;
+          GConText.setRanking(num + 1)
+          setRanking(num + 1)
+        }
+        return empty;
+
+      }, {});
+
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+  .finally(() => {
+
+  })
+
+
+
+			{/* {
+              user === "" 
+              ? <Navigate to="/login" />
+              : <></>
+            }  */}
+
+
+
+  	/*AGRERGAR A UN ARRAT SU MISMO TAMAÑO*/
+	/*
+	const [myArray, updateMyArray] = useState([]);
+	const onClick = () => {
+	  updateMyArray( arr => [...arr, `${arr.length}`]);
+	  console.log("🚀 ~ myArray", myArray)
+	};
+	*/
+
+
+  	/*  
+	function stopTimer() {
+		GConText.setIniTiempo(false);
+		setCounter(0);
+		setSecond("00");
+		setMinute("00");
+	}
+	*/
+
+  	//const [second, setSecond] = useState(() => ( String(GConText.Tiempo % 60).length === 1 ? `0${GConText.Tiempo % 60}` : GConText.Tiempo % 60))
+	//const [minute, setMinute] = useState(() => ( String(Math.floor(GConText.Tiempo / 60)).length === 1 ? `0${Math.floor(GConText.Tiempo / 60)}` : Math.floor(GConText.Tiempo / 60)))
+
+
+  	//TIMER
+	//const [second, setSecond] = useState("00");
+	//const [minute, setMinute] = useState("00");
+
+
+  function secondsToString(seconds) {
+		var hour = Math.floor(seconds / 3600);
+		hour = (hour < 10) ? '0' + hour : hour;
+		var minute = Math.floor((seconds / 60) % 60);
+		minute = (minute < 10) ? '0' + minute : minute;
+		var second = seconds % 60;
+		second = (second < 10) ? '0' + second : second;
+		return hour + ':' + minute + ':' + second;
+	}
+
+
+  	//obtener un objeto aleatoreo
+	const getRandom = (array) => {
+		const randomObject = array[Math.floor(Math.random() * array.length)];
+		return randomObject;
+	};
+
+
+  const ImgRetro = ({ success, currentAswers, showretro }) => (
+		<img
+			style={{ display: avanzar === true && questions[currentQuestion].correcta === currentAswers ? 'block' : 'none', width: '40px' }}
+			src={success === true ? Img.bien : Img.mal} alt=""
+		/>
+	);

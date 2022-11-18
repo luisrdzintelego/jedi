@@ -1,16 +1,16 @@
-import React, {  } from 'react';
+import React, { } from 'react';
 import { Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar} from '@fortawesome/free-solid-svg-icons'
-import { faQuestion} from '@fortawesome/free-solid-svg-icons'
-import { faFileArrowDown} from '@fortawesome/free-solid-svg-icons'
-import { faPlus} from '@fortawesome/free-solid-svg-icons'
-import { faTimes} from '@fortawesome/free-solid-svg-icons'
-import { faPowerOff} from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faQuestion } from '@fortawesome/free-solid-svg-icons'
+import { faFileArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 
 import './Nav.css';
 
@@ -19,83 +19,73 @@ import Logo_aca from "../Img/logo_aca.png"
 
 import Ayuda_img from "../Img/img_ayuda_pg.png"
 
-
-const Nav = ({titulo,btn_admin,btn_dash}) => {
+const Nav = ({ titulo, btn_admin, btn_dash }) => {
 
 	const [CookieId, setCookieId] = useCookies(['idUser']);
 
 	const removeAuth = (name) => {
 		setCookieId(name, '', { path: '/', expires: (new Date(Date.now())) });
-  };
+	};
 
-  return (
-	<>
-		<div className="container Nav-bar" >
-			<div className="row">
-				<div className="col-10 col-md-11 col-xs-11">
-					<div className="row hr" style={{ padding: '10px'}}>
+	return (
+		<>
+			<div className="container Nav-bar" >
+				<div className="row">
+					<div className="col-10 col-md-11 col-xs-11">
+						<div className="row hr" style={{ padding: '10px' }}>
 
-						<div className="col-3 col-md-2 text-left ">
-							<img src={Logo_oxxo} alt="" className='logo'></img>
-						</div>
-						
-						<div className="col-9 col-md-4 text-left ">
-							<span className='titulo'>{titulo}</span>
-						</div>
+							<div className="col-3 col-md-2 text-left ">
+								<img src={Logo_oxxo} alt="" className='logo'></img>
+							</div>
+
+							<div className="col-9 col-md-4 text-left ">
+								<span className='titulo'>{titulo}</span>
+							</div>
 
 
+							<div style={{ display: btn_dash === true ? 'block' : 'none' }} className={`${btn_dash === true ? "d-none d-sm-block" : ""} col-12 col-md-6 text-right `}>
+								<span className='btn_amarillo me-1' data-bs-toggle="modal" data-bs-target="#exampleModal"><FontAwesomeIcon icon={faQuestion}></FontAwesomeIcon>&nbsp; Ayuda</span>
+								<Link className='btn_amarillo me-1' to="/ranking"><FontAwesomeIcon icon={faStar}></FontAwesomeIcon>&nbsp; Ranking</Link>
+								<Link className='btn_amarillo me-1' onClick={() => removeAuth('idUser')} to="/" ><FontAwesomeIcon icon={faPowerOff}></FontAwesomeIcon>&nbsp; Logout</Link>
+							</div>
 
-						<div style={{display: btn_dash === true ? 'block' : 'none' }} className={`${btn_dash === true ? "d-none d-sm-block" : ""} col-12 col-md-6 text-right `}>
-							<span className='btn_amarillo me-1' data-bs-toggle="modal" data-bs-target="#exampleModal"><FontAwesomeIcon icon={faQuestion}></FontAwesomeIcon>&nbsp; Ayuda</span>
-							<Link className='btn_amarillo me-1' to="/ranking"><FontAwesomeIcon icon={faStar}></FontAwesomeIcon>&nbsp; Ranking</Link>
-							<Link className='btn_amarillo me-1' onClick={() => removeAuth('idUser')} to="/" ><FontAwesomeIcon icon={faPowerOff}></FontAwesomeIcon>&nbsp; Logout</Link>
-						</div>
+							<div style={{ display: btn_dash === true ? 'block' : 'none', margin: '10px 0px' }} className={`${btn_dash === true ? "d-block d-sm-none " : ""} col-12 col-md-6 text-center	 `}>
+								<span className='btn_amarillo me-1' data-bs-toggle="modal" data-bs-target="#exampleModal"><FontAwesomeIcon icon={faQuestion}></FontAwesomeIcon></span>
+								<Link className='btn_amarillo me-1' to="/ranking"><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></Link>
+								<Link className='btn_amarillo me-1' onClick={() => removeAuth('idUser')} to="/" ><FontAwesomeIcon icon={faPowerOff}></FontAwesomeIcon></Link>
+							</div>
 
-						<div style={{display: btn_dash === true ? 'block' : 'none',  margin: '10px 0px' }} className={`${btn_dash === true ? "d-block d-sm-none " : ""} col-12 col-md-6 text-center	 `}> 
-							<span className='btn_amarillo me-1' data-bs-toggle="modal" data-bs-target="#exampleModal"><FontAwesomeIcon icon={faQuestion}></FontAwesomeIcon></span>
-							<Link className='btn_amarillo me-1' to="/ranking"><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></Link>
-							<Link className='btn_amarillo me-1' onClick={() => removeAuth('idUser')} to="/" ><FontAwesomeIcon icon={faPowerOff}></FontAwesomeIcon></Link>
-						</div>
-
-						{/* <div style={{display: btn_admin === true ? 'block' : 'none' }}  className="col-12 col-md-6 text-right ">
+							{/* <div style={{display: btn_admin === true ? 'block' : 'none' }}  className="col-12 col-md-6 text-right ">
 							<span className='btn_amarillo me-1 '><FontAwesomeIcon icon={faFileArrowDown}></FontAwesomeIcon>&nbsp; Excel</span>
 							<span className='btn_amarillo me-1 '><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>&nbsp; Agregar</span>
 							<Link className='btn_amarillo' to="/login"><FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>&nbsp; Cerrar</Link>
 						</div> */}
 
-						
+						</div>
+					</div>
+
+					<div className="col-2 col-md-1 col-xs-1">
+						<img src={Logo_aca} alt="" width="50"></img>
 					</div>
 				</div>
-				
-				<div className="col-2 col-md-1 col-xs-1">
-				<img src={Logo_aca} alt="" width="50"></img>
-				</div>				
 			</div>
-		</div>
-		
 
-		<div className="modal fade" id="exampleModal"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div className="modal-dialog modal-xl">
 					<div className="modal-content">
 						<div className="modal-header">
-						<h5 className="modal-title" id="exampleModalLabel">Ayuda</h5>
-						<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							<h5 className="modal-title" id="exampleModalLabel">Ayuda</h5>
+							<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
-						<div className="modal-body" style={{backgroundColor: '#000000' }}>
+						<div className="modal-body" style={{ backgroundColor: '#000000' }}>
 							<img className='img-fluid' src={Ayuda_img} width="800" alt=""></img>
 						</div>
 					</div>
 				</div>
 			</div>
 
-
-		{/* <div className="row justify-content-center align-items-center g-2">
-			<div className="col"></div>
-			<div className="col">Column</div>
-			<div className="col"></div>
-		</div>	 */}
-	</>
-  )
+		</>
+	)
 }
 
 export default Nav

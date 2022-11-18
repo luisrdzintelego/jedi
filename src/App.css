@@ -160,7 +160,7 @@ body {
     background-color: #000;
   }
 
-  .btn_amarillo:active{
+  /* .btn_amarillo:active{
     color: #fff;
     padding: 10px 30px;
     background-color: #000;
@@ -168,7 +168,7 @@ body {
     border: 2px solid black;
     font-weight: 700;
     text-decoration: none;
-  }
+  } */
 
   .btn_negro{
     color: #fff;
@@ -448,34 +448,51 @@ body {
 }
 
 
-/* On screens that are 992px or less, set the background color to blue */
-/*TABLET*/
-@media screen and (max-width: 992px) {
-  body {
-    background-color: blue;
-  }
-
-  .logo{
-    width: 60px;
-  }
-
+.form-control-login {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  margin-right: 10px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  text-align: left;
+  font-size: 18px;
 }
+
+
+
 
 /* On screens that are 600px or less, set the background color to olive */
 /*CELULAR*/
 
 @media screen and (max-width: 389px) {
   body {
-    background-color: FFC629;
+    background-color: #ffd8cd;
   }
 
+
+  .form-control-login {
+    text-align: center;
+  }
+
+
   .btn_negro{
-    outline: 3px solid red;
+    /* outline: 3px solid red; */
+    padding: 10px 15px;
     /* margin-top: 200px !important; */
   }
 
   .btn_default{
-    outline: 3px solid red;
+    padding: 10px 15px;
     /* margin-top: 200px !important; */
   }
 
@@ -486,13 +503,27 @@ body {
 
 @media screen and (max-width: 600px) {
   body {
-    background-color: olive;
+    background-color: #ffd8cd;
   }
 
   .h250{  height: auto;}
   .h300{  height: auto;}
   .h350{  height: auto;}
   .h400{  height: auto;}
+
+}
+
+
+/* On screens that are 992px or less, set the background color to blue */
+/*TABLET*/
+@media screen and (max-width: 992px) {
+  body {
+    background-color: #ffd674;
+  }
+
+  .logo{
+    width: 60px;
+  }
 
 }
 

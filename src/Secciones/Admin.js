@@ -19,12 +19,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faSave } from '@fortawesome/free-solid-svg-icons'
-
-
-
+import { faUpload } from '@fortawesome/free-solid-svg-icons'
 import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import { faFileArrowDown } from '@fortawesome/free-solid-svg-icons'
 
+import { faCancel } from '@fortawesome/free-solid-svg-icons'
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 
 import './Admin.css';
@@ -57,6 +56,8 @@ const Admin = () => {
 
 
   const chkData = async () => {
+    //setTodos([]);
+    console.log("🚀 ~ chkData----------")
     return await DataStore.query(Ranking, Predicates.ALL, {
       sort: s => s.puntos(SortDirection.DESCENDING).tiempo(SortDirection.ASCENDING)
     }).then((resp) => {
@@ -80,6 +81,7 @@ const Admin = () => {
         setEdit(false)
       })
   }
+
 
   // useEffect(() => {
   //   getData(someParam).then(data => setState(data))
@@ -155,6 +157,25 @@ const Admin = () => {
     });
   };
 
+  const submitUpload = () => {
+    confirmAlert({
+      //title: 'Confirmar eliminación de registro',
+      message: 'Estas segura de hacer esto?',
+      buttons: [
+        {
+          label: 'Sí',
+          onClick: () => uploadUsers(items)
+        },
+        {
+          label: 'No',
+          //onClick: () => alert('Click No')
+          onClick: () => setIsActive(true)
+        }
+      ]
+    });
+  };
+
+
   //se mandan las variables por props
   const deleteNote = async ({ props }) => {
     const modelToDelete = await DataStore.query(Ranking, props.id);
@@ -178,12 +199,24 @@ const Admin = () => {
       console.log("🚀 ~ isOpen", updatedtodos[i].isOpen)
       updatedtodos[i].isOpen = updatedtodos[i].isOpen ? !updatedtodos[i].isOpen : true;
       updatedtodos[i].nombre = inputName.current ? inputName.current.value : updatedtodos[i].nombre;
+      updatedtodos[i].password = inputPass.current ? inputPass.current.value : updatedtodos[i].password;
+      updatedtodos[i].username = inputUser.current ? inputUser.current.value : updatedtodos[i].username;
       setTodos(updatedtodos);
 
       const original = await DataStore.query(Ranking, id);
       await DataStore.save(
-        Ranking.copyOf(original, updated => { updated.nombre = inputName.current ? inputName.current.value : updatedtodos[i].nombre })
-      );
+        Ranking.copyOf(original, updated => {
+          updated.nombre = inputName.current ? inputName.current.value : updatedtodos[i].nombre
+          updated.password = inputPass.current ? inputPass.current.value : updatedtodos[i].password
+          updated.username = inputUser.current ? inputUser.current.value : updatedtodos[i].username
+        })
+      ).then((resp) => {
+        console.log("🚀 ~ resp", resp)
+      }).catch((err) => {
+        console.log(err)
+      }).finally(() => {
+        console.log("finaly")
+      })
       //const Update = await DataStore.query(Ranking, id);
     }
 
@@ -200,6 +233,8 @@ const Admin = () => {
       console.log("🚀 ~ editNote", id)
       updatedtodos[i].isOpen = updatedtodos[i].isOpen ? !updatedtodos[i].isOpen : true;
       updatedtodos[i].nombre = inputName.current ? inputName.current.value : updatedtodos[i].nombre;
+      updatedtodos[i].password = inputPass.current ? inputPass.current.value : updatedtodos[i].password;
+      updatedtodos[i].username = inputUser.current ? inputUser.current.value : updatedtodos[i].username;
       setTodos(updatedtodos);
     }
 
@@ -270,64 +305,95 @@ const Admin = () => {
     });
 
     promise.then((d) => {
+      console.log("🚀 ~ d", d)
       setItems(d);
       setIsActive(false)
-    });
+    })
+
   };
-  
+
+
+
 
   const uploadUsers = async () => {
 
-    //const updatedtodos = [...todos.notes];
-
+    //return  new Promise((resolve, reject) => {
+    const length = items.length;
     items.map(async (option, i) => {
-      
-        console.log("🚀 ~ username", option.username)
-        const posts = await DataStore.query(Ranking, c => c.username("eq", option.username));
 
-        if(posts.length >= 1 ){
-          console.log("🚀 ~ SI EXISTE USUARIO:", posts[0].username , " --- ", option.username)
+      if (i === length - 1) {
+        console.log("🚀 ~TERMINO DE PASAR POR TODO EL EXCEL",)
+        //setIsActive(true)
+        //chkData()
+      }
+      console.log("🚀 ~ username", option.username)
+      const posts = await DataStore.query(Ranking, c => c.username("eq", option.username));
 
-          const original = await DataStore.query(Ranking, posts[0].id);
-          await DataStore.save(
-            Ranking.copyOf(original, updated => { 
-              updated.nombre = option.nombre
-              updated.username = option.username
-              updated.password = option.password
-              updated.grupo = option.grupo
-            })
-            
-          );
+      if (posts.length >= 1) {
+        console.log("🚀 ~ SI EXISTE USUARIO:", posts[0].username, " --- ", option.username)
 
+        const original = await DataStore.query(Ranking, posts[0].id);
+        await DataStore.save(
+          Ranking.copyOf(original, updated => {
+            updated.nombre = option.nombre
+            updated.username = option.username
+            updated.password = option.password
+            updated.grupo = option.grupo
+          })
+        ).then((resp) => {
+          console.log("🚀 ~ resp", resp)
+          chkData()
+        }).catch((err) => {
+          console.log(err)
+        }).finally(() => {
+          console.log("finaly")
+          setIsActive(true)
+        })
 
-        } else{
-          console.log("🚀 ~ ESTE USUSARIO NO EXISTE:") 
+      } else {
+        console.log("🚀 ~ ESTE USUSARIO NO EXISTE:")
 
-          await DataStore.save(
-            new Ranking({
-              "username": option.username,
-              "password": option.password,
-              "type": "user",
-              "grupo": option.grupo,
-              "puntos": 0,
-              "tiempo": 0,
-              "gema1": false,
-              "gema2": false,
-              "gema3": false,
-              "bonus1": false,
-              "bonus2": false,
-              "bonus3": false,
-              "intentos": 0,
-              "status": false,
-              "avatar": "",
-              "nombre": option.nombre,
-            })
-          );
-        }
+        await DataStore.save(
+          new Ranking({
+            "username": option.username,
+            "password": option.password,
+            "type": "user",
+            "grupo": option.grupo,
+            "puntos": 0,
+            "tiempo": 0,
+            "gema1": false,
+            "gema2": false,
+            "gema3": false,
+            "bonus1": false,
+            "bonus2": false,
+            "bonus3": false,
+            "intentos": 0,
+            "status": false,
+            "avatar": "",
+            "nombre": option.nombre,
+          })
+        ).then((resp) => {
+          console.log("🚀 ~ resp", resp)
+          chkData()
+        }).catch((err) => {
+          console.log(err)
+        }).finally(() => {
+          console.log("finaly")
+          setIsActive(true)
+        })
+
+      }
     })
+    //})
   }
 
+  //ref del input de file
+  const inputRef = useRef();
 
+  const handleClickInputFile = () => {
+    // 👇️ open file input box on click of other element
+    inputRef.current.click();
+  };
 
   return (
     <>
@@ -341,14 +407,31 @@ const Admin = () => {
 
             <div className='row pt-1 pb-2'>
               <div className='col-12 col-md-12 text-center '>
-                <span className='btn_amarillo me-1 '><FontAwesomeIcon icon={faFileArrowDown} /> Subir Excel</span>
+                <span className='btn_amarillo me-1' onClick={handleClickInputFile}><FontAwesomeIcon icon={faFileArrowDown} /> Subir Excel</span>
 
+                <input type="file" style={{ display: 'none' }} ref={inputRef} accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onChange={(e) => {
 
+                  //const file = e.target.files[0];
 
-                <input type="file" onChange={(e) => {
-
-                  const file = e.target.files[0];
+                  const file = e.target.files && e.target.files[0];
+                  if (!file) {
+                    return;
+                  }
                   readExcel(file);
+                  console.log('file is', file);
+
+                  // 👇️ reset file input
+                  e.target.value = null;
+
+                  // 👇️ is now empty
+                  console.log(e.target.files);
+
+                  // 👇️ can still access file object here
+                  console.log(file);
+                  console.log(file.name);
+
+
+
 
 
                 }} />
@@ -427,9 +510,9 @@ const Admin = () => {
                             <tr key={i + 1}>
                               <th scope="row">{i + 1}</th>
                               <td className='fs-14 c-negro'>{option.grupo}</td>
-                              <td className='fs-14 c-negro text-left'>{option.username}</td>
+                              <td className='fs-14 c-negro text-left'>{option.isOpen ? (<input className='fs-14 c-negro w-100 input-admin' defaultValue={option.username} onKeyDown={(event) => { if (event.key === 'Enter') { updateNote(i, option.id) } }} ref={inputUser} type="text" name="textarea" />) : (<span>{option.username}</span>)}</td>
                               <td className='fs-14 c-negro py-2 text-left'>{option.isOpen ? (<input className='fs-14 c-negro w-100 input-admin' defaultValue={option.nombre} onKeyDown={(event) => { if (event.key === 'Enter') { updateNote(i, option.id) } }} ref={inputName} type="text" name="textarea" />) : (<span>{option.nombre}</span>)}</td>
-                              <td className='fs-14 c-negro text-left'>{option.password}</td>
+                              <td className='fs-14 c-negro text-left'>{option.isOpen ? (<input className='fs-14 c-negro w-100 input-admin' defaultValue={option.password} onKeyDown={(event) => { if (event.key === 'Enter') { updateNote(i, option.id) } }} ref={inputPass} type="text" name="textarea" />) : (<span>{option.password}</span>)}</td>
                               <td className='fs-14 c-negro'>{option.puntos}</td>
                               <td className='fs-14 c-negro'>{(Math.floor(option.tiempo / 3600) < 10) ? `0${Math.floor(option.tiempo / 3600)}` : Math.floor(option.tiempo / 3600)}:{(Math.floor((option.tiempo / 60) % 60) < 10) ? `0${Math.floor((option.tiempo / 60) % 60)}` : Math.floor((option.tiempo / 60) % 60)}:{(option.tiempo % 60 < 10) ? `0${option.tiempo % 60}` : option.tiempo % 60}</td>
                               <td className='fs-14 c-negro'>{option.status} <img src={option.status === true ? Img.bien : Img.mal} alt="" width="16"></img></td>
@@ -472,7 +555,8 @@ const Admin = () => {
                   </tbody>
                 </table>
 
-                <span className='btn_amarillo' onClick={() => uploadUsers(items)} ><FontAwesomeIcon icon={faPowerOff} /> Subir</span>
+                <span className='btn_amarillo me-1 ' onClick={() => submitUpload()} ><FontAwesomeIcon icon={faUpload} /> Subir</span>
+                <span className='btn_amarillo me-1 ' onClick={() => setIsActive(true)} ><FontAwesomeIcon icon={faCancel} /> Cancelar</span>
               </div>
 
 
