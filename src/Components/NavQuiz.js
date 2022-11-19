@@ -162,7 +162,7 @@ const NavQuiz = ({ props }) => {
 					<div className="row text-center ">
 
 						<div className="col-6 py-2 text-center ">
-							<img src={GConText.Avatar !== "" ? GConText.Avatar : Img.no_avatar} alt="" width="80" ></img>
+							<img src={avatar} alt="" width="80" ></img>
 						</div>
 
 						<div className="col-6 p-2 text-center ">

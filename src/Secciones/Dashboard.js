@@ -19,7 +19,7 @@ const Dashboard = () => {
 	const [avatar, setAvatar] = useState(0);
 
 	async function updateIntentos(id, dato) {
-		console.log("🚀 ~ dato", dato, "🚀 ~ id", id)
+		console.log("🚀 updateIntentos ~ dato", dato, "🚀 ~ id", id)
 		const original = await DataStore.query(Ranking, id);
 		console.log("🚀 ~ original", original)
 		await DataStore.save(
@@ -27,40 +27,44 @@ const Dashboard = () => {
 				updated.intentos = dato
 			})
 		);
-		const Update = await DataStore.query(Ranking, id);
-		console.log("🚀 ~ updateIntentos", Update)
 	}
 
 	const chkData = async () => {
 
-		const posts = await DataStore.query(Ranking, c => c.id("eq", GConText.UserId));
-		console.log("🚀 ~ posts:", posts)
+		const posts = await DataStore.query(Ranking, c => c.id("eq", GConText.UserId))
+			.then((resp) => {
 
-		console.log("~~~~~~~ Actualiza datos desde DataStore AWS ~~~~~~~")
-		console.log("🚀 ~ GConText.UserId", GConText.UserId);
+				console.log("🚀 ~ resp_________:", resp)
+				console.log("~~~~~~~ Actualiza datos desde DataStore AWS ~~~~~~~")
+				console.log("🚀 ~ GConText.UserId", GConText.UserId);
 
-		GConText.setPuntos(posts[0].puntos);
-		GConText.setTiempo(posts[0].tiempo);
-		GConText.setJoya1(posts[0].gema1);
-		GConText.setJoya2(posts[0].gema2);
-		GConText.setJoya3(posts[0].gema3);
+				GConText.setPuntos(resp[0].puntos);
+				GConText.setTiempo(resp[0].tiempo);
+				GConText.setJoya1(resp[0].gema1);
+				GConText.setJoya2(resp[0].gema2);
+				GConText.setJoya3(resp[0].gema3);
 
-		console.log("🚀 ~ dB.id", posts[0].id);
-		console.log("🚀 ~ dB.puntos", posts[0].puntos)
-		console.log("🚀 ~ dB.tiempo", posts[0].tiempo)
-		console.log("🚀 ~ dB.gema1", posts[0].gema1)
-		console.log("🚀 ~ dB.gema2", posts[0].gema2)
-		console.log("🚀 ~ dB.gema3", posts[0].gema3)
+				console.log("🚀 ~ dB.id", resp[0].id);
+				console.log("🚀 ~ dB.puntos", resp[0].puntos)
+				console.log("🚀 ~ dB.tiempo", resp[0].tiempo)
+				console.log("🚀 ~ dB.gema1", resp[0].gema1)
+				console.log("🚀 ~ dB.gema2", resp[0].gema2)
+				console.log("🚀 ~ dB.gema3", resp[0].gema3)
 
-		console.log("~~~~~~~ ---------------- ~~~~~~~")
+				console.log("~~~~~~~ ---------------- ~~~~~~~")
 
-		if(GConText.Avatar === 'uno'){
-			setAvatar(Img.avatar1_tumb)
-		} else if (GConText.Avatar === 'dos'){
-			setAvatar(Img.avatar2_tumb)
-		} else if (GConText.Avatar === 'tres'){
-			setAvatar(Img.avatar3_tumb)
-		}
+				if (GConText.Avatar === 'uno') {
+					setAvatar(Img.avatar1_tumb)
+				} else if (GConText.Avatar === 'dos') {
+					setAvatar(Img.avatar2_tumb)
+				} else if (GConText.Avatar === 'tres') {
+					setAvatar(Img.avatar3_tumb)
+				}
+
+			}).catch((err) => {
+				console.log(err)
+			}).finally(() => {
+			})
 
 	}
 
@@ -81,7 +85,7 @@ const Dashboard = () => {
 				}
 				return empty;
 			}, {});
-			
+
 		}).catch((err) => {
 			console.log(err)
 		}).finally(() => {
@@ -104,7 +108,7 @@ const Dashboard = () => {
 
 				<div className="container">
 					<div className="row mt-3 mx-1">
-						<div className="col-md-7 mb-5 text-left">
+						<div className="col-md-7 mb-3 text-left">
 							<img className='img-fluid' src={Img.titulo_curso} alt="" width="300"></img>
 						</div>
 
@@ -113,7 +117,7 @@ const Dashboard = () => {
 								<div className="row mt-1">
 									<div className="col-md-12 text-center">
 
-									<img className='mb-3' src={avatar} alt="" width="120"></img>
+										<img className='mb-3' src={avatar} alt="" width="120"></img>
 
 										<h2 className='fs-25 c-black text-left'>¡Hola!</h2>
 										<h4 className='fs-25 c-black text-left' id='nombre'>{GConText.Nombre}</h4>
@@ -122,7 +126,7 @@ const Dashboard = () => {
 								</div>
 								<div className="row mt-1 caja_gris">
 									<div className="col-6 col-md-6 pt-2">
-										<h2 className='fs-18 c-black text-left'><img src={Img.star} alt="" width="40"></img> {GConText.Puntos} pts</h2>
+										<h2 className='fs-18 c-black text-left'><img src={Img.star} alt="" width="40"></img>{GConText.Puntos} pts</h2>
 									</div>
 									<div className="col-6 col-md-6 pt-2 text-right">
 										{
@@ -146,9 +150,9 @@ const Dashboard = () => {
 									</div>
 								</div>
 								<div className="row mt-5">
-									<div className="col-12 col-md-12">
-										<Link className='btn_default mx-1' to="/instrucciones"> Instrucciones </Link>
-										<Link className='btn_negro mx-1' to="/primer_reto" onClick={() => {
+									<div className="col-12 col-md-12 p-0">
+										<Link className='btn_default me-1' to="/instrucciones"> Instrucciones </Link>
+										<Link className='btn_negro' to="/primer_reto" onClick={() => {
 											//reiniciamos las variables locales
 											GConText.resetAll();
 											//le agregamos a la abase 1 intento

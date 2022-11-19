@@ -164,8 +164,8 @@ const Perfil = () => {
         <div className="row">
           <div className="col-12 col-md-12">
             <div className="mt-5">
-              <Link className='btn_default mx-3' to="/introduccion"> <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> Regresar</Link>
-              <Link className='btn_negro mx-3' to="/instrucciones" style={{ visibility: GConText.Avatar !== "" ? 'visible' : 'hidden' }}>Continuar <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></Link>
+              <Link className='btn_default mx-1' to="/introduccion"> <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> Regresar</Link>
+              <Link className='btn_negro mx-1' to="/instrucciones" style={{ visibility: GConText.Avatar !== "" ? 'visible' : 'hidden' }}>Continuar <FontAwesomeIcon icon={faArrowRightLong}></FontAwesomeIcon></Link>
             </div>
           </div>
 

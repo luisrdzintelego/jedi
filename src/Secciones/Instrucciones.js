@@ -250,8 +250,8 @@ const Instrucciones = () => {
 				<div className="row">
 					<div className="col-md-8 offset-md-2">
 						<div className="mt-5 mb-5">
-							<Link className='btn_default mx-3' to="/perfil"> <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> Regresar</Link>
-							<Link className='btn_negro mx-3' to="/dashboard" style={{ visibility: termino === true ? 'visible' : 'hidden' }}>¡Vámos!</Link>
+							<Link className='btn_default mx-1' to="/perfil"> <FontAwesomeIcon icon={faArrowLeftLong}></FontAwesomeIcon> Regresar</Link>
+							<Link className='btn_negro mx-1' to="/dashboard" style={{ visibility: termino === true ? 'visible' : 'hidden' }}>¡Vámos!</Link>
 						</div>
 					</div>
 				</div>

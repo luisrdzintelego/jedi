@@ -60,18 +60,6 @@ const Login = ({ props }) => {
 		}, 3000);
 	}
 
-	async function updateInfo(id, numero, seccion) {
-		const original = await DataStore.query(Ranking, id);
-		console.log("🚀 ~ original", original)
-		await DataStore.save(
-			Ranking.copyOf(original, updated => {
-				updated.seccion = numero
-			})
-		);
-		const Update = await DataStore.query(Ranking, id);
-		console.log("🚀 ~ Update", Update)
-	}
-
 	let num = 0;
 	const chkLogin = async () => {
 
@@ -79,151 +67,164 @@ const Login = ({ props }) => {
 		//const models = await DataStore.query(Ranking);
 		//console.log(models);
 
-		const posts = await DataStore.query(Ranking, c => c.username("eq", GConText.Username));
-		console.log("🚀 ~ posts:", posts)
+		const posts = await DataStore.query(Ranking, c => c.username("eq", GConText.Username))
+			.then((resp) => {
+				console.log("🚀 ~ resp_________:", resp)
 
-		//posts.length === 0 ? console.log("🚀 ~ ESTE USUSARIO NO EXISTE:") : console.log("🚀 ~ SI EXISTE:", posts)
+				//posts.length === 0 ? console.log("🚀 ~ ESTE USUSARIO NO EXISTE:") : console.log("🚀 ~ SI EXISTE:", posts)
 
-		if (posts.length >= 1) {
-			console.log("🚀 ~ SI EXISTE:", posts[0].username)
-			if (GConText.Username === posts[0].username) {
-				console.log("🚀 ~ USUARIO COINCIDEN CON LOS INPUTS:")
-				setUser(true);
-			} else {
-				console.log("🚀 ~ USUARIO NO COINCIDE:")
-				setUser(false);
-				num = 1;
-			}
-			if (GConText.Password === posts[0].password) {
-				console.log("🚀 ~ PASSWORD COINCIDEN CON LOS INPUTS:")
-				setPass(true);
-			} else {
-				console.log("🚀 ~ PASSWORD NO COINCIDE:")
-				setPass(false);
-				num = 1;
-			}
-		} else {
-			console.log("🚀 ~ ESTE USUSARIO NO EXISTE:")
-			setUser(false);
-			num = 1;
-		}
+				if (resp.length >= 1) {
+					console.log("🚀 ~ SI EXISTE:", resp[0].username)
+					if (GConText.Username === resp[0].username) {
+						console.log("🚀 ~ USUARIO COINCIDEN CON LOS INPUTS:")
+						setUser(true);
+					} else {
+						console.log("🚀 ~ USUARIO NO COINCIDE:")
+						setUser(false);
+						num = 1;
+					}
+					if (GConText.Password === resp[0].password) {
+						console.log("🚀 ~ PASSWORD COINCIDEN CON LOS INPUTS:")
+						setPass(true);
+					} else {
+						console.log("🚀 ~ PASSWORD NO COINCIDE:")
+						setPass(false);
+						num = 1;
+					}
+				} else {
+					console.log("🚀 ~ ESTE USUSARIO NO EXISTE:")
+					setUser(false);
+					num = 1;
+				}
 
-		setTimeoutImg();
+				setTimeoutImg();
 
-		if (num === 0) {
-			//DATOS FIJOS
-			GConText.setUserId(posts[0].id);
-			GConText.setUsername(posts[0].username)
-			GConText.setPassword(posts[0].password);
-			GConText.setNombre(posts[0].nombre);
-			GConText.setGrupo(posts[0].grupo);
-			GConText.setType(posts[0].type);
-			//DATOS QUE CAMBIAN
-			GConText.setAvatar(posts[0].avatar);
-			GConText.setPuntos(posts[0].puntos);
-			GConText.setTiempo(posts[0].tiempo);
-			GConText.setJoya1(posts[0].gema1);
-			GConText.setJoya2(posts[0].gema2);
-			GConText.setJoya3(posts[0].gema3);
-			GConText.setBonus1(posts[0].bonus1);
-			GConText.setBonus2(posts[0].bonus2);
-			GConText.setBonus3(posts[0].bonus3);
-			GConText.setIntentos(posts[0].intentos);
-			GConText.setStatus(posts[0].status);
+				if (num === 0) {
+					//DATOS FIJOS
+					GConText.setUserId(resp[0].id);
+					GConText.setUsername(resp[0].username)
+					GConText.setPassword(resp[0].password);
+					GConText.setNombre(resp[0].nombre);
+					GConText.setGrupo(resp[0].grupo);
+					GConText.setType(resp[0].type);
+					//DATOS QUE CAMBIAN
+					GConText.setAvatar(resp[0].avatar);
+					GConText.setPuntos(resp[0].puntos);
+					GConText.setTiempo(resp[0].tiempo);
+					GConText.setJoya1(resp[0].gema1);
+					GConText.setJoya2(resp[0].gema2);
+					GConText.setJoya3(resp[0].gema3);
+					GConText.setBonus1(resp[0].bonus1);
+					GConText.setBonus2(resp[0].bonus2);
+					GConText.setBonus3(resp[0].bonus3);
+					GConText.setIntentos(resp[0].intentos);
+					GConText.setStatus(resp[0].status);
 
-			console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
-			console.log("🚀 ~ dB.id", posts[0].id);
-			console.log("🚀 ~ dB.username", posts[0].username)
-			console.log("🚀 ~ dB.password", posts[0].password)
-			console.log("🚀 ~ dB.nombre", posts[0].nombre)
-			console.log("🚀 ~ dB.grupo", posts[0].grupo)
-			console.log("🚀 ~ dB.type", posts[0].type)
+					console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
+					console.log("🚀 ~ dB.id", resp[0].id);
+					console.log("🚀 ~ dB.username", resp[0].username)
+					console.log("🚀 ~ dB.password", resp[0].password)
+					console.log("🚀 ~ dB.nombre", resp[0].nombre)
+					console.log("🚀 ~ dB.grupo", resp[0].grupo)
+					console.log("🚀 ~ dB.type", resp[0].type)
 
-			console.log("🚀 ~ dB.avatar", posts[0].avatar)
-			console.log("🚀 ~ dB.puntos", posts[0].puntos)
-			console.log("🚀 ~ dB.tiempo", posts[0].tiempo)
-			console.log("🚀 ~ dB.gema1", posts[0].gema1)
-			console.log("🚀 ~ dB.gema2", posts[0].gema2)
-			console.log("🚀 ~ dB.gema3", posts[0].gema3)
-			console.log("🚀 ~ dB.bonus1", posts[0].bonus1)
-			console.log("🚀 ~ dB.bonus2", posts[0].bonus2)
-			console.log("🚀 ~ dB.bonus3", posts[0].bonus3)
-			console.log("🚀 ~ dB.intentos", posts[0].intentos)
-			console.log("🚀 ~ dB.status", posts[0].status)
+					console.log("🚀 ~ dB.avatar", resp[0].avatar)
+					console.log("🚀 ~ dB.puntos", resp[0].puntos)
+					console.log("🚀 ~ dB.tiempo", resp[0].tiempo)
+					console.log("🚀 ~ dB.gema1", resp[0].gema1)
+					console.log("🚀 ~ dB.gema2", resp[0].gema2)
+					console.log("🚀 ~ dB.gema3", resp[0].gema3)
+					console.log("🚀 ~ dB.bonus1", resp[0].bonus1)
+					console.log("🚀 ~ dB.bonus2", resp[0].bonus2)
+					console.log("🚀 ~ dB.bonus3", resp[0].bonus3)
+					console.log("🚀 ~ dB.intentos", resp[0].intentos)
+					console.log("🚀 ~ dB.status", resp[0].status)
 
-			console.log("~~~~~~~ ---------------- ~~~~~~~")
+					console.log("~~~~~~~ ---------------- ~~~~~~~")
 
-			setAuth(posts[0].id)
-			//(posts[0].id,400,'puntos')
-			posts[0].type === 'admin' ? setRedirectNow(1) : setRedirectNow(2)
-		}
+					setAuth(resp[0].id)
+					//(resp[0].id,400,'puntos')
+					resp[0].type === 'admin' ? setRedirectNow(1) : setRedirectNow(2)
+				}
+
+
+			}).catch((err) => {
+				console.log(err)
+			}).finally(() => {
+			})
+
+
 
 	}
 
 	const chkAuth = async (id) => {
 
 		num = 0;
-		const posts = await DataStore.query(Ranking, c => c.id("eq", id));
-		console.log("🚀 ~ posts:", posts)
+		const posts = await DataStore.query(Ranking, c => c.id("eq", id))
+			.then((resp) => {
+				console.log("🚀 ~ resp_________:", resp)
 
-		if (posts.length >= 1) {
-			console.log("🚀 ~ SI EXISTE Auth ID:", posts[0].id)
-		} else {
-			console.log("🚀 ~ NO EXISTE Auth ID:")
-			num = 1;
-		}
+				if (posts.length >= 1) {
+					console.log("🚀 ~ SI EXISTE Auth ID:", resp[0].id)
+				} else {
+					console.log("🚀 ~ NO EXISTE Auth ID:")
+					num = 1;
+				}
 
-		if (num === 0) {
-			//DATOS FIJOS
-			GConText.setUserId(posts[0].id);
-			GConText.setUsername(posts[0].username)
-			GConText.setPassword(posts[0].password);
-			GConText.setNombre(posts[0].nombre);
-			GConText.setGrupo(posts[0].grupo);
-			GConText.setType(posts[0].type);
-			//DATOS QUE CAMBIAN
-			GConText.setAvatar(posts[0].avatar);
-			GConText.setPuntos(posts[0].puntos);
-			GConText.setTiempo(posts[0].tiempo);
-			GConText.setJoya1(posts[0].gema1);
-			GConText.setJoya2(posts[0].gema2);
-			GConText.setJoya3(posts[0].gema3);
-			GConText.setBonus1(posts[0].bonus1);
-			GConText.setBonus2(posts[0].bonus2);
-			GConText.setBonus3(posts[0].bonus3);
-			GConText.setIntentos(posts[0].intentos);
-			GConText.setStatus(posts[0].status);
+				if (num === 0) {
+					//DATOS FIJOS
+					GConText.setUserId(resp[0].id);
+					GConText.setUsername(resp[0].username)
+					GConText.setPassword(resp[0].password);
+					GConText.setNombre(resp[0].nombre);
+					GConText.setGrupo(resp[0].grupo);
+					GConText.setType(resp[0].type);
+					//DATOS QUE CAMBIAN
+					GConText.setAvatar(resp[0].avatar);
+					GConText.setPuntos(resp[0].puntos);
+					GConText.setTiempo(resp[0].tiempo);
+					GConText.setJoya1(resp[0].gema1);
+					GConText.setJoya2(resp[0].gema2);
+					GConText.setJoya3(resp[0].gema3);
+					GConText.setBonus1(resp[0].bonus1);
+					GConText.setBonus2(resp[0].bonus2);
+					GConText.setBonus3(resp[0].bonus3);
+					GConText.setIntentos(resp[0].intentos);
+					GConText.setStatus(resp[0].status);
 
-			console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
-			console.log("🚀 ~ dB.id", posts[0].id);
-			console.log("🚀 ~ dB.username", posts[0].username)
-			console.log("🚀 ~ dB.password", posts[0].password)
-			console.log("🚀 ~ dB.nombre", posts[0].nombre)
-			console.log("🚀 ~ dB.grupo", posts[0].grupo)
-			console.log("🚀 ~ dB.type", posts[0].type)
+					console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
+					console.log("🚀 ~ dB.id", resp[0].id);
+					console.log("🚀 ~ dB.username", resp[0].username)
+					console.log("🚀 ~ dB.password", resp[0].password)
+					console.log("🚀 ~ dB.nombre", resp[0].nombre)
+					console.log("🚀 ~ dB.grupo", resp[0].grupo)
+					console.log("🚀 ~ dB.type", resp[0].type)
 
-			console.log("🚀 ~ dB.avatar", posts[0].avatar)
-			console.log("🚀 ~ dB.puntos", posts[0].puntos)
-			console.log("🚀 ~ dB.tiempo", posts[0].tiempo)
-			console.log("🚀 ~ dB.gema1", posts[0].gema1)
-			console.log("🚀 ~ dB.gema2", posts[0].gema2)
-			console.log("🚀 ~ dB.gema3", posts[0].gema3)
-			console.log("🚀 ~ dB.bonus1", posts[0].bonus1)
-			console.log("🚀 ~ dB.bonus2", posts[0].bonus2)
-			console.log("🚀 ~ dB.bonus3", posts[0].bonus3)
-			console.log("🚀 ~ dB.intentos", posts[0].intentos)
-			console.log("🚀 ~ dB.status", posts[0].status)
+					console.log("🚀 ~ dB.avatar", resp[0].avatar)
+					console.log("🚀 ~ dB.puntos", resp[0].puntos)
+					console.log("🚀 ~ dB.tiempo", resp[0].tiempo)
+					console.log("🚀 ~ dB.gema1", resp[0].gema1)
+					console.log("🚀 ~ dB.gema2", resp[0].gema2)
+					console.log("🚀 ~ dB.gema3", resp[0].gema3)
+					console.log("🚀 ~ dB.bonus1", resp[0].bonus1)
+					console.log("🚀 ~ dB.bonus2", resp[0].bonus2)
+					console.log("🚀 ~ dB.bonus3", resp[0].bonus3)
+					console.log("🚀 ~ dB.intentos", resp[0].intentos)
+					console.log("🚀 ~ dB.status", resp[0].status)
 
-			console.log("~~~~~~~ ---------------- ~~~~~~~")
+					console.log("~~~~~~~ ---------------- ~~~~~~~")
 
-			setAuth(posts[0].id)
-			//(posts[0].id,400,'puntos')
-			//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(3)
-			posts[0].type === 'admin' ? setRedirectNow(1) : setRedirectNow(3)
-		}
+					setAuth(resp[0].id)
+					//(resp[0].id,400,'puntos')
+					//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(3)
+					resp[0].type === 'admin' ? setRedirectNow(1) : setRedirectNow(3)
+				}
+			}).catch((err) => {
+				console.log(err)
+			}).finally(() => {
+			})
 
 	}
-
 
 	useEffect(() => {
 		//console.log("🚀 ~ vistos", vistos)
