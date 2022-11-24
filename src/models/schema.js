@@ -34,7 +34,7 @@ export const schema = {
                 "grupo": {
                     "name": "grupo",
                     "isArray": false,
-                    "type": "Int",
+                    "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -168,5 +168,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.3.1",
-    "version": "4068a3ded10e4f9a7e44e0e2bb32fd7c"
+    "version": "f6fa7570bd58cabc73bbe043bbc86bdd"
 };

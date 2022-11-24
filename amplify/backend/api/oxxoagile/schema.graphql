@@ -3,7 +3,7 @@ type Ranking @model @auth(rules: [{allow: public}]) {
   username: String!
   password: String!
   type: String!
-  grupo: Int!
+  grupo: String!
   puntos: Int
   tiempo: Int
   gema1: Boolean

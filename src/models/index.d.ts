@@ -11,7 +11,7 @@ type EagerRanking = {
   readonly username: string;
   readonly password: string;
   readonly type: string;
-  readonly grupo: number;
+  readonly grupo: string;
   readonly puntos?: number | null;
   readonly tiempo?: number | null;
   readonly gema1?: boolean | null;
@@ -33,7 +33,7 @@ type LazyRanking = {
   readonly username: string;
   readonly password: string;
   readonly type: string;
-  readonly grupo: number;
+  readonly grupo: string;
   readonly puntos?: number | null;
   readonly tiempo?: number | null;
   readonly gema1?: boolean | null;
