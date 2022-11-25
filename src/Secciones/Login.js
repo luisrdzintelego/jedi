@@ -164,7 +164,7 @@ const Login = ({ props }) => {
 			.then((resp) => {
 				console.log("🚀 ~ resp_________:", resp)
 
-				if (posts.length >= 1) {
+				if (resp.length >= 1) {
 					console.log("🚀 ~ SI EXISTE Auth ID:", resp[0].id)
 				} else {
 					console.log("🚀 ~ NO EXISTE Auth ID:")
@@ -243,6 +243,8 @@ const Login = ({ props }) => {
 			<div className="container login-background">
 
 				<Nav titulo={"login"}></Nav>
+
+			<span className='fs-10 position-absolute bottom-0 end-0 p-1'>v1.40</span>
 
 				<div className="row mt-5 mx-1">
 					<div className="col-12 col-lg-6 offset-lg-3 col-md-8 offset-md-2">

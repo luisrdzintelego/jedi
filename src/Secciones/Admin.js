@@ -263,9 +263,11 @@ const Admin = () => {
       */
       return todos.filter(function check(el) {
 
-        return el.nombre.toLowerCase().includes(sn) &&
-          el.username.toLowerCase().includes(su) &&
-          el.grupo == sg;
+        //el.nombre.toLowerCase().includes(sn) 
+        return el.nombre.includes(sn) &&
+          el.username.includes(su) &&
+          //el.grupo == sg;
+          el.grupo.includes(sg)
 
       });
     }
@@ -311,8 +313,6 @@ const Admin = () => {
     })
 
   };
-
-
 
 
   const uploadUsers = async () => {
