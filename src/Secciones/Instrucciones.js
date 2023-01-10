@@ -198,7 +198,7 @@ const Instrucciones = () => {
 								</div>
 
 								<div className="mt-5">
-									<h3 className='fs-15 lh-25 c-negro text-center'><img src={Img.info} alt="" width="25"></img> Haz clic en el botón parpadeante para ver toda la información.</h3>
+									<h3 className='fs-15 lh-25 c-negro text-center' style={{ visibility: activeIndex < (vistos.length - 1) ? 'visible' : 'hidden' }}><img src={Img.info} alt="" width="25"></img> Haz clic en el botón parpadeante para ver toda la información.</h3>
 								</div>
 
 								<div className="container-fluid">
