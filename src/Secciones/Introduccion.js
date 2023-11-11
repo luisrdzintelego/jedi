@@ -174,7 +174,7 @@ const Introduccion = () => {
 						}}
 					></iframe>
 
-					{terminoLamina ? <h1><button onClick={onClick}>🔜 Siguiente Lamina </button></h1> : <></>}
+					{/* {terminoLamina ? <h1><button onClick={onClick}>🔜 Siguiente Lamina </button></h1> : <></>} */}
 					{/* <button onClick={onClick}>{paused ? "Unpause" : "Pause"}</button> */}
 				</div>
 
