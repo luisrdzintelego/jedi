@@ -67,7 +67,7 @@ const Login = ({ props }) => {
 		//const models = await DataStore.query(Ranking);
 		//console.log(models);
 
-		
+		/*
 		const posts = await DataStore.query(Ranking, c => c.username("eq", GConText.Username))
 			.then((resp) => {
 				console.log("🚀 ~ resp_________:", resp)
@@ -153,9 +153,9 @@ const Login = ({ props }) => {
 				console.log(err)
 			}).finally(() => {
 			})
-		
+		*/
 
-		//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(2) :  setRedirectNow(1)
+		GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
 
 
 	}
@@ -183,16 +183,16 @@ const Login = ({ props }) => {
 					GConText.setGrupo(resp[0].grupo);
 					GConText.setType(resp[0].type);
 					//DATOS QUE CAMBIAN
-					GConText.setAvatar(resp[0].avatar);
-					GConText.setPuntos(resp[0].puntos);
-					GConText.setTiempo(resp[0].tiempo);
-					GConText.setJoya1(resp[0].gema1);
-					GConText.setJoya2(resp[0].gema2);
-					GConText.setJoya3(resp[0].gema3);
-					GConText.setBonus1(resp[0].bonus1);
-					GConText.setBonus2(resp[0].bonus2);
-					GConText.setBonus3(resp[0].bonus3);
-					GConText.setIntentos(resp[0].intentos);
+					//GConText.setAvatar(resp[0].avatar);
+					//GConText.setPuntos(resp[0].puntos);
+					//GConText.setTiempo(resp[0].tiempo);
+					//GConText.setJoya1(resp[0].gema1);
+					//GConText.setJoya2(resp[0].gema2);
+					//GConText.setJoya3(resp[0].gema3);
+					//GConText.setBonus1(resp[0].bonus1);
+					//GConText.setBonus2(resp[0].bonus2);
+					//GConText.setBonus3(resp[0].bonus3);
+					//GConText.setIntentos(resp[0].intentos);
 					GConText.setStatus(resp[0].status);
 
 					console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
@@ -203,23 +203,23 @@ const Login = ({ props }) => {
 					console.log("🚀 ~ dB.grupo", resp[0].grupo)
 					console.log("🚀 ~ dB.type", resp[0].type)
 
-					console.log("🚀 ~ dB.avatar", resp[0].avatar)
-					console.log("🚀 ~ dB.puntos", resp[0].puntos)
-					console.log("🚀 ~ dB.tiempo", resp[0].tiempo)
-					console.log("🚀 ~ dB.gema1", resp[0].gema1)
-					console.log("🚀 ~ dB.gema2", resp[0].gema2)
-					console.log("🚀 ~ dB.gema3", resp[0].gema3)
-					console.log("🚀 ~ dB.bonus1", resp[0].bonus1)
-					console.log("🚀 ~ dB.bonus2", resp[0].bonus2)
-					console.log("🚀 ~ dB.bonus3", resp[0].bonus3)
-					console.log("🚀 ~ dB.intentos", resp[0].intentos)
+					//console.log("🚀 ~ dB.avatar", resp[0].avatar)
+					//console.log("🚀 ~ dB.puntos", resp[0].puntos)
+					//console.log("🚀 ~ dB.tiempo", resp[0].tiempo)
+					//console.log("🚀 ~ dB.gema1", resp[0].gema1)
+					//console.log("🚀 ~ dB.gema2", resp[0].gema2)
+					//console.log("🚀 ~ dB.gema3", resp[0].gema3)
+					//console.log("🚀 ~ dB.bonus1", resp[0].bonus1)
+					//console.log("🚀 ~ dB.bonus2", resp[0].bonus2)
+					//console.log("🚀 ~ dB.bonus3", resp[0].bonus3)
+					//console.log("🚀 ~ dB.intentos", resp[0].intentos)
 					console.log("🚀 ~ dB.status", resp[0].status)
 
 					console.log("~~~~~~~ ---------------- ~~~~~~~")
 
 					setAuth(resp[0].id)
 					//(resp[0].id,400,'puntos')
-					GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(3)
+					GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
 					//resp[0].type === 'admin' ? setRedirectNow(1) : setRedirectNow(3)
 				}
 			}).catch((err) => {
@@ -247,7 +247,7 @@ const Login = ({ props }) => {
 
 				<Nav titulo={"login"}></Nav>
 
-			<span className='fs-10 position-absolute bottom-0 end-0 p-1'>v1.42</span>
+			<span className='fs-10 position-absolute bottom-0 end-0 p-1'>{GConText.Version}</span>
 
 				<div className="row mt-5 mx-1">
 					<div className="col-12 col-lg-6 offset-lg-3 col-md-8 offset-md-2">

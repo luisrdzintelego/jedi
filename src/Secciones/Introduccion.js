@@ -13,19 +13,80 @@ import './Introduccion.css';
 import * as Img from '../Components/Imagenes'
 import Nav from '../Components/Nav'
 
+import { DataStore } from '@aws-amplify/datastore';
+import { Ranking } from '../models';
+
+
 const Introduccion = () => {
 
 	const GConText = useContext(VarContext);
-
-	const [page, setPage] = useState(0);
-	const [terminoLamina, setTerminoLamina] = useState(false);
-
+	//const [page, setPage] = useState(0);
+	const [terminoLamina, setTerminoLamina] = useState(GConText.Status);
+	/*
 	const onClick = () => {
 		setPage(page+1)
 		setTerminoLamina(false)
 	};
+	*/
+	const [message, setMessage] = useState('')
 
-	const [message, setMessage] = useState(false)
+	async function udpatesUser(bolean, id) {
+		console.log("🚀 udpates 🚀 ~", bolean, "--" , id)
+		const original = await DataStore.query(Ranking, id);
+		await DataStore.save(Ranking.copyOf(original, updated => {
+			updated.status = bolean
+		})
+		).then((resp) => {
+			console.log("🚀 ~ resp", resp)
+			chkUser(GConText.UserId)
+			
+		}).catch((err) => {
+			console.log(err)
+		}).finally(() => {
+		})
+	}
+
+	const chkUser = async (id) => {
+		let num = 0;
+		const posts = await DataStore.query(Ranking, c => c.id("eq", id))
+			.then((resp) => {
+				console.log("🚀 ~ resp_________:", resp)
+
+				if (resp.length >= 1) {
+					console.log("🚀 ~ SI EXISTE Auth ID:", resp[0].id)
+				} else {
+					console.log("🚀 ~ NO EXISTE Auth ID:")
+					num = 1;
+				}
+
+				if (num === 0) {
+					//DATOS FIJOS
+					GConText.setUserId(resp[0].id);
+					GConText.setUsername(resp[0].username)
+					GConText.setPassword(resp[0].password);
+					GConText.setNombre(resp[0].nombre);
+					GConText.setGrupo(resp[0].grupo);
+					GConText.setType(resp[0].type);
+					GConText.setStatus(resp[0].status);
+
+					console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
+					console.log("🚀 ~ dB.id", resp[0].id);
+					console.log("🚀 ~ dB.username", resp[0].username)
+					console.log("🚀 ~ dB.password", resp[0].password)
+					console.log("🚀 ~ dB.nombre", resp[0].nombre)
+					console.log("🚀 ~ dB.grupo", resp[0].grupo)
+					console.log("🚀 ~ dB.type", resp[0].type)
+
+					console.log("🚀 ~ dB.status", resp[0].status)
+
+				}
+			}).catch((err) => {
+				console.log(err)
+			}).finally(() => {
+			})
+
+	}
+
 
 	// This hook is listening an event that came from the Iframe
 	useEffect(() => {
@@ -45,6 +106,8 @@ const Introduccion = () => {
 				console.log("Hello World?", data)
 				setMessage(data.message)
 				setTerminoLamina(data.completado)
+
+				udpatesUser(data.completado, GConText.UserId)
 
 				console.log("message--- ", message)
 				console.log("terminoLamina--- ", terminoLamina)
@@ -97,7 +160,7 @@ const Introduccion = () => {
 						//onLoad={onLoad}
 						autoFocus={true}
 						id="myFrame"
-						src="/curso1/asignaciones.html"
+						src={process.env.PUBLIC_URL + '/curso1/asignaciones.html'}
 						width="100%"
 						//height="100%"
 						//height={height}

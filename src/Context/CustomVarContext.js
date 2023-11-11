@@ -72,6 +72,8 @@ export const CustomVarContext = ({children}) => {
 	//VARIABLES DEL JUEGO
 	const [TotalAvance, setTotalAvance] = useState (10)
 	const [ConteoAvance, setConteoAvance] = useState (0)
+
+	const [Version, setVersion] = useState ('1.44 Jedi')
 	//----
 
 	//DATOA DE SE LLENAN DE LA BASE
@@ -203,6 +205,7 @@ export const CustomVarContext = ({children}) => {
 		Nombre,setNombre,
 		Grupo,setGrupo,
 		Type,setType,
+		Version,setVersion,
 
 		Avatar,setAvatar,
 		Puntos,setPuntos,
