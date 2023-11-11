@@ -9,5 +9,4 @@ const awsmobile = {
     "aws_appsync_apiKey": "da2-ftxvcbfcyrejfjb2z5qzdxkyei"
 };
 
-
 export default awsmobile;

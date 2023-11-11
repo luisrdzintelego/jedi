@@ -67,6 +67,7 @@ const Login = ({ props }) => {
 		//const models = await DataStore.query(Ranking);
 		//console.log(models);
 
+		
 		const posts = await DataStore.query(Ranking, c => c.username("eq", GConText.Username))
 			.then((resp) => {
 				console.log("🚀 ~ resp_________:", resp)
@@ -152,7 +153,9 @@ const Login = ({ props }) => {
 				console.log(err)
 			}).finally(() => {
 			})
+		
 
+		//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(2) :  setRedirectNow(1)
 
 
 	}
@@ -216,8 +219,8 @@ const Login = ({ props }) => {
 
 					setAuth(resp[0].id)
 					//(resp[0].id,400,'puntos')
-					//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(3)
-					resp[0].type === 'admin' ? setRedirectNow(1) : setRedirectNow(3)
+					GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(3)
+					//resp[0].type === 'admin' ? setRedirectNow(1) : setRedirectNow(3)
 				}
 			}).catch((err) => {
 				console.log(err)
@@ -244,7 +247,7 @@ const Login = ({ props }) => {
 
 				<Nav titulo={"login"}></Nav>
 
-			<span className='fs-10 position-absolute bottom-0 end-0 p-1'>v1.40</span>
+			<span className='fs-10 position-absolute bottom-0 end-0 p-1'>v1.42</span>
 
 				<div className="row mt-5 mx-1">
 					<div className="col-12 col-lg-6 offset-lg-3 col-md-8 offset-md-2">
