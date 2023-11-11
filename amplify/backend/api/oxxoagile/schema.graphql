@@ -16,5 +16,4 @@ type Ranking @model @auth(rules: [{allow: public}]) {
   status: Boolean
   avatar: String
   nombre: String
-}
- 
+} 
