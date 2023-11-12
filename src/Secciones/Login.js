@@ -67,7 +67,7 @@ const Login = ({ props }) => {
 		//const models = await DataStore.query(Ranking);
 		//console.log(models);
 
-		/*
+		
 		const posts = await DataStore.query(Ranking, c => c.username("eq", GConText.Username))
 			.then((resp) => {
 				console.log("🚀 ~ resp_________:", resp)
@@ -153,9 +153,9 @@ const Login = ({ props }) => {
 				console.log(err)
 			}).finally(() => {
 			})
-		*/
+		
 
-		GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
+		//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
 
 
 	}
