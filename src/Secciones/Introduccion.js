@@ -181,8 +181,8 @@ const Introduccion = () => {
 						//onLoad={onLoad}
 						autoFocus={true}
 						id="myFrame"
-						//src={process.env.PUBLIC_URL + 'curso1/asignaciones.html'}
-						src={`${process.env.PUBLIC_URL}/curso1/asignaciones.html`}
+						src={process.env.PUBLIC_URL + 'curso1/asignaciones.html'}
+						//src={`${process.env.PUBLIC_URL}/curso1/asignaciones.html`}
 						width="100%"
 						//height="100%"
 						//height={height}
@@ -195,6 +195,27 @@ const Introduccion = () => {
 							overflow: "hiden",
 						}}
 					></iframe>
+
+					<iframe
+						ref={ref}
+						//onLoad={onLoad}
+						autoFocus={true}
+						id="myFrame"
+						src={'curso1/asignaciones.html'}
+						//src={`${process.env.PUBLIC_URL}/curso1/asignaciones.html`}
+						width="100%"
+						//height="100%"
+						//height={height}
+						scrolling="yes"
+						frameBorder="0"
+						style={{
+							//maxWidth: 640,
+							width: "100%",
+							minHeight: 1000,
+							overflow: "hiden",
+						}}
+					></iframe>
+
 
 					{/* {terminoLamina ? <h1><button onClick={onClick}>🔜 Siguiente Lamina </button></h1> : <></>} */}
 					{/* <button onClick={onClick}>{paused ? "Unpause" : "Pause"}</button> */}
