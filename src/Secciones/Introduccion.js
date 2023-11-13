@@ -40,11 +40,12 @@ const Introduccion = () => {
 	*/
 	const [message, setMessage] = useState('')
 
-	async function udpatesUser( id) {
-		console.log("🚀 udpates 🚀 ~ --" , id)
+	async function udpatesUser(bol, id) {
+		console.log("🚀 udpates 🚀 ~ --id -- " , id)
+		console.log("🚀 udpates 🚀 ~ --bol -- " , id)
 		const original = await DataStore.query(Ranking, id);
 		await DataStore.save(Ranking.copyOf(original, updated => {
-			updated.status = true
+			updated.status = bol
 		})
 		).then((resp) => {
 			console.log("🚀 ~ resp", resp)
