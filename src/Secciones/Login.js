@@ -187,7 +187,7 @@ const Login = ({ props }) => {
 	const chkAuth = async (id) => {
 		num = 0;
 		await DataStore.clear();
-		const posts = await DataStore.query(Ranking, c => c.id("eq", id))
+		const posts = await DataStore.query(Ranking, c => c.id.eq(id))
 			.then((resp) => {
 				console.log("🚀 ~ resp_________:", resp)
 
