@@ -327,7 +327,7 @@ const Admin = () => {
         //chkData()
       }
       console.log("🚀 ~ username", option.username)
-      const posts = await DataStore.query(Ranking, c => c.username("eq", option.username));
+      const posts = await DataStore.query(Ranking, c => c.username.eq(option.username));
 
       if (posts.length >= 1) {
         console.log("🚀 ~ SI EXISTE USUARIO:", posts[0].username, " --- ", option.username)
@@ -394,6 +394,16 @@ const Admin = () => {
     // 👇️ open file input box on click of other element
     inputRef.current.click();
   };
+
+	//RENDER REAL-TIME EQUIPOS
+	useEffect(() => {
+		const updateUsers = DataStore.observe(Ranking).subscribe(() => {
+			chkData()
+		})
+		return () => {
+			updateUsers.unsubscribe()
+		}
+	}, [todos])
 
   return (
     <>

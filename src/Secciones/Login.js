@@ -60,6 +60,8 @@ const Login = ({ props }) => {
 		}, 3000);
 	}
 
+
+	
 	let num = 0;
 	const chkLogin = async () => {
 
@@ -67,13 +69,30 @@ const Login = ({ props }) => {
 		//const models = await DataStore.query(Ranking);
 		//console.log(models);
 
-		await DataStore.clear();
+		//await DataStore.clear();
 
+		//console.log("🚀 ~ GConText.Username:", GConText.Username)
 
-		//const posts = await DataStore.query(Ranking, (c) => c.username.eq(GConText.Username));
-
+		/*
+		try {
+			const models = await DataStore.query(Ranking);
+			console.log('Posts retrieved successfully!', JSON.stringify(models, null, 2));
+		  } catch (error) {
+			console.log('Error retrieving models', error);
+		  }
 		
-		const posts = await DataStore.query(Ranking, (c) => c.username.eq(GConText.Username))
+		
+		  const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.Username))
+		  .then((resp) => {
+			  console.log("🚀 ~ resp_________:", resp)
+		  }).catch((err) => {
+			  console.log(err)
+		  }).finally(() => {
+			
+		  })
+		*/
+		
+		const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.Username))
 			.then((resp) => {
 				console.log("🚀 ~ resp_________:", resp)
 
@@ -159,7 +178,6 @@ const Login = ({ props }) => {
 			}).finally(() => {
 			})
 		
-			
 
 		//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
 
