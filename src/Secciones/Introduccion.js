@@ -182,10 +182,10 @@ const Introduccion = () => {
 					<h1>{terminoLamina ? '✅ Curso Completada' : '😱 Curso Corriendo'}</h1>
 
 					<iframe
-						ref={ref}
+						//ref={ref}
 						//onLoad={onLoad}
 						autoFocus={true}
-						id="myFrame"
+						id="myFrame1"
 						//src={process.env.PUBLIC_URL + 'curso1/asignaciones.html'}
 						//src={`${process.env.PUBLIC_URL}/curso1/asignaciones.html`}
 						src="../curso1/asignaciones.html"
@@ -226,7 +226,7 @@ const Introduccion = () => {
 						ref={ref}
 						//onLoad={onLoad}
 						autoFocus={true}
-						id="myFrame"
+						id="myFrame2"
 						src={'https://intelegoprojects.com/JEDI/curso1/asignaciones.html'}
 						//src={`${process.env.PUBLIC_URL}/curso1/asignaciones.html`}
 						width="100%"
