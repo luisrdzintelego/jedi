@@ -59,7 +59,8 @@ const Introduccion = () => {
 
 	const chkUser = async (id) => {
 		let num = 0;
-		const posts = await DataStore.query(Ranking, c => c.id("eq", id))
+		//const posts = await DataStore.query(Ranking, c => c.id("eq", id))
+		const posts = await DataStore.query(Ranking, (c) => c.id.eq(id))
 			.then((resp) => {
 				console.log("🚀 ~ resp_________:", resp)
 
@@ -181,14 +182,14 @@ const Introduccion = () => {
 					{/* <h1>{terminoLamina ? '✅ Lamina Completada' : '❌ Lamina Corriendo'}</h1> */}
 					<h1>{terminoLamina ? '✅ Curso Completada' : '😱 Curso Corriendo'}</h1>
 
-					{/* <iframe
-						//ref={ref}
+					<iframe
+						ref={ref}
 						//onLoad={onLoad}
 						autoFocus={true}
 						id="myFrame1"
 						//src={process.env.PUBLIC_URL + 'curso1/asignaciones.html'}
 						//src={`${process.env.PUBLIC_URL}/curso1/asignaciones.html`}
-						src="../curso1/asignaciones.html"
+						src="curso1/asignaciones.html"
 						width="100%"
 						//height="100%"
 						//height={height}
@@ -200,7 +201,7 @@ const Introduccion = () => {
 							minHeight: 1000,
 							overflow: "hiden",
 						}}
-					></iframe> */}
+					></iframe>
 
 					{/* <iframe
 						ref={ref}
@@ -222,7 +223,7 @@ const Introduccion = () => {
 						}}
 					></iframe> */}
 
-					<iframe
+					{/* <iframe
 						ref={ref}
 						//onLoad={onLoad}
 						autoFocus={true}
@@ -240,7 +241,7 @@ const Introduccion = () => {
 							minHeight: 1000,
 							overflow: "hiden",
 						}}
-					></iframe>
+					></iframe> */}
 
 					{/* {terminoLamina ? <h1><button onClick={onClick}>🔜 Siguiente Lamina </button></h1> : <></>} */}
 					{/* <button onClick={onClick}>{paused ? "Unpause" : "Pause"}</button> */}
