@@ -2,9 +2,11 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import { VarContext } from '../Context/VarContext';
 import { Link } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons'
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 
 import { useSwipeable } from "react-swipeable";
 
@@ -19,7 +21,15 @@ import { Ranking } from '../models';
 
 const Introduccion = () => {
 
-	const GConText = useContext(VarContext);
+  //---LOGOUT ----//
+  const [CookieId, setCookieId] = useCookies(['idUser']);
+
+  const removeAuth = (name) => {
+    setCookieId(name, '', { path: '/', expires: (new Date(Date.now())) });
+  };
+
+  const GConText = useContext(VarContext);
+
 	//const [page, setPage] = useState(0);
 	const [terminoLamina, setTerminoLamina] = useState(GConText.Status);
 	/*
@@ -150,6 +160,9 @@ const Introduccion = () => {
 		<>
 			<div className="container introduccion-background pb-5">
 				<Nav titulo={"Introduccion"}></Nav>
+
+				<Link className='btn_amarillo' onClick={() => removeAuth('idUser')} to='/' ><FontAwesomeIcon icon={faPowerOff} /> Logout</Link>
+
 				<div style={{ width: "100%" }}>
 
 					{/* <h1>{terminoLamina ? '✅ Lamina Completada' : '❌ Lamina Corriendo'}</h1> */}

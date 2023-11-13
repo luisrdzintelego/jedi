@@ -1,0 +1,315 @@
+type Ranking @aws_iam @aws_api_key {
+  id: ID!
+  username: String!
+  password: String!
+  type: String!
+  grupo: String!
+  puntos: Int
+  tiempo: Int
+  gema1: Boolean
+  gema2: Boolean
+  gema3: Boolean
+  bonus1: Boolean
+  bonus2: Boolean
+  bonus3: Boolean
+  intentos: Int
+  status: Boolean
+  avatar: String
+  nombre: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelRankingConnection @aws_api_key @aws_iam {
+  items: [Ranking]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelRankingFilterInput {
+  id: ModelIDInput
+  username: ModelStringInput
+  password: ModelStringInput
+  type: ModelStringInput
+  grupo: ModelStringInput
+  puntos: ModelIntInput
+  tiempo: ModelIntInput
+  gema1: ModelBooleanInput
+  gema2: ModelBooleanInput
+  gema3: ModelBooleanInput
+  bonus1: ModelBooleanInput
+  bonus2: ModelBooleanInput
+  bonus3: ModelBooleanInput
+  intentos: ModelIntInput
+  status: ModelBooleanInput
+  avatar: ModelStringInput
+  nombre: ModelStringInput
+  and: [ModelRankingFilterInput]
+  or: [ModelRankingFilterInput]
+  not: ModelRankingFilterInput
+  _deleted: ModelBooleanInput
+}
+
+type Query {
+  getRanking(id: ID!): Ranking @aws_api_key @aws_iam
+  listRankings(filter: ModelRankingFilterInput, limit: Int, nextToken: String): ModelRankingConnection @aws_api_key @aws_iam
+  syncRankings(filter: ModelRankingFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelRankingConnection @aws_api_key @aws_iam
+}
+
+input ModelRankingConditionInput {
+  username: ModelStringInput
+  password: ModelStringInput
+  type: ModelStringInput
+  grupo: ModelStringInput
+  puntos: ModelIntInput
+  tiempo: ModelIntInput
+  gema1: ModelBooleanInput
+  gema2: ModelBooleanInput
+  gema3: ModelBooleanInput
+  bonus1: ModelBooleanInput
+  bonus2: ModelBooleanInput
+  bonus3: ModelBooleanInput
+  intentos: ModelIntInput
+  status: ModelBooleanInput
+  avatar: ModelStringInput
+  nombre: ModelStringInput
+  and: [ModelRankingConditionInput]
+  or: [ModelRankingConditionInput]
+  not: ModelRankingConditionInput
+  _deleted: ModelBooleanInput
+}
+
+input CreateRankingInput {
+  id: ID
+  username: String!
+  password: String!
+  type: String!
+  grupo: String!
+  puntos: Int
+  tiempo: Int
+  gema1: Boolean
+  gema2: Boolean
+  gema3: Boolean
+  bonus1: Boolean
+  bonus2: Boolean
+  bonus3: Boolean
+  intentos: Int
+  status: Boolean
+  avatar: String
+  nombre: String
+  _version: Int
+}
+
+input UpdateRankingInput {
+  id: ID!
+  username: String
+  password: String
+  type: String
+  grupo: String
+  puntos: Int
+  tiempo: Int
+  gema1: Boolean
+  gema2: Boolean
+  gema3: Boolean
+  bonus1: Boolean
+  bonus2: Boolean
+  bonus3: Boolean
+  intentos: Int
+  status: Boolean
+  avatar: String
+  nombre: String
+  _version: Int
+}
+
+input DeleteRankingInput {
+  id: ID!
+  _version: Int
+}
+
+type Mutation {
+  createRanking(input: CreateRankingInput!, condition: ModelRankingConditionInput): Ranking @aws_api_key @aws_iam
+  updateRanking(input: UpdateRankingInput!, condition: ModelRankingConditionInput): Ranking @aws_api_key @aws_iam
+  deleteRanking(input: DeleteRankingInput!, condition: ModelRankingConditionInput): Ranking @aws_api_key @aws_iam
+}
+
+input ModelSubscriptionRankingFilterInput {
+  id: ModelSubscriptionIDInput
+  username: ModelSubscriptionStringInput
+  password: ModelSubscriptionStringInput
+  type: ModelSubscriptionStringInput
+  grupo: ModelSubscriptionStringInput
+  puntos: ModelSubscriptionIntInput
+  tiempo: ModelSubscriptionIntInput
+  gema1: ModelSubscriptionBooleanInput
+  gema2: ModelSubscriptionBooleanInput
+  gema3: ModelSubscriptionBooleanInput
+  bonus1: ModelSubscriptionBooleanInput
+  bonus2: ModelSubscriptionBooleanInput
+  bonus3: ModelSubscriptionBooleanInput
+  intentos: ModelSubscriptionIntInput
+  status: ModelSubscriptionBooleanInput
+  avatar: ModelSubscriptionStringInput
+  nombre: ModelSubscriptionStringInput
+  and: [ModelSubscriptionRankingFilterInput]
+  or: [ModelSubscriptionRankingFilterInput]
+  _deleted: ModelBooleanInput
+}
+
+type Subscription {
+  onCreateRanking(filter: ModelSubscriptionRankingFilterInput): Ranking @aws_subscribe(mutations: ["createRanking"]) @aws_api_key @aws_iam
+  onUpdateRanking(filter: ModelSubscriptionRankingFilterInput): Ranking @aws_subscribe(mutations: ["updateRanking"]) @aws_api_key @aws_iam
+  onDeleteRanking(filter: ModelSubscriptionRankingFilterInput): Ranking @aws_subscribe(mutations: ["deleteRanking"]) @aws_api_key @aws_iam
+}

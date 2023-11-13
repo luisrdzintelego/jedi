@@ -1,0 +1,7 @@
+{
+    "AppSyncApiName": "oxxoagile",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "S3DeploymentBucket": "amplify-oxxoagile-main-234913-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/dcb4c87a06bc86c54c48b3d036efa0137e8bc884"
+}
