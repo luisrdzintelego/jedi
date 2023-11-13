@@ -16,7 +16,7 @@ frontend:
   artifacts:
     baseDirectory: proyecto
     files:
-      - proyecto
+      - public
       - '**/*'
   cache:
     paths:

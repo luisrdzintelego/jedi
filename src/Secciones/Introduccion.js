@@ -181,7 +181,7 @@ const Introduccion = () => {
 					{/* <h1>{terminoLamina ? '✅ Lamina Completada' : '❌ Lamina Corriendo'}</h1> */}
 					<h1>{terminoLamina ? '✅ Curso Completada' : '😱 Curso Corriendo'}</h1>
 
-					<iframe
+					{/* <iframe
 						//ref={ref}
 						//onLoad={onLoad}
 						autoFocus={true}
@@ -200,7 +200,7 @@ const Introduccion = () => {
 							minHeight: 1000,
 							overflow: "hiden",
 						}}
-					></iframe>
+					></iframe> */}
 
 					{/* <iframe
 						ref={ref}
