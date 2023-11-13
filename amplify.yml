@@ -16,7 +16,7 @@ frontend:
   artifacts:
     baseDirectory: concat
     files:
-      - /public
+      - public
       - '**/*'
   cache:
     paths:

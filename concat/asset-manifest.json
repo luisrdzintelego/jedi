@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c86ffb37.css",
+    "main.js": "/static/js/main.21e099c1.js",
+    "static/js/787.70a1052d.chunk.js": "/static/js/787.70a1052d.chunk.js",
+    "static/media/Certificado.jpg": "/static/media/Certificado.ff98ee1b82ab44f237e1.jpg",
+    "static/media/fondo_reto3_escritorio.png": "/static/media/fondo_reto3_escritorio.de7e84817c3a17d79def.png",
+    "static/media/fondo_reto2_escritorio.png": "/static/media/fondo_reto2_escritorio.7b8395ceb4962c054719.png",
+    "static/media/img_ayuda_pg.png": "/static/media/img_ayuda_pg.745906980ef4c0af0b3d.png",
+    "static/media/logo_aca.png": "/static/media/logo_aca.ad3082ca6291bff87c62.png",
+    "static/media/avatar2.png": "/static/media/avatar2.7b8f621953e482923bf9.png",
+    "static/media/fondo_reto1_escritorio.png": "/static/media/fondo_reto1_escritorio.b474e5c4bd1537469fdf.png",
+    "static/media/fondo_dashboard_escritorio.png": "/static/media/fondo_dashboard_escritorio.1c104d9590a34d9964e4.png",
+    "static/media/Titulo_curso.png": "/static/media/Titulo_curso.e88db1e6c125d3fb9810.png",
+    "static/media/fondo_login_escritorio.png": "/static/media/fondo_login_escritorio.38534e1f4875264be838.png",
+    "static/media/avatar1.png": "/static/media/avatar1.56954aa8ddb4565c68c3.png",
+    "static/media/avatar3.png": "/static/media/avatar3.1368181c9ba6fb1d51f0.png",
+    "static/media/fondo_instrucciones_escritorio.png": "/static/media/fondo_instrucciones_escritorio.b2f8bb34c2d9aec905b9.png",
+    "static/media/img_retrofinal_bien.png": "/static/media/img_retrofinal_bien.ab81c8c87e61e0b30b84.png",
+    "static/media/img_bienvenida_3.png": "/static/media/img_bienvenida_3.9f2411b6300b017fde68.png",
+    "static/media/img_retrofinal_mal.png": "/static/media/img_retrofinal_mal.de1e9c739f22bd3ca5a7.png",
+    "static/media/fondo_introduccion_escritorio.png": "/static/media/fondo_introduccion_escritorio.64821a05c42bdfe5c7c1.png",
+    "static/media/img_bienvenida_4.png": "/static/media/img_bienvenida_4.22b447ba5d03c94f55a0.png",
+    "static/media/fondo_perfil_escritorio.png": "/static/media/fondo_perfil_escritorio.6df69a7f344e009ac497.png",
+    "static/media/fondo_retros_finales_escritorio.png": "/static/media/fondo_retros_finales_escritorio.f8936622cb05a992ab60.png",
+    "static/media/img_bienvenida_2.png": "/static/media/img_bienvenida_2.80aa513b8280ec524324.png",
+    "static/media/rubi_no.svg": "/static/media/rubi_no.5311898ce863ba2583b1adb451544519.svg",
+    "static/media/rubi_si.svg": "/static/media/rubi_si.1d24f9712059516c1a079cbdbf09abf6.svg",
+    "static/media/diamante_si.svg": "/static/media/diamante_si.bb15d55a74bb788d097e60c9e4ae40ee.svg",
+    "static/media/zafiro_no.svg": "/static/media/zafiro_no.0a82240c57fa47b6a8629d067059d120.svg",
+    "static/media/zafiro_si.svg": "/static/media/zafiro_si.42398949bc71798853c553e752d859a0.svg",
+    "index.html": "/index.html",
+    "main.c86ffb37.css.map": "/static/css/main.c86ffb37.css.map",
+    "main.21e099c1.js.map": "/static/js/main.21e099c1.js.map",
+    "787.70a1052d.chunk.js.map": "/static/js/787.70a1052d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c86ffb37.css",
+    "static/js/main.21e099c1.js"
+  ]
+}
