@@ -14,7 +14,7 @@ frontend:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: proyecto
+    baseDirectory: build
     files:
       - public
       - '**/*'
