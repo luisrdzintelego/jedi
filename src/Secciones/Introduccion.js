@@ -182,7 +182,7 @@ const Introduccion = () => {
 					{/* <h1>{terminoLamina ? '✅ Lamina Completada' : '❌ Lamina Corriendo'}</h1> */}
 					<h1>{terminoLamina ? '✅ Curso Completada' : '😱 Curso Corriendo'}</h1>
 
-					<iframe
+					{/* <iframe
 						ref={ref}
 						//onLoad={onLoad}
 						autoFocus={true}
@@ -201,7 +201,7 @@ const Introduccion = () => {
 							minHeight: 1000,
 							overflow: "hiden",
 						}}
-					></iframe>
+					></iframe> */}
 
 					{/* <iframe
 						ref={ref}
@@ -223,7 +223,7 @@ const Introduccion = () => {
 						}}
 					></iframe> */}
 
-					{/* <iframe
+					<iframe
 						ref={ref}
 						//onLoad={onLoad}
 						autoFocus={true}
@@ -241,7 +241,7 @@ const Introduccion = () => {
 							minHeight: 1000,
 							overflow: "hiden",
 						}}
-					></iframe> */}
+					></iframe>
 
 					{/* {terminoLamina ? <h1><button onClick={onClick}>🔜 Siguiente Lamina </button></h1> : <></>} */}
 					{/* <button onClick={onClick}>{paused ? "Unpause" : "Pause"}</button> */}
