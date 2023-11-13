@@ -214,7 +214,7 @@ const Introduccion = () => {
 						//onLoad={onLoad}
 						autoFocus={true}
 						id="myFrame"
-						src={'curso1/asignaciones.html'}
+						src={'../curso1/asignaciones.html'}
 						//src={`${process.env.PUBLIC_URL}/curso1/asignaciones.html`}
 						width="100%"
 						//height="100%"
