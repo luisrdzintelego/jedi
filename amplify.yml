@@ -16,6 +16,7 @@ frontend:
   artifacts:
     baseDirectory: build
     files:
+      - /public
       - '**/*'
   cache:
     paths:

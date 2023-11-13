@@ -21,14 +21,14 @@ import { Ranking } from '../models';
 
 const Introduccion = () => {
 
+	const GConText = useContext(VarContext);
+
   //---LOGOUT ----//
   const [CookieId, setCookieId] = useCookies(['idUser']);
 
   const removeAuth = (name) => {
     setCookieId(name, '', { path: '/', expires: (new Date(Date.now())) });
   };
-
-  const GConText = useContext(VarContext);
 
 	//const [page, setPage] = useState(0);
 	const [terminoLamina, setTerminoLamina] = useState(GConText.Status);
@@ -40,11 +40,11 @@ const Introduccion = () => {
 	*/
 	const [message, setMessage] = useState('')
 
-	async function udpatesUser(bolean, id) {
-		console.log("🚀 udpates 🚀 ~", bolean, "--" , id)
+	async function udpatesUser( id) {
+		console.log("🚀 udpates 🚀 ~ --" , id)
 		const original = await DataStore.query(Ranking, id);
 		await DataStore.save(Ranking.copyOf(original, updated => {
-			updated.status = bolean
+			updated.status = true
 		})
 		).then((resp) => {
 			console.log("🚀 ~ resp", resp)
@@ -117,6 +117,7 @@ const Introduccion = () => {
 				setMessage(data.message)
 				setTerminoLamina(data.completado)
 
+				console.log(data.completado, " -- " , GConText.UserId )
 				udpatesUser(data.completado, GConText.UserId)
 
 				console.log("message--- ", message)
@@ -155,6 +156,17 @@ const Introduccion = () => {
 	  setHeight(ref.current.contentWindow.document.body.scrollHeight + "px");
 	};
 	*/
+
+	useEffect(() => {
+		//console.log("🚀 ~ vistos", vistos)
+		//setLoading(true)
+		console.log("🚀 ~ CookieId.idUser", CookieId.idUser)
+
+		if (CookieId.idUser !== undefined) {
+			chkUser(CookieId.idUser)
+		}
+
+	}, [])
 
 	return (
 		<>
@@ -208,27 +220,6 @@ const Introduccion = () => {
 							overflow: "hiden",
 						}}
 					></iframe> */}
-
-					<iframe
-						ref={ref}
-						//onLoad={onLoad}
-						autoFocus={true}
-						id="myFrame"
-						src={'asignaciones.html'}
-						//src={`${process.env.PUBLIC_URL}/curso1/asignaciones.html`}
-						width="100%"
-						//height="100%"
-						//height={height}
-						scrolling="yes"
-						frameBorder="0"
-						style={{
-							//maxWidth: 640,
-							width: "100%",
-							minHeight: 1000,
-							overflow: "hiden",
-						}}
-					></iframe>
-
 
 					<iframe
 						ref={ref}
