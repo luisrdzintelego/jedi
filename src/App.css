@@ -140,35 +140,6 @@ body {
     text-decoration: none;
   }
 
-  .btn_amarillo{
-    color: #000;
-    padding: 5px 20px;
-    background-color: #FFC629;
-    border-radius: 50px;
-    border: 2px solid black;
-    font-weight: 700;
-    text-decoration: none;
-    cursor:pointer;
-  }
-
-  .btn_amarillo:disabled{
-    opacity: .3;
-  }
-
-  .btn_amarillo:hover{
-    color: #fff;
-    background-color: #000;
-  }
-
-  /* .btn_amarillo:active{
-    color: #fff;
-    padding: 10px 30px;
-    background-color: #000;
-    border-radius: 50px;
-    border: 2px solid black;
-    font-weight: 700;
-    text-decoration: none;
-  } */
 
   .btn_negro{
     color: #fff;
@@ -190,6 +161,30 @@ body {
     background-color: #222222;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
+
+  .btn_amarillo{
+    color: black;
+    padding: 10px 30px;
+    background-color: #F7A11E;
+    border-radius: 50px;
+    /* border: 2px solid black; */
+    font-weight: 700;
+    text-decoration: none;
+    cursor:pointer;
+    -webkit-box-shadow: -5px 5px 0px -1px #B76F03; 
+    box-shadow: -5px 5px 0px -1px #B76F03;
+  }
+
+  .btn_amarillo:disabled{
+    opacity: .3;
+  }
+
+  .btn_amarillo:hover{
+    color: #B76F03;
+  }
+
+
+
 
 
   hr {
@@ -401,8 +396,13 @@ body {
 
 
 .logo{
-  width: 80px;
+  width: 100px;
 }
+
+.logo_universidad{
+  width: 90px;
+}
+
 
 .input-admin {
   display: block;

@@ -186,7 +186,7 @@ const Login = ({ props }) => {
 
 	const chkAuth = async (id) => {
 		num = 0;
-		await DataStore.clear();
+		//await DataStore.clear();
 		const posts = await DataStore.query(Ranking, c => c.id.eq(id))
 			.then((resp) => {
 				console.log("🚀 ~ resp_________:", resp)
@@ -277,10 +277,10 @@ const Login = ({ props }) => {
 					<div className="col-12 col-lg-6 offset-lg-3 col-md-8 offset-md-2">
 						<div className='login-form'>
 
-							<div className="mt-1">
-								<img src={Img.titulo_curso} alt="" width="150" height="90"></img>
+							<div className="top-login pt-4 pb-4">
+								<img src={Img.Logo_jedi} alt="" width="200"></img>
 							</div>
-							<div className="mt-2">
+							<div className="mt-5">
 								<span className="form-label mb-5"
 									style={{
 										padding: '20px',
@@ -288,7 +288,7 @@ const Login = ({ props }) => {
 										color: "red"
 									}}>Iniciar sesión</span>
 							</div>
-							<div className="mt-2">
+							<div className="mt-3">
 								<div className="container">
 									<div className="row ">
 										<div className="col-sm-12 col-md-3 text-center">
@@ -328,9 +328,9 @@ const Login = ({ props }) => {
 								</div>
 							</div>
 
-							<div className="mt-5 mb-3">
+							<div className="mt-5 mb-5">
 								{/* <Link className='btn_negro' to="/introduccion" onClick={() => chkLogin()}>Ingresar</Link> */}
-								<span className='btn_negro' onClick={() => chkLogin()}>Ingresar</span>
+								<span className='btn_amarillo' onClick={() => chkLogin()}>Ingresar</span>
 							</div>
 
 							{

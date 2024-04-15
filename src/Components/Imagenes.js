@@ -4,6 +4,11 @@ import mal from "../Img/mal.png";
 
 import Certificado from "../Img/Certificado.jpg"
 
+/*JEDI*/
+import Logo_femsa from "../Img/JEDI/logo_femsa_bco.png"
+import Logo_universidad from "../Img/JEDI/logo_universidad.png"
+import Logo_jedi from "../Img/JEDI/logo_jedi.png"
+
 //logo del curso
 import Logo_oxxo from "../Img/logo_oxxo.png"
 import Logo_aca from "../Img/logo_aca.png"
@@ -85,6 +90,7 @@ export {
 	joya1_retro_no,joya2_retro_no,joya3_retro_no,
 	bonus, bonus_d,
 	retro_fina_bien, retro_fina_mal,
+	Logo_femsa,Logo_universidad,Logo_jedi
 	}
 
 

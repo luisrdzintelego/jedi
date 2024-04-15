@@ -242,7 +242,7 @@ const Introduccion = () => {
 							overflow: "hiden",
 						}}
 					></iframe>
-
+z
 					{/* {terminoLamina ? <h1><button onClick={onClick}>🔜 Siguiente Lamina </button></h1> : <></>} */}
 					{/* <button onClick={onClick}>{paused ? "Unpause" : "Pause"}</button> */}
 				</div>

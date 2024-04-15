@@ -14,8 +14,8 @@ import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 
 import './Nav.css';
 
-import Logo_oxxo from "../Img/logo_oxxo.png"
-import Logo_aca from "../Img/logo_aca.png"
+import Logo_femsa from "../Img/JEDI/logo_femsa_bco.png"
+import Logo_universidad from "../Img/JEDI/logo_universidad.png"
 
 import Ayuda_img from "../Img/img_ayuda_pg.png"
 
@@ -31,15 +31,15 @@ const Nav = ({ titulo, btn_admin, btn_dash }) => {
 		<>
 			<div className="container Nav-bar" >
 				<div className="row">
-					<div className="col-10 col-md-11 col-xs-11">
+					<div className="col-12">
 						<div className="row hr" style={{ padding: '10px' }}>
 
 							<div className="col-3 col-md-2 text-left ">
-								<img src={Logo_oxxo} alt="" className='logo'></img>
+								<img src={Logo_femsa} alt="" className='logo'></img>
 							</div>
 
-							<div className="col-9 col-md-4 text-left ">
-								<span className='titulo'>{titulo}</span>
+							<div className="col-6 col-md-8 text-left">
+								{/* <span className='titulo'>{titulo}</span> */}
 							</div>
 
 
@@ -61,11 +61,11 @@ const Nav = ({ titulo, btn_admin, btn_dash }) => {
 							<Link className='btn_amarillo' to="/login"><FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>&nbsp; Cerrar</Link>
 						</div> */}
 
-						</div>
-					</div>
+								<div className="col-3 col-md-2 col-xs-2 text-right">
+									<img src={Logo_universidad} alt="" className='logo_universidad'></img>
+								</div>
 
-					<div className="col-2 col-md-1 col-xs-1">
-						<img src={Logo_aca} alt="" width="50"></img>
+						</div>
 					</div>
 				</div>
 			</div>
