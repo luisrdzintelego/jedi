@@ -67,7 +67,7 @@ const Login = ({ props }) => {
 		const models = await DataStore.query(Ranking);
 		console.log(models);
 
-		await DataStore.clear();
+		//await DataStore.clear();
 
 		console.log("🚀 ~ GConText.Username:", GConText.Username)
 
