@@ -6,7 +6,6 @@
 
 import * as React from "react";
 import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
-import { Ranking } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -82,7 +81,7 @@ export declare type RankingUpdateFormProps = React.PropsWithChildren<{
     overrides?: RankingUpdateFormOverridesProps | undefined | null;
 } & {
     id?: string;
-    ranking?: Ranking;
+    ranking?: any;
     onSubmit?: (fields: RankingUpdateFormInputValues) => RankingUpdateFormInputValues;
     onSuccess?: (fields: RankingUpdateFormInputValues) => void;
     onError?: (fields: RankingUpdateFormInputValues, errorMessage: string) => void;

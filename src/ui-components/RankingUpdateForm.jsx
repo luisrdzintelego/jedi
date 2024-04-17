@@ -13,9 +13,10 @@ import {
   SwitchField,
   TextField,
 } from "@aws-amplify/ui-react";
-import { Ranking } from "../models";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
-import { DataStore } from "aws-amplify";
+import { API } from "aws-amplify";
+import { getRanking } from "../graphql/queries";
+import { updateRanking } from "../graphql/mutations";
 export default function RankingUpdateForm(props) {
   const {
     id: idProp,
@@ -89,7 +90,12 @@ export default function RankingUpdateForm(props) {
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
-        ? await DataStore.query(Ranking, idProp)
+        ? (
+            await API.graphql({
+              query: getRanking.replaceAll("__typename", ""),
+              variables: { id: idProp },
+            })
+          )?.data?.getRanking
         : rankingModelProp;
       setRankingRecord(record);
     };
@@ -144,18 +150,18 @@ export default function RankingUpdateForm(props) {
           password,
           type,
           grupo,
-          puntos,
-          tiempo,
-          gema1,
-          gema2,
-          gema3,
-          bonus1,
-          bonus2,
-          bonus3,
-          intentos,
-          status,
-          avatar,
-          nombre,
+          puntos: puntos ?? null,
+          tiempo: tiempo ?? null,
+          gema1: gema1 ?? null,
+          gema2: gema2 ?? null,
+          gema3: gema3 ?? null,
+          bonus1: bonus1 ?? null,
+          bonus2: bonus2 ?? null,
+          bonus3: bonus3 ?? null,
+          intentos: intentos ?? null,
+          status: status ?? null,
+          avatar: avatar ?? null,
+          nombre: nombre ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -185,17 +191,22 @@ export default function RankingUpdateForm(props) {
               modelFields[key] = null;
             }
           });
-          await DataStore.save(
-            Ranking.copyOf(rankingRecord, (updated) => {
-              Object.assign(updated, modelFields);
-            })
-          );
+          await API.graphql({
+            query: updateRanking.replaceAll("__typename", ""),
+            variables: {
+              input: {
+                id: rankingRecord.id,
+                ...modelFields,
+              },
+            },
+          });
           if (onSuccess) {
             onSuccess(modelFields);
           }
         } catch (err) {
           if (onError) {
-            onError(modelFields, err.message);
+            const messages = err.errors.map((e) => e.message).join("\n");
+            onError(modelFields, messages);
           }
         }
       }}

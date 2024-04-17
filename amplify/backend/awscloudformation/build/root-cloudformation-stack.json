@@ -152,12 +152,12 @@
         }
       }
     },
-    "apioxxoagile": {
+    "apiFEMSAJEDI": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-oxxoagile-main-234913-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-femsajedi-staging-906f7-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "Parameters": {
-          "AppSyncApiName": "oxxoagile",
+          "AppSyncApiName": "FEMSAJEDI",
           "DynamoDBBillingMode": "PAY_PER_REQUEST",
           "DynamoDBEnableServerSideEncryption": false,
           "authRoleName": {
@@ -166,9 +166,9 @@
           "unauthRoleName": {
             "Ref": "UnauthRoleName"
           },
-          "S3DeploymentBucket": "amplify-oxxoagile-main-234913-deployment",
-          "S3DeploymentRootKey": "amplify-appsync-files/dcb4c87a06bc86c54c48b3d036efa0137e8bc884",
-          "env": "main"
+          "S3DeploymentBucket": "amplify-femsajedi-staging-906f7-deployment",
+          "S3DeploymentRootKey": "amplify-appsync-files/a4e233a2a0b5c41d1fcf70381b112e50480809b4",
+          "env": "staging"
         }
       }
     }

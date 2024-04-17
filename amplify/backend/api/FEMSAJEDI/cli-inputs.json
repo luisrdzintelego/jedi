@@ -1,13 +1,12 @@
 {
   "version": 1,
   "serviceConfiguration": {
-    "apiName": "oxxoagile",
+    "apiName": "FEMSAJEDI",
     "serviceName": "AppSync",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "expirationTime": 365,
-      "apiKeyExpirationDate": "2025-04-17T17:02:35.801Z",
-      "keyDescription": "new2024"
+      "keyDescription": "api key description",
+      "expirationTime": 30
     },
     "additionalAuthTypes": [
       {
@@ -16,7 +15,7 @@
     ],
     "conflictResolution": {
       "defaultResolutionStrategy": {
-        "type": "AUTOMERGE"
+        "type": "NONE"
       }
     }
   }

@@ -1,15 +1,15 @@
 {
-  "main": {
+  "staging": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-oxxoagile-main-234913-authRole",
-      "UnauthRoleArn": "arn:aws:iam::865893782971:role/amplify-oxxoagile-main-234913-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::865893782971:role/amplify-oxxoagile-main-234913-authRole",
+      "AuthRoleName": "amplify-femsajedi-staging-906f7-authRole",
+      "UnauthRoleArn": "arn:aws:iam::865893782971:role/amplify-femsajedi-staging-906f7-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::865893782971:role/amplify-femsajedi-staging-906f7-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-oxxoagile-main-234913-deployment",
-      "UnauthRoleName": "amplify-oxxoagile-main-234913-unauthRole",
-      "StackName": "amplify-oxxoagile-main-234913",
-      "StackId": "arn:aws:cloudformation:us-east-1:865893782971:stack/amplify-oxxoagile-main-234913/c056f8c0-8023-11ee-be95-0e2f34435afd",
-      "AmplifyAppId": "d3od54jmone6rm"
+      "DeploymentBucketName": "amplify-femsajedi-staging-906f7-deployment",
+      "UnauthRoleName": "amplify-femsajedi-staging-906f7-unauthRole",
+      "StackName": "amplify-femsajedi-staging-906f7",
+      "StackId": "arn:aws:cloudformation:us-east-1:865893782971:stack/amplify-femsajedi-staging-906f7/6bc1cc70-fce4-11ee-88c1-0e1a1fd503e9",
+      "AmplifyAppId": "d1xq68a2cdrpl8"
     }
   }
 }

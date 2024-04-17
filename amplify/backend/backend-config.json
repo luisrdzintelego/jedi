@@ -1,6 +1,6 @@
 {
   "api": {
-    "oxxoagile": {
+    "FEMSAJEDI": {
       "dependsOn": [],
       "output": {
         "authConfig": {
@@ -11,9 +11,8 @@
           ],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDate": "2025-04-17T17:02:35.801Z",
-              "apiKeyExpirationDays": 365,
-              "description": "new2024"
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
             },
             "authenticationType": "API_KEY"
           }
@@ -22,6 +21,5 @@
       "providerPlugin": "awscloudformation",
       "service": "AppSync"
     }
-  },
-  "auth": {}
+  }
 }
