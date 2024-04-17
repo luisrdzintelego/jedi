@@ -59,21 +59,19 @@ const Login = ({ props }) => {
 			setUser(false)
 		}, 3000);
 	}
-
-
 	
 	let num = 0;
 	const chkLogin = async () => {
 
 		num = 0;
-		//const models = await DataStore.query(Ranking);
-		//console.log(models);
+		const models = await DataStore.query(Ranking);
+		console.log(models);
 
-		//await DataStore.clear();
+		await DataStore.clear();
 
-		//console.log("🚀 ~ GConText.Username:", GConText.Username)
+		console.log("🚀 ~ GConText.Username:", GConText.Username)
 
-		/*
+
 		try {
 			const models = await DataStore.query(Ranking);
 			console.log('Posts retrieved successfully!', JSON.stringify(models, null, 2));
@@ -81,7 +79,7 @@ const Login = ({ props }) => {
 			console.log('Error retrieving models', error);
 		  }
 		
-		
+				/*
 		  const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.Username))
 		  .then((resp) => {
 			  console.log("🚀 ~ resp_________:", resp)
