@@ -2,7 +2,9 @@ import React, { useContext, useState, useEffect, useInput } from 'react';
 import { VarContext } from '../Context/VarContext';
 import { Link, Navigate } from 'react-router-dom';
 
-import { DataStore } from '@aws-amplify/datastore';
+//import { DataStore } from '@aws-amplify/datastore';
+import { DataStore, SortDirection, Predicates } from '@aws-amplify/datastore';
+
 import { Ranking } from '../models';
 import { useCookies } from 'react-cookie';
 
@@ -12,6 +14,8 @@ import * as Img from '../Components/Imagenes'
 import Nav from '../Components/Nav'
 
 const Login = ({ props }) => {
+
+	const [todos, setTodos] = useState([])
 
 	const GConText = useContext(VarContext);
 	const [redirectNow, setRedirectNow] = useState(0);
@@ -61,25 +65,58 @@ const Login = ({ props }) => {
 	}
 	
 	let num = 0;
+
+
+	const chkData = async () => {
+		//setTodos([]);
+		console.log("🚀 ~ chkData----------")
+		return await DataStore.query(Ranking, Predicates.ALL, {
+		  sort: s => s.puntos(SortDirection.DESCENDING).tiempo(SortDirection.ASCENDING)
+		}).then((resp) => {
+		  //setTodos(resp)
+		  //setTodos({ notes: resp })
+		  setTodos(resp.map((option, i) => {
+			return {
+			  id: option.id,
+			  ranking: i + 1,
+			  isOpen: false,
+			  ...option
+			}
+		  }))
+	
+		})
+		  .catch((err) => {
+			console.log(err)
+	
+		  })
+		  .finally(() => {
+			console.log(todos)
+		  })
+	  }
+
+
 	const chkLogin = async () => {
 
 		num = 0;
-		const models = await DataStore.query(Ranking);
-		console.log(models);
 
-		//await DataStore.clear();
+/* 		const clear  = await DataStore.clear()
+		console.log("🚀 ~ clear:", clear)
+		const start = await DataStore.start()
+		console.log("🚀 ~ start:", start)
+
+		const models = await DataStore.query(Ranking);
+		console.log(models); */
 
 		console.log("🚀 ~ GConText.Username:", GConText.Username)
-
-
+		/*
 		try {
-			const models = await DataStore.query(Ranking);
-			console.log('Posts retrieved successfully!', JSON.stringify(models, null, 2));
+			//const models = await DataStore.query(Ranking);
+			//console.log('Posts retrieved successfully!', JSON.stringify(models, null, 2));	
 		  } catch (error) {
 			console.log('Error retrieving models', error);
 		  }
 		
-				/*
+				
 		  const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.Username))
 		  .then((resp) => {
 			  console.log("🚀 ~ resp_________:", resp)
@@ -327,7 +364,7 @@ const Login = ({ props }) => {
 							</div>
 
 							<div className="mt-5 mb-5">
-								{/* <Link className='btn_negro' to="/introduccion" onClick={() => chkLogin()}>Ingresar</Link> */}
+								<Link className='btn_negro' to="/introduccion" onClick={() => chkData()}>chkData</Link>
 								<span className='btn_amarillo' onClick={() => chkLogin()}>Ingresar</span>
 							</div>
 

@@ -8,8 +8,27 @@ export const createRanking = /* GraphQL */ `
   ) {
     createRanking(input: $input, condition: $condition) {
       id
+      username
+      password
+      type
+      grupo
+      puntos
+      tiempo
+      gema1
+      gema2
+      gema3
+      bonus1
+      bonus2
+      bonus3
+      intentos
+      status
+      avatar
+      nombre
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }
@@ -21,8 +40,27 @@ export const updateRanking = /* GraphQL */ `
   ) {
     updateRanking(input: $input, condition: $condition) {
       id
+      username
+      password
+      type
+      grupo
+      puntos
+      tiempo
+      gema1
+      gema2
+      gema3
+      bonus1
+      bonus2
+      bonus3
+      intentos
+      status
+      avatar
+      nombre
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }
@@ -34,8 +72,27 @@ export const deleteRanking = /* GraphQL */ `
   ) {
     deleteRanking(input: $input, condition: $condition) {
       id
+      username
+      password
+      type
+      grupo
+      puntos
+      tiempo
+      gema1
+      gema2
+      gema3
+      bonus1
+      bonus2
+      bonus3
+      intentos
+      status
+      avatar
+      nombre
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       __typename
     }
   }
