@@ -31,8 +31,6 @@ export declare type RankingUpdateFormInputValues = {
     status?: string;
     avatar?: number;
     nombre?: string;
-    createdAt?: string;
-    updatedAt?: string;
 };
 export declare type RankingUpdateFormValidationValues = {
     Punto?: ValidationFunction<number>;
@@ -44,8 +42,6 @@ export declare type RankingUpdateFormValidationValues = {
     status?: ValidationFunction<string>;
     avatar?: ValidationFunction<number>;
     nombre?: ValidationFunction<string>;
-    createdAt?: ValidationFunction<string>;
-    updatedAt?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type RankingUpdateFormOverridesProps = {
@@ -59,8 +55,6 @@ export declare type RankingUpdateFormOverridesProps = {
     status?: PrimitiveOverrideProps<TextFieldProps>;
     avatar?: PrimitiveOverrideProps<TextFieldProps>;
     nombre?: PrimitiveOverrideProps<TextFieldProps>;
-    createdAt?: PrimitiveOverrideProps<TextFieldProps>;
-    updatedAt?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type RankingUpdateFormProps = React.PropsWithChildren<{
     overrides?: RankingUpdateFormOverridesProps | undefined | null;

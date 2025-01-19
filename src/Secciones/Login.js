@@ -15,6 +15,7 @@ import Nav from '../Components/Nav'
 
 const Login = ({ props }) => {
 
+
 	const [todos, setTodos] = useState([])
 
 	const GConText = useContext(VarContext);
@@ -70,8 +71,10 @@ const Login = ({ props }) => {
 	const chkData = async () => {
 		//setTodos([]);
 		console.log("🚀 ~ chkData----------")
+		await DataStore.clear();
 		return await DataStore.query(Ranking, Predicates.ALL, {
-		  sort: s => s.puntos(SortDirection.DESCENDING).tiempo(SortDirection.ASCENDING)
+		  sort: s => s.username(SortDirection.DESCENDING)
+		  //sort: s => s.puntos(SortDirection.DESCENDING).tiempo(SortDirection.ASCENDING)
 		}).then((resp) => {
 		  //setTodos(resp)
 		  //setTodos({ notes: resp })
@@ -108,7 +111,7 @@ const Login = ({ props }) => {
 		console.log(models); */
 
 		console.log("🚀 ~ GConText.Username:", GConText.Username)
-		/*
+		
 		try {
 			//const models = await DataStore.query(Ranking);
 			//console.log('Posts retrieved successfully!', JSON.stringify(models, null, 2));	
@@ -125,9 +128,9 @@ const Login = ({ props }) => {
 		  }).finally(() => {
 			
 		  })
-		*/
 		
-		const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.Username))
+		
+		/* const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.Username))
 			.then((resp) => {
 				console.log("🚀 ~ resp_________:", resp)
 
@@ -211,12 +214,10 @@ const Login = ({ props }) => {
 			}).catch((err) => {
 				console.log(err)
 			}).finally(() => {
-			})
+			}) */
 		
 
 		//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
-
-
 	}
 
 	const chkAuth = async (id) => {
@@ -364,8 +365,9 @@ const Login = ({ props }) => {
 							</div>
 
 							<div className="mt-5 mb-5">
-								<Link className='btn_negro' to="/introduccion" onClick={() => chkData()}>chkData</Link>
+								{/* <Link className='btn_negro' to="/introduccion" onClick={() => chkData()}>chkData</Link> */}
 								<span className='btn_amarillo' onClick={() => chkLogin()}>Ingresar</span>
+								<span className='btn_amarillo' onClick={() => chkData()}>chkData</span>
 							</div>
 
 							{

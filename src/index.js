@@ -7,9 +7,22 @@ import { CookiesProvider } from 'react-cookie';
 //aws configuración
 
 import { Amplify } from 'aws-amplify';
-import config from './aws-exports';
+//import config from './aws-exports';
+//Amplify.configure(config);
 
-Amplify.configure(config);
+//import { Amplify } from 'aws-amplify';
+
+Amplify.configure({
+  API: {
+    GraphQL: {
+      endpoint: 'https://34hjs5sszjfvtded3bu3bbn3pe.appsync-api.us-east-1.amazonaws.com/graphql',
+      region: 'us-east-1',
+      defaultAuthMode: 'apiKey',
+      apiKey: 'da2-nzfqq2gpfrbzfczrcwpqksib7a'
+    }
+  }
+});
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

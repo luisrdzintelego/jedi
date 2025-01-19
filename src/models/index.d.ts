@@ -9,6 +9,7 @@ import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 type EagerRanking = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Ranking, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
   readonly Punto?: number | null;
@@ -27,6 +28,7 @@ type EagerRanking = {
 type LazyRanking = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Ranking, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
   readonly Punto?: number | null;

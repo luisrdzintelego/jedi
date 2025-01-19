@@ -9,7 +9,5 @@ type Ranking @model @auth(rules: [{allow: public}]) {
   status: String
   avatar: Int
   nombre: String
-  createdAt: String
-  updatedAt: String
 }
  

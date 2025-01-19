@@ -32,8 +32,6 @@ export default function RankingCreateForm(props) {
     status: "",
     avatar: "",
     nombre: "",
-    createdAt: "",
-    updatedAt: "",
   };
   const [Punto, setPunto] = React.useState(initialValues.Punto);
   const [username, setUsername] = React.useState(initialValues.username);
@@ -44,8 +42,6 @@ export default function RankingCreateForm(props) {
   const [status, setStatus] = React.useState(initialValues.status);
   const [avatar, setAvatar] = React.useState(initialValues.avatar);
   const [nombre, setNombre] = React.useState(initialValues.nombre);
-  const [createdAt, setCreatedAt] = React.useState(initialValues.createdAt);
-  const [updatedAt, setUpdatedAt] = React.useState(initialValues.updatedAt);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setPunto(initialValues.Punto);
@@ -57,8 +53,6 @@ export default function RankingCreateForm(props) {
     setStatus(initialValues.status);
     setAvatar(initialValues.avatar);
     setNombre(initialValues.nombre);
-    setCreatedAt(initialValues.createdAt);
-    setUpdatedAt(initialValues.updatedAt);
     setErrors({});
   };
   const validations = {
@@ -71,8 +65,6 @@ export default function RankingCreateForm(props) {
     status: [],
     avatar: [],
     nombre: [],
-    createdAt: [],
-    updatedAt: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -109,8 +101,6 @@ export default function RankingCreateForm(props) {
           status,
           avatar,
           nombre,
-          createdAt,
-          updatedAt,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -186,8 +176,6 @@ export default function RankingCreateForm(props) {
               status,
               avatar,
               nombre,
-              createdAt,
-              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.Punto ?? value;
@@ -220,8 +208,6 @@ export default function RankingCreateForm(props) {
               status,
               avatar,
               nombre,
-              createdAt,
-              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.username ?? value;
@@ -254,8 +240,6 @@ export default function RankingCreateForm(props) {
               status,
               avatar,
               nombre,
-              createdAt,
-              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.password ?? value;
@@ -288,8 +272,6 @@ export default function RankingCreateForm(props) {
               status,
               avatar,
               nombre,
-              createdAt,
-              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.type ?? value;
@@ -322,8 +304,6 @@ export default function RankingCreateForm(props) {
               status,
               avatar,
               nombre,
-              createdAt,
-              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.grupo ?? value;
@@ -360,8 +340,6 @@ export default function RankingCreateForm(props) {
               status,
               avatar,
               nombre,
-              createdAt,
-              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.puntos ?? value;
@@ -394,8 +372,6 @@ export default function RankingCreateForm(props) {
               status: value,
               avatar,
               nombre,
-              createdAt,
-              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.status ?? value;
@@ -432,8 +408,6 @@ export default function RankingCreateForm(props) {
               status,
               avatar: value,
               nombre,
-              createdAt,
-              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.avatar ?? value;
@@ -466,8 +440,6 @@ export default function RankingCreateForm(props) {
               status,
               avatar,
               nombre: value,
-              createdAt,
-              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.nombre ?? value;
@@ -481,74 +453,6 @@ export default function RankingCreateForm(props) {
         errorMessage={errors.nombre?.errorMessage}
         hasError={errors.nombre?.hasError}
         {...getOverrideProps(overrides, "nombre")}
-      ></TextField>
-      <TextField
-        label="Created at"
-        isRequired={false}
-        isReadOnly={false}
-        value={createdAt}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              Punto,
-              username,
-              password,
-              type,
-              grupo,
-              puntos,
-              status,
-              avatar,
-              nombre,
-              createdAt: value,
-              updatedAt,
-            };
-            const result = onChange(modelFields);
-            value = result?.createdAt ?? value;
-          }
-          if (errors.createdAt?.hasError) {
-            runValidationTasks("createdAt", value);
-          }
-          setCreatedAt(value);
-        }}
-        onBlur={() => runValidationTasks("createdAt", createdAt)}
-        errorMessage={errors.createdAt?.errorMessage}
-        hasError={errors.createdAt?.hasError}
-        {...getOverrideProps(overrides, "createdAt")}
-      ></TextField>
-      <TextField
-        label="Updated at"
-        isRequired={false}
-        isReadOnly={false}
-        value={updatedAt}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              Punto,
-              username,
-              password,
-              type,
-              grupo,
-              puntos,
-              status,
-              avatar,
-              nombre,
-              createdAt,
-              updatedAt: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.updatedAt ?? value;
-          }
-          if (errors.updatedAt?.hasError) {
-            runValidationTasks("updatedAt", value);
-          }
-          setUpdatedAt(value);
-        }}
-        onBlur={() => runValidationTasks("updatedAt", updatedAt)}
-        errorMessage={errors.updatedAt?.errorMessage}
-        hasError={errors.updatedAt?.hasError}
-        {...getOverrideProps(overrides, "updatedAt")}
       ></TextField>
       <Flex
         justifyContent="space-between"
