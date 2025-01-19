@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-jedi-staging-e92b6-authRole",
+      "UnauthRoleArn": "arn:aws:iam::146646040318:role/amplify-jedi-staging-e92b6-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::146646040318:role/amplify-jedi-staging-e92b6-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-jedi-staging-e92b6-deployment",
+      "UnauthRoleName": "amplify-jedi-staging-e92b6-unauthRole",
+      "StackName": "amplify-jedi-staging-e92b6",
+      "StackId": "arn:aws:cloudformation:us-east-1:146646040318:stack/amplify-jedi-staging-e92b6/407f6d60-d62d-11ef-8245-12885d0a2b41",
+      "AmplifyAppId": "d34dped6g4yozl"
+    },
+    "categories": {
+      "api": {
+        "Jedi": {}
+      }
+    }
+  }
+}

@@ -4,8 +4,13 @@ import { VarContext } from '../Context/VarContext';
 
 import { useCookies } from 'react-cookie';
 
+  //amplify Gen1
 import { DataStore, SortDirection, Predicates } from '@aws-amplify/datastore';
 import { Ranking } from '../models';
+
+  //amplify Gen2
+//import { generateClient } from "aws-amplify/api";
+//import { listRankings, getRanking } from "./graphql/queries";
 
 import { DownloadTableExcel } from 'react-export-table-to-excel';
 
@@ -33,6 +38,9 @@ import Nav from '../Components/Nav'
 
 const Admin = () => {
 
+  //amplify Gen2
+  //const client = generateClient()
+
   //---LOGOUT ----//
   const [CookieId, setCookieId] = useCookies(['idUser']);
 
@@ -58,6 +66,21 @@ const Admin = () => {
   const chkData = async () => {
     //setTodos([]);
     console.log("🚀 ~ chkData----------")
+
+      //amplify Gen2  
+      /* // List all items
+      const allRankings = await client.graphql({
+        query: listRankings
+      });
+      console.log(allRanking);
+
+      // Get a specific item
+      const oneRanking = await client.graphql({
+        query: getRanking,
+        variables: { id: 'YOUR_RECORD_ID' }
+      }); */
+
+
     return await DataStore.query(Ranking, Predicates.ALL, {
       sort: s => s.puntos(SortDirection.DESCENDING).tiempo(SortDirection.ASCENDING)
     }).then((resp) => {
@@ -66,7 +89,7 @@ const Admin = () => {
       setTodos(resp.map((option, i) => {
         return {
           id: option.id,
-          ranking: i + 1,
+          Ranking: i + 1,
           isOpen: false,
           ...option
         }
@@ -460,7 +483,7 @@ const Admin = () => {
 
                 {/* <ExcelFile element={<span className='btn_amarillo me-1'><FontAwesomeIcon icon={faDownload}/> Descargar Excel</span>} filename='Usuarios'>
                     <ExcelSheet data={filteredTodos} name='Usuarios'>
-                    <ExcelColum label='# Ranking' value='ranking'/>
+                    <ExcelColum label='# Ranking' value='Ranking'/>
                     <ExcelColum label='Grupo' value='grupo'/>
                     <ExcelColum label='Usuario' value='username'/>
                     <ExcelColum label='Nombre' value='nombre'/>
