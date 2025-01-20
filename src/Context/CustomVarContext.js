@@ -73,7 +73,7 @@ export const CustomVarContext = ({children}) => {
 	const [TotalAvance, setTotalAvance] = useState (10)
 	const [ConteoAvance, setConteoAvance] = useState (0)
 
-	const [Version, setVersion] = useState ('1.62 server')
+	const [Version, setVersion] = useState ('v4_2025 server')
 	//----
 
 	//DATOA DE SE LLENAN DE LA BASE

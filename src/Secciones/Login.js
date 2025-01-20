@@ -71,7 +71,6 @@ const Login = ({ props }) => {
 	const chkData = async () => {
 		//setTodos([]);
 		console.log("🚀 ~ chkData----------")
-		await DataStore.clear();
 		return await DataStore.query(Ranking, Predicates.ALL, {
 		  sort: s => s.username(SortDirection.DESCENDING)
 		  //sort: s => s.puntos(SortDirection.DESCENDING).tiempo(SortDirection.ASCENDING)
@@ -120,17 +119,17 @@ const Login = ({ props }) => {
 		  }
 		
 				
-		  const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.Username))
+		  /* const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.Username))
 		  .then((resp) => {
 			  console.log("🚀 ~ resp_________:", resp)
 		  }).catch((err) => {
 			  console.log(err)
 		  }).finally(() => {
 			
-		  })
+		  }) */
 		
 		
-		/* const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.Username))
+		const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.Username))
 			.then((resp) => {
 				console.log("🚀 ~ resp_________:", resp)
 
@@ -214,7 +213,7 @@ const Login = ({ props }) => {
 			}).catch((err) => {
 				console.log(err)
 			}).finally(() => {
-			}) */
+			})
 		
 
 		//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)

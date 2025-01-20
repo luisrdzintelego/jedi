@@ -45,7 +45,7 @@ const Introduccion = () => {
 		console.log("🚀 udpates 🚀 ~ --bol -- " , id)
 		const original = await DataStore.query(Ranking, id);
 		await DataStore.save(Ranking.copyOf(original, updated => {
-			updated.status = bol
+			updated.status = 'true'
 		})
 		).then((resp) => {
 			console.log("🚀 ~ resp", resp)
@@ -134,7 +134,7 @@ const Introduccion = () => {
 		const data = JSON.parse(event.data)
 		console.log("Hello World?", data)
 
-		//zconsole.log('ev', ev)
+		//console.log('ev', ev)
 		if (typeof ev.data !== 'object') return
 		if (!ev.data.type) return
 		if (ev.data.type !== 'button-click') return

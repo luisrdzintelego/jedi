@@ -7,11 +7,9 @@
 /* eslint-disable */
 import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import { Ranking } from "../models";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
-import { generateClient } from "aws-amplify/api";
-import { getRanking } from "../graphql/queries";
-import { updateRanking } from "../graphql/mutations";
-const client = generateClient();
+import { DataStore } from "aws-amplify/datastore";
 export default function RankingUpdateForm(props) {
   const {
     id: idProp,
@@ -64,12 +62,7 @@ export default function RankingUpdateForm(props) {
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
-        ? (
-            await client.graphql({
-              query: getRanking.replaceAll("__typename", ""),
-              variables: { id: idProp },
-            })
-          )?.data?.getRanking
+        ? await DataStore.query(Ranking, idProp)
         : rankingModelProp;
       setRankingRecord(record);
     };
@@ -113,15 +106,15 @@ export default function RankingUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          Punto: Punto ?? null,
-          username: username ?? null,
-          password: password ?? null,
-          type: type ?? null,
-          grupo: grupo ?? null,
-          puntos: puntos ?? null,
-          status: status ?? null,
-          avatar: avatar ?? null,
-          nombre: nombre ?? null,
+          Punto,
+          username,
+          password,
+          type,
+          grupo,
+          puntos,
+          status,
+          avatar,
+          nombre,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -151,22 +144,17 @@ export default function RankingUpdateForm(props) {
               modelFields[key] = null;
             }
           });
-          await client.graphql({
-            query: updateRanking.replaceAll("__typename", ""),
-            variables: {
-              input: {
-                id: rankingRecord.id,
-                ...modelFields,
-              },
-            },
-          });
+          await DataStore.save(
+            Ranking.copyOf(rankingRecord, (updated) => {
+              Object.assign(updated, modelFields);
+            })
+          );
           if (onSuccess) {
             onSuccess(modelFields);
           }
         } catch (err) {
           if (onError) {
-            const messages = err.errors.map((e) => e.message).join("\n");
-            onError(modelFields, messages);
+            onError(modelFields, err.message);
           }
         }
       }}

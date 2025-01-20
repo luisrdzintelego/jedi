@@ -8,9 +8,6 @@ import { useCookies } from 'react-cookie';
 import { DataStore, SortDirection, Predicates } from '@aws-amplify/datastore';
 import { Ranking } from '../models';
 
-  //amplify Gen2
-//import { generateClient } from "aws-amplify/api";
-//import { listRankings, getRanking } from "./graphql/queries";
 
 import { DownloadTableExcel } from 'react-export-table-to-excel';
 
@@ -38,9 +35,6 @@ import Nav from '../Components/Nav'
 
 const Admin = () => {
 
-  //amplify Gen2
-  //const client = generateClient()
-
   //---LOGOUT ----//
   const [CookieId, setCookieId] = useCookies(['idUser']);
 
@@ -67,22 +61,11 @@ const Admin = () => {
     //setTodos([]);
     console.log("🚀 ~ chkData----------")
 
-      //amplify Gen2  
-      /* // List all items
-      const allRankings = await client.graphql({
-        query: listRankings
-      });
-      console.log(allRanking);
-
-      // Get a specific item
-      const oneRanking = await client.graphql({
-        query: getRanking,
-        variables: { id: 'YOUR_RECORD_ID' }
-      }); */
 
 
     return await DataStore.query(Ranking, Predicates.ALL, {
-      sort: s => s.puntos(SortDirection.DESCENDING).tiempo(SortDirection.ASCENDING)
+      //sort: s => s.puntos(SortDirection.DESCENDING).tiempo(SortDirection.ASCENDING)
+      sort: s => s.nombre(SortDirection.DESCENDING)
     }).then((resp) => {
       //setTodos(resp)
       //setTodos({ notes: resp })
