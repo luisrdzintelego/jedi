@@ -10,13 +10,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "Punto": {
-                    "name": "Punto",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "username": {
                     "name": "username",
                     "isArray": false,
@@ -45,17 +38,10 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "puntos": {
-                    "name": "puntos",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "status": {
                     "name": "status",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Boolean",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -68,6 +54,13 @@ export const schema = {
                 },
                 "nombre": {
                     "name": "nombre",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "bookmark": {
+                    "name": "bookmark",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -119,5 +112,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "d8a6e8d0430db905b2e8a7f93efd0a4c"
+    "version": "efbda83166d6b89f18a78c849a9ea817"
 };

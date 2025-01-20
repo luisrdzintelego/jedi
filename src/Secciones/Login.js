@@ -109,7 +109,7 @@ const Login = ({ props }) => {
 		const models = await DataStore.query(Ranking);
 		console.log(models); */
 
-		console.log("🚀 ~ GConText.Username:", GConText.Username)
+		console.log("🚀 ~ GConText.username:", GConText.username)
 		
 		try {
 			//const models = await DataStore.query(Ranking);
@@ -119,7 +119,7 @@ const Login = ({ props }) => {
 		  }
 		
 				
-		  /* const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.Username))
+		  /* const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.username))
 		  .then((resp) => {
 			  console.log("🚀 ~ resp_________:", resp)
 		  }).catch((err) => {
@@ -129,7 +129,7 @@ const Login = ({ props }) => {
 		  }) */
 		
 		
-		const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.Username))
+		const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.username))
 			.then((resp) => {
 				console.log("🚀 ~ resp_________:", resp)
 
@@ -137,7 +137,7 @@ const Login = ({ props }) => {
 
 				if (resp.length >= 1) {
 					console.log("🚀 ~ SI EXISTE:", resp[0].username)
-					if (GConText.Username === resp[0].username) {
+					if (GConText.username === resp[0].username) {
 						console.log("🚀 ~ USUARIO COINCIDEN CON LOS INPUTS:")
 						setUser(true);
 					} else {
@@ -145,11 +145,11 @@ const Login = ({ props }) => {
 						setUser(false);
 						num = 1;
 					}
-					if (GConText.Password === resp[0].password) {
-						console.log("🚀 ~ PASSWORD COINCIDEN CON LOS INPUTS:")
+					if (GConText.password === resp[0].password) {
+						console.log("🚀 ~ password COINCIDEN CON LOS INPUTS:")
 						setPass(true);
 					} else {
-						console.log("🚀 ~ PASSWORD NO COINCIDE:")
+						console.log("🚀 ~ password NO COINCIDE:")
 						setPass(false);
 						num = 1;
 					}
@@ -171,7 +171,7 @@ const Login = ({ props }) => {
 					GConText.setType(resp[0].type);
 					//DATOS QUE CAMBIAN
 					GConText.setAvatar(resp[0].avatar);
-					GConText.setPuntos(resp[0].puntos);
+					/* GConText.setPuntos(resp[0].puntos);
 					GConText.setTiempo(resp[0].tiempo);
 					GConText.setJoya1(resp[0].gema1);
 					GConText.setJoya2(resp[0].gema2);
@@ -179,7 +179,7 @@ const Login = ({ props }) => {
 					GConText.setBonus1(resp[0].bonus1);
 					GConText.setBonus2(resp[0].bonus2);
 					GConText.setBonus3(resp[0].bonus3);
-					GConText.setIntentos(resp[0].intentos);
+					GConText.setIntentos(resp[0].intentos); */
 					GConText.setStatus(resp[0].status);
 
 					console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
@@ -191,7 +191,7 @@ const Login = ({ props }) => {
 					console.log("🚀 ~ dB.type", resp[0].type)
 
 					console.log("🚀 ~ dB.avatar", resp[0].avatar)
-					console.log("🚀 ~ dB.puntos", resp[0].puntos)
+					/* console.log("🚀 ~ dB.puntos", resp[0].puntos)
 					console.log("🚀 ~ dB.tiempo", resp[0].tiempo)
 					console.log("🚀 ~ dB.gema1", resp[0].gema1)
 					console.log("🚀 ~ dB.gema2", resp[0].gema2)
@@ -199,7 +199,7 @@ const Login = ({ props }) => {
 					console.log("🚀 ~ dB.bonus1", resp[0].bonus1)
 					console.log("🚀 ~ dB.bonus2", resp[0].bonus2)
 					console.log("🚀 ~ dB.bonus3", resp[0].bonus3)
-					console.log("🚀 ~ dB.intentos", resp[0].intentos)
+					console.log("🚀 ~ dB.intentos", resp[0].intentos) */
 					console.log("🚀 ~ dB.status", resp[0].status)
 
 					console.log("~~~~~~~ ---------------- ~~~~~~~")
@@ -216,7 +216,7 @@ const Login = ({ props }) => {
 			})
 		
 
-		//GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
+		//GConText.username === 'admin' && GConText.password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
 	}
 
 	const chkAuth = async (id) => {
@@ -242,16 +242,16 @@ const Login = ({ props }) => {
 					GConText.setGrupo(resp[0].grupo);
 					GConText.setType(resp[0].type);
 					//DATOS QUE CAMBIAN
-					//GConText.setAvatar(resp[0].avatar);
-					//GConText.setPuntos(resp[0].puntos);
-					//GConText.setTiempo(resp[0].tiempo);
-					//GConText.setJoya1(resp[0].gema1);
-					//GConText.setJoya2(resp[0].gema2);
-					//GConText.setJoya3(resp[0].gema3);
-					//GConText.setBonus1(resp[0].bonus1);
-					//GConText.setBonus2(resp[0].bonus2);
-					//GConText.setBonus3(resp[0].bonus3);
-					//GConText.setIntentos(resp[0].intentos);
+					GConText.setAvatar(resp[0].avatar);
+					/* GConText.setPuntos(resp[0].puntos);
+					GConText.setTiempo(resp[0].tiempo);
+					GConText.setJoya1(resp[0].gema1);
+					GConText.setJoya2(resp[0].gema2);
+					GConText.setJoya3(resp[0].gema3);
+					GConText.setBonus1(resp[0].bonus1);
+					GConText.setBonus2(resp[0].bonus2);
+					GConText.setBonus3(resp[0].bonus3);
+					GConText.setIntentos(resp[0].intentos); */
 					GConText.setStatus(resp[0].status);
 
 					console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
@@ -278,8 +278,8 @@ const Login = ({ props }) => {
 
 					setAuth(resp[0].id)
 					//(resp[0].id,400,'puntos')
-					GConText.Username === 'admin' && GConText.Password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
-					//resp[0].type === 'admin' ? setRedirectNow(1) : setRedirectNow(3)
+					//GConText.username === 'admin' && GConText.password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
+					resp[0].type === 'admin' ? setRedirectNow(1) : setRedirectNow(2)
 				}
 			}).catch((err) => {
 				console.log(err)
@@ -366,7 +366,7 @@ const Login = ({ props }) => {
 							<div className="mt-5 mb-5">
 								{/* <Link className='btn_negro' to="/introduccion" onClick={() => chkData()}>chkData</Link> */}
 								<span className='btn_amarillo' onClick={() => chkLogin()}>Ingresar</span>
-								<span className='btn_amarillo' onClick={() => chkData()}>chkData</span>
+								{/* <span className='btn_amarillo' onClick={() => chkData()}>chkData</span> */}
 							</div>
 
 							{

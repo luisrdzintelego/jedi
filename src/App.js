@@ -6,6 +6,7 @@ import { VarContext } from './Context/VarContext';
 //BrowserRouter: -- puedes usar la barra de direccion para ir a los componentes
 //MemoryRouter: -- solo sirven los botones generados en reacj para moverte entre componentes
 import {BrowserRouter, Routes,Route, MemoryRouter} from "react-router-dom";
+
 import { CustomVarContext } from './Context/CustomVarContext';
 
 

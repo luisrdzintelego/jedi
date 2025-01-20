@@ -5,7 +5,7 @@ import {VarContext} from './VarContext'
 export const CustomVarContext = ({children}) => {
 
 
-	const iniBase = [
+	/* const iniBase = [
 		{
 			Nombre: 'Learner OXXO',
 			User: 'OLearner',
@@ -65,53 +65,49 @@ export const CustomVarContext = ({children}) => {
 			Puntos: 380,
 		  },
 		  
-	]
+	] */
 	
-	const [Base, setBase] = useState(() => iniBase)
+	//const [Base, setBase] = useState(() => iniBase)
 
 	//VARIABLES DEL JUEGO
 	const [TotalAvance, setTotalAvance] = useState (10)
 	const [ConteoAvance, setConteoAvance] = useState (0)
 
-	const [Version, setVersion] = useState ('v4_2025 server')
+	const [bookmark, setBookmark] = useState ('')
+
+	const [version, setVersion] = useState ('v4_2025 server')
 	//----
 
 	//DATOA DE SE LLENAN DE LA BASE
-	const [UserId, setUserId] = useState ('')
-	const [Username, setUsername] = useState ('')
-	const [Password, setPassword] = useState ('')
-	const [Nombre, setNombre] = useState ('')
-	const [Grupo, setGrupo] = useState ('')
-	const [Type, setType] = useState ('')
+	const [userId, setUserId] = useState ('')
+	const [username, setUsername] = useState ('')
+	const [password, setPassword] = useState ('')
+	const [nombre, setNombre] = useState ('')
+	const [grupo, setGrupo] = useState ('')
+	const [type, setType] = useState ('')
 
-	const [Avatar, setAvatar] = useState ('')
-	const [Puntos, setPuntos] = useState (0)
-	const [Tiempo, setTiempo] = useState (0)
-
+	const [avatar, setAvatar] = useState ('')
+	/* const [Puntos, setPuntos] = useState (0)
+	const [Tiempo, setTiempo] = useState (0
 	const [Joya1, setJoya1] = useState (false)
 	const [Joya2, setJoya2] = useState (false)
 	const [Joya3, setJoya3] = useState (false)
 	const [Bonus1, setBonus1] = useState (false)
 	const [Bonus2, setBonus2] = useState (false)
-	const [Bonus3, setBonus3] = useState (false)
+	const [Bonus3, setBonus3] = useState (false) 
+	const [ranking, setRanking] = useState (0)*/
 
-	const [Status, setStatus] = useState (false)
-	const [Intentos, setIntentos] = useState (0)
+	const [status, setStatus] = useState (false)
 	
-	const [Ranking, setRanking] = useState (0)
-	//----
-
 	// DATOS DE EL JUEGO PERO NO VAN A LA ABSE
-	const [PuntosEval1, setPuntosEval1] = useState (0)
+	/* const [PuntosEval1, setPuntosEval1] = useState (0)
 	const [PuntosEval2, setPuntosEval2] = useState (0)
 	const [PuntosEval3, setPuntosEval3] = useState (0)
 	const [TiempoEval1, setTiempoEval1] = useState (0)
 	const [TiempoEval2, setTiempoEval2] = useState (0)
 	const [TiempoEval3, setTiempoEval3] = useState (0)
-	///----
-
 	const [Bonus, setBonus] = useState (false)
-	const [Counter, setCounter] = useState (0)
+	const [Counter, setCounter] = useState (0) */
 
 
 
@@ -127,7 +123,7 @@ export const CustomVarContext = ({children}) => {
 	*/
 
 	const resetAll = () => {
-		setPuntos(0)
+		/* setPuntos(0)
 		setTiempo(0)
 		//setBonus(false)
 		setPuntosEval1(0)
@@ -141,7 +137,7 @@ export const CustomVarContext = ({children}) => {
 		setJoya3(false)
 		setBonus1(false)
 		setBonus2(false)
-		setBonus3(false)
+		setBonus3(false) */
 		//pone el conteo del avancer en 0
 		setConteoAvance(0)
 
@@ -199,38 +195,37 @@ export const CustomVarContext = ({children}) => {
 		//--
 		TotalAvance,setTotalAvance,ConteoAvance,setConteoAvance,
 		//--
-		UserId,setUserId,
-		Username,setUsername,
-		Password,setPassword,
-		Nombre,setNombre,
-		Grupo,setGrupo,
-		Type,setType,
-		Version,setVersion,
-
-		Avatar,setAvatar,
-		Puntos,setPuntos,
+		userId,setUserId,
+		username,setUsername,
+		password,setPassword,
+		nombre,setNombre,
+		grupo,setGrupo,
+		type,setType,
+		version,setVersion,
+		avatar,setAvatar,
+		/* Puntos,setPuntos,
 		Tiempo,setTiempo,
 		Joya1,setJoya1,
 		Joya2,setJoya2,
 		Joya3,setJoya3,
 		Bonus1,setBonus1,
 		Bonus2,setBonus2,
-		Bonus3,setBonus3,
-		Intentos,setIntentos,
-		Status,setStatus,
-		Ranking,setRanking,
+		Bonus3,setBonus3, */
+		bookmark, setBookmark,
+		status,setStatus,
+		/* ranking,setRanking, */
 		resetAll,
 		//TEST-
-		Base,setBase,
+		//Base,setBase,
 		//--NO SE USAN
-		Bonus,setBonus,
+		/* Bonus,setBonus,
 		PuntosEval1,setPuntosEval1,
 		PuntosEval2,setPuntosEval2,
 		PuntosEval3,setPuntosEval3,
 		TiempoEval1,setTiempoEval1,
 		TiempoEval2,setTiempoEval2,
 		TiempoEval3,setTiempoEval3,
-		Counter,setCounter,
+		Counter,setCounter, */
 		//NOSE USAN
 		productosCart, 
 		addItem, 

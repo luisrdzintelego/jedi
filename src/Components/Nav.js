@@ -42,7 +42,6 @@ const Nav = ({ titulo, btn_admin, btn_dash }) => {
 								{/* <span className='titulo'>{titulo}</span> */}
 							</div>
 
-
 							<div style={{ display: btn_dash === true ? 'block' : 'none' }} className={`${btn_dash === true ? "d-none d-sm-block" : ""} col-12 col-md-6 text-right `}>
 								<span className='btn_amarillo me-1' data-bs-toggle="modal" data-bs-target="#exampleModal"><FontAwesomeIcon icon={faQuestion}></FontAwesomeIcon>&nbsp; Ayuda</span>
 								<Link className='btn_amarillo me-1' to="/ranking"><FontAwesomeIcon icon={faStar}></FontAwesomeIcon>&nbsp; Ranking</Link>
@@ -70,7 +69,7 @@ const Nav = ({ titulo, btn_admin, btn_dash }) => {
 				</div>
 			</div>
 
-			<div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			{/* <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div className="modal-dialog modal-xl">
 					<div className="modal-content">
 						<div className="modal-header">
@@ -82,7 +81,7 @@ const Nav = ({ titulo, btn_admin, btn_dash }) => {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> */}
 
 		</>
 	)

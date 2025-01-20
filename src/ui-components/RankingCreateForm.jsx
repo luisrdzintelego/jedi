@@ -6,7 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Flex,
+  Grid,
+  SwitchField,
+  TextField,
+} from "@aws-amplify/ui-react";
 import { Ranking } from "../models";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { DataStore } from "aws-amplify/datastore";
@@ -22,48 +28,44 @@ export default function RankingCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    Punto: "",
     username: "",
     password: "",
     type: "",
     grupo: "",
-    puntos: "",
-    status: "",
+    status: false,
     avatar: "",
     nombre: "",
+    bookmark: "",
   };
-  const [Punto, setPunto] = React.useState(initialValues.Punto);
   const [username, setUsername] = React.useState(initialValues.username);
   const [password, setPassword] = React.useState(initialValues.password);
   const [type, setType] = React.useState(initialValues.type);
   const [grupo, setGrupo] = React.useState(initialValues.grupo);
-  const [puntos, setPuntos] = React.useState(initialValues.puntos);
   const [status, setStatus] = React.useState(initialValues.status);
   const [avatar, setAvatar] = React.useState(initialValues.avatar);
   const [nombre, setNombre] = React.useState(initialValues.nombre);
+  const [bookmark, setBookmark] = React.useState(initialValues.bookmark);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setPunto(initialValues.Punto);
     setUsername(initialValues.username);
     setPassword(initialValues.password);
     setType(initialValues.type);
     setGrupo(initialValues.grupo);
-    setPuntos(initialValues.puntos);
     setStatus(initialValues.status);
     setAvatar(initialValues.avatar);
     setNombre(initialValues.nombre);
+    setBookmark(initialValues.bookmark);
     setErrors({});
   };
   const validations = {
-    Punto: [],
     username: [],
     password: [],
     type: [],
     grupo: [],
-    puntos: [],
     status: [],
     avatar: [],
     nombre: [],
+    bookmark: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -91,15 +93,14 @@ export default function RankingCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          Punto,
           username,
           password,
           type,
           grupo,
-          puntos,
           status,
           avatar,
           nombre,
+          bookmark,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -146,42 +147,6 @@ export default function RankingCreateForm(props) {
       {...rest}
     >
       <TextField
-        label="Punto"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={Punto}
-        onChange={(e) => {
-          let value = isNaN(parseInt(e.target.value))
-            ? e.target.value
-            : parseInt(e.target.value);
-          if (onChange) {
-            const modelFields = {
-              Punto: value,
-              username,
-              password,
-              type,
-              grupo,
-              puntos,
-              status,
-              avatar,
-              nombre,
-            };
-            const result = onChange(modelFields);
-            value = result?.Punto ?? value;
-          }
-          if (errors.Punto?.hasError) {
-            runValidationTasks("Punto", value);
-          }
-          setPunto(value);
-        }}
-        onBlur={() => runValidationTasks("Punto", Punto)}
-        errorMessage={errors.Punto?.errorMessage}
-        hasError={errors.Punto?.hasError}
-        {...getOverrideProps(overrides, "Punto")}
-      ></TextField>
-      <TextField
         label="Username"
         isRequired={false}
         isReadOnly={false}
@@ -190,15 +155,14 @@ export default function RankingCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              Punto,
               username: value,
               password,
               type,
               grupo,
-              puntos,
               status,
               avatar,
               nombre,
+              bookmark,
             };
             const result = onChange(modelFields);
             value = result?.username ?? value;
@@ -222,15 +186,14 @@ export default function RankingCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              Punto,
               username,
               password: value,
               type,
               grupo,
-              puntos,
               status,
               avatar,
               nombre,
+              bookmark,
             };
             const result = onChange(modelFields);
             value = result?.password ?? value;
@@ -254,15 +217,14 @@ export default function RankingCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              Punto,
               username,
               password,
               type: value,
               grupo,
-              puntos,
               status,
               avatar,
               nombre,
+              bookmark,
             };
             const result = onChange(modelFields);
             value = result?.type ?? value;
@@ -286,15 +248,14 @@ export default function RankingCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              Punto,
               username,
               password,
               type,
               grupo: value,
-              puntos,
               status,
               avatar,
               nombre,
+              bookmark,
             };
             const result = onChange(modelFields);
             value = result?.grupo ?? value;
@@ -309,60 +270,23 @@ export default function RankingCreateForm(props) {
         hasError={errors.grupo?.hasError}
         {...getOverrideProps(overrides, "grupo")}
       ></TextField>
-      <TextField
-        label="Puntos"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={puntos}
-        onChange={(e) => {
-          let value = isNaN(parseInt(e.target.value))
-            ? e.target.value
-            : parseInt(e.target.value);
-          if (onChange) {
-            const modelFields = {
-              Punto,
-              username,
-              password,
-              type,
-              grupo,
-              puntos: value,
-              status,
-              avatar,
-              nombre,
-            };
-            const result = onChange(modelFields);
-            value = result?.puntos ?? value;
-          }
-          if (errors.puntos?.hasError) {
-            runValidationTasks("puntos", value);
-          }
-          setPuntos(value);
-        }}
-        onBlur={() => runValidationTasks("puntos", puntos)}
-        errorMessage={errors.puntos?.errorMessage}
-        hasError={errors.puntos?.hasError}
-        {...getOverrideProps(overrides, "puntos")}
-      ></TextField>
-      <TextField
+      <SwitchField
         label="Status"
-        isRequired={false}
-        isReadOnly={false}
-        value={status}
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={status}
         onChange={(e) => {
-          let { value } = e.target;
+          let value = e.target.checked;
           if (onChange) {
             const modelFields = {
-              Punto,
               username,
               password,
               type,
               grupo,
-              puntos,
               status: value,
               avatar,
               nombre,
+              bookmark,
             };
             const result = onChange(modelFields);
             value = result?.status ?? value;
@@ -376,7 +300,7 @@ export default function RankingCreateForm(props) {
         errorMessage={errors.status?.errorMessage}
         hasError={errors.status?.hasError}
         {...getOverrideProps(overrides, "status")}
-      ></TextField>
+      ></SwitchField>
       <TextField
         label="Avatar"
         isRequired={false}
@@ -390,15 +314,14 @@ export default function RankingCreateForm(props) {
             : parseInt(e.target.value);
           if (onChange) {
             const modelFields = {
-              Punto,
               username,
               password,
               type,
               grupo,
-              puntos,
               status,
               avatar: value,
               nombre,
+              bookmark,
             };
             const result = onChange(modelFields);
             value = result?.avatar ?? value;
@@ -422,15 +345,14 @@ export default function RankingCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              Punto,
               username,
               password,
               type,
               grupo,
-              puntos,
               status,
               avatar,
               nombre: value,
+              bookmark,
             };
             const result = onChange(modelFields);
             value = result?.nombre ?? value;
@@ -444,6 +366,37 @@ export default function RankingCreateForm(props) {
         errorMessage={errors.nombre?.errorMessage}
         hasError={errors.nombre?.hasError}
         {...getOverrideProps(overrides, "nombre")}
+      ></TextField>
+      <TextField
+        label="Bookmark"
+        isRequired={false}
+        isReadOnly={false}
+        value={bookmark}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              username,
+              password,
+              type,
+              grupo,
+              status,
+              avatar,
+              nombre,
+              bookmark: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.bookmark ?? value;
+          }
+          if (errors.bookmark?.hasError) {
+            runValidationTasks("bookmark", value);
+          }
+          setBookmark(value);
+        }}
+        onBlur={() => runValidationTasks("bookmark", bookmark)}
+        errorMessage={errors.bookmark?.errorMessage}
+        hasError={errors.bookmark?.hasError}
+        {...getOverrideProps(overrides, "bookmark")}
       ></TextField>
       <Flex
         justifyContent="space-between"

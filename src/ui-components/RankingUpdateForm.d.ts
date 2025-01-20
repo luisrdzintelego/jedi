@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { Ranking } from "../models";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
@@ -23,39 +23,36 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type RankingUpdateFormInputValues = {
-    Punto?: number;
     username?: string;
     password?: string;
     type?: string;
     grupo?: string;
-    puntos?: number;
-    status?: string;
+    status?: boolean;
     avatar?: number;
     nombre?: string;
+    bookmark?: string;
 };
 export declare type RankingUpdateFormValidationValues = {
-    Punto?: ValidationFunction<number>;
     username?: ValidationFunction<string>;
     password?: ValidationFunction<string>;
     type?: ValidationFunction<string>;
     grupo?: ValidationFunction<string>;
-    puntos?: ValidationFunction<number>;
-    status?: ValidationFunction<string>;
+    status?: ValidationFunction<boolean>;
     avatar?: ValidationFunction<number>;
     nombre?: ValidationFunction<string>;
+    bookmark?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type RankingUpdateFormOverridesProps = {
     RankingUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    Punto?: PrimitiveOverrideProps<TextFieldProps>;
     username?: PrimitiveOverrideProps<TextFieldProps>;
     password?: PrimitiveOverrideProps<TextFieldProps>;
     type?: PrimitiveOverrideProps<TextFieldProps>;
     grupo?: PrimitiveOverrideProps<TextFieldProps>;
-    puntos?: PrimitiveOverrideProps<TextFieldProps>;
-    status?: PrimitiveOverrideProps<TextFieldProps>;
+    status?: PrimitiveOverrideProps<SwitchFieldProps>;
     avatar?: PrimitiveOverrideProps<TextFieldProps>;
     nombre?: PrimitiveOverrideProps<TextFieldProps>;
+    bookmark?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type RankingUpdateFormProps = React.PropsWithChildren<{
     overrides?: RankingUpdateFormOverridesProps | undefined | null;

@@ -55,13 +55,9 @@ const Admin = () => {
   // const ExcelSheet = ExportExel.ExcelSheet;
   // const ExcelColum = ExportExel.ExcelColum;
 
-
-
   const chkData = async () => {
     //setTodos([]);
     console.log("🚀 ~ chkData----------")
-
-
 
     return await DataStore.query(Ranking, Predicates.ALL, {
       //sort: s => s.puntos(SortDirection.DESCENDING).tiempo(SortDirection.ASCENDING)
@@ -142,7 +138,10 @@ const Admin = () => {
   let inputName = useRef();
   let inputPass = useRef();
   let inputUser = useRef();
-
+  let inputGrupo = useRef();
+  //v2025-01
+  let selectType = useRef();
+  let selectStatus = useRef();
   const tableRef = useRef();
 
   const submitDelete = (id) => {
@@ -191,7 +190,6 @@ const Admin = () => {
     setTodos(todos.filter((value, index, arr) => { return value.id !== props.id; }));
   }
 
-
   const updateNote = async (i, id) => {
 
     //const updatedtodos = [...todos.notes];
@@ -207,6 +205,11 @@ const Admin = () => {
       updatedtodos[i].nombre = inputName.current ? inputName.current.value : updatedtodos[i].nombre;
       updatedtodos[i].password = inputPass.current ? inputPass.current.value : updatedtodos[i].password;
       updatedtodos[i].username = inputUser.current ? inputUser.current.value : updatedtodos[i].username;
+      //v2025-01
+      updatedtodos[i].grupo = inputGrupo.current ? inputGrupo.current.value : updatedtodos[i].grupo;
+      updatedtodos[i].type = selectType.current ? selectType.current.value : updatedtodos[i].type;
+      updatedtodos[i].status = selectStatus.current ? (selectStatus.current.value === 'true' ? true : false)  : updatedtodos[i].status;
+
       setTodos(updatedtodos);
 
       const original = await DataStore.query(Ranking, id);
@@ -215,6 +218,10 @@ const Admin = () => {
           updated.nombre = inputName.current ? inputName.current.value : updatedtodos[i].nombre
           updated.password = inputPass.current ? inputPass.current.value : updatedtodos[i].password
           updated.username = inputUser.current ? inputUser.current.value : updatedtodos[i].username
+          //v2025-01
+          updated.grupo = inputGrupo.current ? inputGrupo.current.value : updatedtodos[i].grupo
+          updated.type = selectType.current ? selectType.current.value : updatedtodos[i].type
+          updated.status = selectStatus.current ? (selectStatus.current.value === 'true' ? true : false) : updatedtodos[i].status
         })
       ).then((resp) => {
         console.log("🚀 ~ resp", resp)
@@ -241,6 +248,10 @@ const Admin = () => {
       updatedtodos[i].nombre = inputName.current ? inputName.current.value : updatedtodos[i].nombre;
       updatedtodos[i].password = inputPass.current ? inputPass.current.value : updatedtodos[i].password;
       updatedtodos[i].username = inputUser.current ? inputUser.current.value : updatedtodos[i].username;
+      //v2025-01
+      updatedtodos[i].grupo = inputGrupo.current ? inputGrupo.current.value : updatedtodos[i].grupo;
+      updatedtodos[i].type = selectType.current ? selectType.current.value : updatedtodos[i].type;
+      updatedtodos[i].status = selectStatus.current ? selectStatus.current.value : updatedtodos[i].status;
       setTodos(updatedtodos);
     }
 
@@ -344,7 +355,10 @@ const Admin = () => {
             updated.nombre = option.nombre
             updated.username = option.username
             updated.password = option.password
+            //v2025-01
             updated.grupo = option.grupo
+            updated.type = option.type
+            updated.status = option.status
           })
         ).then((resp) => {
           console.log("🚀 ~ resp", resp)
@@ -363,20 +377,12 @@ const Admin = () => {
           new Ranking({
             "username": option.username,
             "password": option.password,
-            "type": "user",
+            "type": option.type,
             "grupo": option.grupo,
-            "puntos": 0,
-            "tiempo": 0,
-            "gema1": false,
-            "gema2": false,
-            "gema3": false,
-            "bonus1": false,
-            "bonus2": false,
-            "bonus3": false,
-            "intentos": 0,
             "status": false,
             "avatar": "",
             "nombre": option.nombre,
+            "bookmark": "",
           })
         ).then((resp) => {
           console.log("🚀 ~ resp", resp)
@@ -446,23 +452,16 @@ const Admin = () => {
                   console.log(file);
                   console.log(file.name);
 
-
-
-
-
                 }} />
-
 
                 <DownloadTableExcel
                   filename="Usuarios"
                   sheet="usuarios"
                   currentTableRef={tableRef.current}
                 >
-
                   <span className='btn_amarillo me-1'><FontAwesomeIcon icon={faDownload} /> Descargar Excel</span>
 
                 </DownloadTableExcel>
-
 
                 {/* <ExcelFile element={<span className='btn_amarillo me-1'><FontAwesomeIcon icon={faDownload}/> Descargar Excel</span>} filename='Usuarios'>
                     <ExcelSheet data={filteredTodos} name='Usuarios'>
@@ -480,8 +479,6 @@ const Admin = () => {
               </div>
 
             </div>
-
-
 
             {/* <!-- COLUMNA 1--> */}
             <div className="col-md-12 admin-form mt-2" >
@@ -504,14 +501,17 @@ const Admin = () => {
 
                     <thead>
                       <tr>
-                        <th scope="col">Rankin</th>
-                        <th scope="col">Grupo</th>
+                        <th scope="col">No
+
+                        </th>
+                        <th className='text-center' scope="col">Grupo</th>
                         <th className='text-left' scope="col">Usuario</th>
                         <th className='text-left' scope="col">Nombre</th>
                         <th className='text-left' scope="col">Password</th>
-                        <th scope="col">Puntos</th>
-                        <th scope="col">Tiempo</th>
+                        <th className='text-center' scope="col">Tipo</th>
+                        {/* <th scope="col">Puntos</th> */}
                         <th scope="col">Status</th>
+                        <th scope="col">Bookmark</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Borrar</th>
                       </tr>
@@ -525,13 +525,60 @@ const Admin = () => {
                           return (
                             <tr key={i + 1}>
                               <th scope="row">{i + 1}</th>
-                              <td className='fs-14 c-negro'>{option.grupo}</td>
+                              {/* <td className='fs-14 c-negro'>{option.grupo}</td> */}
+                              <td className='fs-14 c-negro text-left'>{option.isOpen ? (<input className='fs-14 c-negro w-100 input-admin' defaultValue={option.grupo} onKeyDown={(event) => { if (event.key === 'Enter') { updateNote(i, option.id) } }} ref={inputGrupo} type="text" name="textarea" />) : (<span>{option.grupo}</span>)}</td>
                               <td className='fs-14 c-negro text-left'>{option.isOpen ? (<input className='fs-14 c-negro w-100 input-admin' defaultValue={option.username} onKeyDown={(event) => { if (event.key === 'Enter') { updateNote(i, option.id) } }} ref={inputUser} type="text" name="textarea" />) : (<span>{option.username}</span>)}</td>
                               <td className='fs-14 c-negro py-2 text-left'>{option.isOpen ? (<input className='fs-14 c-negro w-100 input-admin' defaultValue={option.nombre} onKeyDown={(event) => { if (event.key === 'Enter') { updateNote(i, option.id) } }} ref={inputName} type="text" name="textarea" />) : (<span>{option.nombre}</span>)}</td>
                               <td className='fs-14 c-negro text-left'>{option.isOpen ? (<input className='fs-14 c-negro w-100 input-admin' defaultValue={option.password} onKeyDown={(event) => { if (event.key === 'Enter') { updateNote(i, option.id) } }} ref={inputPass} type="text" name="textarea" />) : (<span>{option.password}</span>)}</td>
-                              <td className='fs-14 c-negro'>{option.puntos}</td>
-                              <td className='fs-14 c-negro'>{(Math.floor(option.tiempo / 3600) < 10) ? `0${Math.floor(option.tiempo / 3600)}` : Math.floor(option.tiempo / 3600)}:{(Math.floor((option.tiempo / 60) % 60) < 10) ? `0${Math.floor((option.tiempo / 60) % 60)}` : Math.floor((option.tiempo / 60) % 60)}:{(option.tiempo % 60 < 10) ? `0${option.tiempo % 60}` : option.tiempo % 60}</td>
-                              <td className='fs-14 c-negro'>{option.status} <img src={option.status === true ? Img.bien : Img.mal} alt="" width="16"></img></td>
+                              
+                              {/* <td className='fs-14 c-negro'>{option.type}</td> */}
+
+                              <td className='fs-14 c-negro text-left'>{
+                              
+                              option.isOpen ? (
+                                <select className='fs-16  m-1 p-1 b-none w-100' defaultValue={option.type}
+                                  onKeyDown={(event) => { if (event.key === 'Enter') { updateNote(i, option.id) } }}
+                                  ref={selectType}
+                                  onChange={(event) => {
+
+                                    console.log("🚀 ~ e.id:", event)
+                                    console.log("🚀 ~ e.id:", selectType.current.value)
+                                  }}
+                                >
+                                  <option value="user">user</option>
+                                  <option value="admin">admin</option>
+                                </select>)
+                              : (
+                                option.type === 'user'
+                                  ? <><span className="badge bg-primary">User</span> </>
+                                  : <><span className="badge bg-success">Admin</span> </>
+                              )}
+                              </td>
+
+                              {/* <td className='fs-14 c-negro'>{(Math.floor(option.tiempo / 3600) < 10) ? `0${Math.floor(option.tiempo / 3600)}` : Math.floor(option.tiempo / 3600)}:{(Math.floor((option.tiempo / 60) % 60) < 10) ? `0${Math.floor((option.tiempo / 60) % 60)}` : Math.floor((option.tiempo / 60) % 60)}:{(option.tiempo % 60 < 10) ? `0${option.tiempo % 60}` : option.tiempo % 60}</td> */}
+                              
+                              <td className='fs-14 c-negro'>{
+                              
+                              option.isOpen ? (
+                                <select className='fs-16  m-1 p-1 b-none w-100' defaultValue={option.status}
+                                  onKeyDown={(event) => { if (event.key === 'Enter') { updateNote(i, option.id) } }}
+                                  ref={selectStatus}
+                                  onChange={(event) => {
+
+                                    console.log("🚀 ~ e.id:", event)
+                                    console.log("🚀 ~ e.id:", selectStatus.current.value)
+                                  }}
+                                >
+                                  <option value="true">completado</option>
+                                  <option value="false">no completado</option>
+                                </select>)
+                              : (
+                                <img src={option.status === true ? Img.bien : Img.mal} alt="" width="16"></img>
+                              )}
+                              </td>
+                              <td className='fs-14 c-negro'>{option.bookmark}</td>
+                              
+                              {/* <td className='fs-14 c-negro'>{option.status} <img src={option.status === true ? Img.bien : Img.mal} alt="" width="16"></img></td> */}
                               <td className='fs-24 c-negro btn_icon' >{option.isOpen === true ? <span onClick={(event) => { updateNote(i, option.id); }} ><FontAwesomeIcon color='#69C096' icon={faSave} /></span> : <span onClick={(event) => { editNote(i, option.id); }} ><FontAwesomeIcon icon={faEdit} /></span>}</td>
                               <td className='fs-24 c-negro btn_icon' onClick={(event) => {
                                 submitDelete(option.id)
@@ -574,10 +621,6 @@ const Admin = () => {
                 <span className='btn_amarillo me-1 ' onClick={() => submitUpload()} ><FontAwesomeIcon icon={faUpload} /> Subir</span>
                 <span className='btn_amarillo me-1 ' onClick={() => setIsActive(true)} ><FontAwesomeIcon icon={faCancel} /> Cancelar</span>
               </div>
-
-
-
-
 
             </div>
 

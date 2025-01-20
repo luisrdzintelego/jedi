@@ -12,15 +12,14 @@ type EagerRanking = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly Punto?: number | null;
   readonly username?: string | null;
   readonly password?: string | null;
   readonly type?: string | null;
   readonly grupo?: string | null;
-  readonly puntos?: number | null;
-  readonly status?: string | null;
+  readonly status?: boolean | null;
   readonly avatar?: number | null;
   readonly nombre?: string | null;
+  readonly bookmark?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -31,15 +30,14 @@ type LazyRanking = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly Punto?: number | null;
   readonly username?: string | null;
   readonly password?: string | null;
   readonly type?: string | null;
   readonly grupo?: string | null;
-  readonly puntos?: number | null;
-  readonly status?: string | null;
+  readonly status?: boolean | null;
   readonly avatar?: number | null;
   readonly nombre?: string | null;
+  readonly bookmark?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

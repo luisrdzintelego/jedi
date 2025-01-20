@@ -1,13 +1,12 @@
 type Ranking @model @auth(rules: [{allow: public}]) {
   id: ID!
-  Punto: Int
   username: String
   password: String
   type: String
   grupo: String
-  puntos: Int
-  status: String
+  status: Boolean
   avatar: Int
   nombre: String
+  bookmark: String
 }
  

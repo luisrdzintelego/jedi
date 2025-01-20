@@ -173,6 +173,7 @@ body {
     cursor:pointer;
     -webkit-box-shadow: -5px 5px 0px -1px #B76F03; 
     box-shadow: -5px 5px 0px -1px #B76F03;
+    margin-bottom: 20px;
   }
 
   .btn_amarillo:disabled{
