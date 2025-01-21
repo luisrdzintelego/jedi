@@ -201,7 +201,7 @@ const Introduccion = () => {
 
 	}, [])
 
-	useEffect(() => {
+	/* useEffect(() => {
 		const iframe = ref2.current;
 		iframe.addEventListener('load', () => {
 			//iframe.contentWindow.postMessage('message', 'http://localhost:3000');
@@ -211,7 +211,7 @@ const Introduccion = () => {
 			//win.postMessage('message (2)', 'http://localhost:3000/');
 
 		});
-	}, [ref2]);
+	}, [ref2]); */
 
 
 	return (
@@ -233,7 +233,7 @@ const Introduccion = () => {
 							<div>Nombre: {GConText.username}, ID: {GConText.userId} - BOOKMARK: {GConText.bookmark} - STATUS: {GConText.status === true ? 'true' : 'false'}</div>
 							<h1>{terminoLamina ? '✅ Curso Completado' : '😱 Curso Corriendo'}</h1>
 
-							<iframe title='Curso0'
+							{/* <iframe title='Curso0'
 								ref={ref2}
 								//onLoad={onLoad}
 								autoFocus={true}
@@ -251,7 +251,7 @@ const Introduccion = () => {
 									//height: "100%",
 									//overflow: "hidden",
 								}}
-							/>
+							/> */}
 
 
 							{/* <iframe
@@ -295,7 +295,7 @@ const Introduccion = () => {
 						}}
 					></iframe> */}
 
-							{/*//SI FUNCIONA <iframe
+							{/* //SI FUNCIONA */} <iframe
 						ref={ref}
 						//onLoad={onLoad}
 						autoFocus={true}
@@ -313,7 +313,7 @@ const Introduccion = () => {
 							minHeight: '100vh',
 							overflow: "hiden",
 						}}
-					></iframe> */}
+					></iframe>
 
 							{/* {terminoLamina ? <h1><button onClick={onClick}>🔜 Siguiente Lamina </button></h1> : <></>} */}
 							{/* <button onClick={onClick}>{paused ? "Unpause" : "Pause"}</button> */}
