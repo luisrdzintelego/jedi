@@ -210,7 +210,7 @@ const Introduccion = () => {
 			const win = iframe.contentWindow;
 			//win.postMessage(GConText.bookmark, 'https://intelegoprojects.com');
 			//win.postMessage('3-1-1-x,1|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0&&1&&abuso-de-autoridad-y-ambiente-laboral&&&&0&&0&&', 'http://localhost:3000');
-			win.postMessage(GConText.bookmark, 'http://intelegoprojects.com/');
+			win.postMessage(GConText.bookmark, 'https://intelegoprojects.com');
 
 			//win.postMessage('message (2)', 'http://localhost:3000/');
 
@@ -248,7 +248,7 @@ const Introduccion = () => {
 								//onLoad={onLoad}
 								autoFocus={true}
 								id="myFrame3"
-								src={'http://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html'}
+								src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html'}
 								//width="100%"
 								//height="100%"
 								//height={height}
