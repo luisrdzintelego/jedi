@@ -34,51 +34,17 @@
       '$rootScope',
       function($window, scormService) {
         $window.addEventListener('beforeunload', function() {
-            
-            // checa si ya hay mas de 3 intentos
-            /*var check_calif = parseInt(window.pagesService.getCalif());	
-            var check_intentos = parseInt(window.pagesService.getIntentos());
-            if((check_calif >= 80 || check_intentos>=3) && (window.scormService.getStatus() == "incomplete")){ // || window.scormService.getStatus() == "passed" || this.scormService.getStatus() == "failed" || ){
-                
-                if(check_calif >= 80) {
-                         console.log("GUARDA scormService PASSED ANTES de FINISH:::::");
-                         window.scormService.setValue("cmi.progress_measure","1"); 
-                         window.scormService.setValue("cmi.objectives.0.progress_measure","1");
-
-                         window.scormService.setValue("cmi.objectives.0.completion_status","completed");
-                         window.scormService.setValue("cmi.objectives.0.success_status","passed");
-
-                         window.scormService.saveStatus("completed");
-                         window.scormService.saveStatus("passed");
-                } else {
-                    if(check_intentos>=3){		
-                        console.log("GUARDA scormService FAILED ANTES de FINISH:::::");
-
-                        window.scormService.setValue("cmi.progress_measure","1"); 
-                        window.scormService.setValue("cmi.objectives.0.progress_measure","1");
-
-                        window.scormService.setValue("cmi.objectives.0.completion_status","completed");
-                        window.scormService.setValue("cmi.objectives.0.success_status","passed");
-
-                        window.scormService.saveStatus("completed");
-                        window.scormService.saveStatus("failed");	
-                    }
-                }
-            }
-            
-            */
-            window.scormService.finish();
+           // window.scormService.finish();
         });
-
-
 
         $window.addEventListener('message', (event) => {
 
              //Para forzar que vengan desde una url conocida
             if (event.origin === 'https://main.d34dped6g4yozl.amplifyapp.com') {
+            //if (event.origin === 'http://localhost:3000') {
                 // The data was sent from your site.
                 // Data sent with postMessage is stored in event.data:
-                console.log(event.data);
+                console.log('🟠 event.data ' , event.data);
                 //--⬇︎ pone comillas si no existe el dato -- 
                 //res(JSON.stringify(event.data));
                 //console.log("🚀 ~ event.data.stringify():", JSON.stringify(event.data))
@@ -86,7 +52,10 @@
                 //--⬇︎ pone espacio vacio si no existe el dato
                 //--⬇︎ FUNCIONAL
 
-                if(event.data != null){
+                if(event.data ==null ){
+                    bookmark = '';
+                } else{
+                    //bookmark = event.data.toString();
                     bookmark = event.data.toString();
                 }
                 
@@ -121,6 +90,7 @@
 
 
             } else {
+                console.log('🔴 ERROR NO SE CONECTO CON LA BASE 🔴');
                 // The data was NOT sent from your site!
                 // Be careful! Do not use it. This else branch is
                 // here just for clarity, you usually shouldn't need it.
@@ -475,13 +445,13 @@
             bookmark = (cadena + "&&" + _currentPage + "&&" + pag_actual + "&&" + nombre + "&&" + rol + "&&" + intentos + "&&" );
             console.log("🟡 ~ bookmark:", bookmark)
 
-            sendPlatform(bookmark,false)
+            sendPlatform(bookmark, 'false')
 
             console.log("🚀 ~ todos_vistos:")
 
             if(todos_vistos === true){
 
-                sendPlatform(bookmark,true)
+                sendPlatform(bookmark, 'true')
 
                 //scormService.saveStatus("completed");
 

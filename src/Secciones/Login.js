@@ -181,6 +181,7 @@ const Login = ({ props }) => {
 					GConText.setBonus3(resp[0].bonus3);
 					GConText.setIntentos(resp[0].intentos); */
 					GConText.setStatus(resp[0].status);
+					GConText.setStatus(resp[0].bookmark);
 
 					console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
 					console.log("🚀 ~ dB.id", resp[0].id);
@@ -201,6 +202,7 @@ const Login = ({ props }) => {
 					console.log("🚀 ~ dB.bonus3", resp[0].bonus3)
 					console.log("🚀 ~ dB.intentos", resp[0].intentos) */
 					console.log("🚀 ~ dB.status", resp[0].status)
+					console.log("🚀 ~ dB.status", resp[0].bookmark)
 
 					console.log("~~~~~~~ ---------------- ~~~~~~~")
 
@@ -253,6 +255,7 @@ const Login = ({ props }) => {
 					GConText.setBonus3(resp[0].bonus3);
 					GConText.setIntentos(resp[0].intentos); */
 					GConText.setStatus(resp[0].status);
+					GConText.setStatus(resp[0].bookmark);
 
 					console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
 					console.log("🚀 ~ dB.id", resp[0].id);
@@ -273,6 +276,7 @@ const Login = ({ props }) => {
 					//console.log("🚀 ~ dB.bonus3", resp[0].bonus3)
 					//console.log("🚀 ~ dB.intentos", resp[0].intentos)
 					console.log("🚀 ~ dB.status", resp[0].status)
+					console.log("🚀 ~ dB.status", resp[0].bookmark)
 
 					console.log("~~~~~~~ ---------------- ~~~~~~~")
 

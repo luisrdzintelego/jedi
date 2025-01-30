@@ -44,7 +44,7 @@ const Introduccion = () => {
 	};
 
 	//const [page, setPage] = useState(0);
-	const [terminoLamina, setTerminoLamina] = useState(GConText.status);
+	//const [terminoLamina, setTerminoLamina] = useState(GConText.status);
 
 
 
@@ -54,14 +54,14 @@ const Introduccion = () => {
 		setTerminoLamina(false)
 	};
 	*/
-	const [message, setMessage] = useState('')
 
 	async function udpatesUser(id, bookmark,completado) {
 		console.log("🚀 udpates 🚀 ~ --id -- ", id)
 		console.log("🚀 udpates 🚀 ~ --bookmark -- ", bookmark)
 		const original = await DataStore.query(Ranking, id);
 		await DataStore.save(Ranking.copyOf(original, updated => {
-			updated.status = completado
+			//updated.status = completado
+			updated.status = (completado === 'true' ? true : false)
 			updated.bookmark = bookmark
 		})
 		).then((resp) => {
@@ -121,8 +121,7 @@ const Introduccion = () => {
 	// This hook is listening an event that came from the Iframe
 	useEffect(() => {
 
-		console.log('terminoLamina = ' + terminoLamina + ' is defined now!');
-
+		//console.log('terminoLamina = ' + terminoLamina + ' is defined now!');
 
 		const handler = (ev) => {
 
@@ -134,16 +133,17 @@ const Introduccion = () => {
 
 			const data = JSON.parse(ev.data)
 			console.log("se mando esto a la Plataforma! ----->", data)
-			setMessage(data.message)
-			setTerminoLamina(data.completado)
+
+			console.log("🟣 ~ data.completado:", data.completado)
+			console.log("🟣 ~ data.message:", data.message)
+			console.log("🟣 ~ data.bookmark:", data.bookmark)
 
 			//console.log(data.completado, " -- ", GConText.userId, " -- ", data.bookmark)
 			udpatesUser(GConText.userId, data.bookmark, data.completado)
 
-			console.log("message--- ", message)
-			console.log("terminoLamina--- ", terminoLamina)
+			//console.log("terminoLamina--- ", terminoLamina)
 
-			if (terminoLamina === '') {
+			if ( data.completado === 'true') {
 
 				Swal.fire({
 					title: '<strong>Curso Completado!</strong>',
@@ -155,9 +155,9 @@ const Introduccion = () => {
 
 			}
 
-
 			return true;
 		}
+
 
 		/*
 	  const handler = (ev) => {
@@ -175,11 +175,16 @@ const Introduccion = () => {
 		setTerminoLamina(ev.data.completado)
 	  }
 	  */
-
+	  	window.addEventListener('message', console.log)
 		window.addEventListener('message', handler)
-
 		// Don't forget to remove addEventListener
-		return () => window.removeEventListener('message', handler)
+
+		return () => {
+			window.removeEventListener('message', handler);
+		}
+
+		//return () => window.removeEventListener('message', handler)
+		
 	}, [])
 
 
@@ -210,7 +215,11 @@ const Introduccion = () => {
 			const win = iframe.contentWindow;
 			//win.postMessage(GConText.bookmark, 'https://intelegoprojects.com');
 			//win.postMessage('3-1-1-x,1|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0&&1&&abuso-de-autoridad-y-ambiente-laboral&&&&0&&0&&', 'http://localhost:3000');
-			win.postMessage(GConText.bookmark, 'https://intelegoprojects.com');
+			
+			GConText.bookmark != null ? win.postMessage(GConText.bookmark, '*') : win.postMessage(null, '*')
+
+			win.postMessage(GConText.bookmark, '*');
+			//win.postMessage(GConText.bookmark != null ? GConText.bookmark : '1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0&&1&&index&&&&0&&0&&' , '*');
 
 			//win.postMessage('message (2)', 'http://localhost:3000/');
 
@@ -240,15 +249,13 @@ const Introduccion = () => {
 					<div className='row'>
 						<div className='col-12 col-md-12 text-center'>
 
-							{/* <h1>{terminoLamina ? '✅ Lamina Completada' : '❌ Lamina Corriendo'}</h1> */}
-							{/* <h1>{terminoLamina ? '✅ Curso Completada' : '😱 Curso Corriendo'}</h1> */}
-
-							<iframe title='Curso0'
+						<iframe title='Curso0'
 								ref={ref2}
 								//onLoad={onLoad}
 								autoFocus={true}
 								id="myFrame3"
 								src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html'}
+								//src={'sco01/index.html'}
 								//width="100%"
 								//height="100%"
 								//height={height}
@@ -263,6 +270,63 @@ const Introduccion = () => {
 								}}
 							/>
 
+
+							{/* <h1>{terminoLamina ? '✅ Lamina Completada' : '❌ Lamina Corriendo'}</h1> */}
+							{/* <h1>{terminoLamina ? '✅ Curso Completada' : '😱 Curso Corriendo'}</h1> */}
+
+{/* 							{ terminoLamina 
+							? 
+							<>
+							<h1 style={{
+										padding: '20px',
+										fontSize: '45px',
+										//color: "red"
+									}}>Curso Completado 🟢</h1>
+							<iframe title='Curso0'
+								ref={ref2}
+								//onLoad={onLoad}
+								autoFocus={true}
+								id="myFrame3"
+								src={''}
+								//width="100%"
+								//height="100%"
+								//height={height}
+								scrolling="yes"
+								frameBorder="0"
+								style={{
+									//maxWidth: 640,
+									width: "100%",
+									minHeight: '100vh',
+									//height: "100%",
+									//overflow: "hidden",
+								}}
+							/>
+							
+							</>
+							 : 
+							 <>
+							<iframe title='Curso0'
+								ref={ref2}
+								//onLoad={onLoad}
+								autoFocus={true}
+								id="myFrame3"
+								//src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html'}
+								src={'sco01/index.html'}
+								//width="100%"
+								//height="100%"
+								//height={height}
+								scrolling="yes"
+								frameBorder="0"
+								style={{
+									//maxWidth: 640,
+									width: "100%",
+									minHeight: '100vh',
+									//height: "100%",
+									//overflow: "hidden",
+								}}
+							/>
+							</>
+							} */}
 
 							{/* <iframe
 						ref={ref}
