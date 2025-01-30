@@ -248,7 +248,7 @@ const Introduccion = () => {
 								//onLoad={onLoad}
 								autoFocus={true}
 								id="myFrame3"
-								src={'sco01/index.html'}
+								src={'http://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html'}
 								//width="100%"
 								//height="100%"
 								//height={height}
