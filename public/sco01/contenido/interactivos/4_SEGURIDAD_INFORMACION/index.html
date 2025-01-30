@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="plantillaApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="plantillaApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="plantillaApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="plantillaApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>:: Contenido ::</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='shortcut icon' type='image/x-icon' href='img/favicon.png' />
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/estilos.css" media="screen, handheld" />
+
+  <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="fonts/font-client/font-client.css"> -->
+
+  <link rel="stylesheet" href="bower_components/ng-zav-modal/dist/ng-zav-modal.min.css">
+
+ <!-- VIDEGULAR -->
+  <link rel="stylesheet" type="text/css" href="bower_components/videogular-themes-default/videogular.css">
+
+  <!-- <link rel="stylesheet" type="text/css" href="bower_components/videogular-cuepoints/cuepoints.css"> -->
+  
+    
+ 
+
+  <link rel="stylesheet" type="text/css" href="css/angular-snap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/app.css" />
+
+  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+
+  <script type="text/javascript">
+      // IE9 fix
+    if(!window.console) {
+        var console = {
+            log : function(){},
+            warn : function(){},
+            error : function(){},
+            time : function(){},
+            timeEnd : function(){}
+        };
+    }   
+
+  </script>
+
+    
+    
+    <style>
+    /*
+        .overLay{
+            opacity: 0.5;
+            background: #000;
+            width: 100%;
+            min-height: 50px;
+            position: absolute;
+            
+            display: none;
+            
+            z-index: 200;
+        }
+        .video_player{
+            z-index: 40;
+        }
+    */
+    .back-color{
+        background: #cf0;
+    }
+    .IIV::-webkit-media-controls-play-button,
+    .IIV::-webkit-media-controls-start-playback-button {
+        opacity: 0;
+        pointer-events: none;
+        width: 5px;
+    }
+    .cue-point{ 
+        pointer-events: none; /* Para que deje dar click en la barra de avance del video y no en el boton del cuepoint */
+    }
+    </style>
+    
+    
+    
+</head>
+<body ng-app="plantillaApp" ng-controller="plantillaAppController" ng-cloak>
+
+
+    
+    
+    <!-- <canvas-loader></canvas-loader> -->
+    
+    
+    <snap-content id="snapcontent">
+    </snap-content>
+
+        
+        
+        
+       
+        
+        
+        <!-- Canvas -->
+      <div id="contepages" class="contenedorPaginas">
+           <!-- Video -->
+          
+          
+          
+            <!--   <div id="video_player" class="video-player" ng-class="{hidden:!videoVisible}">  -->
+            <div id="video_player" class="video-player" >
+
+                <!--<div class="video-close-button"><a href="#info3" ng-click="stopVideo()"><i class="fa fa-close fa-3x"></i></a></div>-->
+                <div class="videogular-container" id="video_container">
+                    
+                    <videogular vg-player-ready="onPlayerReady($API)" vg-complete="onCompleteVideo()" vg-theme="config.theme" vg-cue-points="config.cuepoint" vg-plays-inline="config.playsInline" vg-native-fullscreen="config.nativeFullscreen">
+                        
+                          <vg-media vg-src="config.sources[0].sources"></vg-media>
+
+                          <vg-overlay-showarea vgcuepoints="config.cuepoint.points" vgurl="content_params" ng-style="{display:contenttouch==true ? 'block':'none'}"></vg-overlay-showarea>
+
+                          <vg-controls vg-autohide="config.plugins.controls.autoHide" vg-autohide-time="config.plugins.controls.autoHideTime">
+                              <vg-play-pause-button></vg-play-pause-button>
+                              <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+                              <vg-scrub-bar>
+                                    <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                                    <!-- se coloca el diseño del cuepoint -->
+                                    <vg-scrub-bar-cue-points vg-cue-points='config.cuepoint.points'></vg-scrub-bar-cue-points>
+                              </vg-scrub-bar>
+                              <vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+                              <vg-volume>
+                                    <vg-mute-button></vg-mute-button>
+                                    <vg-volume-bar></vg-volume-bar>
+                              </vg-volume>
+
+                              <vg-fullscreen-button ng-if="es_movil===false"></vg-fullscreen-button>                                            
+                          </vg-controls>
+
+                          <vg-overlay-sensitivearea vgcuepoints="config.cuepoint.points" vgurl="mark_params" ng-style="{display:marktouch==true ? 'block':'none'}"></vg-overlay-sensitivearea>                         
+
+                    </videogular>
+                    
+                </div>
+            </div>
+      </div>
+
+    
+
+  <!-- Modal Windows -->
+
+
+
+
+   <!--End Modal Windows -->
+  <script src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+   <!-- MENU -->
+
+    <!-- snap.js -->
+     <script type="text/javascript" src="js/snap.js"></script>
+    <script type="text/javascript" src="js/angular-snap.js"></script>
+
+    <script type="text/javascript" src="bower_components/angular-scorm-wrapper/src/angular-scorm-wrapper.js"></script>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/gsap/src/minified/TweenMax.min.js"></script>
+    <script src="bower_components/ng-zav-modal/dist/ng-zav-modal.min.js"></script>
+
+    <script type="text/javascript" src="js/easeljs-0.8.1.min.js"></script>
+    <script type="text/javascript" src="js/movieclip-0.8.1.min.js"></script>
+    <script type="text/javascript" src="js/preloadjs-0.6.1.min.js"></script>
+    <!--<script type="text/javascript" src="js/soundjs-0.6.1.min.js"></script>-->
+    <script type="text/javascript" src="js/soundjs-NEXT.combined.js"></script>
+    <script type="text/javascript" src="js/tweenjs-0.6.1.min.js"></script>
+
+    <script type="text/javascript" src="bower_components/spin.js/spin.js"></script>
+    <script type="text/javascript" src="bower_components/angular-spinner/angular-spinner.min.js"></script>
+
+    <script type="text/javascript" src="bower_components/angular-load/angular-load.js"></script>
+
+    <!-- Libreria solo para inhabilitar el video player en iphone -->
+    <script type="text/javascript" src="bower_components/iphone-inline-video/iphone-inline-video.js"></script>
+    
+    <!-- VIDEGULAR -->
+    <script type="text/javascript" src="bower_components/videogular/videogular.js"></script>
+    <script type="text/javascript" src="bower_components/videogular-controls/vg-controls.js"></script>
+    <script type="text/javascript" src="bower_components/videogular-buffering/vg-buffering.js"></script>
+    <script type="text/javascript" src="bower_components/videogular-overlay-play/vg-overlay-play.js"></script>
+
+    <!-- <script type="text/javascript" src="bower_components/videogular-controls\vg-scrub-bar/vg-scrub-bar-cue-points.js"></script>     -->
+    <script type="text/javascript" src="bower_components/videogular-overlay-showarea/vg-overlay-showarea.js"></script>
+    <script type="text/javascript" src="bower_components/videogular-overlay-sensitivearea/vg-overlay-sensitivearea.js"></script>
+    
+    <!-- Archivo de CuePoints -->
+    <script src="js/cuepoints.js"></script>
+
+    <script src="js/activ.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>

@@ -3,21 +3,33 @@ function HazModal(_str) {
   var ruta = "";
   mi_ruta = _str;
   switch (_str) {
-    case "video":
+    case "video1":
       //setCurrentPage(3);
-      ruta = "videos/indexp1_v0.html";
+      ruta = "interactivos/1_ABUSO_AUTORIDAD/index.html";
       break;
-    case "estra":
+    case "video2":
       //setCurrentPage(3);
-      ruta = "estratificacion.html";
+      ruta = "interactivos/2_CONFLICTO_INTERESES/index.html";
       break;
-    case "pareto":
+    case "video3":
       //setCurrentPage(3);
-      ruta = "diagrama-de-pareto.html";
+      ruta = "interactivos/3_CI_ACTIVIDADES_EXTERNAS/index.html";
       break;
-    case "causaefecto":
+    case "video4":
       //setCurrentPage(3);
-      ruta = "diagrama-de-causa-y-efecto.html";
+      ruta = "interactivos/4_SEGURIDAD_INFORMACION/index.html";
+      break;
+    case "video5":
+      //setCurrentPage(3);
+      ruta = "interactivos/5_CORRUPCION/index.html";
+      break;
+    case "video6":
+      //setCurrentPage(3);
+      ruta = "interactivos/6_SOBORNOS/index.html";
+      break;
+    case "video7":
+      //setCurrentPage(3);
+      ruta = "interactivos/7_MEDIOS_SOCIALES/index.html";
       break;
   }
   //console.log("ruta: " + ruta); 
@@ -66,9 +78,17 @@ function HazCerrar() {
 // funcion para que la ventana popup se redimensione
 function Resize() {
   //console.log("Resixe");
-  var iframRecursosNuevo_ = document.getElementById("popup1");
-  iframRecursosNuevo_.style.height = (window.innerHeight * 1) + "px";
-  iframRecursosNuevo_.style.marginTop = 0 + "px";
+  /* var iframRecursosNuevo_ = document.getElementById("popup1");
+  iframRecursosNuevo_.style.height = (window.innerHeight * .8) + "px";
+  iframRecursosNuevo_.style.marginTop = 0 + "px"; */
+
+  //var windowHeight = parseInt($(".video_storie1").css("height")) * 0.8;
+  
+  $("#popup1").css("height", (window.innerHeight * .8) + "px")
+  $('#popup1').css('margin-top', 10 + "px");
+  $("#popup1").css("width", "80%")
+
+
 }
 window.onresize = function () {
   Resize();

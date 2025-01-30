@@ -94,9 +94,8 @@
           <!-- end Menu -->
     </div > <!-- end snap-drawer -->
 
-    <!-- <span>------ {{url_inicio}}</span> -->
 
-    <iframe id="index" ng-src="{{url_inicio}}" width="100%" height="100%" frameborder="0" style="position: absolute; z-index: 90;"></iframe> 
+    <iframe id="index" ng-src="{{url_inicio}}" width="100%" height="100%" frameborder="0" allow="fullscreen" allowfullscreen="true" style="position: absolute; z-index: 90;"></iframe> 
     
     <snap-content id="snapcontent">
         <!-- Canvas -->
@@ -241,7 +240,7 @@
  */
 
   //cargar un js por codigo
-  function loadJS(FILE_URL, async = true) {
+  /* function loadJS(FILE_URL, async = true) {
     let scriptEle = document.createElement("script");
 
     scriptEle.setAttribute("src", FILE_URL);
@@ -258,7 +257,7 @@
     scriptEle.addEventListener("error", (ev) => {
       console.log("Error on loading file", ev);
     });
-  }
+  } */
   
   //metodo1
   /* addEventListener('message', (event) => {
@@ -270,14 +269,14 @@
   }); */
   
   //metodo2
-  /* window.addEventListener("message", (event) => loadEdit(), false);
+ /*  window.addEventListener("message", (event) => loadEdit(), false);
   async function loadEdit() {
     console.log("🚀 ~ JSON.stringify(event.data):", JSON.stringify(event.data))
     bookmark_cadena = event.data;
   } */
 
   //metodo3
-  /* window.addEventListener("message", (event) => {
+ /*  window.addEventListener("message", (event) => {
     loadEdit().then();
   }, false);
 

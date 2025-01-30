@@ -356,7 +356,16 @@
                     todos_vistos = false;
                 }
 
+                console.log("🟡 ~ bookmark:", _pagesArray[j].done , ' -- ' , j)
+
                 cadena += (_pagesArray[j].done);
+
+                /* if(_pagesArray[j].done!=undefined && _pagesArray[j].done!=null ){
+                    cadena += "-"+(_pagesArray[j].done);
+                }else{
+                    cadena += "-1";
+                } */
+
                 //console.log("cadena DONE: " + cadena);
                 
                 if(_pagesArray[j].calif!=undefined && _pagesArray[j].calif!=null){
@@ -396,8 +405,9 @@
             }
 
             //scormService.saveLocation(cadena + "&&" + _currentPage); 
-            scormService.saveLocation(cadena + "&&" + _currentPage + "&&" + pag_actual + "&&" + nombre);
-            
+            //scormService.saveLocation(cadena + "&&" + _currentPage + "&&" + pag_actual + "&&" + nombre + "&&" + rol + "&&" + intentos + "&&" );
+            bookmark = (cadena + "&&" + _currentPage + "&&" + pag_actual + "&&" + nombre + "&&" + rol + "&&" + intentos + "&&" );
+            console.log("🟡 ~ bookmark:", bookmark)
             console.log("🚀 ~ todos_vistos:")
 
             if(todos_vistos === true){
@@ -433,6 +443,14 @@
 
         }
         
+        function resetAvance(){
+            console.log("🚀 ~ resetAvance:")
+           //scormService.saveLocation(cadena + "&&" + _currentPage); 
+           scormService.saveLocation('');
+           
+       }
+        
+
         function _broadcast () {
             console.log("🚀 ~ _broadcast:")
             $rootScope.$broadcast('page_event', _pagesArray[_currentPage-1]);
@@ -463,60 +481,71 @@
                 /* Actualiza Suspend data en JSON*/
                 //var get_cadena=scormService.getLocation();
 
-                async function getMessage() {
+                function getMessage() {
                     //const reader = new FileReader();
-                   await new Promise((res, reject) => { 
+                    new Promise((res, reject) => { 
                         window.addEventListener('message', (event) => {
-                            //res(JSON.stringify(event.data));
-                            res(event.data.toString());
-                            //console.log("🚀 ~ event.data.stringify():", JSON.stringify(event.data))
-                            //console.log("🚀 ~ event.data.toString():", event.data.toString())
+
+
+                            window.addEventListener('message', event => {
+                                // IMPORTANT: check the origin of the data!
+                                if (event.origin === 'https://main.d34dped6g4yozl.amplifyapp.com/') {
+                                    // The data was sent from your site.
+                                    // Data sent with postMessage is stored in event.data:
+                                    console.log(event.data);
+                                    //--⬇︎ pone comillas si no existe el dato -- 
+                                    //res(JSON.stringify(event.data));
+                                    //console.log("🚀 ~ event.data.stringify():", JSON.stringify(event.data))
+                                    
+                                    //--⬇︎ pone espacio vacio si no existe el dato
+                                    res(event.data.toString());
+                                    //console.log("🚀 ~ event.data.toString():", event.data.toString())
+                                } else {
+                                    // The data was NOT sent from your site!
+                                    // Be careful! Do not use it. This else branch is
+                                    // here just for clarity, you usually shouldn't need it.
+                                    return;
+                                }
+                            });
+
+
+
                         });
                     //}).then(result => { return result });
                     }).then((result) => {
                         console.log(result)
                         var arreglo_cadena = result.split("&&");
-                        console.log("🚀 ~ arreglo_cadena:", arreglo_cadena)
                         location = arreglo_cadena[1];
-                        console.log("🚀 ~ location:", location)
 
                         var cadena_array = arreglo_cadena[0].split("|");
-                        console.log("🚀 ~ cadena_array:", cadena_array)
                         for (var j = 0; j < _pagesArray.length; j++) {
-
+    
                             var _str_array = cadena_array[j].split("-");
                             if (_str_array.length > 1) {
                                 //_pagesArray[j].done = (_str_array[0]==1);
                                 _pagesArray[j].done = (_str_array[0]);
                                 _pagesArray[j].calif = _str_array[1];
-                                _pagesArray[j].intentos = _str_array[2];
-                                _pagesArray[j].variantes = _str_array[3];
+                                _pagesArray[j].intentos=_str_array[2]; 
+                                _pagesArray[j].variantes=_str_array[3];                                                     
                                 //_pagesArray[j].califtotales=_str_array[4];
                                 //_pagesArray[j].califcorrectas=_str_array[5];
-                            } else {
+                            }else{
                                 //_pagesArray[j].done = (cadena_array[j]==1);
                                 _pagesArray[j].done = (cadena_array[j]);
                             }
-
+    
                         }
                         pag_actual = arreglo_cadena[2];
-                        console.log("🚀 ~ pag_actual:", pag_actual)
                         nombre = arreglo_cadena[3];
-                        console.log("🚀 ~ nombre:", nombre)
-                        avatar = arreglo_cadena[4];
-                        console.log("🚀 ~ avatar:", avatar)
-
-                        console.log(`ESTE ES EL RESULTADO FINAL: ${pag_actual}`);
-
-                        /* $scope.$apply(() => {
-                            $scope.item = updatedItem
-                        }) */
+                        rol = arreglo_cadena[4];
+                        intentos = arreglo_cadena[5];
 
                     }).catch(function (error) {
                         console.log(
                             error,
                         ); /* esta línea podría arrojar error, e.g. cuando console = {} */
                     }).finally(function () {
+                        
                         _broadcast();
                     });
 
@@ -552,52 +581,39 @@
                         }
                         pag_actual = arreglo_cadena[2];
                         nombre = arreglo_cadena[3];
-                        avatar = arreglo_cadena[4];
+                        rol = arreglo_cadena[4];
+                        intentos = arreglo_cadena[5];
+                    }
+
+                    /* Hasta aqui suspend */
+
+                    _currentPage = 1;
+
+                    if ($window.navegadorx == "IE 11" || $window.navegadorx == "MSIE 10" || $window.navegadorx == "MSIE 9") {
+                        console.log("::El explorador no es admitido::");
+                    } else {
+                        //scope_.openIntro(); // abre el archivo de bienvenida      
                     }
 
                     _broadcast();
 
                 } else {
 
+
+                    _currentPage = 1;
+
+                    if ($window.navegadorx == "IE 11" || $window.navegadorx == "MSIE 10" || $window.navegadorx == "MSIE 9") {
+                        console.log("::El explorador no es admitido::");
+                    } else {
+                        //scope_.openIntro(); // abre el archivo de bienvenida      
+                    }
+
                     getMessage();
-                    
-                    //var result = '3-1-1-0|3-1-1-0,1,1,1,1,1,1,1,1,1|1-0-0-0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1|1-0-0-0&&2&&modulo2&&Luis Eduar&&6'
-                    //var result = bookmark_cadena;
-
-                    /* console.log("🚀 ~ bookmark_cadena:", bookmark_cadena)
-
-                    var arreglo_cadena = bookmark_cadena.split("&&");
-
-                        location = arreglo_cadena[1];
-
-                        var cadena_array = arreglo_cadena[0].split("|");
-                        for (var j = 0; j < _pagesArray.length; j++) {
-
-                            var _str_array = cadena_array[j].split("-");
-                            if (_str_array.length > 1) {
-                                //_pagesArray[j].done = (_str_array[0]==1);
-                                _pagesArray[j].done = (_str_array[0]);
-                                _pagesArray[j].calif = _str_array[1];
-                                _pagesArray[j].intentos = _str_array[2];
-                                _pagesArray[j].variantes = _str_array[3];
-                                //_pagesArray[j].califtotales=_str_array[4];
-                                //_pagesArray[j].califcorrectas=_str_array[5];
-                            } else {
-                                //_pagesArray[j].done = (cadena_array[j]==1);
-                                _pagesArray[j].done = (cadena_array[j]);
-                            }
-
-                        }
-                        pag_actual = arreglo_cadena[2];
-                        nombre = arreglo_cadena[3];
-                        avatar = arreglo_cadena[4];
-                    
-
-                    _broadcast(); */
-                        
+                                            
                 }  
 
             });
+        console.log("🚀 ~ _pagesLength:", _pagesLength)
         }
 
         function getCurrentPage () {
@@ -702,6 +718,12 @@
             console.log('✅ - brilla');
             /* Coloca suspend en location*/
             saveAvance();
+            //_broadcastStatus();
+        }
+        function reiniciarCurso() {
+            console.log('✅ - reiniciarCurso');
+            /* Coloca suspend en location*/
+            resetAvance();
             //_broadcastStatus();
         }
         /*----------*/
@@ -951,6 +973,8 @@
             nextPage: nextPage,
             goToPage: goToPage,
             brilla: brilla,
+            /*LRG 2024*/
+            reiniciarCurso: reiniciarCurso,
             setCurrentPage: setCurrentPage,
             goToPageTitle:goToPageTitle,
             /*⬇️-2022*/

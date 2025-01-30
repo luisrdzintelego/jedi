@@ -1,0 +1,162 @@
+[
+  {
+    "correcta": "3",
+    "numero": 1,
+    "pregunta": "¿Para qué sirve el Análisis de Causa Raíz?",
+    "opcion_1": "Para descubrir problemas en un proceso.",
+    "opcion_2": "Para representar gráficamente una variable.",
+    "opcion_3": "Para identificar la verdadera causa de un problema."
+  },
+  {
+    "correcta": "1",
+    "numero": 2,
+    "pregunta": "¿En qué etapa del ACR nos debemos preguntar qué está ocurriendo?",
+    "opcion_1": "Análisis de situaciones",
+    "opcion_2": "Análisis de problemas potenciales",
+    "opcion_3": "Análisis de decisiones"
+  },
+  {
+    "correcta": "2",
+    "numero": 3,
+    "pregunta": "¿En qué etapa del ACR nos debemos preguntar por qué ocurrió el incidente?",
+    "opcion_1": "Análisis de situaciones",
+    "opcion_2": "Análisis de problemas",
+    "opcion_3": "Análisis de decisiones"
+  },
+  {
+    "correcta": "2",
+    "numero": 4,
+    "pregunta": "¿En qué etapa del ACR nos debemos preguntar qué nos espera más adelante?",
+    "opcion_1": "Análisis de problemas",
+    "opcion_2": "Análisis de problemas potenciales",
+    "opcion_3": "Análisis de situaciones"
+  },
+  {
+    "correcta": "3",
+    "numero": 5,
+    "pregunta": "¿En qué etapa del ACR nos debemos preguntar qué acción debemos tomar?",
+    "opcion_1": "Análisis de situaciones",
+    "opcion_2": "Análisis de problemas potenciales",
+    "opcion_3": "Análisis de decisiones"
+  },
+  {
+    "correcta": "1",
+    "numero": 6,
+    "pregunta": "Reconocer situaciones, separar y aclarar información, fijar prioridades y clasificar, son pasos del:",
+    "opcion_1": "Análisis de situaciones",
+    "opcion_2": "Análisis de problemas potenciales",
+    "opcion_3": "Análisis de decisiones"
+  },
+  {
+    "correcta": "2",
+    "numero": 7,
+    "pregunta": "¿En qué etapa del ACR se puede identificar si un problema es actual, potencial o futuro?",
+    "opcion_1": "Análisis de situaciones",
+    "opcion_2": "Análisis de problemas",
+    "opcion_3": "Análisis de decisiones"
+  },
+  {
+    "correcta": "1",
+    "numero": 8,
+    "pregunta": "Esta herramienta nos permite ordenar datos en distintos grupos para una interpretación más sencilla:",
+    "opcion_1": "Estratificación",
+    "opcion_2": "Diagrama de Pareto",
+    "opcion_3": "Diagrama de causa y efecto"
+  },
+  {
+    "correcta": "3",
+    "numero": 9,
+    "pregunta": "Es una representación gráfica de una variable en forma de barras donde la superficie de cada barra es proporcional a la frecuencia de los valores representados:",
+    "opcion_1": "Estratificación",
+    "opcion_2": "Diagrama de Pareto",
+    "opcion_3": "Histograma"
+  },
+  {
+    "correcta": "2",
+    "numero": 10,
+    "pregunta": "¿Qué herramienta consiste en un gráfico de barras con una curva que representa de forma descendente el grado de importancia de los factores?",
+    "opcion_1": "Diagrama de causa y efecto",
+    "opcion_2": "Diagrama de Pareto",
+    "opcion_3": "Estratificación"
+  },
+  {
+    "correcta": "1",
+    "numero": 11,
+    "pregunta": "¿Qué herramienta se basa en el principio 80/20?",
+    "opcion_1": "Diagrama de Pareto",
+    "opcion_2": "Estratificación",
+    "opcion_3": "Histograma"
+  },
+  {
+    "correcta": "3",
+    "numero": 12,
+    "pregunta": "¿Qué herramienta permite apreciar la relación existente entre una característica de calidad y los factores que la afectan?",
+    "opcion_1": "Estratificación",
+    "opcion_2": "Diagrama de Pareto",
+    "opcion_3": "Diagrama de causa y efecto"
+  },
+  {
+    "correcta": "1",
+    "numero": 13,
+    "pregunta": "¿Qué herramienta es conocida como esqueleto de pescado?",
+    "opcion_1": "Diagrama de causa y efecto",
+    "opcion_2": "Histograma",
+    "opcion_3": "Diagrama de Pareto"
+  },
+  {
+    "correcta": "1",
+    "numero": 14,
+    "pregunta": "¿Qué herramienta nos permite ampliar la información de un problema al usar el diagrama de Ishikawa?",
+    "opcion_1": "5 porqués",
+    "opcion_2": "Histograma",
+    "opcion_3": "Estratificación"
+  },
+  {
+    "correcta": "3",
+    "numero": 15,
+    "pregunta": "¿Con qué otro nombre se le conoce al diagrama de causa y efecto?",
+    "opcion_1": "Diagrama de Pareto",
+    "opcion_2": "Histograma",
+    "opcion_3": "Diagrama de Ishikawa"
+  },
+  {
+    "correcta": "2",
+    "numero": 16,
+    "pregunta": "¿Qué herramienta se basa en que el 80% de las consecuencias provienen del 20% de las causas?",
+    "opcion_1": "Estratificación",
+    "opcion_2": "Diagrama de Pareto",
+    "opcion_3": "Diagrama de causa y efecto"
+  },
+  {
+    "correcta": "2",
+    "numero": 17,
+    "pregunta": "Son aquellas acciones tomadas para eliminar las causas de un problema:",
+    "opcion_1": "De Análisis",
+    "opcion_2": "Correctivas",
+    "opcion_3": "Sostenibles"
+  },
+  {
+    "correcta": "3",
+    "numero": 18,
+    "pregunta": "¿Qué debe hacerse despúes de implantar una acción correctiva?",
+    "opcion_1": "Presentarla en un reporte de resultados.",
+    "opcion_2": "Dar por sentado que el problema se ha solucionado totalmente.",
+    "opcion_3": "Cerciorarse que funciona y el problema no se repite."
+  },
+  {
+    "correcta": "2",
+    "numero": 19,
+    "pregunta": "¿En qué paso del tratamiento de acciones correctivas se concreta cómo se llevará a cabo?",
+    "opcion_1": "Definición",
+    "opcion_2": "Implantación",
+    "opcion_3": "Verificación"
+  },
+  {
+    "correcta": "3",
+    "numero": 20,
+    "pregunta": "¿En qué paso del tratamiento de acciones correctivas se comprueba que está funcionando?",
+    "opcion_1": "Definición",
+    "opcion_2": "Implantación",
+    "opcion_3": "Verificación"
+  }
+]

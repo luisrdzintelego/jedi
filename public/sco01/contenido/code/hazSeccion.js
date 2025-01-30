@@ -7,15 +7,35 @@ function hazSeccion(goTo, este_btn) {
       ruta_ = "index.html";
       break;
     case 2:
-      ruta_ = "modulo1.html";                
+      ruta_ = "abuso-de-autoridad-y-ambiente-laboral.html";                
       break;
     case 3:
-      ruta_ = "modulo2.html";
+      ruta_ = "conflicto-de-interes-entre-colaboradores-y-con-terceros.html";                
       break;
     case 4:
-      ruta_ = "modulo3.html";
+      ruta_ = "conflicto-de-interes-con-proveedores.html";                
       break;
+    case 5:
+      ruta_ = "seguridad-de-a-informacion.html";                
+      break;
+    case 6:
+      ruta_ = "anticorrupcion.html";                
+      break;
+    case 7:
+      ruta_ = "sobornos-entre-particulares.html";                
+      break;
+    case 8:
+      ruta_ = "uso-de-medios-sociales.html";                
+      break;
+    case 9:
+      ruta_ = "linea-etica-recomendaciones.html";                
+      break;
+    case 10:
+      ruta_ = "evaluacion.html";                
+      break;
+
   }
+
 
   if (este_btn) {
     console.log("🚀 ~ OBJETO:-----", este_btn)

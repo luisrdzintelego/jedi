@@ -1,0 +1,82 @@
+[
+    {
+        "no": 1,
+        "pregunta": "Son un conjunto de prácticas colaborativas que ayudan a tener mejores resultados en un proyecto:",
+        "opcion_1": "Scrum",
+        "opcion_2": "Sprint",
+        "opcion_3": "Product Backlog",
+        "retro": "Scrum son un conjunto de prácticas que ayudan a mejorar en los resultados de un proyecto."
+    },
+    {
+        "no": 2,
+        "pregunta": "Si llegaran a faltar uno de estos dos elementos, Scrum no podría llevarse a cabo:",
+        "opcion_1": "La experiencia y la observación",
+        "opcion_2": "Los resultados y la mejora",
+        "opcion_3": "La experiencia y el aprendizaje",
+        "retro": "El Scrum se fundamenta en adquirir conocimiento a través de la experiencia y la toma de decisiones basadas en la observación."
+    },
+    {
+        "no": 3,
+        "pregunta": "3. Son dos de los tres pilares del Scrum:",
+        "opcion_1": "Inspección y adaptación",
+        "opcion_2": "Trabajo en equipo y transparencia",
+        "opcion_3": "Adaptación y experimentación",
+        "retro": "Los tres pilares del Scrum son: Transparencia, inspección y adaptación."
+    },
+    {
+        "no": 4,
+        "pregunta": "4. ¿Por qué son tan importantes los valores de Scrum?",
+        "opcion_1": "Guían al equipo en su trabajo diario, sus decisiones y comportamiento de la mano de los tres pilares Scrum",
+        "opcion_2": "Se asegura la correcta operación de sus eventos formales a través del Sprint",
+        "opcion_3": "Se adquiere conocimiento a través de su uso y basándose en el empirismo",
+        "retro": "Los valores de Scrum son muy importantes porque guían al equipo en su trabajo diario, sus decisiones y su comportamiento, de la mano de los 3 pilares del Scrum."
+    },
+    {
+        "no": 5,
+        "pregunta": "5. Son dos de los cinco valores de Scrum:",
+        "opcion_1": "Compromiso y coraje",
+        "opcion_2": "Adaptación y experimentación",
+        "opcion_3": "Respeto y adaptación",
+        "retro": "Los cinco valores Scrum son: Compromiso, foco, franqueza, respeto y coraje."
+    },
+    {
+        "no": 6,
+        "pregunta": "6. ¿Cuáles son las tres responsabilidades clave de un Scrum team?",
+        "opcion_1": "Scrum Master, Product Owner y Developers",
+        "opcion_2": "Sprint, Sprint Planning y Sprint Backlog",
+        "opcion_3": "Developers, Backlog y Sprint",
+        "retro": "El Scrum Team se compone de tres responsabilidades (accounta﻿bilities) clave: Scrum Master, Product Owner y Developers."
+    },
+    {
+        "no": 7,
+        "pregunta": "7. Son características de un Scrum Team:",
+        "opcion_1": "Se compone de 10 personas o menos y son autogestionados",
+        "opcion_2": "Requieren de un líder y subordinados y dependen de equipos externos",
+        "opcion_3": "Trabajan de forma colaborativa y son equipos de una sola disciplina",
+        "retro": "Los Scrum Teams se componen de 10 personas o menos, son autogestionados y multidisciplinarios, además que trabajan de manera colaborativa."
+    },
+    {
+        "no": 8,
+        "pregunta": "8. ¿Cuál es el objetivo de un Scrum Team?",
+        "opcion_1": "Entregar un incremento valioso y utilizable al final de cada Sprint",
+        "opcion_2": "Entregar un plan de trabajo y ejecución",
+        "opcion_3": "Adquirir experiencia y conocimientos en cada Sprint",
+        "retro": "El objetivo principal de un Scrum Team es entregar un incremento valioso y utilizable al final de cada Sprint."
+    },
+    {
+        "no": 9,
+        "pregunta": "9. Son dos de los 5 eventos Scrum:",
+        "opcion_1": "El Sprint y el Daily Scrum",
+        "opcion_2": "El Sprint Planning y el Product backlog",
+        "opcion_3": "El Sprint Retrospective y el Scrum Master",
+        "retro": "El Scrum cuenta con cinco eventos y son: El Sprint, Sprint Planning, Daily Scrum, Sprint Review y Sprint retrospective."
+    },
+    {
+        "no": 10,
+        "pregunta": "10. Son los tres artefactos Scrum:",
+        "opcion_1": "Product Backlog, Sprint Backlog y el Incremento",
+        "opcion_2": "Sprint, Product Backlog y el Incremento",
+        "opcion_3": "Sprint Backlog, Daily Scrum y el Incremento",
+        "retro": "Los tres artefactos Scrum son: Product Backlog, Sprint Backlog y el Incremento."
+    }
+]

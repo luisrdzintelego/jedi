@@ -500,8 +500,8 @@ select{
 .video-js.vjs-4-3,
 .video-js.vjs-9-16,
 .video-js.vjs-1-1 {
-  width: 100%; /* cambiar a 100% */
-  max-width: 100%;
+  /* width: 100%; */ /* cambiar a 100% *//* LUIS */
+  /* max-width: 100%; */
 }
 
 .video-js.vjs-fluid:not(.vjs-audio-only-mode),

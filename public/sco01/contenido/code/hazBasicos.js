@@ -1,4 +1,4 @@
-function change_img(div, imagePrefix) {
+  function change_img(div, imagePrefix) {
   $('.' + div).attr('src', 'images/' + imagePrefix + '.png');
 }
 
@@ -10,6 +10,12 @@ function change_img_svg(div, imagePrefix) {
 
 function change_img_class(div, imagePrefix, ext) {
   $('.img' + div).attr('src', 'sources/' + imagePrefix + '.' + ext);
+}
+
+//2024Dic
+function add_image_inDiv(div, imagePrefix,tam) {
+  console.log("🚀🚀🚀🚀🚀🚀🚀 ~ add_image_inDiv:")
+  $('.' + div).html('<img src="sources/'+imagePrefix+'" width="'+tam+'" height="'+tam+'">');
 }
 
 
@@ -50,70 +56,6 @@ $(".btns1, .btns2, .btns3, .btns4, .btns5, .btns6, .btns7, .btns8, .btns9, .btns
     return false;
   }
 });
-
-//MUESTRA EL INPUT DEL ERROR Y LO CONTORNEA DE ROJO DESPUES LANZA LA FUNCIONA PARA QUITARLE LOS ESTILOS
-function set_error(input) {
-  console.log('set_error');
-  //FOCUS AL OBJETO DEL ERROR
-  $('#' + input).focus();
-  //AGREGAMOS MARCO ROJO AL ERROR
-  $('#' + input).addClass('border_red');
-  //3 SEG QUITAMOS EL OUTLINE RED
-  setTimeout(unset_error, 3000, input);
-}
-
-//QUITAR SET ERROR.
-function unset_error(input) {
-  console.log('unset_outline');
-  $('#' + input).removeClass('border_red');
-}
-
-//MUESTRA UN MENSAJE ESPECIFICO EN EL DIV QUE TU ELIJAS Y DESPUES LANZA LA FUNCION PARA QUITAR EL MENSAJE.
-function set_msj(input, msj) {
-  //var desap = document.getElementById("console);
-  //desap.style.display = "none";
-  //$("#console").css("display", "none");
-  $('#' + input).html(msj);
-  setTimeout(unset_msj, 3000, input);
-  //$("#id").css("display", "block");
-}
-
-//QUITAR MENSAJE.
-function unset_msj(input) {
-  //var desap = document.getElementById("console);
-  //desap.style.display = "none";
-  //$("#console").css("display", "none");
-  $('#' + input).html('');
-  //$("#id").css("display", "block");
-}
-
-function timeout_msj(id, msj) {
-  //var desap = document.getElementById("console);
-  //desap.style.display = "none";
-  //$("#console").css("display", "none");
-  $('#' + id).html(msj);
-  //$("#id").css("display", "block");
-}
-
-//MUESTRA UN MENSAJE ESPECIFICO EN EL DIV QUE TU ELIJAS.
-function set_mensaje(input, msj) {
-  //var desap = document.getElementById("console);
-  //desap.style.display = "none";
-  //$("#console").css("display", "none");
-  $('#' + input).html(msj);
-  //setTimeout(unset_msj, 3000, input);
-  //$("#id").css("display", "block");
-}
-
-
-function ver_div(input) {
-  $('.' + input).fadeIn();
-  setTimeout(hide_div, 3000, input);
-
-}
-function hide_div(input) {
-  $('.' + input).fadeOut();
-}
 
 //OCULTA LOS BOTONES DE EL MENU EN LA VERSION MOBIL Y SOLO DEJA EL CORREPONDIENTE AL TEMA.
 //MUESTRA / OCULTA EL BOTON DE CIERRE EN EL MENU INFERIOR, SI ESTAS EN MOBIL O EN DESKTOP.

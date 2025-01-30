@@ -1,12 +1,11 @@
 /*ALTERNATIVA 1*/
 var videos = {
-	"url_1": "videos/video1.mp4",
+  "url_1": "videos/video1.mp4",
   "url_2": "videos/video1.mp4",
   "url_3": "videos/video1.mp4",
   "url_4": "videos/video1.mp4",
   "url_5": "videos/video1.mp4",
   "url_6": "videos/video1.mp4",
-  "url_1": "videos/video1.mp4",
 	"url_99": "videos/video1.mp4"
 }
 
@@ -28,8 +27,10 @@ player.on('ended', function() {
   //chk_btns(1)
   root["chk" + cual_video] = true;
   chk_btns(cual_video);
+  $('.vid' + cual_video).hide()
 });
 
+player.pause();
 
 $(".btn_video").click(function () {
   console.log("🚀 ~ btn_video:")

@@ -37,7 +37,7 @@ const Introduccion = () => {
 	//const [bookmark, setBookmark] = useState(location.state.bookmark)
 	//const [user, setUser] = useState([])
 
-	const ref2 = useRef();
+
 
 	const removeAuth = (name) => {
 		setCookieId(name, '', { path: '/', expires: (new Date(Date.now())) });
@@ -100,13 +100,13 @@ const Introduccion = () => {
 					GConText.setBookmark(resp[0].bookmark);
 
 					console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
-					console.log("🚀 ~ dB.id", resp[0].id);
+					/* console.log("🚀 ~ dB.id", resp[0].id);
 					console.log("🚀 ~ dB.username", resp[0].username)
 					console.log("🚀 ~ dB.password", resp[0].password)
 					console.log("🚀 ~ dB.nombre", resp[0].nombre)
 					console.log("🚀 ~ dB.grupo", resp[0].grupo)
-					console.log("🚀 ~ dB.type", resp[0].type)
-					console.log("🚀 ~ dB.bookmark", resp[0].bookmark)
+					console.log("🚀 ~ dB.type", resp[0].type)*/
+					console.log("🚀 ~ dB.bookmark", resp[0].bookmark) 
 					console.log("🚀 ~ dB.status", resp[0].status)
 
 				}
@@ -133,11 +133,11 @@ const Introduccion = () => {
 			}
 
 			const data = JSON.parse(ev.data)
-			console.log("Hello World?", data)
+			console.log("se mando esto a la Plataforma! ----->", data)
 			setMessage(data.message)
 			setTerminoLamina(data.completado)
 
-			console.log(data.completado, " -- ", GConText.userId, " -- ", data.bookmark)
+			//console.log(data.completado, " -- ", GConText.userId, " -- ", data.bookmark)
 			udpatesUser(GConText.userId, data.bookmark)
 
 			console.log("message--- ", message)
@@ -182,7 +182,7 @@ const Introduccion = () => {
 		return () => window.removeEventListener('message', handler)
 	}, [])
 
-	const ref = useRef();
+
 	/*
 	const [height, setHeight] = React.useState("0px");
 	const onLoad = () => {
@@ -201,17 +201,28 @@ const Introduccion = () => {
 
 	}, [])
 
-	/* useEffect(() => {
+	const ref2 = useRef();
+	useEffect(() => {
 		const iframe = ref2.current;
 		iframe.addEventListener('load', () => {
 			//iframe.contentWindow.postMessage('message', 'http://localhost:3000');
 
 			const win = iframe.contentWindow;
-			win.postMessage(GConText.bookmark, 'http://localhost:3000/');
+			win.postMessage(GConText.bookmark, 'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html');
 			//win.postMessage('message (2)', 'http://localhost:3000/');
 
 		});
-	}, [ref2]); */
+	}, [ref2]);
+
+	const ref = useRef();
+	/* 
+	useEffect(() => {
+		const iframe = ref.current;
+		iframe.addEventListener('load', () => {
+			iframe.contentWindow.postMessage(GConText.bookmark, 'http://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html');
+		});
+	 }, [ref]); */
+
 
 
 	return (
@@ -233,12 +244,12 @@ const Introduccion = () => {
 							<div>Nombre: {GConText.username}, ID: {GConText.userId} - BOOKMARK: {GConText.bookmark} - STATUS: {GConText.status === true ? 'true' : 'false'}</div>
 							<h1>{terminoLamina ? '✅ Curso Completado' : '😱 Curso Corriendo'}</h1>
 
-							{/* <iframe title='Curso0'
+							<iframe title='Curso0'
 								ref={ref2}
 								//onLoad={onLoad}
 								autoFocus={true}
 								id="myFrame3"
-								src={'sco01/index.html'}
+								src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html'}
 								//width="100%"
 								//height="100%"
 								//height={height}
@@ -251,7 +262,7 @@ const Introduccion = () => {
 									//height: "100%",
 									//overflow: "hidden",
 								}}
-							/> */}
+							/>
 
 
 							{/* <iframe
@@ -295,12 +306,13 @@ const Introduccion = () => {
 						}}
 					></iframe> */}
 
-							{/* //SI FUNCIONA */} <iframe
+						{/* //SI FUNCIONA */} 
+						{/* <iframe
 						ref={ref}
 						//onLoad={onLoad}
 						autoFocus={true}
 						id="myFrame2"
-						src={'https://intelegoprojects.com/JEDI/curso1/asignaciones.html'}
+						src={'http://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html'}
 						//src={`${process.env.PUBLIC_URL}/curso1/asignaciones.html`}
 						width="100%"
 						//height="100%"
@@ -313,7 +325,7 @@ const Introduccion = () => {
 							minHeight: '100vh',
 							overflow: "hiden",
 						}}
-					></iframe>
+					></iframe> */}
 
 							{/* {terminoLamina ? <h1><button onClick={onClick}>🔜 Siguiente Lamina </button></h1> : <></>} */}
 							{/* <button onClick={onClick}>{paused ? "Unpause" : "Pause"}</button> */}
