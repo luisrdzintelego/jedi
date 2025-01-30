@@ -56,12 +56,12 @@ const Introduccion = () => {
 	*/
 	const [message, setMessage] = useState('')
 
-	async function udpatesUser(id, bookmark) {
+	async function udpatesUser(id, bookmark,completado) {
 		console.log("🚀 udpates 🚀 ~ --id -- ", id)
 		console.log("🚀 udpates 🚀 ~ --bookmark -- ", bookmark)
 		const original = await DataStore.query(Ranking, id);
 		await DataStore.save(Ranking.copyOf(original, updated => {
-			updated.status = true
+			updated.status = completado
 			updated.bookmark = bookmark
 		})
 		).then((resp) => {
@@ -138,7 +138,7 @@ const Introduccion = () => {
 			setTerminoLamina(data.completado)
 
 			//console.log(data.completado, " -- ", GConText.userId, " -- ", data.bookmark)
-			udpatesUser(GConText.userId, data.bookmark)
+			udpatesUser(GConText.userId, data.bookmark, data.completado)
 
 			console.log("message--- ", message)
 			console.log("terminoLamina--- ", terminoLamina)
@@ -208,11 +208,14 @@ const Introduccion = () => {
 			//iframe.contentWindow.postMessage('message', 'http://localhost:3000');
 
 			const win = iframe.contentWindow;
-			win.postMessage(GConText.bookmark, 'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html');
+			//win.postMessage(GConText.bookmark, 'https://intelegoprojects.com');
+			//win.postMessage('3-1-1-x,1|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0&&1&&abuso-de-autoridad-y-ambiente-laboral&&&&0&&0&&', 'http://localhost:3000');
+			win.postMessage(GConText.bookmark, 'http://intelegoprojects.com/');
+
 			//win.postMessage('message (2)', 'http://localhost:3000/');
 
 		});
-	}, [ref2]);
+	}, [ref2, GConText.bookmark]);
 
 	const ref = useRef();
 	/* 
@@ -227,29 +230,25 @@ const Introduccion = () => {
 
 	return (
 		<>
-			<div className="container introduccion-background">
-				<Nav titulo={"Introduccion"}></Nav>
+			<div className="container-fluid introduccion-background">
+				<Nav titulo={"Introduccion"} curso={true}></Nav>
 
-				<Link className='btn_amarillo' onClick={() => removeAuth('idUser')} to='/' ><FontAwesomeIcon icon={faPowerOff} /> Logout</Link>
-				<br></br><br></br>
+				<span className='fs-10 position-absolute bottom-0 end-0 p-1'>{GConText.version}</span>
 
 				{/* <div style={{ width: "100%" }}> */}
-				<div className='container'>
+				<div className='container-fluid'>
 					<div className='row'>
-						<div className='col-12 col-md-12 text-center '>
+						<div className='col-12 col-md-12 text-center'>
 
 							{/* <h1>{terminoLamina ? '✅ Lamina Completada' : '❌ Lamina Corriendo'}</h1> */}
 							{/* <h1>{terminoLamina ? '✅ Curso Completada' : '😱 Curso Corriendo'}</h1> */}
-
-							<div>Nombre: {GConText.username}, ID: {GConText.userId} - BOOKMARK: {GConText.bookmark} - STATUS: {GConText.status === true ? 'true' : 'false'}</div>
-							<h1>{terminoLamina ? '✅ Curso Completado' : '😱 Curso Corriendo'}</h1>
 
 							<iframe title='Curso0'
 								ref={ref2}
 								//onLoad={onLoad}
 								autoFocus={true}
 								id="myFrame3"
-								src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html'}
+								src={'sco01/index.html'}
 								//width="100%"
 								//height="100%"
 								//height={height}

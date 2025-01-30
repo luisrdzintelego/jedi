@@ -259,6 +259,29 @@
     });
   } */
   
+  //2025
+ /*  window.addEventListener("message", (event) => {
+  // Do we trust the sender of this message?
+  if (event.origin !== "http://localhost:3000") return;
+
+  // event.source is window.opener
+  // event.data is "hello there!"
+
+  // Assuming you've verified the origin of the received message (which
+  // you must do in any case), a convenient idiom for replying to a
+  // message is to call postMessage on event.source and provide
+  // event.origin as the targetOrigin.
+  event.source.postMessage(
+    "hi there yourself! the secret response " + "is: rheeeeet!",
+    event.origin,
+  );
+    console.log("🚀 ~ event.origin:", event.origin)
+    console.log("🚀 ~ event.data:", event.data)
+    
+}); */
+
+
+
   //metodo1
   /* addEventListener('message', (event) => {
     //output.innerHTML += JSON.stringify(event.data) + '\n';
@@ -269,7 +292,7 @@
   }); */
   
   //metodo2
- /*  window.addEventListener("message", (event) => loadEdit(), false);
+  /* window.addEventListener("message", (event) => loadEdit(), false);
   async function loadEdit() {
     console.log("🚀 ~ JSON.stringify(event.data):", JSON.stringify(event.data))
     bookmark_cadena = event.data;

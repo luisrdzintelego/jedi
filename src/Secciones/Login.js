@@ -306,7 +306,7 @@ const Login = ({ props }) => {
 
 				<Nav titulo={"login"}></Nav>
 
-			<span className='fs-10 position-absolute bottom-0 end-0 p-1'>{GConText.Version}</span>
+			<span className='fs-10 position-absolute bottom-0 end-0 p-1'>{GConText.version}</span>
 
 				<div className="row mt-5 mx-1">
 					<div className="col-12 col-lg-6 offset-lg-3 col-md-8 offset-md-2">

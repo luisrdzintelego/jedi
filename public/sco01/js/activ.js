@@ -16,7 +16,7 @@ var intentos = 0;
 var nombre = "";
 var rol = 0;
 var nombre_curso = "Jedi";
-var bookmark;
+var bookmark = '';
 
 var sRatio = 1;
 
@@ -302,7 +302,7 @@ function HazCerrar() {
 }
 
 //window.parent.allowfullscreen = true;
-if (parent != null) {
+/* if (parent != null) {
   if (parent.document != null) {
     var iframe = parent.document.querySelectorAll("iframe");
     //var frames = parent.document.querySelectorAll("#activityFrame"); 
@@ -319,7 +319,7 @@ if (parent != null) {
     }
 
   }
-}
+} */
 
 
 function handleStart(evt) {

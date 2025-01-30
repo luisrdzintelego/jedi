@@ -7,7 +7,7 @@
       //console.log("🚀 ~ actual:", actual)
     
       if (window.parent.getVariantes(actual) != undefined && window.parent.getVariantes(actual) != 0) {
-        atv = window.parent.getVariantes(actual).split(",");
+        chk = window.parent.getVariantes(actual).split(",");
         //atv = window.parent.getVariantes(actual);
       } /* else {
             atv = [0,0];

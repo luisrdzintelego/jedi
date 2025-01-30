@@ -1,4 +1,6 @@
-import React, { } from 'react';
+import React, { useContext } from 'react';
+//v2025-01
+import { VarContext } from '../Context/VarContext';
 import { Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
@@ -19,9 +21,10 @@ import Logo_universidad from "../Img/JEDI/logo_universidad.png"
 
 import Ayuda_img from "../Img/img_ayuda_pg.png"
 
-const Nav = ({ titulo, btn_admin, btn_dash }) => {
+const Nav = ({ titulo, btn_admin, btn_dash, curso }) => {
 
 	const [CookieId, setCookieId] = useCookies(['idUser']);
+	const GConText = useContext(VarContext);
 
 	const removeAuth = (name) => {
 		setCookieId(name, '', { path: '/', expires: (new Date(Date.now())) });
@@ -34,12 +37,17 @@ const Nav = ({ titulo, btn_admin, btn_dash }) => {
 					<div className="col-12">
 						<div className="row hr" style={{ padding: '10px' }}>
 
-							<div className="col-3 col-md-2 text-left ">
+							<div className="col-3 col-md-2 text-left">
 								<img src={Logo_femsa} alt="" className='logo'></img>
 							</div>
 
-							<div className="col-6 col-md-8 text-left">
-								{/* <span className='titulo'>{titulo}</span> */}
+							<div className="d-none d-sm-block col-6 col-md-6 text-left">
+								<span className='titulo'>{titulo}</span>
+							</div>
+
+
+							<div style={{ display: curso === true ? 'block' : 'none' }} className={`col-6 col-md-2 text-center`}>
+								<Link className='btn_amarillo' onClick={() => removeAuth('idUser')} to='/' ><FontAwesomeIcon icon={faPowerOff} /> Logout</Link>
 							</div>
 
 							<div style={{ display: btn_dash === true ? 'block' : 'none' }} className={`${btn_dash === true ? "d-none d-sm-block" : ""} col-12 col-md-6 text-right `}>
@@ -60,12 +68,27 @@ const Nav = ({ titulo, btn_admin, btn_dash }) => {
 							<Link className='btn_amarillo' to="/login"><FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>&nbsp; Cerrar</Link>
 						</div> */}
 
-								<div className="col-3 col-md-2 col-xs-2 text-right">
-									<img src={Logo_universidad} alt="" className='logo_universidad'></img>
-								</div>
+							<div className="col-2 col-md-2 text-right">
+								<img src={Logo_universidad} alt="" className='logo_universidad'></img>
+							</div>
 
 						</div>
 					</div>
+					<div style={{ display: curso === true ? 'block' : 'none' }} className={`col-12 col-md-12 text-left`}>
+
+						<div className="row hr" style={{ padding: '10px' }}>
+							<div className={`d-none d-sm-block col-2 col-md-2 text-left`}>
+								<h1 className='status'>{GConText.status ? '🟢 Completado' : '🟣 Cursando'}</h1>
+							</div>
+
+							<div className={`d-none d-sm-block col-10 col-md-10 text-left`}>
+								<h2 className='bookmark'>Nombre: {GConText.username}, ID: {GConText.userId} - BOOKMARK: {GConText.bookmark} - STATUS: {GConText.status === true ? 'true' : 'false'}</h2>
+							</div>
+
+						</div>
+					</div>
+
+
 				</div>
 			</div>
 

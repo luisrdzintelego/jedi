@@ -75,7 +75,7 @@
         $window.addEventListener('message', (event) => {
 
              //Para forzar que vengan desde una url conocida
-            if (event.origin === 'https://main.d34dped6g4yozl.amplifyapp.com') {
+            if (event.origin === 'http://localhost:3000') {
                 // The data was sent from your site.
                 // Data sent with postMessage is stored in event.data:
                 console.log(event.data);
@@ -85,11 +85,7 @@
                 
                 //--⬇︎ pone espacio vacio si no existe el dato
                 //--⬇︎ FUNCIONAL
-
-                if(event.data != null){
-                    bookmark = event.data.toString();
-                }
-                
+                bookmark = event.data.toString();
                 //console.log("🚀 ~ event.data.toString():", event.data.toString())
 
                /*  var arreglo_cadena = result.split("&&");
@@ -135,15 +131,9 @@
 
     plantillaApp.controller('plantillaAppController', function($scope, $window, PagesService, $rootScope, snapRemote, scormService, gradeFactory, GradeService, ModalsService, $sce, videoService, $timeout, textosService){
         textosService.init();
-        //scormService.init();
+        scormService.init();
+        PagesService.init();
         
-        setTimeout(() => {
-            console.log('plataforma')
-            PagesService.init();
-          }, 1);
-
-        //PagesService.init();
-
         ModalsService.init($scope);
                 
         $window.scormService = scormService;
@@ -371,7 +361,7 @@
             /*----------*/
 
             $scope.pagesArray = PagesService.getPages();
-            //$scope.$apply();
+            $scope.$apply();
 
         });
 
@@ -474,14 +464,9 @@
             //scormService.saveLocation(cadena + "&&" + _currentPage + "&&" + pag_actual + "&&" + nombre + "&&" + rol + "&&" + intentos + "&&" );
             bookmark = (cadena + "&&" + _currentPage + "&&" + pag_actual + "&&" + nombre + "&&" + rol + "&&" + intentos + "&&" );
             console.log("🟡 ~ bookmark:", bookmark)
-
-            sendPlatform(bookmark,false)
-
             console.log("🚀 ~ todos_vistos:")
 
             if(todos_vistos === true){
-
-                sendPlatform(bookmark,true)
 
                 //scormService.saveStatus("completed");
 
@@ -552,58 +537,159 @@
                 /* Actualiza Suspend data en JSON*/
                 //var get_cadena=scormService.getLocation();
 
+                async function getMessage() {
+                    //const reader = new FileReader();
+                    await new Promise((res, reject) => { 
+                        window.addEventListener('message', (event) => {
+
+                                // IMPORTANT: check the origin of the data!
+
+
+
+                                    /* // Do we trust the sender of this message?
+                                    if (event.origin !== "http://localhost:3000") return;
+                                  
+                                    // event.source is window.opener
+                                    // event.data is "hello there!"
+                                  
+                                    // Assuming you've verified the origin of the received message (which
+                                    // you must do in any case), a convenient idiom for replying to a
+                                    // message is to call postMessage on event.source and provide
+                                    // event.origin as the targetOrigin.
+                                    event.source.postMessage(
+                                      "hi there yourself! the secret response " + "is: rheeeeet!",
+                                      event.origin,
+                                    );
+                                      console.log("🚀 ~ event.origin:", event.origin)
+                                      console.log("🚀 ~ event.data:", event.data)
+                                      res(event.data.toString()) */
+
+
+                                 //Para forzar que vengan desde una url conocida
+                                if (event.origin === 'http://localhost:3000') {
+                                    // The data was sent from your site.
+                                    // Data sent with postMessage is stored in event.data:
+                                    console.log(event.data);
+                                    //--⬇︎ pone comillas si no existe el dato -- 
+                                    //res(JSON.stringify(event.data));
+                                    //console.log("🚀 ~ event.data.stringify():", JSON.stringify(event.data))
+                                    
+                                    //--⬇︎ pone espacio vacio si no existe el dato
+                                    //--⬇︎ FUNCIONAL
+                                    res(event.data.toString());
+                                    //console.log("🚀 ~ event.data.toString():", event.data.toString())
+                                } else {
+                                    // The data was NOT sent from your site!
+                                    // Be careful! Do not use it. This else branch is
+                                    // here just for clarity, you usually shouldn't need it.
+                                    return;
+                                } 
+
+                        });
+                    //}).then(result => { return result });
+                    }).then((result) => {
+                        console.log(result)
+                        var arreglo_cadena = result.split("&&");
+                        location = arreglo_cadena[1];
+
+                        var cadena_array = arreglo_cadena[0].split("|");
+                        for (var j = 0; j < _pagesArray.length; j++) {
+    
+                            var _str_array = cadena_array[j].split("-");
+                            if (_str_array.length > 1) {
+                                //_pagesArray[j].done = (_str_array[0]==1);
+                                _pagesArray[j].done = (_str_array[0]);
+                                _pagesArray[j].calif = _str_array[1];
+                                _pagesArray[j].intentos=_str_array[2]; 
+                                _pagesArray[j].variantes=_str_array[3];                                                     
+                                //_pagesArray[j].califtotales=_str_array[4];
+                                //_pagesArray[j].califcorrectas=_str_array[5];
+                            }else{
+                                //_pagesArray[j].done = (cadena_array[j]==1);
+                                _pagesArray[j].done = (cadena_array[j]);
+                            }
+    
+                        }
+                        pag_actual = arreglo_cadena[2];
+                        nombre = arreglo_cadena[3];
+                        rol = arreglo_cadena[4];
+                        intentos = arreglo_cadena[5];
+
+                    }).catch(function (error) {
+                        console.log(
+                            error,
+                        ); /* esta línea podría arrojar error, e.g. cuando console = {} */
+                    }).finally(function () {
+                        
+                        _broadcast();
+                    });
+
+                }
+                
+
                 /*✅LRG 2024*/
                 console.log("🚀 ~ DATA.test::::", data.test)
-                if (data.test == true) {
-                    var get_cadena = data.location_json;
-                } else {
-                    var get_cadena = bookmark;
-                    //var get_cadena = scormService.getSuspend();
-                    
-                }
-                /*----------*/
+                //if (data.test == true) {
+                if (bookmark != '') {
+                    var result = data.location_json;
 
-                if (get_cadena) {
-                    var arreglo_cadena = get_cadena.split("&&");
-                    location = arreglo_cadena[1];
+                    if (result) {
+                        var arreglo_cadena = result.split("&&");
+                        location = arreglo_cadena[1];
 
-                    var cadena_array = arreglo_cadena[0].split("|");
-                    for (var j = 0; j < _pagesArray.length; j++) {
+                        var cadena_array = arreglo_cadena[0].split("|");
+                        for (var j = 0; j < _pagesArray.length; j++) {
 
-                        var _str_array = cadena_array[j].split("-");
-                        if (_str_array.length > 1) {
-                            //_pagesArray[j].done = (_str_array[0]==1);
-                            _pagesArray[j].done = (_str_array[0]);
-                            _pagesArray[j].calif = _str_array[1];
-                            _pagesArray[j].intentos=_str_array[2]; 
-                            _pagesArray[j].variantes=_str_array[3];                                                     
-                            //_pagesArray[j].califtotales=_str_array[4];
-                            //_pagesArray[j].califcorrectas=_str_array[5];
-                        }else{
-                            //_pagesArray[j].done = (cadena_array[j]==1);
-                            _pagesArray[j].done = (cadena_array[j]);
+                            var _str_array = cadena_array[j].split("-");
+                            if (_str_array.length > 1) {
+                                //_pagesArray[j].done = (_str_array[0]==1);
+                                _pagesArray[j].done = (_str_array[0]);
+                                _pagesArray[j].calif = _str_array[1];
+                                _pagesArray[j].intentos = _str_array[2];
+                                _pagesArray[j].variantes = _str_array[3];
+                                //_pagesArray[j].califtotales=_str_array[4];
+                                //_pagesArray[j].califcorrectas=_str_array[5];
+                            } else {
+                                //_pagesArray[j].done = (cadena_array[j]==1);
+                                _pagesArray[j].done = (cadena_array[j]);
+                            }
+
                         }
-
+                        pag_actual = arreglo_cadena[2];
+                        nombre = arreglo_cadena[3];
+                        rol = arreglo_cadena[4];
+                        intentos = arreglo_cadena[5];
                     }
-                    pag_actual = arreglo_cadena[2];
-                    nombre = arreglo_cadena[3];
-                    rol = arreglo_cadena[4];
-                    intentos = arreglo_cadena[5];
-                }   
 
-                
-                /* Hasta aqui suspend */
+                    /* Hasta aqui suspend */
 
-                _currentPage = 1;
+                    _currentPage = 1;
 
-                if ($window.navegadorx == "IE 11" || $window.navegadorx == "MSIE 10" || $window.navegadorx == "MSIE 9") {
-                    console.log("::El explorador no es admitido::");
+                    if ($window.navegadorx == "IE 11" || $window.navegadorx == "MSIE 10" || $window.navegadorx == "MSIE 9") {
+                        console.log("::El explorador no es admitido::");
+                    } else {
+                        //scope_.openIntro(); // abre el archivo de bienvenida      
+                    }
+
+                    _broadcast();
+
                 } else {
-                    //scope_.openIntro(); // abre el archivo de bienvenida      
-                }
 
-                _broadcast();
+
+                    _currentPage = 1;
+
+                    if ($window.navegadorx == "IE 11" || $window.navegadorx == "MSIE 10" || $window.navegadorx == "MSIE 9") {
+                        console.log("::El explorador no es admitido::");
+                    } else {
+                        //scope_.openIntro(); // abre el archivo de bienvenida      
+                    }
+
+                   //getMessage();
+                                            
+                }  
+
             });
+        console.log("🚀 ~ _pagesLength:", _pagesLength)
         }
 
         function getCurrentPage () {
