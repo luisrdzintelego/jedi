@@ -68,6 +68,14 @@ const Login = ({ props }) => {
 	let num = 0;
 
 
+	const handleKeyDown = (event) => {
+		if (event.key === 'Enter') {
+			chkLogin();
+		  console.log('do validate')
+		}
+	  }
+
+
 	const chkData = async () => {
 		//setTodos([]);
 		console.log("🚀 ~ chkData----------")
@@ -334,7 +342,7 @@ const Login = ({ props }) => {
 											<label className="control-label label-login">Correo Electrónico:</label>
 										</div>
 										<div className="col-sm-12 col-md-8  text-center">
-											<input type="text" onChange={UserChange} className="fs-16 form-control-login" placeholder=""></input>
+											<input type="text" onChange={UserChange} onKeyDown={handleKeyDown} className="fs-16 form-control-login" placeholder=""></input>
 										</div>
 										<div className="d-none d-sm-block col-md-1 text-center">
 											<img src={user === false ? Img.mal : Img.bien} style={{ display: verImg === true ? 'block' : 'none' }} alt="retro" width="34"></img>
@@ -352,7 +360,7 @@ const Login = ({ props }) => {
 											<label className="control-label label-login">Contraseña:</label>
 										</div>
 										<div className="col-sm-12 col-md-8  text-center">
-											<input type="password" onChange={PassChange} className="fs-16  form-control-login" placeholder=""></input>
+											<input type="password" onChange={PassChange} onKeyDown={handleKeyDown} className="fs-16  form-control-login" placeholder=""></input>
 										</div>
 										<div className="d-none d-sm-block col-md-1 text-center">
 											<img src={pass === false ? Img.mal : Img.bien} style={{ display: verImg === true ? 'block' : 'none' }} alt="retro" width="34"></img>

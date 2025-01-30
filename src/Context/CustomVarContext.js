@@ -75,7 +75,7 @@ export const CustomVarContext = ({children}) => {
 
 	const [bookmark, setBookmark] = useState ('')
 
-	const [version, setVersion] = useState ('v7_2025 server')
+	const [version, setVersion] = useState ('v8_2025 server')
 	//----
 
 	//DATOA DE SE LLENAN DE LA BASE
