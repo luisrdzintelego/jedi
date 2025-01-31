@@ -1,5 +1,21 @@
+@font-face {
+    font-family: 'kansasnewregular';
+    src: url('../fonts/kansasnew-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 @font-face {
+    font-family: 'kansasnewbold';
+    src: url('../fonts/kansasnew-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+/* @font-face {
     font-family: 'kansasnewregular';
     src: url('../fonts/kansasnew-regular-webfont.woff2') format('woff2'),
     url('../fonts/kansasnew-regular-webfont.woff') format('woff');
@@ -21,7 +37,7 @@
         url('../fonts/kansasnew-bold-webfont.woff') format('woff');
         font-weight: normal;
         font-style: normal;
-        }
+        } */
     
 
 /*
