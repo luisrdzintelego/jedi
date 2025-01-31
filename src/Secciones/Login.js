@@ -8,7 +8,7 @@ import { DataStore, SortDirection, Predicates } from '@aws-amplify/datastore';
 import { Ranking } from '../models';
 import { useCookies } from 'react-cookie';
 
-import '../fonts/fonts.css'
+//import '../fonts/fonts.css'
 import './Login.css';
 
 import * as Img from '../Components/Imagenes'
