@@ -66,7 +66,7 @@ const Nav = ({ titulo, btn_admin, btn_dash, curso }) => {
 					</div>
 
 
-					<div style={{ display: GConText.productivo === false ? 'block' : 'none' }} className={`col-12 col-md-12 text-left`}>
+					<div style={{ display: GConText.pruebas === true ? 'block' : 'none' }} className={`col-12 col-md-12 text-left`}>
 
 						<div className="row hr" style={{ padding: '10px' }}>
 

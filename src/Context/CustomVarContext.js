@@ -73,12 +73,12 @@ export const CustomVarContext = ({children}) => {
 	const [TotalAvance, setTotalAvance] = useState (10)
 	const [ConteoAvance, setConteoAvance] = useState (0)
 
-	//2025v8 - productivo es para poder monstar en la seccion de curso en pantalla lo que mmuestra la base de datos.
-	const [productivo, setProductivo] = useState (false);
+	//2025v8 - pruebas es para poder monstar en la seccion de curso en pantalla lo que mmuestra la base de datos.
+	const [pruebas, setPruebas] = useState (false);
 
 	const [bookmark, setBookmark] = useState ('')
 
-	const [version, setVersion] = useState ('v8_2025 server')
+	const [version, setVersion] = useState ('v9_2025 server')
 	//----
 
 	//DATOA DE SE LLENAN DE LA BASE
@@ -219,7 +219,7 @@ export const CustomVarContext = ({children}) => {
 		/* ranking,setRanking, */
 		resetAll,
 		//TEST-
-		productivo, setProductivo,
+		pruebas, setPruebas,
 		//Base,setBase,
 		//--NO SE USAN
 		/* Bonus,setBonus,

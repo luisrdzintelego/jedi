@@ -267,8 +267,8 @@ const Introduccion = () => {
 								//onLoad={onLoad}
 								autoFocus={true}
 								id="myFrame3"
-								//src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html'}
-								src={'sco01/index.html'}
+								src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html'}
+								//src={'sco01/index.html'}
 								//width="100%"
 								//height="100%"
 								//height={height}
@@ -278,7 +278,7 @@ const Introduccion = () => {
 									//maxWidth: 640,
 									width: '100%',
 									//minHeight: '100vh',
-									height:  (GConText.productivo ? 'calc(100vh - 50px)' : 'calc(100vh - 110px)')
+									height:  (GConText.pruebas ?' calc(100vh - 110px)' : 'calc(100vh - 50px)')
 									//overflow: "hidden",
 								}}
 							/>

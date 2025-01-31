@@ -421,7 +421,7 @@ const Admin = () => {
     <>
       <div className='container admin-background'>
 
-        <Nav titulo={'Panel Administrador:'} base={filteredTodos} btn_admin={true}></Nav>
+        <Nav titulo={'Panel Administrador:'} curso={false} base={filteredTodos} btn_admin={true}></Nav>
 
         <div className='container my-3'>
           <div className='row'>
