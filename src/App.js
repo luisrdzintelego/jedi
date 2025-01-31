@@ -14,8 +14,8 @@ import './App.css';
 
 import Login from './Secciones/Login';
 import Introduccion from "./Secciones/Introduccion";
-import Perfil from "./Secciones/Perfil";
-import Instrucciones from "./Secciones/Instrucciones";
+/*import Perfil from "./Secciones/Perfil";
+ import Instrucciones from "./Secciones/Instrucciones";
 import Dashboard from "./Secciones/Dashboard";
 import Primer_reto from "./Secciones/Primer_reto";
 import Quiz1 from "./Secciones/Quiz1";
@@ -24,7 +24,7 @@ import Quiz2 from "./Secciones/Quiz2";
 import Tercer_reto from "./Secciones/Tercer_reto";
 import Quiz3 from "./Secciones/Quiz3";
 import Retro_final from "./Secciones/Retro_final";
-import RankingBoard from "./Secciones/RankingBoard";
+import RankingBoard from "./Secciones/RankingBoard"; */
 import Admin from "./Secciones/Admin";
 
 /*
@@ -84,7 +84,7 @@ function App() {
           <Routes>
           <Route exact path="/" element={<Login />} />
           <Route path="introduccion" element={<Introduccion/>}/>
-          <Route path="perfil" element={<Perfil/>}/>
+          {/* <Route path="perfil" element={<Perfil/>}/>
           <Route path="instrucciones" element={<Instrucciones/>}/>
           <Route path="dashboard" element={<Dashboard/>}/>
           <Route path="primer_reto" element={<Primer_reto/>}/>
@@ -94,7 +94,7 @@ function App() {
           <Route path="tercer_reto" element={<Tercer_reto/>}/>
           <Route path="quiz3" element={<Quiz3/>}/>
           <Route path="retro_final" element={<Retro_final/>}/>
-          <Route path="ranking" element={<RankingBoard/>}/>
+          <Route path="ranking" element={<RankingBoard/>}/> */}
           <Route path="admin" element={<Admin/>}/>
           {/* <Route exact path='journey/:itemId' element={<Journey/>} />
           <Route path="Paso2" element={<Paso2/>}/>

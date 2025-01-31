@@ -40,8 +40,8 @@
         $window.addEventListener('message', (event) => {
 
              //Para forzar que vengan desde una url conocida
-            if (event.origin === 'https://main.d34dped6g4yozl.amplifyapp.com') {
-            //if (event.origin === 'http://localhost:3000') {
+            //if (event.origin === 'https://main.d34dped6g4yozl.amplifyapp.com') {
+            if (event.origin === 'http://localhost:3000') {
                 // The data was sent from your site.
                 // Data sent with postMessage is stored in event.data:
                 console.log('🟠 event.data ' , event.data);
@@ -86,8 +86,6 @@
                 nombre = arreglo_cadena[3];
                 rol = arreglo_cadena[4];
                 intentos = arreglo_cadena[5]; */
-
-
 
             } else {
                 console.log('🔴 ERROR NO SE CONECTO CON LA BASE 🔴');

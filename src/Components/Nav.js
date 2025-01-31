@@ -16,10 +16,8 @@ import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 
 import './Nav.css';
 
-import Logo_femsa from "../Img/JEDI/logo_femsa_bco.png"
-import Logo_universidad from "../Img/JEDI/logo_universidad.png"
-
-import Ayuda_img from "../Img/img_ayuda_pg.png"
+import Logo_femsa from "../Img/femsa/logo_femsa_bco.png"
+import Logo_universidad from "../Img/femsa/logo_universidad.png"
 
 const Nav = ({ titulo, btn_admin, btn_dash, curso }) => {
 
@@ -34,59 +32,55 @@ const Nav = ({ titulo, btn_admin, btn_dash, curso }) => {
 		<>
 			<div className="container Nav-bar" >
 				<div className="row">
-					<div className="col-12">
+					<div style={{ display: btn_admin === true ? 'block' : 'none' }} className="col-12">
 						<div className="row hr" style={{ padding: '10px' }}>
 
-							<div className="col-3 col-md-2 text-left">
+							<div className="col-6 col-md-6 text-left">
 								<img src={Logo_femsa} alt="" className='logo'></img>
 							</div>
-
-							<div className="d-none d-sm-block col-6 col-md-6 text-left">
-								<span className='titulo'>{titulo}</span>
-							</div>
-
-
-							<div style={{ display: curso === true ? 'block' : 'none' }} className={`col-6 col-md-2 text-center`}>
-								<Link className='btn_amarillo' onClick={() => removeAuth('idUser')} to='/' ><FontAwesomeIcon icon={faPowerOff} /> Logout</Link>
-							</div>
-
-							<div style={{ display: btn_dash === true ? 'block' : 'none' }} className={`${btn_dash === true ? "d-none d-sm-block" : ""} col-12 col-md-6 text-right `}>
-								<span className='btn_amarillo me-1' data-bs-toggle="modal" data-bs-target="#exampleModal"><FontAwesomeIcon icon={faQuestion}></FontAwesomeIcon>&nbsp; Ayuda</span>
-								<Link className='btn_amarillo me-1' to="/ranking"><FontAwesomeIcon icon={faStar}></FontAwesomeIcon>&nbsp; Ranking</Link>
-								<Link className='btn_amarillo me-1' onClick={() => removeAuth('idUser')} to="/" ><FontAwesomeIcon icon={faPowerOff}></FontAwesomeIcon>&nbsp; Logout</Link>
-							</div>
-
-							<div style={{ display: btn_dash === true ? 'block' : 'none', margin: '10px 0px' }} className={`${btn_dash === true ? "d-block d-sm-none " : ""} col-12 col-md-6 text-center	 `}>
-								<span className='btn_amarillo me-1' data-bs-toggle="modal" data-bs-target="#exampleModal"><FontAwesomeIcon icon={faQuestion}></FontAwesomeIcon></span>
-								<Link className='btn_amarillo me-1' to="/ranking"><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></Link>
-								<Link className='btn_amarillo me-1' onClick={() => removeAuth('idUser')} to="/" ><FontAwesomeIcon icon={faPowerOff}></FontAwesomeIcon></Link>
-							</div>
-
-							{/* <div style={{display: btn_admin === true ? 'block' : 'none' }}  className="col-12 col-md-6 text-right ">
-							<span className='btn_amarillo me-1 '><FontAwesomeIcon icon={faFileArrowDown}></FontAwesomeIcon>&nbsp; Excel</span>
-							<span className='btn_amarillo me-1 '><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>&nbsp; Agregar</span>
-							<Link className='btn_amarillo' to="/login"><FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>&nbsp; Cerrar</Link>
-						</div> */}
-
-							<div className="col-2 col-md-2 text-right">
+							<div className="col-6 col-md-6 text-right">
 								<img src={Logo_universidad} alt="" className='logo_universidad'></img>
 							</div>
 
 						</div>
 					</div>
+
 					<div style={{ display: curso === true ? 'block' : 'none' }} className={`col-12 col-md-12 text-left`}>
 
+						<div className="row" style={{ padding: '15px' }}>
+
+						<div className="col-3 col-md-3 text-left">
+								<img src={Logo_femsa} alt="" className='logo'></img>
+							</div>
+
+							<div className={`col-6 col-md-6 text-center`}>
+								<Link className='btn_amarillo' onClick={() => removeAuth('idUser')} to='/' ><FontAwesomeIcon icon={faPowerOff} /> Logout</Link>
+							</div>
+
+							<div className="col-3 col-md-3 text-right">
+								<img src={Logo_universidad} alt="" className='logo_universidad'></img>
+							</div>
+
+
+						</div>
+					</div>
+
+
+					<div style={{ display: GConText.productivo === false ? 'block' : 'none' }} className={`col-12 col-md-12 text-left`}>
+
 						<div className="row hr" style={{ padding: '10px' }}>
+
 							<div className={`d-none d-sm-block col-2 col-md-2 text-left`}>
-								<h1 className='status'>{GConText.status ? '🟢 Completado' : '🟣 Cursando'}</h1>
+								<h1 className='status  c-blanco'>{GConText.status ? '🟢 Completado' : '🟣 Cursando'}</h1>
 							</div>
 
 							<div className={`d-none d-sm-block col-10 col-md-10 text-left`}>
-								<h2 className='bookmark'>Nombre: {GConText.username}, ID: {GConText.userId} - BOOKMARK: {GConText.bookmark} - STATUS: {GConText.status === true ? 'true' : 'false'}</h2>
+								<h2 className='bookmark c-blanco'>Nombre: {GConText.username}, ID: {GConText.userId} - BOOKMARK: {GConText.bookmark} - STATUS: {GConText.status === true ? 'true' : 'false'}</h2>
 							</div>
 
 						</div>
 					</div>
+
 
 
 				</div>

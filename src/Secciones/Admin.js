@@ -423,10 +423,8 @@ const Admin = () => {
 
         <Nav titulo={'Panel Administrador:'} base={filteredTodos} btn_admin={true}></Nav>
 
-        <div className='container'>
+        <div className='container my-3'>
           <div className='row'>
-
-
             <div className='row pt-1 pb-2'>
               <div className='col-12 col-md-12 text-center '>
                 <span className='btn_amarillo me-1' onClick={handleClickInputFile}><FontAwesomeIcon icon={faFileArrowDown} /> Subir Excel</span>

@@ -8,6 +8,7 @@ import { DataStore, SortDirection, Predicates } from '@aws-amplify/datastore';
 import { Ranking } from '../models';
 import { useCookies } from 'react-cookie';
 
+import '../fonts/fonts.css'
 import './Login.css';
 
 import * as Img from '../Components/Imagenes'
@@ -64,79 +65,79 @@ const Login = ({ props }) => {
 			setUser(false)
 		}, 3000);
 	}
-	
+
 	let num = 0;
 
 
 	const handleKeyDown = (event) => {
 		if (event.key === 'Enter') {
 			chkLogin();
-		  console.log('do validate')
+			console.log('do validate')
 		}
-	  }
+	}
 
 
 	const chkData = async () => {
 		//setTodos([]);
 		console.log("🚀 ~ chkData----------")
 		return await DataStore.query(Ranking, Predicates.ALL, {
-		  sort: s => s.username(SortDirection.DESCENDING)
-		  //sort: s => s.puntos(SortDirection.DESCENDING).tiempo(SortDirection.ASCENDING)
+			sort: s => s.username(SortDirection.DESCENDING)
+			//sort: s => s.puntos(SortDirection.DESCENDING).tiempo(SortDirection.ASCENDING)
 		}).then((resp) => {
-		  //setTodos(resp)
-		  //setTodos({ notes: resp })
-		  setTodos(resp.map((option, i) => {
-			return {
-			  id: option.id,
-			  ranking: i + 1,
-			  isOpen: false,
-			  ...option
-			}
-		  }))
-	
+			//setTodos(resp)
+			//setTodos({ notes: resp })
+			setTodos(resp.map((option, i) => {
+				return {
+					id: option.id,
+					ranking: i + 1,
+					isOpen: false,
+					...option
+				}
+			}))
+
 		})
-		  .catch((err) => {
-			console.log(err)
-	
-		  })
-		  .finally(() => {
-			console.log(todos)
-		  })
-	  }
+			.catch((err) => {
+				console.log(err)
+
+			})
+			.finally(() => {
+				console.log(todos)
+			})
+	}
 
 
 	const chkLogin = async () => {
 
 		num = 0;
 
-/* 		const clear  = await DataStore.clear()
-		console.log("🚀 ~ clear:", clear)
-		const start = await DataStore.start()
-		console.log("🚀 ~ start:", start)
-
-		const models = await DataStore.query(Ranking);
-		console.log(models); */
+		/* 		const clear  = await DataStore.clear()
+				console.log("🚀 ~ clear:", clear)
+				const start = await DataStore.start()
+				console.log("🚀 ~ start:", start)
+		
+				const models = await DataStore.query(Ranking);
+				console.log(models); */
 
 		console.log("🚀 ~ GConText.username:", GConText.username)
-		
+
 		try {
 			//const models = await DataStore.query(Ranking);
 			//console.log('Posts retrieved successfully!', JSON.stringify(models, null, 2));	
-		  } catch (error) {
+		} catch (error) {
 			console.log('Error retrieving models', error);
-		  }
-		
-				
-		  /* const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.username))
-		  .then((resp) => {
-			  console.log("🚀 ~ resp_________:", resp)
-		  }).catch((err) => {
-			  console.log(err)
-		  }).finally(() => {
-			
-		  }) */
-		
-		
+		}
+
+
+		/* const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.username))
+		.then((resp) => {
+			console.log("🚀 ~ resp_________:", resp)
+		}).catch((err) => {
+			console.log(err)
+		}).finally(() => {
+	  	
+		}) */
+
+
 		const posts1 = await DataStore.query(Ranking, c => c.username.eq(GConText.username))
 			.then((resp) => {
 				console.log("🚀 ~ resp_________:", resp)
@@ -224,7 +225,7 @@ const Login = ({ props }) => {
 				console.log(err)
 			}).finally(() => {
 			})
-		
+
 
 		//GConText.username === 'admin' && GConText.password === 'admin' ? setRedirectNow(1) :  setRedirectNow(2)
 	}
@@ -316,62 +317,84 @@ const Login = ({ props }) => {
 			{/* <div className="container fondo-rosa" style={{ backgroundImage: `url(${background})` }}> */}
 			<div className="container login-background">
 
-				<Nav titulo={"login"}></Nav>
+				{/* <Nav titulo={"login"}></Nav> */}
 
-			<span className='fs-10 position-absolute bottom-0 end-0 p-1'>{GConText.version}</span>
+				<span className='fs-10 position-absolute bottom-0 end-0 p-1'>{GConText.version}</span>
 
-				<div className="row mt-5 mx-1">
-					<div className="col-12 col-lg-6 offset-lg-3 col-md-8 offset-md-2">
+				<div className="LoginForm">
+					<div className="col-12 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2">
 						<div className='login-form'>
 
-							<div className="top-login pt-4 pb-4">
-								<img src={Img.Logo_jedi} alt="" width="200"></img>
+							<div className="col-12">
+								<div className="d-flex justify-content-around pt-4 pb-2">
+									<img src={Img.Logo_femsa_rojo} alt="" width="100"></img>
+									<img src={Img.Logo} alt="" width="100"></img>
+								</div>
 							</div>
-							<div className="mt-5">
-								<span className="form-label mb-5"
-									style={{
-										padding: '20px',
-										fontSize: '25px',
-										color: "red"
-									}}>Iniciar sesión</span>
+
+							{/* <div className="col-6">
+								<div className="pt-4 pb-2">
+								</div>
+							</div> */}
+
+							<div className="col-12">
+								<div className="mt-5 c-brown txt-bld fs-32 lh-35 p-2">
+									Certificación de Ética<br></br> y Cumplimiento
+								</div>
 							</div>
+
+							<div className="col-12 c-brown txt-reg fs-24">
+								<div className="mt-4 text-login">
+									Iniciar sesión
+								</div>
+							</div>
+
 							<div className="mt-3">
 								<div className="container">
-									<div className="row ">
-										<div className="col-sm-12 col-md-3 text-center">
-											<label className="control-label label-login">Correo Electrónico:</label>
+									<div className="row">
+										<div className="col-6 offset-1 col-md-6 offset-md-1 col-sm-6 offset-sm-1 text-left ">
+											<label className="c-brown txt-bld fs-12">Correo Electrónico:</label>
 										</div>
-										<div className="col-sm-12 col-md-8  text-center">
-											<input type="text" onChange={UserChange} onKeyDown={handleKeyDown} className="fs-16 form-control-login" placeholder=""></input>
+										<div className="col-4 col-md-4 col-sm-4 text-right align-self-center ">
+										<span style={{ display: user === false && verImg === true ? 'block' : 'none' }} className="fs-10 c-rojo">Usuario no existe</span>
 										</div>
-										<div className="d-none d-sm-block col-md-1 text-center">
-											<img src={user === false ? Img.mal : Img.bien} style={{ display: verImg === true ? 'block' : 'none' }} alt="retro" width="34"></img>
-										</div>
-										<div className="col-md-12 text-center">
-											<span style={{ display: user === false && verImg === true ? 'block' : 'none' }} className="form-text help-text-login">Usuario no existe</span>
+
+										<div className='col-10 offset-1 align-self-center border-amarillo text-center'>
+											<div className='row'>
+												<div className="col-12 col-sm-10 col-md-10 align-self-center text-center ">
+													<input type="text" onChange={UserChange} onKeyDown={handleKeyDown} className="fs-16 form-control-login" placeholder=""></input>
+												</div>
+												<div className="d-none d-sm-block col-sm-2 col-md-2 align-self-center text-center ">
+													<img src={user === false ? Img.mal : Img.bien} style={{ display: verImg === true ? 'block' : 'none' }} alt="retro" width="30"></img>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+
+
 							<div className="mt-3">
 								<div className="container">
 									<div className="row">
-										<div className="col-sm-12 col-md-3 text-center">
-											<label className="control-label label-login">Contraseña:</label>
+										<div className="col-6 offset-1 col-md-6 offset-md-1 col-sm-6 offset-sm-1 text-left ">
+											<label className="c-brown txt-bld fs-12">Contraseña:</label>
 										</div>
-										<div className="col-sm-12 col-md-8  text-center">
-											<input type="password" onChange={PassChange} onKeyDown={handleKeyDown} className="fs-16  form-control-login" placeholder=""></input>
+										<div className="col-4 col-md-4 col-sm-4 text-right align-self-center ">
+										<span style={{ display: pass === false && verImg === true ? 'block' : 'none' }} className="fs-10 c-rojo">Contraseña incorrecta</span>
 										</div>
-										<div className="d-none d-sm-block col-md-1 text-center">
-											<img src={pass === false ? Img.mal : Img.bien} style={{ display: verImg === true ? 'block' : 'none' }} alt="retro" width="34"></img>
-										</div>
-									</div>
-									<div className="row">
-										<div className="col-md-12 text-center" >
-											<span style={{ display: pass === false && verImg === true ? 'block' : 'none' }} className="form-text help-text-login">Contraseña incorrecta</span>
-										</div>
-									</div>
 
+										<div className='col-10 offset-1 align-self-center border-amarillo text-center'>
+											<div className='row'>
+												<div className="col-12 col-sm-10 col-md-10 align-self-center text-center ">
+												<input type="password" onChange={PassChange} onKeyDown={handleKeyDown} className="fs-16  form-control-login" placeholder=""></input>
+												</div>
+												<div className="d-none d-sm-block col-sm-2 col-md-2 align-self-center text-center ">
+												<img src={pass === false ? Img.mal : Img.bien} style={{ display: verImg === true ? 'block' : 'none' }} alt="retro" width="30"></img>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 

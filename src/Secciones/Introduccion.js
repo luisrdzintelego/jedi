@@ -239,23 +239,36 @@ const Introduccion = () => {
 
 	return (
 		<>
-			<div className="container-fluid introduccion-background">
+			<div className="container-fluid introduccion-background" style={{
+									//maxWidth: 640,
+									margin: '0px',
+									//minHeight: '100vh',
+									padding: '0px'
+									//overflow: "hidden",
+								}}>
 				<Nav titulo={"Introduccion"} curso={true}></Nav>
 
 				<span className='fs-10 position-absolute bottom-0 end-0 p-1'>{GConText.version}</span>
 
 				{/* <div style={{ width: "100%" }}> */}
-				<div className='container-fluid'>
+				<div className='container-fluid' style={{
+									//maxWidth: 640,
+									margin: '0px',
+									//minHeight: '100vh',
+									padding: '0px'
+									//overflow: "hidden",
+								}}>
 					<div className='row'>
 						<div className='col-12 col-md-12 text-center'>
 
 						<iframe title='Curso0'
+								className='Iframe'
 								ref={ref2}
 								//onLoad={onLoad}
 								autoFocus={true}
 								id="myFrame3"
-								src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html'}
-								//src={'sco01/index.html'}
+								//src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html'}
+								src={'sco01/index.html'}
 								//width="100%"
 								//height="100%"
 								//height={height}
@@ -263,9 +276,9 @@ const Introduccion = () => {
 								frameBorder="0"
 								style={{
 									//maxWidth: 640,
-									width: "100%",
-									minHeight: '100vh',
-									//height: "100%",
+									width: '100%',
+									//minHeight: '100vh',
+									height:  (GConText.productivo ? 'calc(100vh - 50px)' : 'calc(100vh - 110px)')
 									//overflow: "hidden",
 								}}
 							/>

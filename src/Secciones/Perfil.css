@@ -4,7 +4,7 @@
 	height: 100vh; */
 	min-height: 100vh;
 	min-width: 100vw;
-	background: url('../Img/fondo_perfil_escritorio.png');
+	/* background: url('../Img/fondo_perfil_escritorio.png'); */
 	background-color: #FFE4A5;
 	background-position: center center; /* Center the image */
 	background-repeat: no-repeat; /* Do not repeat the image */
