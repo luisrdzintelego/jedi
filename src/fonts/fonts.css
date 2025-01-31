@@ -19,8 +19,8 @@
 
 @font-face {
     font-family: 'kansasnewregular';
-    src: url('kansasnew-regular-webfont.woff2') format('woff2')/* ,
-         url('kansasnew-regular-webfont.woff') format('woff') */;
+    src: url('../fonts/kansasnew-regular-webfont.woff2') format('woff2'),
+         url('../fonts/kansasnew-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -28,8 +28,8 @@
 
 @font-face {
     font-family: 'kansasnewmedium';
-    src: url('kansasnew-medium-webfont.woff2') format('woff2')/* ,
-         url('kansasnew-medium-webfont.woff') format('woff') */;
+    src: url('../fonts/kansasnew-medium-webfont.woff2') format('woff2'),
+         url('../fonts/kansasnew-medium-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -37,8 +37,8 @@
 
 @font-face {
     font-family: 'kansasnewlight';
-    src: url('kansasnew-light-webfont.woff2') format('woff2')/* ,
-         url('kansasnew-light-webfont.woff') format('woff') */;
+    src: url('../fonts/kansasnew-light-webfont.woff2') format('woff2'),
+         url('../fonts/kansasnew-light-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -46,8 +46,8 @@
 
 @font-face {
     font-family: 'kansasnewbold';
-    src: url('kansasnew-bold-webfont.woff2') format('woff2')/* ,
-         url('kansasnew-bold-webfont.woff') format('woff') */;
+    src: url('../fonts/kansasnew-bold-webfont.woff2') format('woff2'),
+         url('../fonts/kansasnew-bold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -55,8 +55,8 @@
 
 @font-face {
     font-family: 'kansasnewblack';
-    src: url('kansasnew-black-webfont.woff2') format('woff2')/* ,
-         url('kansasnew-black-webfont.woff') format('woff') */;
+    src: url('../fonts/kansasnew-black-webfont.woff2') format('woff2'),
+         url('../fonts/kansasnew-black-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
