@@ -417,6 +417,37 @@ body {
 }
 
 
+/* iframe {
+  overflow: hidden !important;
+  pointer-events: none !important;
+} */
+
+.disabled {
+  /*color: #BABABA;*/
+
+
+  overflow: hidden !important;
+  pointer-events: none !important;
+
+  cursor: not-allowed;
+
+filter: url('#grayscale'); /* Versión SVG para IE10, Chrome 17, FF3.5, Safari 5.2 and Opera 11.6 */
+-webkit-filter: grayscale(100%);
+-moz-filter: grayscale(100%);
+-ms-filter: grayscale(100%);
+-o-filter: grayscale(100%);
+filter: grayscale(100%); /* Para cuando es estándar funcione en todos */
+filter: Gray(); /* IE4-8 and 9 */
+
+opacity:0.5;
+
+-webkit-transition: all 0.5s ease;
+-moz-transition: all 0.5s ease;
+-ms-transition: all 0.5s ease;
+-o-transition: all 0.5s ease;
+transition: all 0.5s eas
+
+}
 
 
 /* On screens that are 600px or less, set the background color to olive */

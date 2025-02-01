@@ -401,9 +401,9 @@ margin: 0rem !important;
                         </div>
                       </div>
                       <div class="margin-bottom margin-xsmall">
-                        <p class="text-size-medium text-weight-medium">Ha llegado el momento que pongas a prueba todo lo que aprendiste a lo largo de este curso.</p>
+                        <p class="text-size-medium text-weight-medium">Ha llegado el momento de que pongas a prueba todo lo que aprendiste a lo largo de este curso.</p>
                       </div>
-                      <p class="text-color-primary">A continuación te presentaré una serie de preguntas que debes responder de acuerdo con los Lineamientos Internos FEMSA.<br>¡Mucha suerte!</p>
+                      <p class="text-color-primary">A continuación te presentaré una serie de preguntas que debes responder de acuerdo con los Lineamientos Internos FEMSA.<!-- <br>¡Mucha suerte! --></p>
                       <div class="margin-top margin-medium">
                         <div class="button-group">
                           <a href="#" class="button is-link is-icon w-inline-block btn-iniciar">
@@ -696,7 +696,7 @@ margin: 0rem !important;
 </style>
                         </div>
                         <div class="margin-bottom margin-small">
-                          <p class="text-color-secondary text-size-medium">¡Muchas felicidades! Te has vuelto una persona experta en la aplicación de los Lineamiento Internos. Recuerda llevar a cabo todo lo aprendido y vivir la Cultura FEMSA para lograr los objetivos, y seguir construyendo historias de éxito.</p>
+                          <p class="text-color-secondary text-size-medium">¡Muchas felicidades! Te has vuelto una persona experta en la aplicación de los Lineamientos Internos. Recuerda llevar a cabo todo lo aprendido y vivir la Cultura FEMSA para lograr los objetivos, y seguir construyendo historias de éxito.</p>
                         </div>
                         <p class="text-color-secondary text-size-medium">¡Hasta pronto!</p>
                       </div>
@@ -716,7 +716,7 @@ margin: 0rem !important;
                         <div class="margin-top margin-small">
                           <div class="button-group is-center">
                             <a href="#"  class="button w-button btn-certificado">Descarga tu diploma</a>
-                            <a href="#" onclick="javascript:top.close();"   class="button w-button">Finalizar</a>
+                            <!-- <a href="#" onclick="javascript:top.close();"   class="button w-button">Finalizar</a> -->
                           </div>
                         </div>
                       </div>
@@ -801,7 +801,7 @@ margin: 0rem !important;
   
         objetoArrays = {
           obj1: [1], //atv1 - eval
-          //obj2 : [2], //atv2 - slider
+          obj2 : [2], //atv2 - descargar
           //obj3 : [3], //atv3 - video
           //obj4 : [4], //atv3 - video
           //obj4 : [8], //atv4 - slider
@@ -1002,6 +1002,7 @@ var fecha_actual = f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFu
     }
   }   
    function diploma(muestra){
+    chk_nodo(2);
      //liga
      //var textos1_ = document.getElementById('input_name').value;
      var textos1_ = window.parent.nombre;

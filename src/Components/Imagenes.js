@@ -10,6 +10,7 @@ import Logo from "../Img/etica/logo.png"
 import Logo_femsa_bco from "../Img/femsa/logo_femsa_bco.png"
 import Logo_femsa_rojo from "../Img/femsa/logo_femsa_rojo.png"
 import Logo_universidad from "../Img/femsa/logo_universidad.png"
+import logo_universidad_movil from "../Img/femsa/logo_universidad_movil.png"
 /* import Logo_jedi from "../Img/JEDI/logo_jedi.png" */
 
 //logo del curso
@@ -50,7 +51,7 @@ export {
 	fizq, fder,
 	avatar1,avatar2, avatar3,
 	star,reloj,
-	Logo_femsa_bco,Logo_femsa_rojo,Logo_universidad,Logo,
+	Logo_femsa_bco,Logo_femsa_rojo,Logo_universidad,logo_universidad_movil,Logo,
 	fondo_login
 	}
 

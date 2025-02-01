@@ -18,6 +18,7 @@ import './Nav.css';
 
 import Logo_femsa from "../Img/femsa/logo_femsa_bco.png"
 import Logo_universidad from "../Img/femsa/logo_universidad.png"
+import logo_universidad_movil from "../Img/femsa/logo_universidad_movil.png"
 
 const Nav = ({ titulo, btn_admin, btn_dash, curso }) => {
 
@@ -49,32 +50,40 @@ const Nav = ({ titulo, btn_admin, btn_dash, curso }) => {
 
 						<div className="row" style={{ padding: '15px' }}>
 
-						<div className="col-3 col-md-3 text-left">
+						<div className="col-3 col-md-3 align-self-center text-left">
 								<img src={Logo_femsa} alt="" className='logo'></img>
 							</div>
 
-							<div className={`col-6 col-md-6 text-center`}>
+							<div className={`col-6 col-md-6 align-self-center text-center`}>
 								<Link className='btn_amarillo' onClick={() => removeAuth('idUser')} to='/' ><FontAwesomeIcon icon={faPowerOff} /> Logout</Link>
 							</div>
 
-							<div className="col-3 col-md-3 text-right">
-								<img src={Logo_universidad} alt="" className='logo_universidad'></img>
+							<div className="col-3 col-md-3 align-self-center text-right">
+
+								<picture>
+								<source media="(max-width: 479px)" srcSet={logo_universidad_movil} width={'40'} />
+								<img src={Logo_universidad} alt="cclogo" width={'90'}/>
+								</picture>
+
+								{/* <img src={Logo_universidad} alt="" className='logo_universidad'></img> */}
 							</div>
 
 
 						</div>
 					</div>
 
-
-					<div style={{ display: GConText.pruebas === true ? 'block' : 'none' }} className={`col-12 col-md-12 text-left`}>
+					{/*d-none d-sm-block ---- estos estilos se usan para ocultar cosas en vistas mobiles*/
+					/*align-self-center  --- alinear enm horizontal dentro del div*/
+					}
+					<div style={{ display: GConText.pruebas === true ? 'block' : 'none' }} className={` col-12 col-md-12 text-left`}>
 
 						<div className="row hr" style={{ padding: '10px' }}>
 
-							<div className={`d-none d-sm-block col-2 col-md-2 text-left`}>
+							<div className={`col-3 col-md-2 text-center align-self-center`}>
 								<h1 className='status  c-blanco'>{GConText.status ? '🟢 Completado' : '🟣 Cursando'}</h1>
 							</div>
 
-							<div className={`d-none d-sm-block col-10 col-md-10 text-left`}>
+							<div className={`col-9 col-md-10 text-left align-self-center`}>
 								<h2 className='bookmark c-blanco'>Nombre: {GConText.username}, ID: {GConText.userId} - BOOKMARK: {GConText.bookmark} - STATUS: {GConText.status === true ? 'true' : 'false'}</h2>
 							</div>
 

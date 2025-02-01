@@ -15,8 +15,13 @@ var status = "";
 var intentos = 0;
 var nombre = "";
 var rol = 0;
+
+var tipo_curso = 'plataforma';
+
+//PARAMETROS PLATAFORMA INTELEGO
 var nombre_curso = "Jedi";
 var bookmark = '';
+var errorConect = false;
 
 var sRatio = 1;
 
@@ -115,19 +120,51 @@ function hazListener(e) {
 }
 
 /* 2025 - PLATAFORMA LRG*/
-function sendPlatform(data,done){
-console.log("✅ ~ bookmark:", data)
-  window.parent.postMessage(
-    JSON.stringify({
-      curso: nombre_curso,
-      message: "termino la lamina",
-      completado: done,
-      //bookmark: `1|0|0|0|0&&${avatar}`
-      bookmark: bookmark
-    }),
-    '*'
-  );
+function sendPlatform(data, done) {
+  //console.log("✅ ~ bookmark:", data)
+  console.log("🟡 ~ bookmark:", data, "done:",done)
 
+  if (data == 'error') {
+
+
+    window.parent.postMessage(
+      JSON.stringify({
+        curso: nombre_curso,
+        message: "Error!",
+        completado: done,
+        //bookmark: `1|0|0|0|0&&${avatar}`
+        bookmark: bookmark
+      }),
+      '*'
+    );
+
+  } else if (data == 'restart') {
+
+    window.parent.postMessage(
+      JSON.stringify({
+        curso: nombre_curso,
+        message: "restart!",
+        completado: done,
+        //bookmark: `1|0|0|0|0&&${avatar}`
+        bookmark: ''
+      }),
+      '*'
+    );
+
+  } else {
+    window.parent.postMessage(
+      JSON.stringify({
+        curso: nombre_curso,
+        message: "todoBien!",
+        completado: done,
+        //bookmark: `1|0|0|0|0&&${avatar}`
+        bookmark: bookmark
+      }),
+      '*'
+    );
+
+
+  }
 }
 
 

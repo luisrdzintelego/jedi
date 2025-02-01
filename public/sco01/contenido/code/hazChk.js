@@ -15,22 +15,27 @@ function set_vars(num) {
 
   function reiniciar() {
 
-    for (i = 1; i <= 10; i++) {
+		for (i = 1; i <= 10; i++) {
     
-      if (window.parent.setVariantes) {
-        window.parent.setVariantes("", i);
-        /* window.parent.setCurrentPage(1);
-        window.parent.setCalif(1, 1, 2); */
-      } 
-    }
+			if (window.parent.setVariantes) {
+			  window.parent.setVariantes("", i);
+			  /* window.parent.setCurrentPage(1);
+			  window.parent.setCalif(1, 1, 2); */
+			} 
+		  }
+	  
+		  window.parent.bookmark = '';
+		  window.parent.itentos = 0;
+		  window.parent.nombre = '';
+		  
+		  window.parent.set_reiniciarCurso();
 
-    window.parent.itentos = 0;
-    window.parent.nombre = '';
-    window.parent.rol = 0;
-
-    window.parent.set_reiniciarCurso();
-    hazSeccion(1);
-  }
+		  if (window.parent.tipo_curso === 'plataforma'){
+			window.parent.sendPlatform('restart', 'false')
+		  } else {
+		  	hazSeccion(1);
+		  }
+	}
 
   //console.log("🚀 ~ atv:", atv.length)
   function chk_btns(num) {

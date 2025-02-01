@@ -52,7 +52,7 @@ let preguntas_eval = `code/evaluacion_final.json`;
 
 //let wparent = window.parent.parent;
 let wparent = window.parent;
-let int = wparent.intentos;
+var int = wparent.intentos;
 
 
 // console.log("~ -------")
@@ -129,10 +129,6 @@ function initEval(href, num, pase) {
             }
         }
     }
-
-
-
-
 }
 
 function noRepRandom(val) {
@@ -201,7 +197,6 @@ function NextQuestion() {
     let progress = 100 * ((pregActual + 1) / totaPreguntas);
     $('.progress_bar').css('width', progress + '%');
 
-
     $('.resp').find('.answer_option-selector').removeClass('selected');
     //$('.resp').removeClass('selected');
     $('.resp').removeClass('deshabilitado')
@@ -235,16 +230,8 @@ function NextQuestion() {
         shuffle_divs();
 
     if (bd_preguntas[pregActual].opcion_3 == undefined || bd_preguntas[pregActual].opcion_3 == null || bd_preguntas[pregActual].opcion_3 == '') {
+       
         $(`.resp[data-resp*='3']`).hide();
-    } else {
-        $(`.resp[data-resp*='3']`).show();
-        $('.campo-resp3').html(`${bd_preguntas[pregActual].opcion_3}`);
-    }
-
-    if (bd_preguntas[pregActual].opcion_3 == undefined || bd_preguntas[pregActual].opcion_3 == null || bd_preguntas[pregActual].opcion_3 == '') {
-        //$(`.resp[data-resp*='3']`).hide();
-        $(`.resp[data-resp*='3']`).hide();
-
 
         $(".respuesta-opcion:visible").each(function (index) {
             console.log("🚀 ~ index:", index)
@@ -252,8 +239,9 @@ function NextQuestion() {
         });
 
     } else {
-        //$(`.resp[data-resp*='3']`).show();
+
         $(`.resp[data-resp*='3']`).show();
+        
         $('.campo-resp3').html(`${bd_preguntas[pregActual].opcion_3}`);
 
         $(".respuesta-opcion:visible").each(function (index) {
@@ -262,10 +250,6 @@ function NextQuestion() {
         });
 
     }
-
-
-
-
 
     //document.getElementById('retro').innerHTML = bd_preguntas[pregActual].retro;
 }
@@ -340,7 +324,7 @@ $('.btn-enviar-eval-final').on('click', function () {
     $('.campo-resp3').html(`${bd_preguntas[pregActual].opcion_3}`);
 
     $(".btn-sig").show()
-    $(".btn-sig").focus();
+    $(".campo-retro").focus();
 
     $('.resp').addClass('deshabilitado')
 
@@ -361,7 +345,6 @@ $('.btn-enviar-eval-final').on('click', function () {
 
 });
 
-
 //EVALUACION --siguiente pregunta
 $('.btn-sig').on('click', function (event) {
 
@@ -371,6 +354,14 @@ $('.btn-sig').on('click', function (event) {
 
         pregActual++;
         NextQuestion();
+
+        $('html, body').stop().animate(
+            {
+                scrollTop: ($('.campo-pregunta').offset().top-150),
+            }, 600, function () {
+                // Animation complete.
+            });
+        
 
     } else {
 
@@ -395,7 +386,7 @@ $('.btn-sig').on('click', function (event) {
 
         console.log("*********************");
         console.log("🚀 ~ puntaje:", puntaje)
-        console.log("🚀 ~ rol_actual:", rol_actual)
+        //console.log("🚀 ~ rol_actual:", rol_actual)
         console.log("*********************");
 
         //console.log("🚀 ~ int:", wparent.intentos)
@@ -469,21 +460,25 @@ $('.btn-sig').on('click', function (event) {
                 });
 
             //$('.campo-retro').html('<b>¡Excelente trabajo!</b><br>').show();
-
-
         }
 
         // guarda el porcentaje en el LMS        
         if (window.parent) {
             var calif_antes = window.parent.getCalif(10);
+            window.parent.setCalif2023(10, result, int);
             console.log("CALIF: ANTES(" + calif_antes + ") > AHORA(" + result + ")")
             if (result > calif_antes) {
                 window.parent.saveGrade(result);
+                window.parent.intentos = int;
                 // aumenta el intento en el json
                 window.parent.setCalif2023(10, result, int);
+            } else {
+                window.parent.saveGrade(calif_antes);
+                window.parent.intentos = int;
+                // aumenta el intento en el json
+                window.parent.setCalif2023(10, calif_antes, int);
             }
         }
-
     }
 });
 

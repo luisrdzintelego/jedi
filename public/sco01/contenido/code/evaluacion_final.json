@@ -122,10 +122,10 @@
     {
         "no": "16",
         "pregunta": "Son las recomendaciones que debemos seguir ante el uso de la Inteligencia Artificial:",
-        "opcion_1": "Todas las anteriores",
-        "opcion_2": "Previo a su uso, validar los requerimientos que establezcan las áreas de Seguridad de la Información y Tecnología de la Información",
-        "opcion_3": "Utilizarla de manera ética y responsable sin perjudicar, discriminar o cometer algún acto ilícito",
-        "retro": "Las recomendaciones que debemos seguir ante el uso de la Inteligencia Artificial son: \n-Previo a su uso, validar los requerimientos que establezcan las áreas de Seguridad de la Información y Tecnología de la Información. \n-Utilizarla de manera ética y responsable sin perjudicar, discriminar o cometer algún acto ilícito. \n-No utilizar ni procesar información de la organización en las plataformas de IA que no han sido autorizadas. \n"
+        "opcion_1": "Previo a su uso, validar los requerimientos que establezcan las áreas de Seguridad de la Información y Tecnología de la Información.\n-Utilizarla de manera ética y responsable sin perjudicar, discriminar o cometer algún acto ilícito.\n-No utilizar ni procesar información de la organización en las plataformas de IA que no han sido autorizadas.",
+        "opcion_2": "Previo a su uso, validar los requerimientos que establezcan las áreas de Seguridad de la Información y Tecnología de la Información.\n-Utilizarla siempre que sea necesario, con información no comprometedora.\n-No utilizar ni procesar información de la organización en las plataformas de IA que no han sido autorizadas.",
+        "opcion_3": "Previo a su uso, validar los requerimientos que establezcan las áreas de Seguridad de la Información y Tecnología de la Información.\n-Una vez utilizada, enviar un reporte a valoración para corroborar su correcto uso.\n-No utilizar ni procesar información de la organización en las plataformas de IA que no han sido autorizadas.",
+        "retro": "Las recomendaciones que debemos seguir ante el uso de la Inteligencia Artificial son: \n-Previo a su uso, validar los requerimientos que establezcan las áreas de Seguridad de la Información y Tecnología de la Información.\n-Utilizarla de manera ética y responsable sin perjudicar, discriminar o cometer algún acto ilícito.\n-No utilizar ni procesar información de la organización en las plataformas de IA que no han sido autorizadas.\n"
     },
     {
         "no": "17",
@@ -154,9 +154,9 @@
     {
         "no": "20",
         "pregunta": "Son las responsabilidades que tenemos como colaboradores de acuerdo con nuestro Código de Ética:",
-        "opcion_1": "Todas las anteriores",
-        "opcion_2": "Reportar de forma inmediata cualquier conflicto de interés",
-        "opcion_3": "Conocer y cumplir con los Lineamientos Internos",
-        "retro": "Las responsabilidades que tenemos como colaboradores de acuerdo con nuestro Código de Ética son: \n-Reportar de forma inmediata cualquier conflicto de interés \n-Conocer y cumplir con los Lineamientos Internos \n-Firmar la Carta Compromiso de cumplimiento con los Lineamientos Internos \n"
+        "opcion_1": "Reportar de forma inmediata cualquier conflicto de interés\n-Conocer y cumplir con los Lineamientos Internos\n-Firmar la Carta Compromiso de cumplimiento con los Lineamientos Internos",
+        "opcion_2": "Reportar de forma inmediata cualquier conflicto de interés\n-Impedir que una persona cometa actos de conflicto de interés\n-Firmar la Carta Compromiso de la ley de conflicto de interés",
+        "opcion_3": "Reportar de forma inmediata cualquier conflicto de interés\n-Conocer y cumplir los derechos y obligaciones propios del colaborador\n-Firmar la Carta Compromiso de cumplimiento con los Lineamientos Internos",
+        "retro": "Las responsabilidades que tenemos como colaboradores de acuerdo con nuestro Código de Ética son: \n-Reportar de forma inmediata cualquier conflicto de interés\n-Conocer y cumplir con los Lineamientos Internos\n-Firmar la Carta Compromiso de cumplimiento con los Lineamientos Internos\n"
     }
 ]

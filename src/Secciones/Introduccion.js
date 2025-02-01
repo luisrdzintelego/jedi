@@ -38,6 +38,10 @@ const Introduccion = () => {
 	//const [user, setUser] = useState([])
 
 
+	function refreshPage() {
+		window.location.reload(false);
+	  }
+
 
 	const removeAuth = (name) => {
 		setCookieId(name, '', { path: '/', expires: (new Date(Date.now())) });
@@ -121,6 +125,12 @@ const Introduccion = () => {
 	// This hook is listening an event that came from the Iframe
 	useEffect(() => {
 
+		console.log("🚀 ~ CookieId.idUser", CookieId.idUser)
+
+		if (CookieId.idUser !== undefined) {
+			chkUser(CookieId.idUser)
+		}
+
 		//console.log('terminoLamina = ' + terminoLamina + ' is defined now!');
 
 		const handler = (ev) => {
@@ -130,7 +140,7 @@ const Introduccion = () => {
 			} catch (e) {
 				return false;
 			}
-
+			
 			const data = JSON.parse(ev.data)
 			console.log("se mando esto a la Plataforma! ----->", data)
 
@@ -139,19 +149,63 @@ const Introduccion = () => {
 			console.log("🟣 ~ data.bookmark:", data.bookmark)
 
 			//console.log(data.completado, " -- ", GConText.userId, " -- ", data.bookmark)
-			udpatesUser(GConText.userId, data.bookmark, data.completado)
+			
 
 			//console.log("terminoLamina--- ", terminoLamina)
 
-			if ( data.completado === 'true') {
+			if ( data.completado === 'true' && data.message === 'todoBien!' ) {
+
+				udpatesUser(GConText.userId, data.bookmark, data.completado)
+
+				setEstado(true)
 
 				Swal.fire({
 					title: '<strong>Curso Completado!</strong>',
-					html: `<i> ${GConText.nombre} haz completado se agrego el bookmark 🤙!</i>`,
+					html: `<i> ${GConText.nombre}, haz completado completado el curso</i>`,
 					icon: "success",
 					showConfirmButton: false,
-					timer: 2000
+					timer: 4000
 				});
+
+			} else if(data.completado === 'false' && data.message === 'todoBien!'){
+
+				udpatesUser(GConText.userId, data.bookmark, data.completado)
+
+				setEstado(true)
+
+				/* Swal.fire({
+					title: '<strong>Avance Guardado!</strong>',
+					html: `<i> ${GConText.nombre}, Se guardo tu avance en el curso</i>`,
+					icon: "success",
+					showConfirmButton: false,
+					timer: 4000
+				}); */
+				
+			} else if(data.completado === 'false' && data.message === 'Error!'){
+
+				setEstado(false)
+
+				Swal.fire({
+					title: '<strong>Error de comunicación con el servidor!</strong>',
+					html: `<i> ${GConText.nombre}, intenta mas tarde</i>`,
+					icon: "error",
+					showConfirmButton: true
+				});
+
+			} else if(data.completado === 'false' && data.message === 'restart!'){
+
+				udpatesUser(GConText.userId, data.bookmark, data.completado)
+
+				/* setEstado(false)
+
+				Swal.fire({
+					title: '<strong>Error de comunicación con el servidor!</strong>',
+					html: `<i> ${GConText.nombre}, intenta mas tarde</i>`,
+					icon: "error",
+					showConfirmButton: true
+				}); */
+
+				refreshPage();
 
 			}
 
@@ -175,7 +229,7 @@ const Introduccion = () => {
 		setTerminoLamina(ev.data.completado)
 	  }
 	  */
-	  	window.addEventListener('message', console.log)
+	  	//window.addEventListener('message', console.log)
 		window.addEventListener('message', handler)
 		// Don't forget to remove addEventListener
 
@@ -195,7 +249,7 @@ const Introduccion = () => {
 	};
 	*/
 
-	useEffect(() => {
+	/* useEffect(() => {
 		//console.log("🚀 ~ vistos", vistos)
 		//setLoading(true)
 		console.log("🚀 ~ CookieId.idUser", CookieId.idUser)
@@ -204,7 +258,7 @@ const Introduccion = () => {
 			chkUser(CookieId.idUser)
 		}
 
-	}, [])
+	}, []) */
 
 	const ref2 = useRef();
 	useEffect(() => {
@@ -216,17 +270,19 @@ const Introduccion = () => {
 			//win.postMessage(GConText.bookmark, 'https://intelegoprojects.com');
 			//win.postMessage('3-1-1-x,1|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0&&1&&abuso-de-autoridad-y-ambiente-laboral&&&&0&&0&&', 'http://localhost:3000');
 			
-			GConText.bookmark != null ? win.postMessage(GConText.bookmark, '*') : win.postMessage(null, '*')
+			GConText.bookmark != null ? win.postMessage(GConText.bookmark, '*') : win.postMessage('empty', '*')
 
-			win.postMessage(GConText.bookmark, '*');
+			//win.postMessage(GConText.bookmark, '*');
 			//win.postMessage(GConText.bookmark != null ? GConText.bookmark : '1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0|1-0-0-0&&1&&index&&&&0&&0&&' , '*');
 
 			//win.postMessage('message (2)', 'http://localhost:3000/');
 
 		});
-	}, [ref2, GConText.bookmark]);
+	//}, [ref2, GConText.bookmark]);
 
-	const ref = useRef();
+	}, [GConText.bookmark]);
+
+	/* const ref = useRef(); */
 	/* 
 	useEffect(() => {
 		const iframe = ref.current;
@@ -236,6 +292,7 @@ const Introduccion = () => {
 	 }, [ref]); */
 
 
+	 const [estado, setEstado] = useState(true);
 
 	return (
 		<>
@@ -260,20 +317,23 @@ const Introduccion = () => {
 								}}>
 					<div className='row'>
 						<div className='col-12 col-md-12 text-center'>
-
 						<iframe title='Curso0'
-								className='Iframe'
+								className={`${estado ? '' : 'disabled'} col-12 col-md-12 text-left`}
 								ref={ref2}
 								//onLoad={onLoad}
 								autoFocus={true}
 								id="myFrame3"
-								src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA/index.html'}
+								src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA_FINAL/index.html'}
 								//src={'sco01/index.html'}
 								//width="100%"
 								//height="100%"
 								//height={height}
 								scrolling="yes"
 								frameBorder="0"
+
+								sandbox='allow-scripts allow-modals allow-same-origin allow-downloads' 
+								loading='lazy'
+
 								style={{
 									//maxWidth: 640,
 									width: '100%',

@@ -41,7 +41,7 @@
       for (i = 1; i <= chk_sec.length; i++) {
   
         z = i + 1;
-        console.log("@@@@@@@@@@.getPageStatus---", window.parent.getPageStatus(chk_sec[i-1]), "--- ", chk_sec[i-1]);
+        //console.log("@@@@@@@@@@.getPageStatus---", window.parent.getPageStatus(chk_sec[i-1]), "--- ", chk_sec[i-1]);
         if (window.parent.getPageStatus(chk_sec[i-1]) === 3) {
           /* console.log('SE COMPLETO', chk_sec[i - 1] )
           console.log('god', '.god' + (chk_sec[i - 1] - 1))
