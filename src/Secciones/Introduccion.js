@@ -327,13 +327,17 @@ const Introduccion = () => {
 								}}>
 					<div className='row'>
 						<div className='col-12 col-md-12 text-center'>
+							
 						<iframe title='Curso0'
 								className={`${estado ? '' : 'disabled'} col-12 col-md-12 text-left`}
 								ref={ref2}
 								//onLoad={onLoad}
 								autoFocus={true}
 								id="myFrame3"
-								src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA_FINAL/index.html'}
+								//src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA_FINAL/index.html'}
+
+								src={process.env.PUBLIC_URL + '/sco01/index.html'}
+
 								//src={'sco01/index.html'}
 								//width="100%"
 								//height="100%"
