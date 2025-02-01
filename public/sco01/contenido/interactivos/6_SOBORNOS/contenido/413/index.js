@@ -3157,6 +3157,7 @@ if (reversed == null) { reversed = false; }
 		this.stop();
 		this.cerrar.addEventListener("click",hazCerrar.bind(this))
 		function hazCerrar(){
+		window.parent.parent.chk_nodo(3);
 			this.play();
 		}
 	}

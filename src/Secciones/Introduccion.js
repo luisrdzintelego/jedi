@@ -59,17 +59,22 @@ const Introduccion = () => {
 	};
 	*/
 
-	async function udpatesUser(id, bookmark,completado) {
-		console.log("🚀 udpates 🚀 ~ --id -- ", id)
-		console.log("🚀 udpates 🚀 ~ --bookmark -- ", bookmark)
+	async function udpatesUser(id, bookmark, completado) {
+		//console.log("🟠 ~ ⭐udpatesUser:  -id: ", id , " bookmark: ", bookmark, " completado: ", completado)
+		console.log("🟠 ~ ⭐udpatesUser:")
+
 		const original = await DataStore.query(Ranking, id);
 		await DataStore.save(Ranking.copyOf(original, updated => {
 			//updated.status = completado
-			updated.status = (completado === 'true' ? true : false)
 			updated.bookmark = bookmark
+			updated.status = (completado === 'true' ? true : false)
+
 		})
 		).then((resp) => {
-			console.log("🚀 ~ resp", resp)
+			//console.log("🟠 ~ Datos ya actualizados en la BaseDeDatos! ----->")
+			//console.log("🟠 ~ DB.id:", resp.id)
+			//console.log("🟠 ~ DB.bookmark:", resp.bookmark)
+			//console.log("🟠 ~ DB.status:", resp.status)
 			chkUser(GConText.userId)
 
 		}).catch((err) => {
@@ -83,12 +88,11 @@ const Introduccion = () => {
 		//const posts = await DataStore.query(Ranking, c => c.id("eq", id))
 		const posts = await DataStore.query(Ranking, (c) => c.id.eq(id))
 			.then((resp) => {
-				console.log("🚀 ~ resp_________:", resp)
-
+				//console.log("🟠 ~ resp_________:", resp)
 				if (resp.length >= 1) {
-					console.log("🚀 ~ SI EXISTE Auth ID:", resp[0].id)
+					//console.log("🟠 ~ SI EXISTE Auth ID:", resp[0].id)
 				} else {
-					console.log("🚀 ~ NO EXISTE Auth ID:")
+					//console.log("🟠 ~ NO EXISTE Auth ID:")
 					num = 1;
 				}
 
@@ -103,15 +107,15 @@ const Introduccion = () => {
 					GConText.setStatus(resp[0].status);
 					GConText.setBookmark(resp[0].bookmark);
 
-					console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
-					/* console.log("🚀 ~ dB.id", resp[0].id);
-					console.log("🚀 ~ dB.username", resp[0].username)
-					console.log("🚀 ~ dB.password", resp[0].password)
-					console.log("🚀 ~ dB.nombre", resp[0].nombre)
-					console.log("🚀 ~ dB.grupo", resp[0].grupo)
-					console.log("🚀 ~ dB.type", resp[0].type)*/
-					console.log("🚀 ~ dB.bookmark", resp[0].bookmark) 
-					console.log("🚀 ~ dB.status", resp[0].status)
+					console.log(" 🟠  ~~~~~~~ DATOS actualizados  DataStore AWS ~~~~~~~")
+					/* console.log("🟠 ~ dB.id", resp[0].id);
+					console.log("🟠 ~ dB.username", resp[0].username)
+					console.log("🟠 ~ dB.password", resp[0].password)
+					console.log("🟠 ~ dB.nombre", resp[0].nombre)
+					console.log("🟠 ~ dB.grupo", resp[0].grupo)
+					console.log("🟠 ~ dB.type", resp[0].type)*/
+					console.log("🟠 ~ dB.bookmark", resp[0].bookmark) 
+					console.log("🟠 ~ dB.status", resp[0].status)
 
 				}
 			}).catch((err) => {
@@ -125,7 +129,7 @@ const Introduccion = () => {
 	// This hook is listening an event that came from the Iframe
 	useEffect(() => {
 
-		console.log("🚀 ~ CookieId.idUser", CookieId.idUser)
+		//console.log("🚀 ~ CookieId.idUser", CookieId.idUser)
 
 		if (CookieId.idUser !== undefined) {
 			chkUser(CookieId.idUser)
@@ -142,15 +146,19 @@ const Introduccion = () => {
 			}
 			
 			const data = JSON.parse(ev.data)
-			console.log("se mando esto a la Plataforma! ----->", data)
-
-			console.log("🟣 ~ data.completado:", data.completado)
-			console.log("🟣 ~ data.message:", data.message)
-			console.log("🟣 ~ data.bookmark:", data.bookmark)
+			console.log("🟣↩︎ ~Datos que llegan desde el Curso! ----->")
+			//console.log("🟣↩︎ ~Datos que llegan desde el Curso! ----->", data)
+			console.log("🟣↩︎ ~ data.message:", data.message)
+			console.log("🟣↩︎ ~ data.completado:", data.completado)
+			console.log("🟣↩︎ ~ data.bookmark:", data.bookmark)
+			console.log("🟣 ~ ------------------------")
+			console.log("🟠↩︎ ~Datos que estaban almacenados en la BaseDeDatos! ----->")
+			console.log("🟠 ~ GConText.status:", GConText.status)
+			console.log("🟠 ~ GConText.bookmark:", GConText.bookmark)
+			//console.log("🟠 ~ GConText.userId:", GConText.userId)
+			console.log("🟠 ~ ------------------------")
 
 			//console.log(data.completado, " -- ", GConText.userId, " -- ", data.bookmark)
-			
-
 			//console.log("terminoLamina--- ", terminoLamina)
 
 			if ( data.completado === 'true' && data.message === 'todoBien!' ) {
@@ -159,13 +167,15 @@ const Introduccion = () => {
 
 				setEstado(true)
 
-				Swal.fire({
-					title: '<strong>Curso Completado!</strong>',
-					html: `<i> ${GConText.nombre}, haz completado completado el curso</i>`,
-					icon: "success",
-					showConfirmButton: false,
-					timer: 4000
-				});
+				if(GConText.status !== true){
+					Swal.fire({
+						title: '<strong>Curso Completado!</strong>',
+						html: `<i> ${GConText.nombre}, haz completado completado el curso</i>`,
+						icon: "success",
+						showConfirmButton: false,
+						timer: 4000
+					});
+				}
 
 			} else if(data.completado === 'false' && data.message === 'todoBien!'){
 
@@ -280,7 +290,7 @@ const Introduccion = () => {
 		});
 	//}, [ref2, GConText.bookmark]);
 
-	}, [GConText.bookmark]);
+	}, [ref2,GConText.bookmark]);
 
 	/* const ref = useRef(); */
 	/* 
@@ -323,15 +333,20 @@ const Introduccion = () => {
 								//onLoad={onLoad}
 								autoFocus={true}
 								id="myFrame3"
-								src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA_FINAL/index.html'}
-								//src={'sco01/index.html'}
+								//src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA_FINAL/index.html'}
+								src={'sco01/index.html'}
 								//width="100%"
 								//height="100%"
 								//height={height}
 								scrolling="yes"
 								frameBorder="0"
 
-								sandbox='allow-scripts allow-modals allow-same-origin allow-downloads' 
+								//allow-same-origin: permite que el contenido de un iframe se considere del mismo origen
+								//allow-popups: permite que se abran ventanas emergentes en un iframe
+								//allow-downloads: perimite permite descargas desde el iframe
+								//allow-scrips: permite que el iframe ejecute JavaScript
+								
+								sandbox='allow-same-origin allow-scripts allow-modals allow-downloads allow-popups' 
 								loading='lazy'
 
 								style={{

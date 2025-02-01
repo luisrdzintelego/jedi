@@ -40,7 +40,7 @@ function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
         var temp = array[i];
-        console.log("🚀 ~ temp:", temp)
+        //console.log("🚀 ~ temp:", temp)
         array[i] = array[j];
         array[j] = temp;
     }
@@ -70,63 +70,109 @@ function initEval(href, num, pase) {
 
     if (wparent.getPageStatus(actual) === 3) {
         $('.evaluacion').hide();
-        //$('.preguntas').hide();
+
+
+        //muestra el ultimo resultado
+        $('.result-porcentaje').html(`${wparent.getCalif(10)}`);
         $('.retro_bien').show();
+
         $('.retro_mal1').hide();
         $('.retro_mal2').hide();
         $('.retro_mal3').hide();
+        
     } else {
         if (wparent.intentos >= 3) {
-            $('.evaluacion').hide();
-            //$('.preguntas').hide();
-            $('.retro_bien').hide();
-            $('.retro_mal1').hide();
-            $('.retro_mal2').hide();
-            $('.retro_mal3').show();
-        } else {
-            $('.evaluacion').show();
-            $('.evaluacion').removeClass('disabled');
-            //$('.preguntas').hide();
-            //$('.preguntas').css('display', 'flex').show()
-            $('.retro_bien').hide();
-            $('.retro_mal1').hide();
-            $('.retro_mal2').hide();
-            $('.retro_mal3').hide();
 
-            int++;
-            bd_preguntas = shuffle(getJSON(href))
-            // console.log("🚀 ~ bd_preguntas:", bd_preguntas)
+            if (wparent.getCalif(10) >= 80) {
 
-            if (bd_preguntas.length >= num) {
-                totaPreguntas = num;
+                $('.evaluacion').hide();
+
+                //muestra el ultimo resultado
+                $('.result-porcentaje').html(`${wparent.getCalif(10)}`);
+                $('.retro_bien').show();
+
+                $('.retro_mal1').hide();
+                $('.retro_mal2').hide();
+                $('.retro_mal3').hide();
+
             } else {
-                totaPreguntas = bd_preguntas.length;
-            }
 
-            aprobacion = pase;
+                $('.evaluacion').hide();
+                $('.retro_bien').hide();
+                $('.retro_mal1').hide();
+                $('.retro_mal2').hide();
 
-            // console.log("🚀 ~ totaPreguntas:", totaPreguntas)
-
-            respCorrecta = 0;
-            respUsuario = 0;
-            pregActual = 0;
-            puntaje = 0;
-
-            gameOver = false;
-
-            NextQuestion();
-
-            if (int >= 2) {
-
-                $('html, body').stop().animate(
-                    {
-                        scrollTop: ($('.evaluacion').offset().top),
-                    }, 600, function () {
-                        // Animation complete.
-                        //$('.preguntas').hide();
-                    });
+                //muestra el ultimo resultado
+                $('.result-porcentaje').html(`${wparent.getCalif(10)}`);
+                $('.retro_mal3').show();
 
             }
+
+        } else {
+
+            if (wparent.getCalif(10) >= 80) {
+
+                $('.evaluacion').hide();
+
+                //muestra el ultimo resultado
+                $('.result-porcentaje').html(`${wparent.getCalif(10)}`);
+                $('.retro_bien').show();
+
+                $('.retro_mal1').hide();
+                $('.retro_mal2').hide();
+                $('.retro_mal3').hide();
+
+            } else {
+
+                $('.evaluacion').show();
+                $('.evaluacion').removeClass('disabled');
+                //$('.preguntas').hide();
+                //$('.preguntas').css('display', 'flex').show()
+                $('.retro_bien').hide();
+                $('.retro_mal1').hide();
+                $('.retro_mal2').hide();
+                $('.retro_mal3').hide();
+
+                int++;
+                bd_preguntas = shuffle(getJSON(href))
+                // console.log("🚀 ~ bd_preguntas:", bd_preguntas)
+
+                if (bd_preguntas.length >= num) {
+                    totaPreguntas = num;
+                } else {
+                    totaPreguntas = bd_preguntas.length;
+                }
+
+                aprobacion = pase;
+
+                // console.log("🚀 ~ totaPreguntas:", totaPreguntas)
+
+                respCorrecta = 0;
+                respUsuario = 0;
+                pregActual = 0;
+                puntaje = 0;
+
+                gameOver = false;
+
+                NextQuestion();
+
+                if (int >= 2) {
+
+                    $('html, body').stop().animate(
+                        {
+                            scrollTop: ($('.evaluacion').offset().top),
+                        }, 600, function () {
+                            // Animation complete.
+                            //$('.preguntas').hide();
+                        });
+
+                }
+
+            }
+
+
+
+
         }
     }
 }
@@ -180,7 +226,7 @@ var ranNum2 = ['A', 'B'];
 
 function NextQuestion() {
 
-   // var aleat = noRepRandom(3)
+    // var aleat = noRepRandom(3)
 
     $('.btn-enviar-eval-final').hide();
 
@@ -227,25 +273,25 @@ function NextQuestion() {
         $('.campo-resp3').html(`${bd_preguntas[pregActual].opcion_3}`);
     } */
 
-        shuffle_divs();
+    shuffle_divs();
 
     if (bd_preguntas[pregActual].opcion_3 == undefined || bd_preguntas[pregActual].opcion_3 == null || bd_preguntas[pregActual].opcion_3 == '') {
-       
+
         $(`.resp[data-resp*='3']`).hide();
 
         $(".respuesta-opcion:visible").each(function (index) {
-            console.log("🚀 ~ index:", index)
+            //console.log("🚀 ~ index:", index)
             $(this).text(ranNum2[index])
         });
 
     } else {
 
         $(`.resp[data-resp*='3']`).show();
-        
+
         $('.campo-resp3').html(`${bd_preguntas[pregActual].opcion_3}`);
 
         $(".respuesta-opcion:visible").each(function (index) {
-            console.log("🚀 ~ index:", index)
+            //console.log("🚀 ~ index:", index)
             $(this).text(ranNum3[index])
         });
 
@@ -357,11 +403,11 @@ $('.btn-sig').on('click', function (event) {
 
         $('html, body').stop().animate(
             {
-                scrollTop: ($('.campo-pregunta').offset().top-150),
+                scrollTop: ($('.campo-pregunta').offset().top - 150),
             }, 600, function () {
                 // Animation complete.
             });
-        
+
 
     } else {
 
@@ -396,7 +442,27 @@ $('.btn-sig').on('click', function (event) {
         console.log("🚀 ~ aprobacion:", aprobacion)
         console.log("🚀 ~ puntaje < aprobacion:", puntaje < aprobacion)
 
+        // guarda el porcentaje en el LMS        
+        if (window.parent) {
+            var calif_antes = window.parent.getCalif(10);
+            //window.parent.setCalif2023(10, result, int);
+            console.log("CALIF: ANTES(" + calif_antes + ") > AHORA(" + result + ")")
+            if (result > calif_antes) {
+                window.parent.saveGrade(result);
+                window.parent.intentos = int;
+                // aumenta el intento en el json
+                window.parent.setCalif2023(10, result, int);
+            } else {
+                window.parent.saveGrade(calif_antes);
+                window.parent.intentos = int;
+                // aumenta el intento en el json
+                window.parent.setCalif2023(10, calif_antes, int);
+            }
+        }
+
         if (puntaje < aprobacion) {
+
+            chk_btns('', 'eval');
 
             if (int == 1) {
 
@@ -448,7 +514,7 @@ $('.btn-sig').on('click', function (event) {
             //window.parent.saveStatus("passed");
 
             chk_nodo(1);
-            window.parent.saveGrade(result);
+            //window.parent.saveGrade(result);
             $('.retro_bien').css('display', 'flex').show();
 
             $('html, body').stop().animate(
@@ -460,24 +526,6 @@ $('.btn-sig').on('click', function (event) {
                 });
 
             //$('.campo-retro').html('<b>¡Excelente trabajo!</b><br>').show();
-        }
-
-        // guarda el porcentaje en el LMS        
-        if (window.parent) {
-            var calif_antes = window.parent.getCalif(10);
-            window.parent.setCalif2023(10, result, int);
-            console.log("CALIF: ANTES(" + calif_antes + ") > AHORA(" + result + ")")
-            if (result > calif_antes) {
-                window.parent.saveGrade(result);
-                window.parent.intentos = int;
-                // aumenta el intento en el json
-                window.parent.setCalif2023(10, result, int);
-            } else {
-                window.parent.saveGrade(calif_antes);
-                window.parent.intentos = int;
-                // aumenta el intento en el json
-                window.parent.setCalif2023(10, calif_antes, int);
-            }
         }
     }
 });

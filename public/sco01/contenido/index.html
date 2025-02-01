@@ -22,7 +22,7 @@
   <!-- <link href="plugin/legobilidad.css" rel="stylesheet" type="text/css"> -->
 
 </head>
-<body>
+<body class="hide">
   <div class="page-wrapper">
     <div class="global-styles w-embed">
       <style>
@@ -101,9 +101,9 @@ a,
   display: inline-flex;
 }
 /* These classes are never overwritten */
-.hide {
+/*.hide {
   display: none !important;
-}
+}*/
 @media screen and (max-width: 991px) {
     .hide, .hide-tablet {
         display: none !important;
@@ -636,23 +636,21 @@ margin: 0rem !important;
         scrollTop: ($('#codigo-etica-video').offset().top)
       }, 600);
 
-  
     });
+
+  /*-----------------*/
 
 </script>
 <script src="code/hazVistos.js"></script>
 <script>
 
-  window.onload = function () {
-    chk_vistos();
-  
-    $('body').fadeIn(500, function () {
-      //chk_scroll();
-    });
-  
+  window.onload = function () { 
     //window.parent.textosServiceSetValor(1, "index");
     window.parent.pag_actual = "index";
-    window.parent.set_Brilla();
+    //window.parent.set_Brilla();
+    $('body').fadeIn(500, function () {
+      chk_vistos();
+    });
   };
   console.log("*********************");
   </script>

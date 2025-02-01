@@ -24,7 +24,7 @@
   <!-- <link href="plugin/legobilidad.css" rel="stylesheet" type="text/css"> -->
 
 </head>
-<body>
+<body class="hide">
 
   <div class="page-wrapper">
     <div class="global-styles w-embed">
@@ -104,9 +104,9 @@ a,
   display: inline-flex;
 }
 /* These classes are never overwritten */
-.hide {
+/*.hide {
   display: none !important;
-}
+}*/
 @media screen and (max-width: 991px) {
     .hide, .hide-tablet {
         display: none !important;
@@ -887,11 +887,17 @@ margin: 0rem !important;
       $(".cont").removeClass('hide');
       initEval(preguntas_eval, 10,8);
 
-      $('html, body').stop().animate({
+     /*  $('html, body').stop().animate({
         scrollTop: ($('.cont').offset().top-100)
-      }, 600);
+      }, 600); */
 
-    });
+      $('html, body').stop().animate({
+        scrollTop: ($('.cont').offset().top-100),
+        }, 600, function () {
+          // Animation complete.
+          $('.btn-iniciar').addClass('disabled');
+        });
+      });
 
 
     $('.btn-cerrar').click(function () {
@@ -904,26 +910,18 @@ margin: 0rem !important;
 
     });
 
-
-
   /*-----------------*/
-
-
 
 </script>
 <script src="code/hazVistos.js"></script>
 <script>
 
-  window.onload = function () {
-    chk_vistos();
-  
-    $('body').fadeIn(500, function () {
-      //chk_scroll();
-    });
-  
+window.onload = function () {
     //window.parent.textosServiceSetValor(1, "index");
     window.parent.pag_actual = "evaluacion";
-    window.parent.set_Brilla();
+    $('body').fadeIn(500, function () {
+      chk_vistos();
+    });
   };
   console.log("*********************");
   </script>

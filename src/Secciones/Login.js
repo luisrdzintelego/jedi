@@ -35,7 +35,7 @@ const Login = ({ props }) => {
 		//setCookieId('idUser', id, { path: '/', expires: (new Date(Date.now())) });
 		let date = new Date();
 		date.setTime(date.getTime() + (30 * 60 * 1000));
-		console.log("🚀 ~ date", date)
+		//console.log("🚀 ~ date", date)
 		setCookieId('idUser', id, { path: '/', expires: date });
 		setCookieId('idUser', id, { path: '/', maxAge: 30 * 60, sameSite: true });
 
@@ -72,14 +72,14 @@ const Login = ({ props }) => {
 	const handleKeyDown = (event) => {
 		if (event.key === 'Enter') {
 			chkLogin();
-			console.log('do validate')
+			//console.log('do validate')
 		}
 	}
 
 
 	const chkData = async () => {
 		//setTodos([]);
-		console.log("🚀 ~ chkData----------")
+		//console.log("🚀 ~ chkData----------")
 		return await DataStore.query(Ranking, Predicates.ALL, {
 			sort: s => s.username(SortDirection.DESCENDING)
 			//sort: s => s.puntos(SortDirection.DESCENDING).tiempo(SortDirection.ASCENDING)
@@ -97,11 +97,11 @@ const Login = ({ props }) => {
 
 		})
 			.catch((err) => {
-				console.log(err)
+				//console.log(err)
 
 			})
 			.finally(() => {
-				console.log(todos)
+				//console.log(todos)
 			})
 	}
 
@@ -118,7 +118,7 @@ const Login = ({ props }) => {
 				const models = await DataStore.query(Ranking);
 				console.log(models); */
 
-		console.log("🚀 ~ GConText.username:", GConText.username)
+		//console.log("🚀 ~ GConText.username:", GConText.username)
 
 		try {
 			//const models = await DataStore.query(Ranking);
@@ -145,25 +145,25 @@ const Login = ({ props }) => {
 				//posts.length === 0 ? console.log("🚀 ~ ESTE USUSARIO NO EXISTE:") : console.log("🚀 ~ SI EXISTE:", posts)
 
 				if (resp.length >= 1) {
-					console.log("🚀 ~ SI EXISTE:", resp[0].username)
+					//console.log("🚀 ~ SI EXISTE:", resp[0].username)
 					if (GConText.username === resp[0].username) {
-						console.log("🚀 ~ USUARIO COINCIDEN CON LOS INPUTS:")
+						//console.log("🚀 ~ USUARIO COINCIDEN CON LOS INPUTS:")
 						setUser(true);
 					} else {
-						console.log("🚀 ~ USUARIO NO COINCIDE:")
+						//console.log("🚀 ~ USUARIO NO COINCIDE:")
 						setUser(false);
 						num = 1;
 					}
 					if (GConText.password === resp[0].password) {
-						console.log("🚀 ~ password COINCIDEN CON LOS INPUTS:")
+						//console.log("🚀 ~ password COINCIDEN CON LOS INPUTS:")
 						setPass(true);
 					} else {
-						console.log("🚀 ~ password NO COINCIDE:")
+						//console.log("🚀 ~ password NO COINCIDE:")
 						setPass(false);
 						num = 1;
 					}
 				} else {
-					console.log("🚀 ~ ESTE USUSARIO NO EXISTE:")
+					//console.log("🚀 ~ ESTE USUSARIO NO EXISTE:")
 					setUser(false);
 					num = 1;
 				}
@@ -190,7 +190,7 @@ const Login = ({ props }) => {
 					GConText.setBonus3(resp[0].bonus3);
 					GConText.setIntentos(resp[0].intentos); */
 					GConText.setStatus(resp[0].status);
-					GConText.setStatus(resp[0].bookmark);
+					GConText.setBookmark(resp[0].bookmark);
 
 					console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
 					console.log("🚀 ~ dB.id", resp[0].id);
@@ -211,7 +211,7 @@ const Login = ({ props }) => {
 					console.log("🚀 ~ dB.bonus3", resp[0].bonus3)
 					console.log("🚀 ~ dB.intentos", resp[0].intentos) */
 					console.log("🚀 ~ dB.status", resp[0].status)
-					console.log("🚀 ~ dB.status", resp[0].bookmark)
+					console.log("🚀 ~ dB.bookmark", resp[0].bookmark)
 
 					console.log("~~~~~~~ ---------------- ~~~~~~~")
 
@@ -264,7 +264,7 @@ const Login = ({ props }) => {
 					GConText.setBonus3(resp[0].bonus3);
 					GConText.setIntentos(resp[0].intentos); */
 					GConText.setStatus(resp[0].status);
-					GConText.setStatus(resp[0].bookmark);
+					GConText.setBookmark(resp[0].bookmark);
 
 					console.log("~~~~~~~ DATOS desde DataStore AWS ~~~~~~~")
 					console.log("🚀 ~ dB.id", resp[0].id);
@@ -285,7 +285,7 @@ const Login = ({ props }) => {
 					//console.log("🚀 ~ dB.bonus3", resp[0].bonus3)
 					//console.log("🚀 ~ dB.intentos", resp[0].intentos)
 					console.log("🚀 ~ dB.status", resp[0].status)
-					console.log("🚀 ~ dB.status", resp[0].bookmark)
+					console.log("🚀 ~ dB.bookmark", resp[0].bookmark)
 
 					console.log("~~~~~~~ ---------------- ~~~~~~~")
 
@@ -304,7 +304,7 @@ const Login = ({ props }) => {
 	useEffect(() => {
 		//console.log("🚀 ~ vistos", vistos)
 		//setLoading(true)
-		console.log("🚀 ~ CookieId.idUser", CookieId.idUser)
+		//console.log("🚀 ~ CookieId.idUser", CookieId.idUser)
 
 		if (CookieId.idUser !== undefined) {
 			chkAuth(CookieId.idUser)

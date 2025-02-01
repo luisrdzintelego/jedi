@@ -24,7 +24,7 @@
   <!-- <link href="plugin/legobilidad.css" rel="stylesheet" type="text/css"> -->
 
 </head>
-<body>
+<body class="hide">
 
   <div id="popupMC" class="pop_up">
     <iframe id="popup1" src=""  frameborder="0"
@@ -112,9 +112,9 @@ a,
   display: inline-flex;
 }
 /* These classes are never overwritten */
-.hide {
+/*.hide {
   display: none !important;
-}
+}*/
 @media screen and (max-width: 991px) {
     .hide, .hide-tablet {
         display: none !important;
@@ -925,20 +925,19 @@ margin: 0rem !important;
 
     });
 
+  /*-----------------*/
+
 </script>
 <script src="code/hazVistos.js"></script>
 <script>
 
-  window.onload = function () {
-    chk_vistos();
-  
-    $('body').fadeIn(500, function () {
-      //chk_scroll();
-    });
-  
+  window.onload = function () {  
     //window.parent.textosServiceSetValor(1, "index");
     window.parent.pag_actual = "seguridad-de-a-informacion";
-    window.parent.set_Brilla();
+    //window.parent.set_Brilla();
+    $('body').fadeIn(500, function () {
+      chk_vistos();
+    }); 
   };
   console.log("*********************");
   </script>

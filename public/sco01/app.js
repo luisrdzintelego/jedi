@@ -43,14 +43,15 @@
                 $window.addEventListener('message', (event) => {
 
                     //Para forzar que vengan desde una url conocida
-                    if (event.origin === 'https://www.etica-y-cumplimiento.com/') {
+                    //if (event.origin === 'https://www.etica-y-cumplimiento.com') {
+                    if (event.origin === 'https://main.d34dped6g4yozl.amplifyapp.com') {
                     //if (event.origin === 'http://localhost:3000') {
                         // The data was sent from your site.
                         // Data sent with postMessage is stored in event.data:
-                        console.log('🟠 event.data ', event.data);
+                        console.log('🟠↪︎ ~ event.data ', event.data);
                         //--⬇︎ pone comillas si no existe el dato -- 
                         //res(JSON.stringify(event.data));
-                        //console.log("🚀 ~ event.data.stringify():", JSON.stringify(event.data))
+                        //console.log("🟡 ~ event.data.stringify():", JSON.stringify(event.data))
 
                         //--⬇︎ pone espacio vacio si no existe el dato
                         //--⬇︎ FUNCIONAL
@@ -64,7 +65,7 @@
                             //errorConect = false;
                         }
 
-                        //console.log("🚀 ~ event.data.toString():", event.data.toString())
+                        //console.log("🟡 ~ event.data.toString():", event.data.toString())
 
                         /*  var arreglo_cadena = result.split("&&");
                          location = arreglo_cadena[1];
@@ -92,7 +93,7 @@
                          intentos = arreglo_cadena[4]; */
 
                     } else {
-                        console.log('🔴 ERROR NO SE CONECTO CON LA BASE 🔴');
+                        console.log('🔴 ~ ERROR CONECCION 🔴');
                         // The data was NOT sent from your site!
                         // Be careful! Do not use it. This else branch is
                         // here just for clarity, you usually shouldn't need it.
@@ -117,7 +118,7 @@
         if (tipo_curso === 'plataforma') {
 
             setTimeout(() => {
-                console.log('plataforma')
+                console.log('⭐plataforma⭐')
                 PagesService.init();
             }, 1);
 
@@ -338,16 +339,16 @@
             const pag = pag_actual;
 
             if (pag != "" && pag != null && pag != undefined) {
-                console.log("🚀 ~ ----------------- page_event")
-                console.log("🚀 ~ pagina actual:", pag)
-                console.log("🚀 ~ -----------------")
+                console.log("🟡 ~ ----------------- page_event")
+                console.log("🟡 ~ pagina actual:", pag)
+                console.log("🟡 ~ -----------------")
                 $scope.url_inicio = "contenido/" + pag + ".html";
-                console.log("🚀 -- si lo lee javo ~ $scope.url_inicio:", $scope.url_inicio)
+                console.log("🟡 -- si lo lee javo ~ $scope.url_inicio:", $scope.url_inicio)
 
             } else {
-                console.log("🚀 ~ ----------------- page_event inicial")
-                console.log("🚀 ~ pagina actual:", pag)
-                console.log("🚀 ~ -----------------")
+                console.log("🟡 ~ ----------------- page_event inicial")
+                console.log("🟡 ~ pagina actual:", pag)
+                console.log("🟡 ~ -----------------")
                 $scope.url_inicio = "contenido/index.html";
             }
             /*----------*/
@@ -390,7 +391,7 @@
         var _verbotones = true;
 
         function saveAvance() {
-            console.log("🚀 ~ saveAvance:")
+            console.log("🟡 ~ ⭐saveAvance: ⬇︎ ~~~~~~~~~~~~~~~~~~~")
             var cadena = "";
 
             //console.log("FORMA CADENA AVANCE RAIZ::");
@@ -407,12 +408,6 @@
                 //console.log("🟡 ~ bookmark:", _pagesArray[j].done , ' -- ' , j)
 
                 cadena += (_pagesArray[j].done);
-
-                /* if(_pagesArray[j].done!=undefined && _pagesArray[j].done!=null ){
-                    cadena += "-"+(_pagesArray[j].done);
-                }else{
-                    cadena += "-1";
-                } */
 
                 //console.log("cadena DONE: " + cadena);
 
@@ -456,17 +451,25 @@
             //scormService.saveLocation(cadena + "&&" + _currentPage + "&&" + pag_actual + "&&" + nombre + "&&" + rol + "&&" + intentos + "&&" );
             bookmark = (cadena + "&&" + _currentPage + "&&" + pag_actual + "&&" + nombre + "&&" + intentos + "&&");
 
+            console.log('🟡 ~ todos_vistos:', todos_vistos,' - ' , 'errorConect:', errorConect )
+
             if (tipo_curso === 'plataforma') {
-                errorConect ? sendPlatform('error', 'false') : sendPlatform(bookmark, 'false')
+
+                if(errorConect){
+                    console.log('🟡 ~ PLATAFORMA MARCA ERROR.')
+                    sendPlatform('error', 'false')
+                } else if(todos_vistos === false && errorConect === false){
+                    console.log('🟡 ~ PLATAFORMA GUARDA AVANCE.')
+                    sendPlatform(bookmark, 'false')
+                } else if(todos_vistos === true && errorConect === false){
+                    console.log('🟡 ~ PLATAFORMA GUARDA AVANCE Y COMPLETA EL CURSO.')
+                    sendPlatform(bookmark, 'true')
+
+                }
+                //errorConect ? sendPlatform('error', 'false') : sendPlatform(bookmark, 'false')
             }
 
-            console.log("🚀 ~ todos_vistos:")
-
             if (todos_vistos === true) {
-
-                if (tipo_curso === 'plataforma') {
-                    sendPlatform(bookmark, 'true')
-                }
 
                 //scormService.saveStatus("completed");
 
@@ -493,14 +496,16 @@
                 scormService.setValue("cmi.objectives.0.success_status", "passed");
 
                 scormService.saveStatus("completed");
+
+                
                 //scormService.saveStatus("passed");
 
             }
-
+            console.log("⬆︎ ~~~~~~~~~~~~~~~~~~~~")
         }
 
         function resetAvance() {
-            console.log("🚀 ~ resetAvance:")
+            console.log("🟡 ~ ⭐resetAvance:")
             //scormService.saveLocation(cadena + "&&" + _currentPage); 
             scormService.saveLocation('');
 
@@ -508,7 +513,7 @@
 
 
         function _broadcast() {
-            console.log("🚀 ~ _broadcast:")
+            console.log("🟡 ~ ⭐_broadcast:")
             $rootScope.$broadcast('page_event', _pagesArray[_currentPage - 1]);
             /* Coloca suspend en location*/
             //saveAvance();
@@ -538,7 +543,7 @@
                 //var get_cadena=scormService.getLocation();
 
                 /*✅LRG 2024*/
-                //console.log("🚀 ~ DATA.test::::", data.test)
+                //console.log("🟡 ~ DATA.test::::", data.test)
                 if (data.test == true) {
                     var get_cadena = data.location_json;
                 } else {
@@ -576,8 +581,11 @@
 
                     }
                     pag_actual = arreglo_cadena[2];
+                    console.log("🟡 ~ pag_actual:", pag_actual)
                     nombre = arreglo_cadena[3];
+                    console.log("🟡 ~ nombre:", nombre)
                     intentos = arreglo_cadena[4];
+                    console.log("🟡 ~ intentos:", intentos)
                 }
 
 
@@ -694,20 +702,20 @@
 
         /*✅LRG 2024*/
         function brilla() {
-            console.log('🟡 - brilla');
+            console.log('🟡 ~ ⭐brilla:');
             /* Coloca suspend en location*/
             saveAvance();
             //_broadcastStatus();
         }
         function reiniciarCurso() {
-            console.log('🟡 - reiniciarCurso');
+            console.log('🟡 ~ ⭐reiniciarCurso:');
             /* Coloca suspend en location*/
             resetAvance();
             //_broadcastStatus();
         }
         /*----------*/
         function setCalif2023(num, calif, intentos, done) {
-            console.log("setCalif::  num: " + num + " num_intentos: " + intentos + " done: " + done);
+            console.log("🟡 ~ setCalif2023:  num: " + num + " num_intentos: " + intentos + " done: " + done);
 
             if (num != undefined && num != null) {
                 _pagesArray[num - 1].calif = calif;
@@ -721,13 +729,29 @@
             }
 
             //_broadcast();
-            saveAvance();
+
+            //2025
+            /* saveAvance(); */
 
             //_broadcastStatus();
             /* Verificar que ya esten todas las calificaciones o en su defecto las 2 oportunidades */
 
         }
 
+        //2025LRG
+        function setDone(num, done) {
+            console.log("🟡 ~ ⭐setDone::  num: " + num + " done: " + done);
+
+            if (done != undefined) {
+                _pagesArray[num - 1].done = done;
+            }
+
+            //_broadcast();
+            saveAvance();
+
+            //_broadcastStatus();
+            /* Verificar que ya esten todas las calificaciones o en su defecto las 2 oportunidades */
+        }
 
         /*Funciones adicionales*/
         function setCalif(num, num_intentos, done) {
@@ -799,12 +823,12 @@
 
         }
         function getVariantes(num) {
-            //console.log("🚀 ~ num:", num)
-            //console.log("🚀 ~ variantes:", _pagesArray)
-            //console.log("🚀 ~ variantes:", _pagesArray[num - 1].variantes)
+            //console.log("🟡 ~ num:", num)
+            //console.log("🟡 ~ variantes:", _pagesArray)
+            //console.log("🟡 ~ variantes:", _pagesArray[num - 1].variantes)
             if (num != undefined && num != null) {
                 if (_pagesArray[num - 1].variantes != undefined && _pagesArray[num - 1].variantes != null) {
-                    //console.log("🚀 ~ num:", _pagesArray[num - 1].variantes)
+                    //console.log("🟡 ~ num:", _pagesArray[num - 1].variantes)
                     //return _pagesArray[num - 1].variantes;
                     return _pagesArray[num - 1].variantes.toString();
                 }
@@ -942,9 +966,6 @@
             getPageStatus: getPageStatus,
             getCurrentPageStatus: getCurrentPageStatus,
             getPages: getPages,
-            /*LRG 2023*/
-            getPagesLength: getPagesLength,
-            /*----------*/
             pagesArray: _pagesArray,
             pagesLength: _pagesLength,
             init: init,
@@ -952,10 +973,6 @@
             nextPage: nextPage,
             goToPage: goToPage,
             brilla: brilla,
-            /*LRG 2024*/
-            reiniciarCurso: reiniciarCurso,
-            setCurrentPage: setCurrentPage,
-            goToPageTitle: goToPageTitle,
             /*⬇️-2022*/
             //brillaSinDone: brillaSinDone,
             //getBrillar: getBrillar,
@@ -963,7 +980,6 @@
             //getSeguros: getSeguros,
             //detenerSeguros: detenerSeguros,
             //regresaBDPreguntas: regresaBDPreguntas,
-            /*----------*/
             setCalif: setCalif,
             getCalif: getCalif,
             /*LRG 2023*/
@@ -972,6 +988,13 @@
             setCalif2023: setCalif2023,
             setDiagnostico: setDiagnostico,
             getDiagnostico: getDiagnostico,
+            getPagesLength: getPagesLength,
+            /*LRG 2024*/
+            reiniciarCurso: reiniciarCurso,
+            setCurrentPage: setCurrentPage,
+            goToPageTitle: goToPageTitle,
+            /*LRG 2025*/
+            setDone: setDone,
             /*----------*/
             setIntentos: setIntentos,
             getIntentos: getIntentos,

@@ -77,8 +77,11 @@ export const CustomVarContext = ({children}) => {
 	const [pruebas, setPruebas] = useState (true);
 
 	const [bookmark, setBookmark] = useState ('')
+	const [status, setStatus] = useState (false)
 
-	const [version, setVersion] = useState ('v10_2025 server')
+
+	
+	const [version, setVersion] = useState ('v11_2025 server')
 	//----
 
 	//DATOA DE SE LLENAN DE LA BASE
@@ -100,7 +103,7 @@ export const CustomVarContext = ({children}) => {
 	const [Bonus3, setBonus3] = useState (false) 
 	const [ranking, setRanking] = useState (0)*/
 
-	const [status, setStatus] = useState (false)
+
 	
 	// DATOS DE EL JUEGO PERO NO VAN A LA ABSE
 	/* const [PuntosEval1, setPuntosEval1] = useState (0)

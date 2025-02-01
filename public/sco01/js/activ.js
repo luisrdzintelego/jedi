@@ -13,7 +13,7 @@ var pag_actual = "";
 var idioma = "";
 var status = "";
 var intentos = 0;
-var nombre = "";
+var nombre = "empty";
 var rol = 0;
 
 var tipo_curso = 'plataforma';
@@ -121,11 +121,10 @@ function hazListener(e) {
 
 /* 2025 - PLATAFORMA LRG*/
 function sendPlatform(data, done) {
-  //console.log("✅ ~ bookmark:", data)
+  console.log("🟡 ~ sendPlatform: ⬇︎ ~~~~~~~~~~~~~~~~~~~")
   console.log("🟡 ~ bookmark:", data, "done:",done)
 
   if (data == 'error') {
-
 
     window.parent.postMessage(
       JSON.stringify({
@@ -163,10 +162,16 @@ function sendPlatform(data, done) {
       '*'
     );
 
-
   }
+  console.log("⬆︎ ~~~~~~~~~~~~~~~~~~~~")
 }
 
+
+/* 2025 LRG*/
+function setDone(num, done) {
+  //console.log("🚀 ~ setDone:::: ", num,done)
+  return angular.element(document.getElementsByTagName('body')).scope().pagesService.setDone(num, done);
+}
 
 /* 2024 LRG*/
 function getVariantes(num) {

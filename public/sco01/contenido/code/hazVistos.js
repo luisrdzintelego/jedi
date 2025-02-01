@@ -2,8 +2,8 @@
   
   
     function chk_vistos(num) {
-      console.log("chk_vistos");
-      console.log("🚀 ~ getVariantes----:", window.parent.getVariantes(actual))
+      console.log("🔵 ~ ⭐chk_vistos: ⬇︎ ~~~~~~~~~~~~~~~~~~~");
+      console.log("🔵 ~ getVariantes----:", window.parent.getVariantes(actual))
       //console.log("🚀 ~ actual:", actual)
     
       if (window.parent.getVariantes(actual) != undefined && window.parent.getVariantes(actual) != 0) {
@@ -14,8 +14,8 @@
           } */
     
       if (!num) {
-        console.log("🚀 ~ no existe:")
-        chk_btns();
+        console.log("🔵 ~ no existe: num ~ chk_vistos")
+        chk_btns('','inicio');
       }
     
       if (window.parent.getPageStatus(actual) === 3) {
@@ -61,25 +61,30 @@
           }  
         } 
       }
-      console.log("------------")
+      console.log("⬆︎ ~~~~~~~~~~~~~~~~~~~~")
     }
     
     function hazVisto(num) {
-      console.log("hazVisto:: ", num);
+      console.log("🔵 ~ ⭐hazVisto:: ", num);
       if (window.parent.getPageStatus(num) != 3) {
         window.parent.setCurrentPage(num);
         window.parent.setCalif(1, 1, 3);
+      } else {
+        window.parent.set_Brilla();
       }
       chk_vistos(num);
     }
     
     function hazVisto_url(num, url_, type) {
-      console.log("hazVisto_url:: " + num + "-- " + url_);
+      console.log("🔵 ~ ⭐hazVisto_url:: " + num + "-- " + url_);
       if (window.parent.getPageStatus(num) != 3) {
         window.parent.setCurrentPage(num);
         window.parent.setCalif(1, 1, 3);
+      } else {
+        window.parent.set_Brilla();
       }
-      chk_vistos();
+
+      chk_vistos(num);
       window.open(url_, "_blank");
     }
     
@@ -92,6 +97,8 @@
           console.log("GO!!");
           //alert("GO!!");
           chk_vistos();
+        } else {
+          window.parent.set_Brilla();
         }
       }
     };

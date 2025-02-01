@@ -14,7 +14,7 @@ function change_img_class(div, imagePrefix, ext) {
 
 //2024Dic
 function add_image_inDiv(div, imagePrefix,tam) {
-  console.log("🚀🚀🚀🚀🚀🚀🚀 ~ add_image_inDiv:")
+  //console.log("🔵 ~ add_image_inDiv:")
   $('.' + div).html('<img src="sources/'+imagePrefix+'" width="'+tam+'" height="'+tam+'">');
 }
 
