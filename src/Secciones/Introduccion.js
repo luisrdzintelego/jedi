@@ -335,7 +335,7 @@ const Introduccion = () => {
 								id="myFrame3"
 								//src={'https://intelegoprojects.com/FEMSA/CODIGO_ETICA/SITIO_PLATAFORMA_FINAL/index.html'}
 								//src={'/sco01/index.html'}
-								src={`${process.env.PUBLIC_URL}/sco01/index.html`}
+								src={'../../sco01/index.html'}
 								
 								//width="100%"
 								//height="100%"
