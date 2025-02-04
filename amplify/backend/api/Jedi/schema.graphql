@@ -8,5 +8,4 @@ type Ranking @model @auth(rules: [{allow: public}]) {
   avatar: Int
   nombre: String
   bookmark: String
-}
- 
+} 

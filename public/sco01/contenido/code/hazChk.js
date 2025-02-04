@@ -17,15 +17,19 @@ function chk_nodo(num) {
 
 
 function reiniciar() {
-	console.log("🔵 ~ ⭐reiniciar: ")
+	console.log("🔵 ~ ⭐reiniciar: ⬇︎ ~~~~~~~~~~~~~~~~~~~ ")
 
-	for (i = 1; i <= 10; i++) {
+	for (i = 1; i <= window.parent.paginas; i++) {
 
-		if (window.parent.setVariantes) {
-			window.parent.setVariantes("", i);
-			/* window.parent.setCurrentPage(1);
-			window.parent.setCalif(1, 1, 2); */
-		}
+		console.log("🔵 ~ reiniciando pagina: ", i)
+		//if (window.parent.setVariantes) {
+			window.parent.setVariantes(0, i);
+		//}
+
+		//if (window.parent.setCalif2023) {
+			window.parent.setCalif2023(i, 0, 0, 1);
+		//}
+
 	}
 
 	window.parent.bookmark = '';
@@ -39,6 +43,7 @@ function reiniciar() {
 	} else {
 		hazSeccion(1);
 	}
+	console.log("⬆︎ ~~~~~~~~~~~~~~~~~~~~")
 }
 
 //console.log("🚀 ~ atv:", atv.length)

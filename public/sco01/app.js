@@ -45,7 +45,7 @@
                     //Para forzar que vengan desde una url conocida
                     //if (event.origin === 'https://www.etica-y-cumplimiento.com') {
                     if (event.origin === 'https://main.d34dped6g4yozl.amplifyapp.com') {
-                    //if (event.origin === 'http://localhost:3000') {
+                        //if (event.origin === 'http://localhost:3000') {
                         // The data was sent from your site.
                         // Data sent with postMessage is stored in event.data:
                         console.log('🟠↪︎ ~ event.data ', event.data);
@@ -122,7 +122,7 @@
                 PagesService.init();
             }, 1);
 
-        }else{
+        } else {
             scormService.init();
             PagesService.init();
         }
@@ -451,22 +451,27 @@
             //scormService.saveLocation(cadena + "&&" + _currentPage + "&&" + pag_actual + "&&" + nombre + "&&" + rol + "&&" + intentos + "&&" );
             bookmark = (cadena + "&&" + _currentPage + "&&" + pag_actual + "&&" + nombre + "&&" + intentos + "&&");
 
-            console.log('🟡 ~ todos_vistos:', todos_vistos,' - ' , 'errorConect:', errorConect )
+            console.log('🟡 ~ todos_vistos:', todos_vistos)
 
             if (tipo_curso === 'plataforma') {
 
-                if(errorConect){
+                console.log('🟡 ~  errorConect:', errorConect)
+
+                if (errorConect) {
                     console.log('🟡 ~ PLATAFORMA MARCA ERROR.')
                     sendPlatform('error', 'false')
-                } else if(todos_vistos === false && errorConect === false){
+                } else if (todos_vistos === false && errorConect === false) {
                     console.log('🟡 ~ PLATAFORMA GUARDA AVANCE.')
                     sendPlatform(bookmark, 'false')
-                } else if(todos_vistos === true && errorConect === false){
+                } else if (todos_vistos === true && errorConect === false) {
                     console.log('🟡 ~ PLATAFORMA GUARDA AVANCE Y COMPLETA EL CURSO.')
                     sendPlatform(bookmark, 'true')
 
                 }
                 //errorConect ? sendPlatform('error', 'false') : sendPlatform(bookmark, 'false')
+            } else {
+                scormService.saveLocation(bookmark);
+                console.log('🟡 ~ ⭐scormService:saveLocation - bookmark:', bookmark)
             }
 
             if (todos_vistos === true) {
@@ -497,7 +502,7 @@
 
                 scormService.saveStatus("completed");
 
-                
+
                 //scormService.saveStatus("passed");
 
             }
@@ -507,10 +512,9 @@
         function resetAvance() {
             console.log("🟡 ~ ⭐resetAvance:")
             //scormService.saveLocation(cadena + "&&" + _currentPage); 
-            scormService.saveLocation('');
+            scormService.saveLocation();
 
         }
-
 
         function _broadcast() {
             console.log("🟡 ~ ⭐_broadcast:")
@@ -534,6 +538,10 @@
                 _title = data.title;
                 _pagesArray = data.pages;
                 _pagesLength = _pagesArray.length;
+                
+                //2025
+                paginas = _pagesArray.length;
+                console.log("🟡 ~ paginas del curso:", paginas)
 
                 //scorm stuff
                 //var location = scormService.getLocation();
@@ -550,10 +558,11 @@
 
                     if (tipo_curso === 'plataforma') {
                         var get_cadena = bookmark;
-                    }else{
-                        var get_cadena = scormService.getSuspend();
+                    } else {
+                        var get_cadena = scormService.getLocation();
+                        console.log('🟡 ~ ⭐scormService:getLocation: ', get_cadena)
                     }
-                    
+
                 }
                 /*----------*/
 
@@ -693,7 +702,7 @@
                     _currentPage = j + 1;
                     break;
                 }
-
+ 
             }
             console.log("Ir a pagina: " + _currentPage);
             _broadcast();
@@ -710,7 +719,7 @@
         function reiniciarCurso() {
             console.log('🟡 ~ ⭐reiniciarCurso:');
             /* Coloca suspend en location*/
-            resetAvance();
+            saveAvance();
             //_broadcastStatus();
         }
         /*----------*/

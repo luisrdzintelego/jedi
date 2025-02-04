@@ -9,6 +9,7 @@ var numeros = new Array();
 var sponge;
 var locked = "no";
 var pag_actual = "";
+var paginas = 0;
 
 var idioma = "";
 var status = "";
